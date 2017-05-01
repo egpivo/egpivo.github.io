@@ -8,9 +8,9 @@ title: About
 
 </p>
 
-I’m a data scientist and researcher with a background in statistics in Taiwan. This blog is to share R/python related things, and statistical/ML methodologies.
+I’m a data scientist and researcher with a background in statistics in Taiwan. This blog is to share R/Python related things, and statistical/ML methodologies.
 
-In the field of Statisitcs, my interests are broad. Mainly, however, I am interested in high-dimensional data analysis, and spatial analysis. I also maintain two open-source applications: [SpatPCA](https://github.com/egpivo/SpatPCA) and [SpatMCA](https://github.com/egpivo/SpatMCA).
+In the field of Statisitcs, my interests are broad. Mainly, however, I am interested in high-dimensional data analysis, and spatial data analysis. I also maintain two open-source applications: [SpatPCA](https://github.com/egpivo/SpatPCA) and [SpatMCA](https://github.com/egpivo/SpatMCA).
 
 
 ### Contact me

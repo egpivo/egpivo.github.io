@@ -537,6 +537,18 @@ a.pagination-item:hover {
   color: #8f5536;
 }
 
+/* DataCamp Blue */
+.theme-base-dp .sidebar,
+.theme-base-dp .sidebar-toggle:active,
+.theme-base-dp #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #2684AC;
+}
+.theme-base-dp .container a,
+.theme-base-dp .sidebar-toggle,
+.theme-base-dp .related-posts li a:hover {
+  color: #2684AC;
+}
+
 
 /*
  * Overlay sidebar

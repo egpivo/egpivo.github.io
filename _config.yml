@@ -24,7 +24,7 @@ author:
 # Custom vars
 version:             2.0.0
 github:
-  repo:              https://github.com/egpivo/egpivo.github.io
+  repo:              https://github.com/egpivo/
 
 # Gems
 gems:
