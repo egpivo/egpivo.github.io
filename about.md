@@ -4,27 +4,15 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  The business of the statistician is to catalyze the scientific learning process. -- George Box
+
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+I’m a data scientist and researcher with a background in statistics in Taiwan. This blog is to share R/python related things, and statistical/ML methodologies.
 
-There are currently two themes built on Poole:
+In the field of Statisitcs, my interests are broad. Mainly, however, I am interested in high-dimensional data analysis, and spatial analysis. I also maintain two open-source applications: [SpatPCA](https://github.com/egpivo/SpatPCA) and [SpatMCA](https://github.com/egpivo/SpatMCA).
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+### Contact me
 
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+[egpivo@gmail.com](mailto:egpivo@gmail.com)
