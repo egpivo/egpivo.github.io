@@ -1,4 +1,0 @@
-# References
-
-* [Elastic-net regularisation](http://ivyleavedtoadflax.github.io//rstats/glmnet/ "title")
-* [Regularised linear regression](http://ivyleavedtoadflax.github.io//rstats/regularised-linear-regression/ "title")

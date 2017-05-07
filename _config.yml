@@ -1,20 +1,17 @@
 # Site settings
-title: Fong Chun Chan's Blog
-email: fongchun@alumni.ubc.ca
+title: Wen-Ting Wang's Blog
+email: egpivo@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  A blog about bioinformatics, cancer research, R, statistics and 
-  BIG data
+  Science is a means whereby learning is achieved.
 baseurl: "" # the subpath of your site, e.g. /blog/
 #url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: fongchunchan
-github_username:  tinyheero
+github_username:  egpivo
 
 markdown: kramdown
 
 kramdown:
     input: GFM
-
+  
 highlighter: rouge
-
 # Google services
-google_analytics: UA-87660981-1
+google_analytics: UA-16805442
