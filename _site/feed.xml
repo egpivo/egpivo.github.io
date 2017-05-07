@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 May 2017 22:09:15 +0800</pubDate>
-    <lastBuildDate>Sun, 07 May 2017 22:09:15 +0800</lastBuildDate>
+    <pubDate>Sun, 07 May 2017 22:26:22 +0800</pubDate>
+    <lastBuildDate>Sun, 07 May 2017 22:26:22 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -15,6 +15,7 @@
         <description>&lt;p&gt;We will introduce basic components of a neural network briefly in this note.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-activation-function&quot;&gt;1. Activation function&lt;/h2&gt;
+&lt;p&gt;(&lt;span class=&quot;inlinecode&quot;&gt;$\theta$&lt;/span&gt;) of a model and observed data (&lt;span class=&quot;inlinecode&quot;&gt;$D$&lt;/span&gt;)&lt;/p&gt;
 
 &lt;p&gt;An “activation function” is a function applied at each node. For example, a rectified linear unit  (reLU) function is defined as&lt;/p&gt;
 &lt;div&gt;

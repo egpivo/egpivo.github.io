@@ -10,9 +10,7 @@ github_username:  egpivo
 markdown: kramdown
 
 kramdown:
-  input: GFM
-  hard_wrap: false
-  math_engine: mathjax
+    input: GFM
   
 highlighter: rouge
 # Google services
