@@ -1,42 +1,18 @@
-# Permalinks
-permalink:           pretty
+# Site settings
+title: Wen-Ting Wang's Blog
+email: egpivo@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Science is a means whereby learning is achieved.
+baseurl: "" # the subpath of your site, e.g. /blog/
+#url: "http://yourdomain.com" # the base hostname & protocol for your site
+github_username:  egpivo
 
-# Setup
-title:               Wen-Ting Wang
-tagline:             Science is a means whereby learning is achieved.
-url:                 https://egpivo.github.io
-paginate:            1
-baseurl:             ""
-
-# Assets
-#
-# We specify the directory for Jekyll so we can use @imports.
-sass:
-  sass_dir:          _sass
-  style:            :compressed
-
-# About/contact
-author:
-  name:              Wen-Ting Wang
-  url:               https://egpivo.github.io
-  email:             egpivo@gmail.com
-
-# Custom vars
-version:             2.0.0
-github:
-  repo:              https://github.com/egpivo/
-
-# Gems
-gems:
-  - jekyll-paginate
-  - jekyll-gist
-
-# Build settings
 markdown: kramdown
-highlighter: rouge
-paginate: 5
 
 kramdown:
-   input: GFM
-   hard_wrap: false
-   # syntax_highlighter: rouge
+    input: GFM
+
+highlighter: rouge
+
+# Google services
+google_analytics: UA-16805442
