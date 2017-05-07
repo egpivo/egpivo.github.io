@@ -27,7 +27,7 @@
 
 
   <body>
-    
+
     <header class="site-header">
 
   <div class="wrapper">
@@ -48,6 +48,10 @@
           
         
           
+        
+          
+        
+          
 						<a class="page-link" href="/about/">About Me</a>
           
         
@@ -61,7 +65,58 @@
         
           
         
-        <a class="page-link" href="/tags/python/">Python</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
         <a class="page-link" href="/tags/R/">R</a>
       </div>
     </nav>
@@ -81,13 +136,340 @@
     
 			
       <li>
-        <span class="post-meta">May 2, 2017</span>
+        <span class="post-meta">Mar 8, 2017</span>
 
         <h2>
-          <a class="post-link" href="/2017/05/02/Note.html">Note 1: basics for a neural network</a>
+          <a class="post-link" href="/2017/03/08/how-to-bayesian-infer-101.html">How to Do Bayesian Inference 101</a>
         </h2>
-				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/python/">Python</a>, <a href="/tags/deep learning/">Deep learning</a></p>
-				<p>We will introduce basic components of a neural network briefly in this note.</p>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/stats/">Statistics</a>, <a href="/tags/bayesian/">Bayesian Statistics</a></p>
+				<p>Towards the end of the post <a href="/2016/04/21/bayes-rule.html">Bayes’ Rule</a>, I eluded a bit to how Bayes’ rule becomes extremely powerful in Bayesian inference. The link happens when we start to interpret the variables of Bayes’ rule as parameters (<span class="inlinecode">$\theta$</span>) of a model and observed data (<span class="inlinecode">$D$</span>):</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Nov 12, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/11/12/bioconductor-conda.html">Using Bioconductor in a Conda Environment</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/conda/">Conda</a>, <a href="/tags/bioconductor/">Bioconductor</a>, <a href="/tags/geoquery/">GEOquery</a></p>
+				<p>I recently switched over to using the <a href="http://conda.pydata.org/docs/">conda package management system</a> for R. One of the benefits of conda is that package installation can be performed very easily with the command:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Jun 4, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/06/04/hemi-vs-het-del.html">What is the Difference Between a Hemizygous and Heterozygous Deletion?</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/cancer/">Cancer</a></p>
+				<p>I have been using the term hemizygous and heterozygous deletion interchangeably for the last few years to describe a single allele/copy deletion in cancer genomes. But it was recently brought to my attention that the term heterozygous deletion is not always correct when describing single copy deletions. The term heterozygous implies that the original two alleles of a genomic locus were different. But we may observe a single allele deletion where the original two alleles were identical. In this case, this would not be a heterozygous deletion, but rather it would be a hemizygous deletion which implies there is only copy remaining but makes no claim that the two original alleles were different.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">May 12, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/05/12/survival-analysis.html">The Basics of Survival Analysis</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/stats/">Statistics</a>, <a href="/tags/survival/">Survival Analysis</a></p>
+				<p>Survival analysis is a series of statistical methods that deals with variables that have both a time and event associated with it. For example, it is used in cancer clinical research if we are interested in measuring the time it takes before a patient relapses following treatment. In this case, the event we are measuring here is whether a patient relapses or not which has a time associated with when the relapse occurs.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Apr 21, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/04/21/bayes-rule.html">Bayes' Rule</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/stats/">Statistics</a>, <a href="/tags/bayesian/">Bayesian Statistics</a></p>
+				<p>In a previous post on <a href="/2016/03/20/basic-prob.html">Joint, Marginal, and Conditional Probabilities</a>, we learned about the 3 different types of probabilities. One famous probability rule that is built on these probabilities (specifically the conditional probability) is called “Bayes’ Rule” which forms the basis of bayesian statistics. In this post, we will learn about how to derive this rule and its utility.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Mar 20, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/03/20/basic-prob.html">Joint, Marginal, and Conditional Probabilities</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/stats/">Statistics</a></p>
+				<p>Probabilities represent the chances of an event x occurring. In the classic interpretation, a probability is measured by the number of times event x occurs divided by the total number of trials; In other words, the frequency of the event occurring. There are three types of probabilities:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Mar 17, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/03/17/prob-distr.html">Probability Distributions and their Mass/Density Functions</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/stats/">Statistics</a></p>
+				<p>A probability distribution is a way to represent the possible values and the respective probabilities of a random variable. There are two types of probability distributions: discrete and continuous probability distribution. As you might have guessed, a discrete probability distribution is used when we have a discrete random variable. A continuous probability distribution is used when we have a continuous random variable.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Feb 26, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/02/26/random-variables.html">Do You Understand Random Variables?</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/stats/">Statistics</a>, <a href="/tags/randvar/">Random Variables</a></p>
+				<p>A random variable can be a confusing concept because it is not like a <strong>traditional variable</strong> that you may have been exposed to before. I will be honest and say that I never really understood them until I started doing some more digging into them. This post hopes to clarify exactly what a random variable. Here is an overview of what will be discussed in this post.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Feb 20, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/02/20/install-r-topicmodels.html">Installing topicmodels - "fatal error: 'gsl/gsl_rng.h'"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/topicmodels/">topicmodels</a></p>
+				<p>I recently tried to install the <a href="https://cran.r-project.org/web/packages/topicmodels/index.html">topicmodels R package</a> (v0.2-3) on my Mac that was running OS X Yosemite (v10.10.4 - 14E46) with Xcode (v6.4 - 6E35b). My R (v3.2.2) was installed using homebrew.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Jan 13, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/01/13/configure-r-cannot-compile-fortran.html">Configuring R - "cannot compile a simple Fortran program"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/R/">R</a></p>
+				<p>I recently had to install an older version of R (v3.1.2) from source for a specific project. Even though, I have done this a few dozen times it never ceases to amaze me that I still run into new errors. While trying to run <code class="highlighter-rouge">configure</code>:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Jan 3, 2016</span>
+
+        <h2>
+          <a class="post-link" href="/2016/01/03/gmm-em.html">Fitting a Mixture Model Using the Expectation-Maximization Algorithm in R</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/mixmodels/">Mixture Models</a>, <a href="/tags/EM/">Expectation-Maximization</a></p>
+				<p>In my previous post <a href="/2015/10/13/mixture-model.html">“Using Mixture Models for Clustering in R”</a>, I covered the concept of mixture models and how one could use a gaussian mixture model (GMM), one type of mixure model, for clustering. If you are like me, not knowing what is happening “under the hood” may bug you. What is actually happening when I run the <code class="highlighter-rouge">normalmixEM</code> function from mixtools?  How does it know where to “put” the components?  In this post, I will cover how we can implement your own GMM in R.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Dec 6, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/12/06/rmd-to-jekyll-protect-eqn.html">R Markdown to Jekyll: "Protecting" Your Math Equations</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/rmarkdown/">Rmarkdown</a>, <a href="/tags/mathjax/">MathJax</a>, <a href="/tags/R/">R</a></p>
+				<p>In some of the posts I’ve written in my blog (e.g. <a href="/2015/10/13/mixture-model.html">Using Mixture Models for Clustering in R</a>), I’ve first written them in R markdown and used <a href="http://yihui.name/knitr/">knitr</a> to convert them into a markdown file to be subsequently processed by Jekyll. Nicole White made a <a href="http://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html">fantastic post on how to publish an R markdown file for a Jekyll blog</a> and this is what helped me at first.</p>
+
+<p>One aspect that isn’t mentioned is whether math equations, rendered using MathJax, will work in a Jekyll. As it turns out, it’s not super straightforward and often doesn’t render. <strong>The fundamental problem is that Jekyll markdown parsers will first attempt to parse the equations which often messes them up before MathJax can intepret them</strong>. The problem is further complicated by the fact that different Jekyll markdown parsers will handle the equation blocks slightly differently.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Nov 17, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/11/17/cairo-not-found.html">"Configuration failed because cairo was not found"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/cairo/">Cairo</a>, <a href="/tags/R/">R</a></p>
+				<p>I recently was trying to install Hadley Wickham’s new <a href="https://github.com/hadley/svglite">svglite R package</a> on my Mac OS X Yosemite:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Oct 13, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/10/13/mixture-model.html">Using Mixture Models for Clustering</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/mixmodels/">Mixture Models</a>, <a href="/tags/R/">R</a></p>
+				<p>If you’ve been exposed to machine learning in your work or studies, chances are you’ve heard of the term <strong>mixture model</strong>. But what exactly is a mixture model and why should you care?</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Sep 19, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/09/19/picard-sortvcf.html">"VariantContextComparator.java:84" when Using Picard's SortVcf</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/bioinfo/">Bioinformatics</a>, <a href="/tags/picard/">Picard</a></p>
+				<p>If you’ve ever had to sort a vcf file by the same order of as a reference file, then the <a href="http://broadinstitute.github.io/picard/command-line-overview.html#SortVcf">SortVcf</a> function from Picard tools is what you need. The function can be easily run with the following command:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Sep 17, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/09/17/install-r-v8.html">Installing the V8 R Package - "No package 'libv8' found"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/v8/">V8</a></p>
+				<p>I recently tried to install the V8 R package on my Mac running Yosemite using <code class="highlighter-rouge">install.packages("V8")</code> only to run into this problem.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Sep 15, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/09/15/semi-transparency-r.html">"semi-transparency is not supported on this device" in R</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/cairo/">Cairo</a></p>
+				<p>If you’ve ever tried to make an R plot with transparency:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Sep 2, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/09/02/pseudoalignments-kallisto.html">How "Pseudoalignments" Work in kallisto</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/bioinfo/">Bioinformatics</a>, <a href="/tags/kallisto/">kallisto</a></p>
+				<p><a href="https://twitter.com/lpachter">@lpachter</a>’s group has recently introduced a new tool called <a href="http://pachterlab.github.io/kallisto/">kallisto</a> to the bioinformatics community which marks a huge advancement in how RNA-seq analysis is done. kallisto is a “lightweight algorithm” that is super fast at quantifying the abundance of transcripts from RNA-seq data with high accuracy. The speed of the program can be attributed to the usage of “psuedoalignments” which aims to (from <a href="https://liorpachter.wordpress.com/2015/05/10/near-optimal-rna-seq-quantification-with-kallisto/">Lior’s blog post</a>):</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 31, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/31/install-r-devtools.html">Installing devtools on Mac OSX - "fatal error: 'libxml/tree.h'"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/devtools/">devtools</a>, <a href="/tags/xml2/">xml2</a></p>
+				<p>I recently tried to install the <a href="https://cran.r-project.org/web/packages/xml2/index.html">devtools R package</a> (v1.8) on my Mac that was running OS X Yosemite (v10.10.4 - 14E46) with Xcode (v6.4 - 6E35b). My R (v3.2.2) was installed using homebrew.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 26, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/26/TrAp.html">Using TrAp (Tree Approach to Clonality) for Deconvoluting Evolutionary Patterns Underlying a Tumour</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/bioinfo/">Bioinformatics</a>, <a href="/tags/TrAp/">TrAp</a>, <a href="/tags/cancer/">Cancer</a>, <a href="/tags/evolution/">Evolution</a></p>
+				<p>I recently had a chance to try out the TrAp software from the <a href="http://medicine.yale.edu/lab/kluger/">Yuval Kluger’s Lab</a>:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 25, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/25/how-to-interpret-a-CI.html">How do I Interpret a Confidence Interval?</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/stats/">Statistics</a></p>
+				<p>A confidence interval is a range that indicates the uncertainity of a population parameter estimate. So what does this actually mean? Say someone said the following statement:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 19, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/19/svgPanZoom-on-pre-generated-svg.html">Using svgPanZoom on a Pre-generated SVG</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/svgPanZoom/">svgPanZoom</a></p>
+				<p><a href="twitter.com/timelyportfolio">@timelyportfolio</a> has provided the R community with the fantastic <a href="https://github.com/timelyportfolio/svgPanZoom">svgPanZoom R htmlwidget</a> which leverages off the <a href="https://github.com/ariutta/svg-pan-zoom">svg-pan-zoom Javascript library</a> to allow for panning and zooming of SVG in html documents.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 19, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/19/install-r-xml2.html">Installing the xml2 R Package - "fatal error: 'libxml/tree.h'"</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/xml2/">xml2</a></p>
+				<p>I recently tried to install the <a href="https://cran.r-project.org/web/packages/xml2/index.html">xml2 R package</a> (v0.1.1) on my Mac that was running OS X Yosemite (v10.10.4 - 14E46) with Xcode (v6.4 - 6E35b), I ran the following command in my R console:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Aug 12, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/2015/08/12/git-submodules.html">Working with Git Submodules</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/git/">git</a></p>
+				<p>Git submodules provide a nifty way to integrate a git repository within a git repository. The first time I encountered git submodules was when I was browsing <a href="https://github.com/lh3/fermikit">Heng Li’s fermikit git repository</a>.</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Jul 27, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/jekyll/update/2015/07/27/making-your-first-R-package.html">Making Your First R Package</a>
+        </h2>
+				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/R/">R</a></p>
+				<p>This post is inspired by a hilarious tweet that David Robinson made on June 19th, 2015:</p>
+
+
+      </li>
+    
+			
+      <li>
+        <span class="post-meta">Jul 20, 2015</span>
+
+        <h2>
+          <a class="post-link" href="/jekyll/update/2015/07/20/first-post.html">Creation of My Site/Blog!</a>
+        </h2>
+				<p id="post-meta"></p>
+				<p>Welcome to the first post in my newly created site/blog! Looking forward to blogging about my adventures in bioinformatics, cancer, and big data research. The creation of this blog was done by using <a href="http://jekyllrb.com/">jekyll</a> which provides a nice and easy way to get started with a static website that is blog-aware. All the content for this website is hosted on <a href="https://github.com/tinyheero/tinyheero.github.io">github</a>.</p>
 
 
       </li>
@@ -105,30 +487,45 @@
 
   <div class="wrapper">
 
+    <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
-        <ul class="social-media-list">
-           <li>
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
              <i class="fa fa-envelope"></i>
              <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
           </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
           
           <li>
               <i class="fa fa-github"></i>
               <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
           </li>
           
+
+          
           <li>
             <i class="fa fa-linkedin"></i>
-            <a href="https://www.linkedin.com/in/wen-ting-wang-6083a17b/"><span class="username">wtwang</span></a>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
           </li>
         </ul>
       </div>
 
-      <div class="footer-col  footer-col-23">
+      <div class="footer-col  footer-col-3">
         <p class="text">Science is a means whereby learning is achieved.
 </p>
       </div>
     </div>
+
   </div>
 
 </footer>

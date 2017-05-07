@@ -1,0 +1,359 @@
+---
+title: "Kaplan-Meier and Log-Rank Test"
+date: "April 21st, 2016"
+layout: post
+output:
+  html_document
+tags: [R, stats, bayesian]
+---
+
+
+
+Here is an overview of what will be discussed in this post.
+
+**Table of Contents**
+
+<ul data-toc="body" data-toc-headings="h2,h3"></ul>
+h
+
+```{r echo = FALSE}
+library("knitr")
+library("captioner")
+
+opts_chunk$set(
+  fig.pos = 'H',
+  message = FALSE,
+  error = TRUE  # ensures that knitr will execute this document to the end
+)
+
+fig.nums <- captioner(prefix = "<u>Figure</u>", css_class = "figcaption")
+tbl.nums <- captioner(prefix = "<u>Table</u>", css_class = "tblcaption")
+```
+
+The most popular way to estimate the survivor function (curve) is by using the Kaplan-Meier method. Here in this post, we will use the colon dataset from the survival R package.
+
+```{r}
+library("survival")
+library("dplyr")
+library("reshape2")
+```
+
+The help understand how the Kaplan-Meier method works, it's best to represent the survival data in a particular tabular format:
+
+| Ordered Event Times <span class="inlinecode">$t(f)$</span> | No. Events at <span class="inlinecode">$m_{f}$</span> | No. Censored | Risk Set |
+
+* Ordered Event Times: Ordered survival times from earliest to latest
+* No. Events at Mf: Number of failures at time f
+* No. Censored: Number of samples that have been censored at time Mf
+* Risk Set: Number of samples who have survived up to time t.
+
+In R, the `survival` package provides the functions to easily create a table like this. We will first create this table for the group that has undergo observation:
+
+## Calculating Survival Probability without Censoring
+
+```{r colon_obs_grp_survfit_tbl}
+library("magrittr")
+library("broom")
+library("ggfortify")
+library("DT")
+
+colon.obs.grp.survfit <- 
+  colon %>%
+  filter(rx == "Obs") %>%
+  survfit(Surv(time, status) ~ 1, data = .)
+
+# Create table of Kaplan-Meier estimator
+tidy(colon.obs.grp.survfit) %>%
+  datatable(filter = "top", 
+            style = "bootstrap",
+            class = "table-stripe") %>%
+  formatRound(c("estimate", "std.error", "conf.high", "conf.low"), 3)
+
+```
+
+`r tbl.nums("colon_obs_grp_survfit_tbl.cap.lbl", "Kaplan-Meier Estimator Table for Observation Patients.")`
+
+Once we have this table, we can start calculating the probability of surviving **past a certain time**. For instance, we can first ask what the probability of surviving past the first failure time t = `r tidy(colon.obs.grp.survfit)[[1, "time"]]`. We can see from the table there was `r tidy(colon.obs.grp.survfit)[[1, "n.event"]]` event at t = `r tidy(colon.obs.grp.survfit)[[1, "time"]]`. So of the `r tidy(colon.obs.grp.survfit)[[1, "n.risk"]]` patients, `r tidy(colon.obs.grp.survfit)[[1, "n.event"]]` patient had an event at time `r tidy(colon.obs.grp.survfit)[[1, "time"]]` and so the probability of surviving past t = `r tidy(colon.obs.grp.survfit)[[1, "time"]]` is:
+
+<div>
+$$
+1 - \frac{1}{630} = 0.998
+$$
+</div>
+
+In other words, `r tidy(colon.obs.grp.survfit)[[1, "n.risk"]] - tidy(colon.obs.grp.survfit)[[1, "n.event"]]` patients survived past t = `r tidy(colon.obs.grp.survfit)[[1, "time"]]`. This same logic applies for the next survival time. So if we were interested at t = `r tidy(colon.obs.grp.survfit)[[2, "time"]]`, then it would be:
+
+<div>
+$$
+1 - \frac{2}{630} = 0.997
+$$
+</div>
+
+Now we can continue using this "formula" to calculate survival probability past a certain time, but notice at t = 421 (row 111 in the `r tbl.nums("colon_obs_grp_survfit_tbl.cap.lbl", display = "cite")`) that the n.censor column has a 1:
+
+```{r}
+tidy(colon.obs.grp.survfit) %>%
+  filter(time == 421) %>%
+  kable()
+```
+
+The KM estimator method is specifically designed to handle these situations where data is censored (if we have no censored data, we don't actually need the KM estimator).
+
+## Kaplan-Meier Estimator - Calculating Survival Probability for Censored Data
+
+* Formula is the product of conditional probability terms
+    - Each term int he product is the probability of exceeding a specific ordered failure time given that a subject survives up to that failure time.
+* More generally, any KM formula for a survival probability is limited to product terms up to the survival week being specified.
+    - Hence, why KM formula is often referred to as a "product-limit" formula.
+
+<div>
+$$
+\frac{629}{630} * \frac{628}{629}
+$$
+</div>
+
+Thus the term <span class="inlinecode">$\frac{629}{630}$</span> represents the probability of survival **past** t = 20 given that survival **up to** t = 20. Likewise for, <span class="inlinecode">$\frac{628}{629}$</span>, this represents probability of survival **past** t = 36 given that survival **up to** t = 36. 
+
+The survival estimate for a particular time is the product of multiplying the estimate for the immediately preceding failure time by the fraction of ...
+
+```{r}
+tidy(colon.obs.grp.survfit) %>%
+  filter(time >= 417, time <= 433) %>%
+  kable()
+```
+
+Now that we know this formula, we can go back to the issue of censored data. At t = 421, the survival probability would 0.790 * 497/498 just like before. But at t = 433, it is 0.789 * 494/496. Notice how the denominator is 496 and **not** 497. This is because at t = 421, we had one patient with an event **and** one patient who was censored. So at t = 433, these two patients are "no longer at risk". In other words the patients we consider for n.risk at a particular time, these patients must **not** have experienced an event or been censored at any preceeding time.
+
+We can then plot the KM survival probability curve:
+
+```{r colon_obs_grp_survfit_plot}
+autoplot(colon.obs.grp.survfit) +
+  xlab("Time") +
+  ylab("Survival Probability")
+```
+
+`r fig.nums("colon_obs_grp_survfit_plot.cap.lbl", "Kaplan-Meier Estimator Plot for Observation Patients.")`
+
+## Alternatives to the Kaplan-Meier
+
+The Kaplan-Meier method is a non-parametric method for estimating the survivor function, but it is not the only way. 
+
+* Exponential
+* Weibull 
+
+## Comparing Survivor Function - Log-Rank Test
+
+Now that we know how to generate a survivor function, it's often of interest to test whether two survivor functions are similar or not. For instance, one might be interested in testing whether a particular treatment significantly impacted survival compared to a group of patients who didn't receive treatment (i.e. under observation).
+
+```{r}
+colon.obs.lev.5fu.grp.survfit <- 
+  colon %>%
+  filter(rx %in% c("Obs", "Lev+5FU")) %>%
+  survfit(Surv(time, status) ~ rx, data = .)
+
+colon.obs.lev.5fu.grp.survfit %>%
+  autoplot() +
+  xlab("Time") +
+  ylab("Survival Probability")
+```
+
+The most popular way to test for survivor function differences is to use the log-rank test. The log-rank test is simply a chi-square test which makes use of observed vs. expected cell counts over categories of outcomes. These categories of interest are defined by **each ordered failure time for the entire set of data being analyzed** (not just one group).
+
+To calculate the expected cell counts for group 1, we use the following formula:
+
+<div>
+$$
+e_{1f} = (\frac{n_{1f}}{n_{1f} + n_{2f}}) * (m_{1f} + m_{2f})
+$$
+</div>
+
+Where:
+
+* <span class="inlinecode">$n_{1f}$: Number of samples at risk at time f in group 1</span> 
+* <span class="inlinecode">$n_{2f}$: Number of samples at risk at time f in group 2</span> 
+* <span class="inlinecode">$m_{1f}$: Number of events at time f in group 1</span> 
+* <span class="inlinecode">$m_{2f}$: Number of events at time f in group 2</span> 
+
+Similarly, we can calculate the expected cell counts for group 1:
+
+<div>
+$$
+e_{2f} = (\frac{n_{2f}}{n_{1f} + n_{2f}}) * (m_{1f} + m_{2f})
+$$
+</div>
+
+In other words, the expected cell counts for a particular group is calculated as the proportion of total samples in both groups at risk at time t multipled by the total number of events at time t in both groups. Initutively, you can think of this the expected number of events you would see in a group. For example, if you observed a total of 10 events across both groups and say group 1 is 30% of the entire number of samples, then you would expected that group 1 accounts for 3 of the events.
+
+```{r log_rank_test}
+# Prepare Summary Table for Times Across Both Groups
+all.times <- 
+  tidy(colon.obs.lev.5fu.grp.survfit) %>%
+  .$time %>%
+  sort() %>%
+  unique()
+
+colon.obs.lev.5fu.grp.survfit.summary <- 
+  summary(colon.obs.lev.5fu.grp.survfit, times = all.times)
+
+colon.obs.lev.5fu.grp.survfit.summary.sub <- 
+  lapply(c(2:6, 8:13), 
+         function(x) colon.obs.lev.5fu.grp.survfit.summary[x]) %>%
+  do.call(data.frame, .)
+
+tmp1.df <- 
+  colon.obs.lev.5fu.grp.survfit.summary.sub %>%
+  filter(strata == "rx=Obs") %>%
+  rename(n.event1 = n.event, n.risk1 = n.risk) %>%
+  select(time, n.event1, n.risk1)
+
+tmp2.df <- 
+  colon.obs.lev.5fu.grp.survfit.summary.sub %>%
+  filter(strata == "rx=Lev+5FU") %>%
+  rename(n.event2 = n.event, n.risk2 = n.risk) %>%
+  select(time, n.event2, n.risk2)
+
+logrank.input.df <- 
+  left_join(tmp1.df, tmp2.df) %>%
+  select(time, n.event1, n.event2, n.risk1, n.risk2) %>%
+  mutate(e1 = (n.risk1 / (n.risk1 + n.risk2)) * (n.event1 + n.event2),
+         e2 = (n.risk2 / (n.risk1 + n.risk2)) * (n.event1 + n.event2))
+```
+
+The log-rank test statistic formed using the same of the observed minus the expected counts over all failure times for each group. Where observed is the number of events at time t for each group:
+
+```{r}
+logrank.input.obs.exp.df <- 
+  logrank.input.df %>%
+  mutate(obs_exp1 = n.risk1 - e1,
+         obs_exp2 = n.risk2 - e2)
+
+logrank.input.obs.exp.summary.df <- 
+  logrank.input.obs.exp.df %>%
+  summarize(n.event1.total = sum(n.event1),
+            n.event2.total = sum(n.event2),
+            e1.total = sum(e1),
+            e2.total = sum(e2),
+            obs_exp1.total = sum(obs_exp1),
+            obs_exp2.total = sum(obs_exp2))
+
+logrank.input.obs.exp.summary.df
+```
+
+The log-rank statistic can be calculated as:
+
+<div>
+$$
+\frac{(O_{2} - E_{2})^{2}}{Var(O_{2} - E_{2})}
+$$
+</div>
+
+The above code was meant to demonstrate the details on how to calculate the log-rank test. The `survdiff` function from the `survival` R package already provides the code to easily run this.
+
+```{r}
+colon %>%
+  filter(rx %in% c("Obs", "Lev+5FU")) %>%
+  survdiff(formula(colon.obs.lev.5fu.grp.survfit), data = .)
+```
+
+* logrank is a special case of Cox' proportional hazards model?
+
+## Cox Regression
+
+```{r}
+colon %>%
+  filter(rx %in% c("Obs", "Lev+5FU")) %>%
+  coxph(Surv(time, status) ~ rx, data = .)
+
+```
+
+## Design Considerations
+
+* Important to distinguish the study size (N) requires from the number of events (Nev) required
+    + study size refers to the total number of subjects chosen to participate in the study (event or no-event)
+    + Number of events refers to those study participatns who actually get an event durin the study period.
+* We typically first determine the expected (or required)A number of events (Nev) then we determine the study size required (N)
+    + Step 1: Determine Nev using alpha, power, and effect size
+    + Step 2: Determine N from Nev by extrapolation using N. We do this by dividing the N by the probability that any participant gets an event (N = Nev / Pev)
+
+### Determining the Required Number of Events (<span class="inlinecode">$N_{ev}$</span>)
+
+If we assume proportional hazards, then the effect size <span class="inlinecode">$\Delta$</span> can be calculated based on any of these three survival attributes:
+
+1. Events rates
+1. Survival probabilities
+1. Median survival times 
+
+We calculate <span class="inlinecode">$N_{ev}$</span> using the following equation (Freedman 1982):
+
+<div>
+$$
+N_{ev} = \left (\frac{(z_{1-\alpha/2} + z_{1-\beta})(\Delta + 1)}{\Delta - 1} \right)^{2}
+$$
+</div>
+
+Where <span class="inlinecode">$P(Z < z_{ev})$</span> is the cumulative probability below zev of the standard normal distribution.
+
+For instance, if we are interested in using median survival times as our effect size and we believe that it should be twice as high in the treatment group.
+
+* <span class="inlinecode">$\alpha = 0.05; z_{1 - \alpha/2} = 1.96$</span>
+
+```{r equal_grp_size_num_events}
+alpha.val <- 0.05
+beta.val <- 0.2
+effect.size <- 2
+numerator <- (qnorm(1 - alpha.val/2) + qnorm(1 - beta.val)) * (effect.size + 1)
+denominator <- effect.size - 1
+
+(numerator / denominator)^2
+```
+
+#### Unequal Group Sizes
+
+When working with unequal group sizes, we need to modify the equation from above:
+
+<div>
+$$
+N_{ev} = \left (\frac{(z_{1-\alpha/2} + z_{1-\beta})(R\Delta + 1)}{\sqrt{R}(\Delta - 1)} \right)^{2}
+$$
+</div>
+
+Where R is the ratio of <span class="inlinecode">$R = \frac{N_{1}}{N_{0}}$</span>. In other words, the ratio of subjects in the treatment group compared to the observed group.
+
+```{r unequal_grp_size_num_events}
+grp.ratio <- 1/4
+alpha.val <- 0.05
+beta.val <- 0.2
+effect.size <- 2
+numerator <- 
+  (qnorm(1 - alpha.val/2) + qnorm(1 - beta.val)) * 
+  (grp.ratio * effect.size + 1)
+denominator <- sqrt(grp.ratio) * (effect.size - 1)
+
+(numerator / denominator)^2
+```
+
+
+
+### Determining the Required Total Number of Participants (N)
+
+We require additional pieces of information:
+
+1. Accrual period, A
+1. Follow-up period, F, after the last subject has been entered into the study
+1. Median follow-up time <span class="inlinecode">$M_{f} = A/2 + F$</span>
+1. Timepoint at study entry for any subject entering between time 0 and time A.
+
+The general formula for total sample size is derive by assuming that the number of events needed (Nev) is the product of the total sample size (N) and the probability (pev) that a subject will get an event since study entry.
+
+```{r}
+
+
+```
+
+
+
+# References
+
+* [Survival Analysis - A Self Learning Text](http://www.amazon.ca/Survival-Analysis-Statistics-Biology-Health-ebook/dp/B00DGEF822?ie=UTF8&qid=&ref_=tmm_kin_swatch_0&sr=)
+* [How to extract table results from survival summary object](https://stat.ethz.ch/pipermail/r-help/2014-October/422348.html)
+* [Extract summary table from Survfit with Strata](http://stackoverflow.com/questions/31198584/r-extract-summary-table-from-survfit-with-strata)

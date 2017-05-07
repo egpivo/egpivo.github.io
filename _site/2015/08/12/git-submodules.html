@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Working with Git Submodules</title>
+  <meta name="description" content="Git submodules provide a nifty way to integrate a git repository within a git repository. The first time I encountered git submodules was when I was browsing...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/2015/08/12/git-submodules.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Working with Git Submodules</h1>
+    <p class="post-meta">Aug 12, 2015</p>
+    <p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/git/">git</a></p>
+  </header>
+
+  <article class="post-content">
+    <p>Git submodules provide a nifty way to integrate a git repository within a git repository. The first time I encountered git submodules was when I was browsing <a href="https://github.com/lh3/fermikit">Heng Li’s fermikit git repository</a>.</p>
+
+<p><img src="http://localhost:4000/assets/fermikit-github.png" alt="Screenshot of fermikit on github" /></p>
+
+<p>Notice how the files have a @ symbol folowed by some random value. This actually indicates a git submodule within this git repository. For instance, the bfc file is actually a folder containing the <a href="https://github.com/lh3/bfc">bfc git repository</a>. The seemingly random value after the @ symbol is a git hash that indicates a specific commit of the bcf git repository. This basically means this current commit of fermikit depends on the “a73dad2” commit of the bcf repository.</p>
+
+<p>While this may seem fairly sophisticated, it’s actually not too difficult to get this kind of setup for your own git repository. This post will provide a primer on how to get started with using git submodules.</p>
+
+<h1 id="setup">Setup</h1>
+
+<p>All the code in this post was performed with the following git version:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git --version
+git version 1.9.3 (Apple Git-50)
+</code></pre>
+</div>
+
+<p>Let’s first create some local git repositories just for demonstration purposes.</p>
+
+<ol>
+  <li>
+    <p>Create the top-level git repository:</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> mkdir ~/git-toplevel-repo
+ <span class="nb">cd</span> ~/git-toplevel-repo
+ git init
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Create another git repository that will serve as the git submodule.</p>
+
+    <div class="language-bash highlighter-rouge"><pre class="highlight"><code> mkdir ~/git-submodule-repo
+ <span class="nb">cd</span> ~/git-submodule-repo
+ git init
+ touch README
+ git add README
+ git commit -m <span class="s2">"Adding README File"</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<h1 id="adding-git-submodules">Adding Git Submodules</h1>
+
+<p>Adding a git submodule can be done using <code class="highlighter-rouge">git submodule add</code>. Let’s use the git-toplevel-repo as the top-level repository and add the git-submodule-repo as the submodule:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ~/git-toplevel-repo
+git submodule add ~/git-submodule-repo
+</code></pre>
+</div>
+
+<p>This will create a folder with the same name as the repository name (i.e. git-submodule-repo) and also checkout the latest commit of the repository into this folder. If you now do a <code class="highlighter-rouge">git status</code>, you should see:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+
+		new file:   .gitmodules
+		new file:   git-submodule-repo
+</code></pre>
+</div>
+
+<p>The git-submodule-repo folder has been added and already staged. Additionally, you will notice how a .gitmodules file has been added. If you do a <code class="highlighter-rouge">cat .gitmodules</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[submodule "git-submodule-repo"]
+  path = git-submodule-repo
+  url = /Users/fcchan/git-submodule-repo
+</code></pre>
+</div>
+
+<p>This file will actually contain information regarding all the submodules that you have add to your git repository. Let’s do a quick <code class="highlighter-rouge">git commit</code> now so that we can move onto the next section:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git commit -m "First Commit"
+</code></pre>
+</div>
+
+<h1 id="managing-your-git-submodules">Managing Your Git Submodules</h1>
+
+<p>So what happens when your git submodule changes? For instance, if you go into the git-submodule-repo and add a file:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> ~/git-submodule-repo
+touch TEST
+git add TEST
+git commit -m <span class="s2">"Adding TEST"</span>
+</code></pre>
+</div>
+
+<p>Now, if you enter the submodule folder from the top-level git repository and run:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd ~/git-toplevel-repo/git-submodule-repo
+git pull
+
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 2 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (2/2), done.
+From /Users/fcchan/git-submodule-repo
+   ebba154..d931029  master     -&gt; origin/master
+Updating ebba154..d931029
+Fast-forward
+ TEST | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 TEST
+</code></pre>
+</div>
+
+<p>You will see that the TEST file is added. Now if you go to the top-level git repository folder and run <code class="highlighter-rouge">git status</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd ~/git-toplevel-repo
+git status
+
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   git-submodule-repo (new commits)
+</code></pre>
+</div>
+
+<p>Git is able to identify that the git submodule has new commits to it and indicates this to you. In order to indicate that your top-level git repository should reference this specific commit of the submodule, you need to run <code class="highlighter-rouge">git add git-submodule-repo</code>. This ensures that if you were to clone this top-level repository (details of this below), then it will point to the git-submodule-repo commit that contains the TEST file. So let’s do this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git add git-submodule-repo
+git commit -m "Updating Submodule Commit"
+</code></pre>
+</div>
+
+<h1 id="cloning-a-git-repository-with-git-submodules">Cloning a Git Repository with Git Submodules</h1>
+
+<p>Now let’s experiment with cloning a git repository that contains a git submodule:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone ~/git-toplevel-repo ~/git-clone-test
+</code></pre>
+</div>
+
+<p>If you actually go into the <code class="highlighter-rouge">git-clone-test</code> folder, you will see the git-submodule-repo folder. <strong>But it is empty! Where are my README and TEST files?</strong></p>
+
+<p>This was counter-initutive to me the first time I did this, but the key is you need to first initialize the submodules and then run an update:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd ~/git-clone-test
+git submodule init
+git submodule update
+</code></pre>
+</div>
+
+<p>Now you should be able to see the TEST and README files in the git-submodule-repo folder.</p>
+
+<h1 id="summary">Summary</h1>
+
+<p>That’s it! Hopefully, you now have the basics on how to get started with using git submodules</p>
+
+<p>For a more detailed reference, I would recommend the following references:</p>
+
+<ul>
+  <li><a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">Official Git Submodule Documentation</a></li>
+  <li><a href="https://chrisjean.com/git-submodules-adding-using-removing-and-updating/">Git Submodules: Adding, Using, Removing, Updating - By Chris Jean</a></li>
+</ul>
+
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tinyheero';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

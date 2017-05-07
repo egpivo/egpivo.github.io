@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>R Markdown to Jekyll: "Protecting" Your Math Equations</title>
+  <meta name="description" content="In some of the posts I’ve written in my blog (e.g. Using Mixture Models for Clustering in R), I’ve first written them in R markdown and used knitr to convert...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/2015/12/06/rmd-to-jekyll-protect-eqn.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">R Markdown to Jekyll: "Protecting" Your Math Equations</h1>
+    <p class="post-meta">Dec 6, 2015</p>
+    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/rmarkdown/">Rmarkdown</a>, <a href="/tags/mathjax/">MathJax</a>, <a href="/tags/R/">R</a></p>
+  </header>
+
+  <article class="post-content">
+    <p>In some of the posts I’ve written in my blog (e.g. <a href="/2015/10/13/mixture-model.html">Using Mixture Models for Clustering in R</a>), I’ve first written them in R markdown and used <a href="http://yihui.name/knitr/">knitr</a> to convert them into a markdown file to be subsequently processed by Jekyll. Nicole White made a <a href="http://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html">fantastic post on how to publish an R markdown file for a Jekyll blog</a> and this is what helped me at first.</p>
+
+<p>One aspect that isn’t mentioned is whether math equations, rendered using MathJax, will work in a Jekyll. As it turns out, it’s not super straightforward and often doesn’t render. <strong>The fundamental problem is that Jekyll markdown parsers will first attempt to parse the equations which often messes them up before MathJax can intepret them</strong>. The problem is further complicated by the fact that different Jekyll markdown parsers will handle the equation blocks slightly differently.</p>
+
+<p>One solution would be to knit your R markdown to markdown and then <strong>manually</strong> edit the markdown to fix any issues that may prop up when Jekyll processes it. But this would mean if I re-knitted the R markdown, I would have to manually re-apply those changes to the corresponding markdown again. Striving to be lazy, I spent a bit of time trying to figure out how I could write and seamlessly transfer my R markdown, and importantly my equations, to Jekyll without any manual editing.</p>
+
+<p>This post will explain how to setup your R markdown and Jekyll site to handle the rendering of math equations. The instructions below have been tested to work with the Jekyll redcarpet markdown parser, but these principles should extend to other parsers.</p>
+
+<h1 id="step-1-add-the-mathjax-javascript-library">Step 1: Add the MathJax Javascript Library</h1>
+
+<p>The first thing you need to do is add the MathJax javascript library to your Jekyll site. You’ll need to find in your Jekyll site where the html head is defined (for me this was <code class="highlighter-rouge">_includes/head.html</code> and add the following line of code to it.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>This makes it so that the MathJax javascript library is loaded on your Jekyll site.</p>
+
+<h1 id="step-2-protecting-your-display-equations">Step 2: “Protecting” Your Display Equations</h1>
+
+<p>In R markdown, to write a display equation you would use:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$$f(x) = \sum_{k=1}^{K}\alpha_{k}$$
+</code></pre>
+</div>
+
+<p>Depending on your Jekyll markdown parser, this may or may not render in your Jekyll website. For instance, if your markdown parser is kmarkdown (default) then this would render like this:</p>
+
+<script type="math/tex; mode=display">f(x) = \sum_{k=1}^{K}\alpha_{k}</script>
+
+<p>But if your parser is redcarpet with no extensions, then this will NOT render (NOTE: if you enable the <code class="highlighter-rouge">no_intra_emphasis</code> extension for redcarpet then it will work).</p>
+
+<p>The issue is because the markdown parser tries to parse it and ends up messing up the output. The best way to get around this to work for all markdown parsers is to “protect” your display equations by wrapping them in a <code class="highlighter-rouge">&lt;div&gt;</code> block as suggested in this <a href="http://stackoverflow.com/questions/10987992/using-mathjax-with-jekyll">thread</a>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;div&gt;
+$$f(x) = \sum_{k=1}^{K}\alpha_{k}$$
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p>Doing this makes it so that the markdown parser doesn’t try to parse these display equations before MathJax.</p>
+
+<h1 id="step-3-protecting-your-inline-equations">Step 3: “Protecting” Your Inline Equations</h1>
+
+<p>Inline equations are bit trickier to get working. In R markdown, you would write an inline equation like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$f(x) = \sum_{k=1}^{K}\alpha_{k}$
+</code></pre>
+</div>
+
+<p>This won’t render because MathJax does not recognize the tag <code class="highlighter-rouge">$...$</code> at all and thus doesn’t try to parse them. After scouring the internet, I found this <a href="http://blog.hupili.net/articles/site-building-using-Jekyll.html">resource (section 5)</a> that provides a bit of insight into how to get around this.</p>
+
+<p>The strategy is to use <a href="https://jquery.com/">jQuery</a> to recognize these inline equations and then specifically get MathJax to re-typeset them. To get jQuery to recognize these inline equations, you can wrap the inline equations in some unique inline identifier:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"inlinecode"</span><span class="nt">&gt;</span>$f(x) = \sum_{k=1}^{K}\alpha_{k}f_{k}(x)$<span class="nt">&lt;/span&gt;</span>
+</code></pre>
+</div>
+
+<p>Here I wrapped the inline equation using an html span element with the css class inlinecode. Next, I <a href="http://jquery.com/download/">downloaded jQuery</a> (specifically jquery-1.11.3.min.js for me) and then added this file to my Jekyll site at <code class="highlighter-rouge">js/jquery-1.11.3.min.js</code>. Then I added a javascript file, <code class="highlighter-rouge">js/jq_mathjax_parse.js</code> that used jQuery to perform the re-typesetting (<a href="https://github.com/hupili/blog/blob/3662d015ad8c169ea2a5352a053d974c9697ebd9/assets/themes/twitter-hpl/custom/jq_mathjax_parse.js">this is a modified version of the code listed here)</a>.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">".inlinecode"</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">match</span> <span class="o">=</span> <span class="sr">/^</span><span class="se">\$(</span><span class="sr">.*</span><span class="se">)\$</span><span class="sr">$/</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">){</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">replaceWith</span><span class="p">(</span><span class="s2">"\\("</span> <span class="o">+</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"\\)"</span><span class="p">);</span>
+      <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">([</span><span class="s2">"Typeset"</span><span class="p">,</span><span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">,</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)]);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>What happens is that the javascript will look for html elements with the css class inlinecode, retrieve the value inside the element, and then re-typeset it. With the the <code class="highlighter-rouge">js/jquery-1.11.3.min.js</code> and <code class="highlighter-rouge">js/jq_mathjax_parse.js</code> javascript files saved in their proper location, I added these two files to my <code class="highlighter-rouge">_includes/head.html</code> file. This means the <code class="highlighter-rouge">_includes/head.html</code> file should have 3 additional lines now (including the line added in Step 1: Add the MathJax Javascript Library):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src={{ '/js/jquery-1.11.3.min.js' | prepend: site.baseurl }}&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src={{ '/js/jq_mathjax_parse.js' | prepend: site.baseurl }}&gt;&lt;/script&gt;
+</code></pre>
+</div>
+
+<h1 id="step-4-setup-the-no_intra_emphasis-extension">Step 4: Setup the “no_intra_emphasis” extension</h1>
+
+<p>For the redcarpet markdown parser, you will also need to set the “no_intra_emphasis” extension in your <code class="highlighter-rouge">_config.yml</code> file:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">markdown</span><span class="pi">:</span> <span class="s">redcarpet</span>
+<span class="s">redcarpet</span><span class="pi">:</span>
+    <span class="s">extensions</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">no_intra_emphasis"</span><span class="pi">]</span>
+</code></pre>
+</div>
+
+<p>This ensures that underscores “_” in your equations will not generate <code class="highlighter-rouge">&lt;em&gt;</code> tags which causes problems for MathJax.</p>
+
+<h1 id="step-5-knit-your-r-markdown-to-markdown">Step 5: Knit your R Markdown to Markdown</h1>
+
+<p>Once you’ve wrapped your equations properly and setup your javascript files, you are now ready to knit your R markdown into a markdown. I ended up following the instructions posted by <a href="http://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html">Nicole White</a> to do this. How I like to do this is to have a <code class="highlighter-rouge">_rmd</code> folder which contains all the R markdown documents that I have and a script called <code class="highlighter-rouge">r-to-jekyll.R</code>. This script contains the following contents (taken from <a href="http://blog.hupili.net/articles/site-building-using-Jekyll.html">Nicole White’s post</a>):</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#!/usr/bin/env Rscript
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"knitr"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Get the filename given as an argument in the shell.
+</span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">commandArgs</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># Check that it's a .Rmd file.
+</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">".Rmd"</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">stop</span><span class="p">(</span><span class="s2">"You must specify a .Rmd file."</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="c1"># Knit and place in _posts.
+</span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"../_posts/"</span><span class="p">,</span><span class="w"> </span><span class="n">Sys.Date</span><span class="p">(),</span><span class="w"> </span><span class="s2">"-"</span><span class="p">)</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span><span class="w"> </span><span class="n">sub</span><span class="p">(</span><span class="s1">'.Rmd'</span><span class="p">,</span><span class="w"> </span><span class="s1">'.md'</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">))</span><span class="w">
+</span><span class="n">knit</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Copy .png files to the images directory.
+</span><span class="n">fromdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"http://localhost:4000/assets"</span><span class="w">
+</span><span class="n">todir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"../assets"</span><span class="w">
+
+</span><span class="n">pics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list.files</span><span class="p">(</span><span class="n">fromdir</span><span class="p">,</span><span class="w"> </span><span class="s2">".png"</span><span class="p">)</span><span class="w">
+</span><span class="n">pics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">pics</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">fromdir</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="o">=</span><span class="s2">"/"</span><span class="p">))</span><span class="w">
+</span><span class="n">file.copy</span><span class="p">(</span><span class="n">pics</span><span class="p">,</span><span class="w"> </span><span class="n">todir</span><span class="p">)</span><span class="w">
+
+</span><span class="n">unlink</span><span class="p">(</span><span class="s2">"http://localhost:4000"</span><span class="p">,</span><span class="w"> </span><span class="n">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>What this does is it will knit a R markdown file (.Rmd), given as the first arugment, into a markdown (.md) and place the output file into the <code class="highlighter-rouge">_posts</code> directory with the current date as a prefix. Importantly, it will leave all the “equation wrappers” in place so that the Jekyll markdown parser won’t touch them. It will additionally copy all the images it generates into the <code class="highlighter-rouge">assets</code> folder so that the post is ready to go.</p>
+
+<p>And that’s it! If you follow these instructions, you should be able (at least with redcarpet as your Jekyll markdown parser) to seamlessly transfer all your math equations in R markdown into a markdown file for Jekyll!</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="http://nicolewhite.github.io/2015/02/07/r-blogging-with-rmarkdown-knitr-jekyll.html">Blogging About R Code with R Markdown, Knitr, and Jekyll</a>
+    <ul>
+      <li>Nicole White’s post that got me started on how to convert my R markdown for Jekyll. The <code class="highlighter-rouge">r-to-jekyll.R</code> script that I highlighted was taken from this blog post.</li>
+    </ul>
+  </li>
+  <li><a href="http://gastonsanchez.com/blog/opinion/2014/02/16/Mathjax-with-jekyll.html">Mathjax with Jekyll</a>
+    <ul>
+      <li>Good instructions on how to get MathJax working with Jekyll.</li>
+    </ul>
+  </li>
+  <li><a href="http://stackoverflow.com/questions/10759577/underscore-issues-jekyll-redcarpet-github-flavored-markdown">Stack Overflow question regarding underscores in equations</a></li>
+  <li><a href="http://blog.hupili.net/articles/site-building-using-Jekyll.html">Site Building Using Jekyll</a>
+    <ul>
+      <li>How I got inline equations working. In particular, the <a href="https://github.com/hupili/blog/blob/3662d015ad8c169ea2a5352a053d974c9697ebd9/assets/themes/twitter-hpl/custom/jq_mathjax_parse.js">original piece of javascript code.</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tinyheero';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

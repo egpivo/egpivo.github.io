@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>The Basics of Survival Analysis</title>
+  <meta name="description" content="Survival analysis is a series of statistical methods that deals with variables that have both a time and event associated with it. For example, it is used in...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/2016/05/12/survival-analysis.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">The Basics of Survival Analysis</h1>
+    <p class="post-meta">May 12, 2016</p>
+    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/stats/">Statistics</a>, <a href="/tags/survival/">Survival Analysis</a></p>
+  </header>
+
+  <article class="post-content">
+    <p>Survival analysis is a series of statistical methods that deals with variables that have both a time and event associated with it. For example, it is used in cancer clinical research if we are interested in measuring the time it takes before a patient relapses following treatment. In this case, the event we are measuring here is whether a patient relapses or not which has a time associated with when the relapse occurs.</p>
+
+<p>This will be the first of several posts on this topic. In this first post, we will introduce survival analysis and basic concepts of it:</p>
+
+<p><strong>Table of Contents</strong></p>
+
+<ul data-toc="body" data-toc-headings="h2,h3"></ul>
+
+<h2 id="what-is-survival-analysis">What is Survival Analysis?</h2>
+
+<p>As mentioned in the introduction of this post, survival analysis is a series of statistical methods that deal with the outcome variable of interest being a <strong>time to event</strong> variable. This is unlike a typical regression problem where we might be working with a continuous outcome variable (e.g. housing price) or a classification problem where we simply have a discrete variable (e.g. Class I or Class II). In survival analysis, the outcome variable has <strong>both a event and a time value associated with it</strong>. Survival analysis is often used in medicine to study for instance a drug is able to prevent a disease from occurring (event) and how long it can say prevent it for (time). For the rest of this post, we will refer to time as survival time.</p>
+
+<h2 id="censoring">Censoring</h2>
+
+<p>One aspect that makes survival analysis difficult is the concept of censoring. <strong>What this means is that when a patient is censored we don’t know the true survival time for that patient</strong>. There are 3 main reasons why this happens:</p>
+
+<ol>
+  <li>Individual does not experience the event when the study is over.</li>
+  <li>Individual is lost to follow-up during the study period.</li>
+  <li>Individual withdraws from the study.</li>
+</ol>
+
+<p>There are 3 major times of censoring: right, left and interval censoring which we will discuss below.</p>
+
+<h3 id="right-censored">Right-censored</h3>
+
+<p>Right-censoring, the most common type of censoring, occurs when the survival time is “incomplete” at the right side of the follow-up period. Consider the follow example where we have 3 patients (A, B, C) enrolled onto a clinical study that runs for some period of time (study end - study start).</p>
+
+<p align="middle">
+<img src="http://localhost:4000/assets/survival-analysis/censoring/right-censoring.jpg" alt="Right Censoring" />
+</p>
+
+<p>These 3 patients have three different trajectories:</p>
+
+<ol>
+  <li>Patient A: Experiences a death before the study ends. We count this as an event.</li>
+  <li>Patient B: Survives passed the end of the study.</li>
+  <li>Patient C: Withdraws from the study.</li>
+</ol>
+
+<p>Patient A requires no censoring since we know their exact survival time which is the time until death. Patient B however neeeds to be censored (indicated with the + at the end of the follow-up time) since we don’t know the <strong>exact</strong> survival time of the patient; We only know that they survived up to at least the end of the study. Patient C also needs to be censored since they withdrew before the study ended. So we only know that they survived up to the time they withdrew, but again we don’t know the <strong>exact</strong> survival time of this patient. In right censoring, the <strong>true survival times will always be equal to or greater than the observed survival time</strong>.</p>
+
+<p>Note: This example is a bit unrealistic since it’s rare to have all patients enrolled at the same time in a study. In reality, patients would be enrolled at different times in the trial. But this example is meant more so to illustrate the concepts of censoring.</p>
+
+<h3 id="left-censored">Left-censored</h3>
+
+<p>In contrast to right-censoring, left censoring occurs when the person’s true survival time is <strong>less than or equal to the observed survival time</strong>. An example of a situation could be for virus testing. For instance, if we’ve been following an individual and recorded an event when for instance the individual tests positive for a virus:</p>
+
+<p align="middle">
+<img src="http://localhost:4000/assets/survival-analysis/censoring/left-censoring.jpg" alt="Left Censoring" />
+</p>
+
+<p>But we don’t know the exact time of when the individual was exposed to the disease. We only know that there was some exposure between 0 and the time they were tested:</p>
+
+<h3 id="interval-censored">Interval-censored</h3>
+
+<p>Using the virus testing example, if we have the situation whether we’ve performed testing on the indvidual at some timepoint (<span class="inlinecode">$t_{1}$</span>) and the individual was negative. But then at a timepoint further on (<span class="inlinecode">$t_{2}$</span>), the individual tested positive:</p>
+
+<p align="middle">
+<img src="http://localhost:4000/assets/survival-analysis/censoring/interval-censoring.jpg" alt="Interval Censoring" />
+</p>
+
+<p>In this scenario, we know the individual was exposed to the virus sometime between <span class="inlinecode">$t_{1}$</span> and <span class="inlinecode">$t_{2}$</span>, but we do not know the exact timing of the exposure.</p>
+
+<h2 id="terminology">Terminology</h2>
+
+<p>Before going further on in this post, it’s a good time to introduce some key terminology and mathematical notation in survival analysis. The first one is:</p>
+
+<dl>
+  <dt>T</dt>
+  <dd>
+    <p><a href="/2016/02/26/random-variables.html">Random variable</a> for a person’s survival time.</p>
+  </dd>
+</dl>
+
+<p>As T denotes time, it can take on any value between 0 to infinity. We then use:</p>
+
+<dl>
+  <dt>t</dt>
+  <dd>
+    <p>Specific value of interest for random variable T.</p>
+  </dd>
+</dl>
+
+<p>So the notation, <span class="inlinecode">$T &gt; t = 2)$</span>, means we are asking whether the individual had a survival time beyond 2 months (if the unit of time is months).</p>
+
+<dl>
+  <dt>d</dt>
+  <dd>
+    <p>Random variable indicating an event or censorship.</p>
+  </dd>
+</dl>
+
+<p>So for instance, we could encode events as a 1 and thus d = 1 represents the situation where an event occurs during study period. Where as d = 0, survival time is censored by end of the study.</p>
+
+<p>Next there are two quantitative functions which are of interest in survival analysis. These are the <strong>survivor function</strong> and <strong>hazard function</strong>.</p>
+
+<h2 id="survivor-function">Survivor Function</h2>
+
+<p>The survivor function (aka. survival function, reliability function) is denoted as <span class="inlinecode">$S(t)$</span>. The survivor function gives the probability that a person survives longer than some specific time t <span class="inlinecode">$S(t) = P(T &gt; t)$</span>. All survivor functions follow these same 3 characteristics:</p>
+
+<ul>
+  <li>As t increases, the <span class="inlinecode">$S(t)$</span> should decrease.</li>
+  <li><span class="inlinecode">$S(0) = 1$</span>. That is at the start of the study, no one has the event and hence the probability of surviving at <span class="inlinecode">$t = 0$</span> is 1.</li>
+  <li><span class="inlinecode">$S(\infty) = 0$</span>. If the study were to go to <span class="inlinecode">$S(\infty)$</span>, then everyone will eventually experience the event and hence the survival probability must be 0.</li>
+</ul>
+
+<p>In theory, survival curves should be a “smooth” function with time ranging from 0 to <span class="inlinecode">$\infty$</span>:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_function</span><span class="p">(</span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dexp</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"S(t)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/survival-analysis/weibull_survival_function-1.png" alt="plot of chunk weibull_survival_function" /></p>
+
+<p>However, it is typical to empirically derive the survivor function from data using what is called the Kaplan-Meier method (we will cover this in an additional post). As we are often dealing with small cohorts, the survival curves oftne come out with lots of “steps”:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"survival"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"ggfortify"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">colon.survfit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+  </span><span class="n">colon</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">rx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Obs"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">survfit</span><span class="p">(</span><span class="n">Surv</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">)</span><span class="w">
+
+</span><span class="n">colon.survfit</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">autoplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"S(t)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/survival-analysis/km_survival_function-1.png" alt="plot of chunk km_survival_function" /></p>
+
+<h2 id="hazard-function">Hazard Function</h2>
+
+<p>The other quantitative function of interest in survival analysis is the hazard function, <span class="inlinecode">$h(t)$</span>. I always found the hazard function a bit difficult to intepret. The easiest way to think about it is to consider the scenario of where you are reading off a speedometer at a specific moment <span class="inlinecode">$t$</span>. At this specific moment, the speed you are travelling at is 40 km/hr. What this means is if you travel at this specific rate for the next hour, you will travel 40 kilometers. But of course, there will be flucuations and you will go faster or slower than 40 km/hr so it doesn’t really give you the specific distance you will travel. So what does the 40km/hr really mean then? All it tells you is at this <strong>given moment you are travelling this fast.</strong> Importantly, implicit to this is the fact that you have already travelled some amount of distance.</p>
+
+<p>The hazard function is akin to the speedometer here. Where at given moment t in time, you have this <strong>potential risk of having an event given you have survived up to time t.</strong> Mathematically, <span class="inlinecode">$h(t)$</span> is represented as follows:</p>
+
+<div>
+$$h(t) = \lim_{\Delta t\to\infty} \frac{P(t \leq T &lt; t + \Delta t\ |\ T \geq t)}{\Delta t}$$
+</div>
+
+<p>Let’s break down this equation:</p>
+
+<ul>
+  <li><span class="inlinecode">$\lim_{\Delta t\to\infty}$</span>: This indicates as the time interval approaches 0. This essentially gives us the instantaneous measurement at a particular time.</li>
+  <li><span class="inlinecode">$P(t \leq T &lt; t + \Delta t\ |\ T \geq t)$</span>: Probability that a person’s survival time T will be between the time interval <span class="inlinecode">$t$</span> and <span class="inlinecode">$t + \Delta t$</span> <strong>given</strong> that they have survived up to t (<span class="inlinecode">$T \geq t$</span>).</li>
+</ul>
+
+<p>So what this equation is telling us is if the time interval approaches 0 (<span class="inlinecode">$\lim_{\Delta t\to\infty}$</span>), then we are getting the instantaneous risk of having an event at time t given they have survived up to t.</p>
+
+<p>It’s important to note here that the hazard is <strong>not a probability</strong> because we are dividing the probability by a time interval. Instead what we get is a rate. And since we are dealing with the condition of survival up to time t, this is why sometimes the hazard function is referred to as <strong>conditional failure rate</strong>.</p>
+
+<p>Unlike the <span class="inlinecode">$S(t)$</span>, estimating the <span class="inlinecode">$h(t)$</span> is not as simple.  One approach to estimating <span class="inlinecode">$h(t)$</span>, is to first estimate the cumulative hazard function <span class="inlinecode">$H(t)$</span> which is used as an intermediary to estimating <span class="inlinecode">$h(t)$</span>. The <a href="https://en.wikipedia.org/wiki/Nelson%E2%80%93Aalen_estimator">Nelson–Aalen estimator</a> can be used to first estimate <span class="inlinecode">$H(t)$</span> and then calculate the hazard function from that.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"muhaz"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"magrittr"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Uses Nelson-Aalen estimator to first get cumulative hazard, and then predict
+# the hazard function from that.
+</span><span class="n">colon.kphaz.fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+  </span><span class="n">colon</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">rx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Obs"</span><span class="p">)</span><span class="w"> </span><span class="o">%$%</span><span class="w">
+  </span><span class="n">kphaz.fit</span><span class="p">(</span><span class="n">.</span><span class="o">$</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="o">$</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"nelson"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">colon.kphaz.fit</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">haz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"h(t)"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/survival-analysis/hazard_function-1.png" alt="plot of chunk hazard_function" /></p>
+
+<p>As you can see, the <span class="inlinecode">$h(t)$</span> is fairly erratic which is common. A “smoothing” line is often drawn to help make it more intepretable.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">colon.kphaz.fit</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">haz</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_smooth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"h(t)"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/survival-analysis/hazard_function_smooth-1.png" alt="plot of chunk hazard_function_smooth" /></p>
+
+<p>Like <span class="inlinecode">$S(t)$</span>, <span class="inlinecode">$h(t)$</span> has a few key properties:</p>
+
+<ul>
+  <li>It is always non-negative.</li>
+  <li>It has no upper bound. In other words, unlike <span class="inlinecode">$S(t)$</span>, which is a probability, the <span class="inlinecode">$h(t)$</span> can be &gt; 1 and can go up to <span class="inlinecode">$\infty$</span>.</li>
+</ul>
+
+<p>It is worth mentioning that if we assume <span class="inlinecode">$h(t)$</span> (and <span class="inlinecode">$S(t)$</span>) follow a probability distribution then we can also esimate the functions this way. We will discuss this in a later post.</p>
+
+<h2 id="survivor-function-vs-hazard-function">Survivor Function vs. Hazard Function</h2>
+
+<p>An important thing to mention is that <span class="inlinecode">$S(t)$</span> and <span class="inlinecode">$h(t)$</span> are related through these two formulas:</p>
+
+<div>
+$$\begin{align}
+S(t) &amp;= exp\left(-\int_{0}^{t}du\ h(u)\right) \\
+h(t) &amp;= -\left(\frac{dS(t)\ /\ dt}{S(t)}\right)
+\end{align}$$
+</div>
+
+<p>We can make sure of statistical computing languages (e.g. R) to make us make these transformations. For instance, the epiR package in R has the <code class="highlighter-rouge">epi.insthaz</code> function which can transform <span class="inlinecode">$S(t)$</span> into a <span class="inlinecode">$h(t)$</span>:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"epiR"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">colon.haz</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">epi.insthaz</span><span class="p">(</span><span class="n">colon.survfit</span><span class="p">,</span><span class="w"> </span><span class="n">conf.level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">)</span><span class="w">
+</span><span class="n">colon.haz</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">est</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"h(t)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/survival-analysis/epiR_example-1.png" alt="plot of chunk epiR_example" /></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Hopefully this first post on survival analysis gave you a good idea of some of the basic concepts in survival analysis. Ultimately, there are 3 major goals in survival analysis:</p>
+
+<ol>
+  <li>Estimate the survivor and hazard functions.</li>
+  <li>Compare survivor and/or hazard functions (e.g. log-rank test)</li>
+  <li>Assess the relationship of other variables with the survivor and hazard function. (e.g. cox regression)</li>
+</ol>
+
+<p>We will cover each of these topics in more details in subsequent posts. So stay tuned!</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+  <li><a href="http://www.amazon.ca/Survival-Analysis-Statistics-Biology-Health-ebook/dp/B00DGEF822?ie=UTF8&amp;qid=&amp;ref_=tmm_kin_swatch_0&amp;sr=">Survival Analysis - A Self Learning Text</a></li>
+  <li><a href="http://www.ncbi.nlm.nih.gov/pubmed/12865907">Survival Analysis Part I: Basic concepts and first analyses</a></li>
+  <li><a href="https://stat.ethz.ch/pipermail/r-help/2004-October/058588.html">Nelson-Aalen estimator in R</a></li>
+  <li><a href="https://stat.ethz.ch/pipermail/r-help/2009-May/390108.html">Nelson-Aalen estimator of cumulative hazard</a></li>
+</ul>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tinyheero';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

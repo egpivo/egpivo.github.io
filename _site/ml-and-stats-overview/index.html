@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Machine Learning and Statistics</title>
+  <meta name="description" content="Science is a means whereby learning is achieved.
+">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/ml-and-stats-overview/">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Machine Learning and Statistics</h1>
+  </header>
+
+  <article class="post-content">
+    <p>Being a somewhat structured person, it’s important for me to see how topics relate to each other. With machine learning and statistics being such expansive topics, I struggled (and still do) to understand how all the different methods related to each other. This page is my attempt to structure the various topics/methods of machine learning and statistics. My ultimate goal will be to have a post on each of these topics.</p>
+
+<div class="alert alert-dismissible alert-warning">
+<h4>Warning!</h4>
+<p>This page is very much a work-in-progress</p>
+</div>
+
+<h2 id="probability-and-statistics">Probability and Statistics</h2>
+
+<ul>
+  <li>There are 2 major branches of statistics:
+    <ol>
+      <li>Description statistics: Summarizing and presenting key characteristics about some data.</li>
+      <li>Inferential statistics: Inferring characteristics about a population from a small sample of it. In this branch, you typically start with a hypothesis and then test if your sample follows the hypothesis.</li>
+    </ol>
+  </li>
+  <li>Probability and statistics deal with questions involving populations and samples, but do so in an “inverse manner” to one another.
+    <ul>
+      <li>In a probability problem, properties of a population under study are known (e.g. specified distribution of a population), and questions regarding a sample taken from the population are posed and answered.</li>
+      <li>In a statistics problem, characteristics of the sample are known and properties of the population are inferred.</li>
+    </ul>
+  </li>
+  <li>We study probability first before statistics because we need to understand the uncertainity associated with taking a sample from a population. Then we are start to understand what a particular sample can tell us about a population.</li>
+</ul>
+
+<ol>
+  <li>Descriptional Statistics
+    <ul>
+      <li>Correlation analysis
+        <ul>
+          <li>Parametric</li>
+          <li>Non-Parametric (Kendall and Spearman)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="/2016/02/26/random-variables.html">Random Variables</a></li>
+  <li>Probabilities
+    <ul>
+      <li><a href="/2016/03/20/basic-prob.html">Joint, Marginal, and Conditional Probabilites</a></li>
+      <li><a href="/2016/04/21/bayes-rule.html">Bayes’ Rule</a></li>
+    </ul>
+  </li>
+  <li><a href="/2016/03/17/prob-distr.html">Probability Distributions</a>
+    <ul>
+      <li>Continuous
+        <ul>
+          <li>Gaussian (Normal) Distribution</li>
+          <li>Dirichlet Distribution</li>
+          <li>Exponential Distribution</li>
+          <li>Chi-Square Distribution</li>
+          <li>Weibull Distribution
+            <ul>
+              <li>Exponential Distribution</li>
+            </ul>
+          </li>
+          <li>Beta Distribution</li>
+        </ul>
+      </li>
+      <li>Discrete
+        <ul>
+          <li>Bernoulli Distribution</li>
+          <li>Binomial Distribution (Sum of n independent Bernoulli trails)</li>
+          <li>Multinomial Distribution</li>
+          <li>Multivariate Hypergeometric Distribution
+            <ul>
+              <li>If sampling is done without replacement.</li>
+            </ul>
+          </li>
+          <li>Poission Distribution</li>
+          <li>Negative Binomial Distribution</li>
+          <li>Beta-binomial distribution</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Hypothesis Testing</li>
+  <li>Other
+    <ul>
+      <li><a href="/2015/08/25/how-to-interpret-a-CI.html">Confidence Intervals</a></li>
+      <li>Power Analysis</li>
+    </ul>
+  </li>
+  <li>Survival Analysis
+    <ul>
+      <li><a href="/2016/05/12/survival-analysis.html">The Basics of Survival Analysis</a></li>
+      <li>Kaplan-Meier Curves and the Log-rank Test</li>
+      <li>Cox Regression</li>
+      <li>Survival Analysis Study Design Considerations</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="references">References</h3>
+
+<ul>
+  <li><a href="http://be.wvu.edu/divmim/mgmt/blakely/homepage/Mktg325/Kinds%20of%20Statistics%20and%20Types%20of%20Data.pdf">Kinds of Statistics</a>: Good introductory article on what the two main branches of statistics are.</li>
+  <li><a href="http://people.math.umass.edu/~lavine/Book/book.html">Introduction to Statistical Thought</a></li>
+</ul>
+
+<h2 id="bayesian-statistics">Bayesian Statistics</h2>
+
+<ol>
+  <li><a href="/2017/03/08/how-to-bayesian-infer-101.html">Bayesian Inference 101</a></li>
+  <li>Classical Frequentist vs. Bayesian</li>
+  <li>Markov Chain Monte Carlo (MCMC) processes
+    <ul>
+      <li>Metropolis algorithm</li>
+      <li>Gibbs Sampling (Special case of Metropolis)</li>
+      <li>BUGS, JAGS, STAN</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="references-1">References</h3>
+
+<ul>
+  <li><a href="http://www.analyticsvidhya.com/blog/2016/06/bayesian-statistics-beginners-simple-english/">Bayesian Statistics explained to Beginners in Simple English</a></li>
+  <li><a href="https://sites.google.com/site/doingbayesiandataanalysis/">Doing Bayesian Data Analysis - A Tutorial with R, JAGS, and Stan</a></li>
+</ul>
+
+<h2 id="machine-learning--statistical-learning">Machine Learning / Statistical Learning</h2>
+
+<p><img src="http://localhost:4000/assets/microsoft-machine-learning-algorithm-cheat-sheet-v2.png" alt="Machine Learning Algorithm Cheat Sheet" /></p>
+
+<ol>
+  <li>Supervised Learning
+    <ul>
+      <li>Regression (predict continuous values)
+        <ul>
+          <li>Linear Regression</li>
+          <li>Artificial Neural Networks (ANN)
+            <ul>
+              <li>Can also be used for classification.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Classification - Predict discrete (categorical) values (i.e. class a data point belongs to)
+        <ul>
+          <li>Logistic Regression</li>
+          <li>Linear Discriminant Analysis (LDA)
+            <ul>
+              <li>Naive Bayes Classifier</li>
+            </ul>
+          </li>
+          <li>Support Vector Machines (SVM)</li>
+          <li>Random Forest</li>
+          <li>ANN
+            <ul>
+              <li>Can also be used for regression.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Unsupervised Learning
+    <ul>
+      <li>Cluster Analysis
+        <ul>
+          <li>Principle Component Analysis (PCA)</li>
+          <li>t-SNE</li>
+          <li>Hierarchical clustering</li>
+          <li>DBSCAN</li>
+          <li>K-means</li>
+          <li><a href="/2015/10/13/mixture-model.html">Mixture Models</a></li>
+          <li>Topic Modeling
+            <ul>
+              <li>Latent Dirichlet Allocation (LDA)</li>
+              <li>Non-negative Matrix Factorization (NMF)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Feature Selection</li>
+  <li>Other
+    <ul>
+      <li><a href="http://scott.fortmann-roe.com/docs/BiasVariance.html">Bias-Variance Tradeoff</a></li>
+      <li>Receiver operating characteristic (ROC) curve</li>
+      <li>Mathews correlation coefficient (MCC)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="references-2">References</h3>
+
+<ul>
+  <li><a href="http://www.sharpsightlabs.com/one-concept-machine-learning/">The one machine learning concept you need to know</a></li>
+  <li><a href="http://www-bcf.usc.edu/~gareth/ISL/">Introduction to Statistical Learning</a>
+    <ul>
+      <li><a href="https://statlearning.class.stanford.edu">Standard Online - This is the corresponding free online course based on this material</a></li>
+    </ul>
+  </li>
+  <li><a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/">Elements of Statistical Learning</a></li>
+  <li><a href="http://www.rna-seqblog.com/a-comparison-between-pca-and-hierarchical-clustering/">PCA vs. Hierarchical clustering</a></li>
+  <li><a href="http://master.bioconductor.org/help/course-materials/2003/Milan/Lectures/MachineLearning.pdf">Some Things Every Biologist Should Know About Machine Learning</a></li>
+</ul>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

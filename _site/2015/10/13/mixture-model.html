@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using Mixture Models for Clustering</title>
+  <meta name="description" content="If you’ve been exposed to machine learning in your work or studies, chances are you’ve heard of the term mixture model. But what exactly is a mixture model a...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/2015/10/13/mixture-model.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Using Mixture Models for Clustering</h1>
+    <p class="post-meta">Oct 13, 2015</p>
+    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/mixmodels/">Mixture Models</a>, <a href="/tags/R/">R</a></p>
+  </header>
+
+  <article class="post-content">
+    <p>If you’ve been exposed to machine learning in your work or studies, chances are you’ve heard of the term <strong>mixture model</strong>. But what exactly is a mixture model and why should you care?</p>
+
+<p>A mixture model is a mixture of k component distributions that collectively make a mixture distribution <span class="inlinecode">$f(x)$</span>:</p>
+
+<div>
+$$f(x) = \sum_{k=1}^{K}\alpha_{k}f_{k}(x)$$
+</div>
+
+<p>The <span class="inlinecode">$\alpha_{k}$</span> represents a mixing weight for the <span class="inlinecode">$k^{th}$</span> component where <span class="inlinecode">$\sum_{k=1}^{K}\alpha_{k} = 1$</span>. The <span class="inlinecode">$f_k(x)$</span> components in principle are arbitrary in the sense that you can choose any sort of distribution. In practice, parametric distribution (e.g. gaussians), are often used since a lot work has been done to understand their behaviour. If you substitute each <span class="inlinecode">$f_k(x)$</span> for a gaussian you get what is known as a gaussian mixture models (GMM). Likewise, if you substitute each <span class="inlinecode">$f_k(x)$</span> for a binomial distribution, you get a binomial mixture model (BMM). Since each parametric distribution has it’s own parameters, we can represent the parameters of each component with a <span class="inlinecode">$\theta_{k}$</span>:</p>
+
+<div>
+$$f(x) = \sum_{k=1}^{K}\alpha_{k}f_{k}(x;\theta_{k})$$
+</div>
+
+<h2 id="why-would-you-use-a-mixture-model">Why Would You Use a Mixture Model?</h2>
+
+<p>Let’s motivate the reason of why you woud use a mixture model by using an example. Let’s say someone presented you with the following density plot:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">options</span><span class="p">(</span><span class="n">scipen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">)</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">faithful</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">waiting</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_density</span><span class="p">()</span><span class="w">
+</span><span class="n">p</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/mixture-model-example_density_plot-1.png" alt="plot of chunk example_density_plot" /></p>
+
+<p>We can immediately see that the resulting distribution appears to be bi-modal (i.e. there are two bumps) suggesting that these data might be coming from two different sources. These data are actually from the <code class="highlighter-rouge">faithful</code> dataset available in R:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">faithful</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   eruptions waiting
+## 1     3.600      79
+## 2     1.800      54
+## 3     3.333      74
+## 4     2.283      62
+## 5     4.533      85
+## 6     2.883      55
+</code></pre>
+</div>
+
+<p>This data is 2-column data.frame</p>
+
+<ul>
+  <li>eruptions: Length of eruption (in mins)</li>
+  <li>waiting: Time in between eruptions (in mins)</li>
+</ul>
+
+<p>Putting the data into context suggests that the eruption times may be coming from two different subpopulations. There could be several reasons for this. For instance, maybe at different times of the year the geyser eruptions are more frequent. You can probably take an intutive guess as to how you could split this data.</p>
+
+<p>For instance, there likely is a subpopulation with a mean eruption of ~53 with some variance around this mean (red vertical line in figure below.) Another population with a mean eruption of ~80 with again some variance around this mean (blue vertical line in figure below).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">53</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/mixture-model-naive_cluster-1.png" alt="plot of chunk naive_cluster" /></p>
+
+<p>In fact, what we’ve done is a naive attempt at trying to group the data into subpopulations/clusters. But surely there must be some objective and “automatic” way of defining these clusters? This is where mixture models come in by providing a “model-based approach” to clustering through the use of statistical distributions. In the next section, we will utilize an R package to perfom some mixture model clustering.</p>
+
+<h2 id="using-a-gaussian-mixture-model-for-clustering">Using a Gaussian Mixture Model for Clustering</h2>
+
+<p>As mentioned in the beginning, a mixture model consist of a mixture of distributions. The first thing you need to do when performing mixture model clustering is to determine what type of statistical distribution you want to use for the components. For this post, we will use one of the most common statistical distributions used for mixture model clustering which is the <a href="https://en.wikipedia.org/wiki/Normal_distribution">Gaussian/Normal Distribution</a>:</p>
+
+<script type="math/tex; mode=display">\mathcal{N}(\mu, \sigma^2)</script>
+
+<p>The normal distribution is parameterized by two variables:</p>
+
+<ul>
+  <li><span class="inlinecode">$\mu$</span>: Mean; Center of the mass</li>
+  <li><span class="inlinecode">$\sigma^2$</span>: Variance; Spread of the mass</li>
+</ul>
+
+<p>When Gaussians are used for mixture model clustering, they are referred to as <a href="https://en.wikipedia.org/wiki/Mixture_model#Gaussian_mixture_model">Gaussian Mixture Models (GMM)</a>. As it turns out, our earlier intuition on where the means and variance of the subpopulation in the plot above is a perfect example of how we could apply a GMM. Specifically, we could try to represent each subpopulation as its own distribution (aka. mixture component). The entire set of data could then be represented as a mixture of 2 Gaussian distributions (aka. 2-component GMM)</p>
+
+<p>In R, there are several packages that provide an implementation of GMM already (e.g. <a href="https://cran.r-project.org/web/packages/mixtools/index.html">mixtools</a>, <a href="http://www.stat.washington.edu/mclust/">mclust</a>). As there exists <a href="http://exploringdatablog.blogspot.ca/2011/08/fitting-mixture-distributions-with-r.html">a nice blog post by Ron Pearson</a> on using mixtools on the <code class="highlighter-rouge">faithful</code> dataset, we will just borrow a bit his code to demonstrate the GMM in action:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"mixtools"</span><span class="p">)</span><span class="w">
+
+</span><span class="cd">#' Plot a Mixture Component
+#' 
+#' @param x Input data
+#' @param mu Mean of component
+#' @param sigma Standard deviation of component
+#' @param lam Mixture weight of component
+</span><span class="n">plot_mix_comps</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">lam</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">lam</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">wait</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">faithful</span><span class="o">$</span><span class="n">waiting</span><span class="w">
+</span><span class="n">mixmdl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">normalmixEM</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## number of iterations= 29
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">..density..</span><span class="p">),</span><span class="w"> </span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+                 </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mixmdl</span><span class="o">$</span><span class="n">mu</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">sigma</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">lambda</span><span class="p">[</span><span class="m">1</span><span class="p">]),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_function</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_mix_comps</span><span class="p">,</span><span class="w">
+                </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">mixmdl</span><span class="o">$</span><span class="n">mu</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">sigma</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">lam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">lambda</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span><span class="w">
+                </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/mixture-model-mixtools-1.png" alt="plot of chunk mixtools" /></p>
+
+<p>The key is the <code class="highlighter-rouge">normalmixEM</code> function which builds a 2-component GMM (<code class="highlighter-rouge">k = 2</code> indicates to use 2 components). So how do we interpret this? It’s actually quite simply; The red and blue lines simply indicate 2 different fitted Gaussian distributions. Specifically, the means of the 2 Gaussians (red and blue) are respectively:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">mixmdl</span><span class="o">$</span><span class="n">mu</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 54.61489 80.09109
+</code></pre>
+</div>
+
+<p>With respectively standard deviations of:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">mixmdl</span><span class="o">$</span><span class="n">sigma</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 5.871244 5.867716
+</code></pre>
+</div>
+
+<p>You might also notice how the “heights” of the two components (herein we will refer to distribution as component) are different. Specifically, the blue component is “higher” than the red component. This is because the blue component encapsulates more density (i.e. more data) compared to the red component. How much exactly? You can get this value by using:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">mixmdl</span><span class="o">$</span><span class="n">lambda</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.3608869 0.6391131
+</code></pre>
+</div>
+
+<p>Formally, these are referred to as the mixing weights (aka. mixing proportions, mixing coefficients). One can interpret this as the red component representing 36.089% and the blue component representing 63.911% of the input data. Another important aspect is that each input data point is actually assigned a posterior probability of belonging to one of these components. We can retrieve these data by using the following code:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">post.df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mixmdl</span><span class="o">$</span><span class="n">posterior</span><span class="p">))</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">post.df</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">  </span><span class="c1"># Retrieve first 10 rows
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     x          comp.1         comp.2
+## 1  79 0.0001030875283 0.999896912472
+## 2  54 0.9999093397312 0.000090660269
+## 3  74 0.0041357268361 0.995864273164
+## 4  62 0.9673819082244 0.032618091776
+## 5  85 0.0000012235720 0.999998776428
+## 6  55 0.9998100114503 0.000189988550
+## 7  88 0.0000001333596 0.999999866640
+## 8  85 0.0000012235720 0.999998776428
+## 9  51 0.9999901530788 0.000009846921
+## 10 85 0.0000012235720 0.999998776428
+</code></pre>
+</div>
+
+<p>The x column indicates the value of the data while comp.1 and comp.2 refers to the posterior probability of belonging to either component respectively. If you look at the x value in the first row, 79, you will see that it sits pretty close to the middle of the blue component (the mean of the blue component 80.091). So it makes sense that the posterior of this data point belonging to this component should be high (0.9999 vs. 0.0001). And simiarly, the data that sits inbetween the two components will have posterior probabilities that are not strongly associated with either component:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">post.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">66</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">68</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    x    comp.1    comp.2
+## 1 67 0.4235423 0.5764577
+</code></pre>
+</div>
+
+<p>It’s important to understand that no “labels” have been assigned here actually. Unlike k-means which assigns each data point to a cluster (defined as a “hard-label”), mixture models provide what are called “soft-labels”. The end-user decides on what “threshold” to use to assign data into the components. For instance, one could use 0.3 as posterior threshold to assign data to comp.1 and get the following label distribution.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">post.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">comp.1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Component"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of Data Points"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/mixture-model-soft_label_0_3-1.png" alt="plot of chunk soft_label_0_3" /></p>
+
+<p>Or one could use 0.8 and get the following label distribution:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">post.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">comp.1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Component"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of Data Points"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/mixture-model-soft_label_0_8-1.png" alt="plot of chunk soft_label_0_8" /></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>As you’ll seen from the above example, the usage of mixture model clustering can be very powerful in providing an objective way to clustering data. Some benefits to using mixture model clustering are:</p>
+
+<ul>
+  <li><strong>Choice of Component Distribution</strong>: In this post, we’ve used a gaussian distribution for each component. But we are not limited to using just gaussians. We can use <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomials</a>, <a href="https://en.wikipedia.org/wiki/Multinomial_distribution">multinomials</a>, <a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">student-t</a>, and other types of distributions depending on the type of data we have. We can even mix together different types of distributions. For example, it is common to GMM with an additional uniform distribution to capture any outlier data points.</li>
+  <li><strong>“Soft Labels”</strong>: There are no “hard” labels in mixture model clustering. Instead what we get is a probability of a data point belonging each component. Ultimately, the end-user decides on the probability threshold to assign a data point to a cluster creating what are called “soft” labels.</li>
+  <li><strong>Density Estimation</strong>: We get a measure how much data each component represents through the mixing weights.</li>
+</ul>
+
+<p>If you are like me, you might be interested in knowing what is happening “under the hood”. <a href="/2016/01/03/gmm-em.html">In a subsequent post, I will walk through the math and show how you can implement your very own mixture model in R</a>. So stay tuned!</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="http://www.stat.cmu.edu/~cshalizi/uADA/12/lectures/ch20.pdf">Mixture Models</a></li>
+</ul>
+
+<h2 id="r-session">R Session</h2>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">devtools</span><span class="o">::</span><span class="n">session_info</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Session info --------------------------------------------------------------
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  setting  value                       
+##  version  R version 3.2.2 (2015-08-14)
+##  system   x86_64, darwin11.4.2        
+##  ui       unknown                     
+##  language (EN)                        
+##  collate  en_CA.UTF-8                 
+##  tz       America/Vancouver           
+##  date     2017-01-13
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Packages ------------------------------------------------------------------
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  package    * version date       source        
+##  argparse   * 1.0.1   2014-04-05 CRAN (R 3.2.2)
+##  assertthat   0.1     2013-12-06 CRAN (R 3.2.2)
+##  boot         1.3-17  2015-06-29 CRAN (R 3.2.2)
+##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.2)
+##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.2)
+##  devtools     1.9.1   2015-09-11 CRAN (R 3.2.2)
+##  digest       0.6.9   2016-01-08 CRAN (R 3.2.2)
+##  dplyr      * 0.4.3   2015-09-01 CRAN (R 3.2.2)
+##  evaluate     0.8     2015-09-18 CRAN (R 3.2.2)
+##  findpython   1.0.1   2014-04-03 CRAN (R 3.2.2)
+##  formatR      1.2.1   2015-09-18 CRAN (R 3.2.2)
+##  getopt       1.20.0  2013-08-30 CRAN (R 3.2.2)
+##  ggplot2    * 2.1.0   2016-03-01 CRAN (R 3.2.2)
+##  gtable       0.1.2   2012-12-05 CRAN (R 3.2.2)
+##  knitr      * 1.13    2016-05-09 CRAN (R 3.2.2)
+##  labeling     0.3     2014-08-23 CRAN (R 3.2.2)
+##  lazyeval     0.1.10  2015-01-02 CRAN (R 3.2.2)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.2.2)
+##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.2)
+##  memoise      0.2.1   2014-04-22 CRAN (R 3.2.2)
+##  mixtools   * 1.0.4   2016-01-12 CRAN (R 3.2.2)
+##  munsell      0.4.2   2013-07-11 CRAN (R 3.2.2)
+##  nvimcom    * 0.9-14  2017-01-13 local         
+##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.2)
+##  proto      * 0.3-10  2012-12-22 CRAN (R 3.2.2)
+##  R6           2.1.1   2015-08-19 CRAN (R 3.2.2)
+##  Rcpp         0.12.2  2015-11-15 CRAN (R 3.2.2)
+##  rjson        0.2.15  2014-11-03 CRAN (R 3.2.2)
+##  scales       0.3.0   2015-08-25 CRAN (R 3.2.2)
+##  segmented    0.5-1.4 2015-11-04 CRAN (R 3.2.2)
+##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.2)
+##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.2)
+</code></pre>
+</div>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tinyheero';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

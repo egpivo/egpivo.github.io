@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Probability Distributions and their Mass/Density Functions</title>
+  <meta name="description" content="A probability distribution is a way to represent the possible values and the respective probabilities of a random variable. There are two types of probabilit...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax-style.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="canonical" href="http://localhost:4000/2016/03/17/prob-distr.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
+  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/about/">About Me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+						<a class="page-link" href="/resources/">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/tags/bioinfo/">Bioinformatics</a>
+        <a class="page-link" href="/tags/cancer/">Cancer</a>
+        <a class="page-link" href="/tags/R/">R</a>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Probability Distributions and their Mass/Density Functions</h1>
+    <p class="post-meta">Mar 17, 2016</p>
+    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/stats/">Statistics</a></p>
+  </header>
+
+  <article class="post-content">
+    <p>A probability distribution is a way to represent the possible values and the respective probabilities of a random variable. There are two types of probability distributions: discrete and continuous probability distribution. As you might have guessed, a discrete probability distribution is used when we have a discrete random variable. A continuous probability distribution is used when we have a continuous random variable.</p>
+
+<p>In this post, we will explore what discrete and continuous probability distributions are. Additionally, we will describe what a probability mass and density function, their key properties, and how they relate to probability distributions. Here is an overview of what will be discussed in this post.</p>
+
+<p><strong>Table of Contents</strong></p>
+
+<ul data-toc="body" data-toc-headings="h2,h3"></ul>
+
+<h2 id="discrete-probability-distributions">Discrete Probability Distributions</h2>
+
+<p>In my previous post on <a href="/2016/02/26/random-variables.html">random variables</a>, I used the example of a random process that involved flipping a coin x number of times and measuring the total number of heads using a discrete random variable X. As an example, let us try to build a probability distribution from a random process like this where we are flipping a coin 3 times. This random process can have a total of 8 possible outcomes:</p>
+
+<div class="alert alert-dismissible alert-warning">
+<h4>Heads Up!</h4>
+[I suggest watching this video](https://www.youtube.com/watch?v=5lpqiGixDd0) if you are unclear on how these outcomes were generated.
+</div>
+
+<ol>
+  <li>HHH</li>
+  <li>HHT</li>
+  <li>HTH</li>
+  <li>HTT</li>
+  <li>THH</li>
+  <li>THT</li>
+  <li>TTH</li>
+  <li>TTT</li>
+</ol>
+
+<p>We let our random variable Y serve as a way to map the number of heads we get to a numeric value. So the most initutive way would be:</p>
+
+<ol>
+  <li>X = 0 if we get no heads.</li>
+  <li>X = 1 if we get 1 head.</li>
+  <li>X = 2 if we get 2 heads.</li>
+  <li>X = 3 if we get 3 heads.</li>
+</ol>
+
+<p>So now that we have this random variable and the possible values this variable can take, let’s try to figure out the associated probabilities of each outcome.</p>
+
+<ol>
+  <li><span class="inlinecode">$P(X = 0)$</span>: The only way we can get 0 heads is if all 3 coin flips gives a tail. The only outcome that satisfies this is the TTT outcome. This means the probability <span class="inlinecode">$P(X = 0) = \frac{1}{8}$</span>.</li>
+  <li><span class="inlinecode">$P(X = 1)$</span>: To get 1 head, the outcomes HTT, THT, and TTH satisfy this. So this means <span class="inlinecode">$P(X = 1) = \frac{3}{8}$</span>.</li>
+  <li><span class="inlinecode">$P(X = 2)$</span>: To get 2 heads, the outcomes HHT, HTH, and THH satisfy this. So this means <span class="inlinecode">$P(X = 2) = \frac{3}{8}$</span>.</li>
+  <li><span class="inlinecode">$P(X = 3)$</span>: The only way we can get 3 heads is if all 3 coin flips gives a head The only outcome that satisfies this is the TTT outcome. This means the probability <span class="inlinecode">$P(X = 3) = \frac{1}{8}$</span>.</li>
+</ol>
+
+<p>What we have just described is called a “<strong>probability mass function (pmf)</strong>” which is a function,  <span class="inlinecode">$f(X)$</span>, that defines the probability of the discrete random variable X taking on a particular value x. When we take all the possible values (sample space) and associated probabilities into consideration, it is called a discrete probability distribution (as defined by a pmf). We can visualize this particular pmf as follows:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"ggplot2"</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">prob.distr.df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_frame</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w">
+                            </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">/</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">/</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">8</span><span class="p">))</span><span class="w">
+
+</span><span class="n">prob.distr.df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prob</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"X (Number of Heads)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"f(X) Probability"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/prob-distr/discrete_prob_distr_example-1.svg" alt="plot of chunk discrete_prob_distr_example" /></p>
+
+<p>Here we have a discrete probability distribution of the random variable Y. The x-axes shows the different outcomes of the random variable while the y-axes shows the corresponding probabilities of these outcomes</p>
+
+<p>You might sometimes see the term probability distribution table. This is just the same thing as a pmf. The name stems from the fact that there are a finite number of outcomes and and so we can represent these outcomes and their associated probabilities in a finite table. As we will see below, we can’t do this for a continuous random variable hence why a probabilty distribution table only has meaning in the context of a discrete random variable.</p>
+
+<h2 id="continuous-probability-distributions">Continuous Probability Distributions</h2>
+
+<p>In the example above, X was a discrete random variable. When the outcomes are discrete we have the ability to directly measure the probability of each outcome. When the random variable is continuous, then things get a little more complicated. <strong>We are not able to directly measure the probability of a specific continuous value</strong>. This may seem a bit confusing at first, but imagine you had a random variable, Y, that measured the price of a diamond. Now what if someone asked you the following question: If you sampled a single diamond, what is the probability that its <strong>exact price is $326.57</strong>? Not $326.58 or $326.56, but exactly $326.57?</p>
+
+<p>If you think of it that way, then the probability of getting a diamond with that exact price is probably really low. In fact, the probability of any exact price is really low. <strong>This is why the concept of probability for a given value when the value is on a continous scale doesn’t make sense</strong>. Instead, what we do is “discretize” the sample space so that we can work in intervals instead of individual values. To make this more concrete, we will use the diamond dataset from ggplot2 to illustrate this example. First, let’s plot a summary histogram of the diamond prices for 53940 diamonds and use an interval size of 100 (to represent $100 intervals):</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Y (Diamond Price)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Number of Diamonds"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/prob-distr/diamond_hist-1.svg" alt="plot of chunk diamond_hist" /></p>
+
+<p>Once we have these intervals of data, we can start talking about proportion of samples falling into intervals For instance, we can ask the question what is the probability of a diamond having a price between $1000 and $1100:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">num.diamonds.in.bin</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+  </span><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">nrow</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>A total of 1832 diamonds fall in this interval which equates to the following proportion of all diamonds in the dataset:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">prob.mass</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">num.diamonds.in.bin</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">diamonds</span><span class="p">)</span><span class="w">
+</span><span class="n">prob.mass</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.03396366
+</code></pre>
+</div>
+
+<p>When we talk about the proportion of outcomes falling into an interval like this, then this is called a “probability mass”. As the probability mass is dependent on the interval size, the “probability density” is used to represent the ratio of the probability mass to interval size:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">prob.dens</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prob.mass</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">100</span><span class="w">
+</span><span class="n">prob.dens</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.0003396366
+</code></pre>
+</div>
+
+<p>To get more precision, we would want our intervals to be small since wide intervals are not very informative. Ideally, our intervals should be infinitesimally small. When we do this, we produce something that starts to resemble a “curve” (here we use <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density estimation</a> to estimate the curve).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">diamonds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">price</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_density</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlab</span><span class="p">(</span><span class="s2">"Y (Diamond Price)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"f(Y) Density"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/prob-distr/diamond_pdf-1.svg" alt="plot of chunk diamond_pdf" /></p>
+
+<p>This “curve”, <span class="inlinecode">$f(Y)$</span>, is called a probability density function (pdf) which is used to describe the probability distribution of a continuous random variable.</p>
+
+<h2 id="properties-of-probability-massdensity-functions">Properties of Probability Mass/Density Functions</h2>
+
+<p>There are a few key properites of a pmf, <span class="inlinecode">$f(X)$</span>:</p>
+
+<ol>
+  <li>
+    <p><span class="inlinecode">$f(X = x) &gt; 0$</span> where <span class="inlinecode">$x \in S_{X}$</span> (<span class="inlinecode">$S_{X}$</span> = sample space of X).</p>
+  </li>
+  <li>
+    <p>Since we can directly measure the probability of an event for discrete random variables, then</p>
+
+    <div>
+ $$P(X = x) = f(X = x)$$
+ </div>
+  </li>
+  <li>
+    <p>The probability of all possible events must sum to 1:</p>
+
+    <div>
+ $$\sum_{x \in S_{X}} f(X) = 1$$
+ </div>
+  </li>
+</ol>
+
+<p>The key properites of a pdf, <span class="inlinecode">$f(Y)$</span>, are very similar to a pmf. The big difference is that <strong>we need to think in terms of intervals instead of individual outcomes</strong>. This means we have to work with integrals and not summations:</p>
+
+<ol>
+  <li>
+    <p><span class="inlinecode">$f(Y = y) &gt; 0$ where <span class="inlinecode">$y \in S_{Y}$</span> (<span class="inlinecode">$S_{Y}$</span> = sample space of Y). This property is the same as for a pmf.</span></p>
+  </li>
+  <li>
+    <p>The probability of a value <span class="inlinecode">$y \in [a, b]$</span> is:</p>
+
+    <div>
+ $$P(a \leq y \leq b) = \int_{a}^{b} f(Y) \,dy$$
+ </div>
+
+    <p>In other words, the probability of <span class="inlinecode">$y \in [a, b]$</span> is equivalent to taking the integral of the pdf between a and b.</p>
+  </li>
+  <li>
+    <p>The entire area under the pdf must sum to 1.</p>
+
+    <div>
+ $$\int_{-\infty}^{\infty} f(Y) \,dy = 1$$
+ </div>
+  </li>
+</ol>
+
+<h2 id="types-of-probability-massdensity-functions">Types of Probability Mass/Density Functions</h2>
+
+<p>You may have heard the phrase that random variable “Y follows a [insert name of] distribution”. What this means is that they are assuming the data being generated comes from a particular well studied distribution. In statistics, there exists many discrete (e.g. binomial, negative binomial) and continuous (e.g. gaussian, student-t) distributions that have been well studied. So by making the assumption that a random variable follows a particular distribution, we can use the distribution’s derived pmf/pdf and established properties to help us answer questions about the data. For instance, we know that the pdf of a gaussian is:</p>
+
+<div>
+$$f(Y \,|\, \mu, \sigma^{2}) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x - \mu)^{2}}{2\sigma^{2}}}$$
+</div>
+
+<p>It is parameterized by a mean <span class="inlinecode">$\mu$</span> and a standard deviation <span class="inlinecode">$\sigma$</span> while being symmetrical around the mean. A standard gaussian (<span class="inlinecode">$\mu = 0, \sigma = 1$</span>) would look like this.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">vals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="m">200</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># dnorm provides the probability density
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vals</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_function</span><span class="p">(</span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dnorm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/prob-distr/std_normal_distr-1.svg" alt="plot of chunk std_normal_distr" /></p>
+
+<p>Just like before, we can ask questions like <span class="inlinecode">$P(-2 \leq y \leq 2)$</span> and use the gaussian pdf to answer this question:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># pnorm provides the probability 
+</span><span class="n">pnorm</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pnorm</span><span class="p">(</span><span class="m">-2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.9544997
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">pnorm(y)</code> function is essentially taking the integral from <span class="inlinecode">$-\infty$</span> to <span class="inlinecode">$y$</span>:</p>
+
+<div>
+$$\int_{-\infty}^{y} f(Y) \,dy$$
+</div>
+
+<p>So what we are doing here is:</p>
+
+<div>
+$$\int_{-2}^{2} f(Y) \,dy = \int_{-\infty}^{2} f(Y) \,dy - \int_{-\infty}^{-2} f(Y) \,dy$$
+</div>
+
+<p>This effectively calculates the area between -2 and 2:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># dnorm provides the probability density
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vals</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_function</span><span class="p">(</span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dnorm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ylab</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dotted"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/prob-distr/std_normal_distr_integral-1.svg" alt="plot of chunk std_normal_distr_integral" /></p>
+
+<p>One caveat of this approach is that our assumption could be wrong. <strong>This means that one needs to be careful when deciding what type of probability distribution a random variable follows</strong>.</p>
+
+<p>Thankfully there are some well established principles that can help us. The figure below provides a decision tree that gives you an idea of some common probability distributions that one can use given the data they have in hand:</p>
+
+<p><img src="http://localhost:4000/assets/prob-distr/overview-prob-distr.png" alt="Overview of Common Probability Distributions" /></p>
+
+<p>This is Figure 6A.15 (Pg 61) from <a href="http://people.stern.nyu.edu/adamodar/pdfiles/papers/probabilistic.pdf">Probabilistic approaches to risk by Aswath Damodaran</a>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Hopefully this post sheds a bit of light on what a probability distribution and how we can describe them using probability mass/density functions. The big take home messages are as follows:</p>
+
+<ul>
+  <li>A probability distribution is a way to represent the possible values and the respective probabilities of a random variable. There are two types of probability distributions:
+    <ul>
+      <li>Discrete probability distribution for discrete random variables.</li>
+      <li>Continuous probability distribution for continuous random variables.</li>
+    </ul>
+  </li>
+  <li>We can directly calculate probabilites of a discrete random variable, X = x, as the proportion of times the x value occurs in the random process.</li>
+  <li>Probabilites of a continuous random variable taking on a specific value (e.g. Y = y) are <strong>not directly measureable</strong>. Instead, we calculate the probability as the proportion of times <span class="inlinecode">$y \in [a, b]$</span>.</li>
+  <li>Probability mass functions (pmf) are used to describe discrete probability distributions. While probability density functions (pdf) are used to describe continuous probability distributions.</li>
+  <li>By assuming a random variable follows an established probability distribution, we can use its derived pmf/pdf and established principles to answer questions we have about the data.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://sites.google.com/site/doingbayesiandataanalysis/">Doing Bayesian Data Analysis - A Tutorial with R, JAGS, and Stan</a></li>
+  <li><a href="https://www.youtube.com/watch?v=5lpqiGixDd0">Probability Distribution Table - Intro with tossing a coin 3 times</a></li>
+  <li><a href="http://stattrek.com/probability-distributions/probability-distribution.aspx">What is a Probability Distribution?</a></li>
+  <li><a href="http://stattrek.com/statistics/dictionary.aspx?definition=Continuous%20probability%20distribution">Continuous Probability Distribution</a></li>
+  <li><a href="https://www.youtube.com/watch?v=Fvi9A_tEmXQ">Khan Academy - Probability density function</a></li>
+  <li><a href="https://onlinecourses.science.psu.edu/stat414/node/97">PennState STAT 414/415 - Probability Density Functions</a></li>
+  <li><a href="https://www.quora.com/What-is-the-relationship-between-the-probability-mass-density-and-cumulative-distribution-functions">What is the relationship between the probability mass, density, and cumulative distribution functions?</a></li>
+</ul>
+
+<h2 id="r-session">R Session</h2>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">devtools</span><span class="o">::</span><span class="n">session_info</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Session info --------------------------------------------------------------
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  setting  value                       
+##  version  R version 3.2.2 (2015-08-14)
+##  system   x86_64, darwin13.4.0        
+##  ui       unknown                     
+##  language (EN)                        
+##  collate  en_CA.UTF-8                 
+##  tz       America/Vancouver           
+##  date     2016-03-18
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Packages ------------------------------------------------------------------
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  package    * version    date       source        
+##  argparse   * 1.0.1      2014-04-05 CRAN (R 3.2.2)
+##  assertthat   0.1        2013-12-06 CRAN (R 3.2.2)
+##  captioner  * 2.2.3.9000 2015-09-16 local         
+##  colorspace   1.2-6      2015-03-11 CRAN (R 3.2.2)
+##  DBI          0.3.1      2014-09-24 CRAN (R 3.2.2)
+##  devtools     1.9.1      2015-09-11 CRAN (R 3.2.2)
+##  digest       0.6.9      2016-01-08 CRAN (R 3.2.2)
+##  dplyr      * 0.4.3      2015-09-01 CRAN (R 3.2.2)
+##  evaluate     0.8        2015-09-18 CRAN (R 3.2.2)
+##  findpython   1.0.1      2014-04-03 CRAN (R 3.2.2)
+##  formatR      1.2.1      2015-09-18 CRAN (R 3.2.2)
+##  getopt       1.20.0     2013-08-30 CRAN (R 3.2.2)
+##  ggplot2    * 2.0.0      2015-12-18 CRAN (R 3.2.2)
+##  gtable       0.1.2      2012-12-05 CRAN (R 3.2.2)
+##  knitr      * 1.12.7     2016-02-09 local         
+##  labeling     0.3        2014-08-23 CRAN (R 3.2.2)
+##  lazyeval     0.1.10     2015-01-02 CRAN (R 3.2.2)
+##  magrittr   * 1.5        2014-11-22 CRAN (R 3.2.2)
+##  memoise      0.2.1      2014-04-22 CRAN (R 3.2.2)
+##  munsell      0.4.3      2016-02-13 CRAN (R 3.2.2)
+##  plyr         1.8.3      2015-06-12 CRAN (R 3.2.2)
+##  proto      * 0.3-10     2012-12-22 CRAN (R 3.2.2)
+##  R6           2.1.2      2016-01-26 CRAN (R 3.2.2)
+##  Rcpp         0.12.3     2016-01-10 CRAN (R 3.2.2)
+##  rjson        0.2.15     2014-11-03 CRAN (R 3.2.2)
+##  scales       0.3.0      2015-08-25 CRAN (R 3.2.2)
+##  stringi      1.0-1      2015-10-22 CRAN (R 3.2.2)
+##  stringr      1.0.0      2015-04-30 CRAN (R 3.2.2)
+</code></pre>
+</div>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tinyheero';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Wen-Ting Wang's Blog</li>
+          <li>
+             <i class="fa fa-envelope"></i>
+             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+          </li>
+					<li>
+						<a href="http://orcid.org">
+							<img src="http://about.orcid.org/sites/default/files/images/orcid_16x16(1).gif" style="width: 15px; height: 15px; ">
+						</a>
+						<a href="http://orcid.org/0000-0002-7825-2692"><span class="usename">orcid.org/0000-0002-7825-2692</span></a>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+              <i class="fa fa-github"></i>
+              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+          </li>
+          
+
+          
+          <li>
+            <i class="fa fa-linkedin"></i>
+            <a href="https://ca.linkedin.com/in/fongchunchan"><span class="username">fongchunchan</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Science is a means whereby learning is achieved.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
