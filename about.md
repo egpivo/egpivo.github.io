@@ -27,7 +27,7 @@ I’m a data scientist with a PhD degree in Statistics from NCTU in Taiwan. In t
   
 <div class="list-group-item">
     <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-    <div>Wen-Ting Wang and Hsin-Cheng Huang, 2016, <a>under revised</a>
+    <div>Wen-Ting Wang and Hsin-Cheng Huang, 2016, under revised.
     </div>
 <div>
 <ul class="list-inline">
