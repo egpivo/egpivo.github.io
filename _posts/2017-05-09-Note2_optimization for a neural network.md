@@ -200,3 +200,5 @@ Remark: More detail can be found [here](https://page.mi.fu-berlin.de/rojas/neura
 ## References
 
 * [DataCamp: Deep Learning in Python](https://www.datacamp.com/courses/deep-learning-in-python)
+* [What's the difference between gradient descent and stochastic gradient descent?](https://www.quora.com/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent/answer/Sebastian-Raschka-1)
+*[What is the best visual explanation for the back propagation algorithm for neural networks?](https://www.quora.com/What-is-the-best-visual-explanation-for-the-back-propagation-algorithm-for-neural-networks/answer/Sebastian-Raschka-1)
