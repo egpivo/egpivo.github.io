@@ -15,7 +15,7 @@ Recently, I've' read a classic Annals’ article, “[Additive regression and ot
 - Interpretability: interpretability lies in the potential for shedding light on the underlying structure.
 Trade off (flexibility, dimensionality) = Trade off(bias, variance)
 
-Remark: We usually have to follow the experience and rules to look into data, understand data, model data, and turn the insights to a solution or explanation of a real-world problem. There aspects are still suitable in this "massive-data" era now.
+Note that we usually follow experiences or rules of thumb to look into data, manipulate data, model data, and then turn the insights to a solution or explanation of a real-world problem. The hardest part of solving the problem is usually tell a story about what you found from the data, that is, to interpret the results from data modeling. There aspects are no doubt suitable in this "massive-data" era.
 
 Stones also quoted meaningful words from Box et al. (1978):
 
@@ -23,7 +23,7 @@ Stones also quoted meaningful words from Box et al. (1978):
 While blind faith in a particular model is foolhardy, refusal to associate data with any model is to eschew a powerful tool. As implied earlier, a middle course may be followed. On the other hand, inadequacies in proposed models should be looked for; on the other hand, if a model appears reasonably appropriate, advantage should be take of the greater simplicity and clarity of interpretation that it provides.
 ```
 
-Remark: These wise words can remind us that we cannot build a useful statistical model without the aspects, even if there are a tons of fashion analytic tools. Simple is better.
+Note that These wise words can remind us that we cannot build a useful statistical model without the aspects, even if there are a tons of fashion analytic tools. Simple is better.
 
 
 ## References
