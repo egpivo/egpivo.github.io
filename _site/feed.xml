@@ -6,12 +6,49 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 May 2017 21:52:05 +0800</pubDate>
-    <lastBuildDate>Tue, 09 May 2017 21:52:05 +0800</lastBuildDate>
+    <pubDate>Fri, 19 May 2017 17:42:17 +0800</pubDate>
+    <lastBuildDate>Fri, 19 May 2017 17:42:17 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
-        <title>Note 2: optimization for a neural network</title>
+        <title>Three fundamental aspects of statistical models</title>
+        <description>&lt;p&gt;I have read the Annals’ article, “&lt;a href=&quot;http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf&quot;&gt;Additive regression and other nonparametric models&lt;/a&gt;” by Stones (1985). There are a bunch of inspiring thoughts. Mainly, Stones stated that three fundamental aspects of statistical models:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Flexibility: the accuracy of the fitted model in a wide variety of situations (bias in estimation)&lt;/li&gt;
+  &lt;li&gt;Dimensionality: the amount of data required to avoid an unacceptably large variance increases rapidly with increasing dimensionality. (variance in estimation)&lt;/li&gt;
+  &lt;li&gt;Interpretability: interpretability lies in the potential for shedding light on the underlying structure.
+Trade off (flexibility, dimensionality) = Trade off(bias, variance)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Remark: We usually have to follow the experience and rules to look into data, understand data, model data, and turn the insights to a solution or explanation of a real-world problem. There aspects are still suitable in this “massive-data” era now.&lt;/p&gt;
+
+&lt;p&gt;Stones also quoted meaningful words from Box et al. (1978):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;While blind faith in a particular model is foolhardy, refusal to associate data with any model is to eschew a powerful tool. As implied earlier, a middle course may be followed. On the other hand, inadequacies in proposed models should be looked for; on the other hand, if a model appears reasonably appropriate, advantage should be take of the greater simplicity and clarity of interpretation that it provides.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Remark: These wise words can remind us that we cannot build a useful statistical model without the aspects, even if there are a tons of fashion analytic tools. Simple is better.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Stones (1985), &lt;a href=&quot;http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf&quot;&gt;Additive regression and other nonparametric models&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Box et al. (1978), &lt;a href=&quot;http://onlinelibrary.wiley.com/doi/10.1002/aic.690250233/abstract&quot;&gt;Statistics for Experimenters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 19 May 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</guid>
+        
+        <category>statistics</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Note: optimization for a neural network</title>
         <description>&lt;h2 id=&quot;loss-function&quot;&gt;Loss function&lt;/h2&gt;
 &lt;p&gt;After fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the actual value. The prediction error is , &lt;script type=&quot;math/tex&quot;&gt;e_i({\bf{w}}) = y_i - \hat{y}_i({\bf{w}})&lt;/script&gt;. However, how can we know the current predictions are the best ones? We can measure these by a loss function . For example, a squared error loss function is&lt;/p&gt;
 &lt;div&gt;
@@ -218,11 +255,13 @@ Iteration 5 -- loss: 0.004199
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/courses/deep-learning-in-python&quot;&gt;DataCamp: Deep Learning in Python&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.quora.com/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent/answer/Sebastian-Raschka-1&quot;&gt;What’s the difference between gradient descent and stochastic gradient descent?&lt;/a&gt;
+*&lt;a href=&quot;https://www.quora.com/What-is-the-best-visual-explanation-for-the-back-propagation-algorithm-for-neural-networks/answer/Sebastian-Raschka-1&quot;&gt;What is the best visual explanation for the back propagation algorithm for neural networks?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 09 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/09/Note2_optimization-for-a-neural-network.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/09/Note2_optimization-for-a-neural-network.html</guid>
+        <link>http://localhost:4000/2017/05/09/Note_optimization-for-a-neural-network.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/09/Note_optimization-for-a-neural-network.html</guid>
         
         <category>python</category>
         
@@ -232,12 +271,14 @@ Iteration 5 -- loss: 0.004199
       </item>
     
       <item>
-        <title>Note 1: basics for a neural network</title>
+        <title>Note: basics for a neural network</title>
         <description>&lt;p&gt;We will introduce basic components of a neural network briefly in this note.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-activation-function&quot;&gt;1. Activation function&lt;/h2&gt;
 
-&lt;p&gt;An “activation function” is a function applied at each node. For example, a rectified linear unit  (reLU) function is defined as&lt;/p&gt;
+&lt;p&gt;An “activation function” is a function applied at each node. Its purpose is to ensure that the representation in the input space is transformed to a different space in the output. That is, to produce a non-linear decision boundary based on non-linear combinations of the weighted inputs.&lt;/p&gt;
+
+&lt;p&gt;For example, a rectified linear unit  (reLU) function is defined as&lt;/p&gt;
 &lt;div&gt;
 $$ f(x) = \max(0, x), x \in (-\infty, \infty); \label{eq:relu}$$
 &lt;/div&gt;
@@ -462,11 +503,12 @@ $$
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/courses/deep-learning-in-python&quot;&gt;DataCamp: Deep Learning in Python&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Rectifier_(neural_networks)&quot;&gt;ReLU and softplu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.quora.com/What-is-the-role-of-the-activation-function-in-a-neural-network/answer/Sebastian-Raschka-1&quot;&gt;Role of the activation function in a neural netword&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 02 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/02/Note.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/02/Note.html</guid>
+        <link>http://localhost:4000/2017/05/02/Note_basics-for-a-neural-network.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/02/Note_basics-for-a-neural-network.html</guid>
         
         <category>python</category>
         
