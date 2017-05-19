@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Note 2: optimization for a neural network"
+title: "Note: optimization for a neural network"
 date: "May 9th, 2017"
 output:
     html_document
