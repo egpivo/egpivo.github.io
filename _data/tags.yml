@@ -1,15 +1,15 @@
-statistics: 
-    slug: statistics
+Statistics: 
+    slug: Statistics
     name: Statistics
-spatial:
-    slug: spatial
+Spatial:
+    slug: Spatial
     name: Spatial statistics
 R:
     slug: R
     name: R
-python:
-    slug: python
+Python:
+    slug: Python
     name: Python
-deep learning:
-    slug: deep learning
+Deep learning:
+    slug: Deep learning
     name: Deep learning

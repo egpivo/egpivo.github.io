@@ -4,7 +4,7 @@ title: "Note: basics for a neural network"
 date: "May 2nd, 2017"
 output:
     html_document
-tags: [python, deep learning]
+tags: [Python, Deep learning]
 use_math : true
 ---
 
