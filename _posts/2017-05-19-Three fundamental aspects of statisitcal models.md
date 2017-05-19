@@ -8,7 +8,7 @@ tags: [Statistics]
 use_math : true
 ---
 
-I have read the Annals’ article, “[Additive regression and other nonparametric models](http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf)” by Stones (1985). There are a bunch of inspiring thoughts. Mainly, Stones stated that three fundamental aspects of statistical models:
+Recently, I've' read a classic Annals’ article, “[Additive regression and other nonparametric models](http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf)” by Stones (1985). There are a bunch of inspiring thoughts. Mainly, three fundamental aspects of statistical models are stated:
 
 - Flexibility: the accuracy of the fitted model in a wide variety of situations (bias in estimation)
 - Dimensionality: the amount of data required to avoid an unacceptably large variance increases rapidly with increasing dimensionality. (variance in estimation)
