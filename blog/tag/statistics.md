@@ -1,5 +1,5 @@
 ---
 layout: posts_by_tag
-tag: statistics
-permalink: /tags/statistics/
+tag: Statistics
+permalink: /tags/Statistics/
 ---

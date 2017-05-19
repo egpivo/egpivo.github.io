@@ -1,5 +1,5 @@
 ---
 layout: posts_by_tag
 tag: Deep learning
-permalink: /tags/DL/
+permalink: /tags/Deep Learning/
 ---
