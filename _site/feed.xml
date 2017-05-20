@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 May 2017 18:50:14 +0800</pubDate>
-    <lastBuildDate>Fri, 19 May 2017 18:50:14 +0800</lastBuildDate>
+    <pubDate>Sat, 20 May 2017 08:15:26 +0800</pubDate>
+    <lastBuildDate>Sat, 20 May 2017 08:15:26 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -21,7 +21,7 @@
 Trade off (flexibility, dimensionality) = Trade off(bias, variance)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Note that we usually follow experiences or rules of thumb to look into data, manipulate data, model data, and then turn the insights to a solution or explanation of a real-world problem. The hardest part of solving the problem is usually tell a story about what you found from the data, that is, to interpret the results from data modeling. There aspects are no doubt suitable in this “massive-data” era.&lt;/p&gt;
+&lt;p&gt;Note that we usually follow experiences or rules of thumb to look into data, manipulate data, model data, and then turn the insights to a solution or explanation of a real-world problem. The most difficult part of solving the problem is to tell a story about what you’ve’ found from the data analytic, i.e., to interpret the results from data modeling. There aspects, no doubt suitable in this “massive-data” era, are always kept in my mind.&lt;/p&gt;
 
 &lt;p&gt;Stones also quoted meaningful words from Box et al. (1978):&lt;/p&gt;
 

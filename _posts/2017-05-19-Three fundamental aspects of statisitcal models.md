@@ -15,7 +15,7 @@ Recently, I've' read a classic Annals’ article, “[Additive regression and ot
 - Interpretability: interpretability lies in the potential for shedding light on the underlying structure.
 Trade off (flexibility, dimensionality) = Trade off(bias, variance)
 
-Note that we usually follow experiences or rules of thumb to look into data, manipulate data, model data, and then turn the insights to a solution or explanation of a real-world problem. The hardest part of solving the problem is usually tell a story about what you found from the data, that is, to interpret the results from data modeling. There aspects are no doubt suitable in this "massive-data" era.
+Note that we usually follow experiences or rules of thumb to look into data, manipulate data, model data, and then turn the insights to a solution or explanation of a real-world problem. The most difficult part of solving the problem is to tell a story about what you've' found from the data analytic, i.e., to interpret the results from data modeling. There aspects, no doubt suitable in this "massive-data" era, are always kept in my mind.
 
 Stones also quoted meaningful words from Box et al. (1978):
 
