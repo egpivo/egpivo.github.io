@@ -5,7 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-I currently work as a data scientist with a PhD degree in Statistics from NCTU in Taiwan. In the field of Statisitcs, my interests are broad. Mainly, however, I am interested in high-dimensional data analysis, and spatial data analysis. I am enthusiatic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
+I received my Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). Currently I work as a Data Scientist at a technology company in Taiwan. In the field of Statisitcs, my interests are broad. Mainly, however, I am interested in high-dimensional data analysis, and spatial data analysis. I am enthusiatic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
 
 1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
 2. expertise in dealing with masive data in the R programming language (e.g. data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
