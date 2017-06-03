@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 library("argparse")
 library("knitr")
-setwd("/Users/wen-tingwang/egpivo/_rmd")
+setwd("/Users/wen-tingwang/egpivo/_rmd/")
 parser <- ArgumentParser(description = "Convert Rmarkdown to Jekyll Markdown")
 
 parser$add_argument("--imgdir", nargs = 1, type = "character",
@@ -11,8 +11,8 @@ parser$add_argument("filename", nargs = 1, type = "character",
 help = "Rmarkdown filename")
 
 if (interactive()){
-    opt <- c("--imgdir", "how-to-work-on-SST-data")
-    filename <- "how-to-work-on-SST-data.Rmd"
+    opt <- c("--imgdir", "how_to_work_on_SST_data")
+    filename <- "how_to_work_on_SST_data.Rmd"
     arguments <- parser$parse_args(c(filename, opt))
 } else {
     arguments <- parser$parse_args()
@@ -53,3 +53,4 @@ pics <- sapply(pics, function(x) paste(fromdir, x, sep="/"))
 file.copy(pics, todir, overwrite = TRUE)
 
 #unlink("{{ site.url }}", recursive = TRUE)
+
