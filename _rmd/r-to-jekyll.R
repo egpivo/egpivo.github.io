@@ -1,28 +1,28 @@
 #!/usr/bin/env Rscript
 library("argparse")
 library("knitr")
-
+setwd("/Users/wen-tingwang/egpivo/_rmd")
 parser <- ArgumentParser(description = "Convert Rmarkdown to Jekyll Markdown")
 
-parser$add_argument("--imgdir", nargs = 1, type = "character", 
-                    help = "Set the directory name that stores the images.")
+parser$add_argument("--imgdir", nargs = 1, type = "character",
+help = "Set the directory name that stores the images.")
 
-parser$add_argument("filename", nargs = 1, type = "character", 
-                    help = "Rmarkdown filename")
+parser$add_argument("filename", nargs = 1, type = "character",
+help = "Rmarkdown filename")
 
 if (interactive()){
-  opt <- c("--imgdir", "gmm-em")
-  filename <- "gmm-em.Rmd"
-  arguments <- parser$parse_args(c(filename, opt))
+    opt <- c("--imgdir", "how-to-work-on-SST-data")
+    filename <- "how-to-work-on-SST-data.Rmd"
+    arguments <- parser$parse_args(c(filename, opt))
 } else {
-  arguments <- parser$parse_args()
+    arguments <- parser$parse_args()
 }
 
 filename <- arguments$filename
 
 # Check that it's a .Rmd file.
 if (!grepl(".Rmd", filename)) {
-  stop("You must specify a .Rmd file.")
+    stop("You must specify a .Rmd file.")
 }
 
 # Knit and place in _posts.
@@ -36,16 +36,16 @@ knit(filename, output)
 
 # Copy image files to the images directory.
 if (!is.null(arguments$imgdir)) {
-  fromdir <- paste0("{{ site.url }}/assets/", arguments$imgdir, "/")
-  todir <- paste0("../assets/", arguments$imgdir, "/")
+    fromdir <- paste0("{{ site.url }}/assets/", arguments$imgdir, "/")
+    todir <- paste0("../assets/", arguments$imgdir, "/")
 } else {
-  fromdir <- paste0("{{ site.url }}/assets/")
-  todir <- paste0("../assets/", arguments$imgdir)
+    fromdir <- paste0("{{ site.url }}/assets/")
+    todir <- paste0("../assets/", arguments$imgdir)
 }
 
 # Create asset folder if doesn't exist
 if (!file.exists(todir)) {
-	dir.create(todir)
+    dir.create(todir)
 }
 
 pics <- list.files(fromdir)
