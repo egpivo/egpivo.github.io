@@ -17,7 +17,7 @@ knitr::opts_chunk$set(fig.path='{{ site.url }}/assets/how_to_work_on_sst_data/',
                       fig.ext = ".svg")
 theme_set(theme_grey())
 ```
-
+In this post, I will show you step-by-step instructions to  work on SST data in R.
 
 ## Install the nesessary tools for NetCDF
 

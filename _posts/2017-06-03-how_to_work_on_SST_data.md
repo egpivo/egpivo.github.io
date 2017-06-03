@@ -8,7 +8,7 @@ tags: [R, Spatial Statistics]
 ---
 
 
-
+In this post, I will show you step-by-step instructions to  work on SST data in R.
 
 ## Install the nesessary tools for NetCDF
 
@@ -176,7 +176,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height = "350" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" />
 
 ~~~r
 # plot the second EOF
@@ -191,7 +191,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height = "350" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" />
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 
