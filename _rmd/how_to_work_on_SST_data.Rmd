@@ -1,6 +1,6 @@
 ---
 title: "How to work on sea surface temperature (SST) data"
-date: "May 25th, 2017"
+date: "`r Sys.Date()`"
 layout: post
 output:
   html_document
@@ -138,25 +138,30 @@ if (!require("RColorBrewer")) {
 loc <- as.matrix(expand.grid(x = lon_ind, y = lat_ind))[s2,]
 coltab <- colorRampPalette(brewer.pal(9,"BrBG"))(2048)
 ```
-```{r eof1, fig.width = 10, fig.height = 5, message = FALSE, warning = FALSE, fig.align="center",fig.asp = 1}
+```{r eof1, fig.width = 10, fig.height = 3, message = FALSE, warning = FALSE, fig.align="center",fig.asp = 1}
 # plot the first EOF
+par(mar = c(5,5,3,3), oma=c(1,1,1,1))
 quilt.plot(loc, eof[,1], nx = length(lon_ind), 
            ny = length(lat_ind), xlab = "longitude",
-           ylab = "latitude", axes = F,
+           ylab = "latitude", 
            main = "1st EOF", col = coltab,
-           cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5)
-maps::map(database = "world", fill = TRUE, col = "gray", 
-          ylim = c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
-```
-```{r eof2, fig.width = 10, fig.height = 5, message = FALSE, warning = FALSE, fig.align="center",fig.asp = 1}
-# plot the second EOF
-quilt.plot(loc, eof[,2], nx = length(lon_ind), 
-           ny = length(lat_ind), xlab = "longitude",
-           ylab = "latitude", axes = F,
-           main = "2nd EOF", col = coltab,
-           cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5)
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
 maps::map(database = "world", fill = TRUE, col = "gray", 
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
+```
+```{r eof2, fig.width = 10, fig.height = 3, message = FALSE, warning = FALSE, fig.align="center",fig.asp = 1}
+# plot the second EOF
+par(mar = c(5,5,3,3), oma=c(1,1,1,1))
+quilt.plot(loc, eof[,2], nx = length(lon_ind), 
+           ny = length(lat_ind), xlab = "longitude",
+           ylab = "latitude", 
+           main = "2nd EOF", col = coltab,
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
+maps::map(database = "world", fill = TRUE, col = "gray", 
+          ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
+
 ```
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 

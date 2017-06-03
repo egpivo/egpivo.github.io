@@ -1,6 +1,6 @@
 ---
 title: "How to work on sea surface temperature (SST) data"
-date: "May 25th, 2017"
+date: "2017-06-03"
 layout: post
 output:
   html_document
@@ -165,29 +165,33 @@ coltab <- colorRampPalette(brewer.pal(9,"BrBG"))(2048)
 
 ~~~r
 # plot the first EOF
+par(mar = c(5,5,3,3), oma=c(1,1,1,1))
 quilt.plot(loc, eof[,1], nx = length(lon_ind), 
            ny = length(lat_ind), xlab = "longitude",
-           ylab = "latitude", axes = F,
+           ylab = "latitude", 
            main = "1st EOF", col = coltab,
-           cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5)
-maps::map(database = "world", fill = TRUE, col = "gray", 
-          ylim = c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
-~~~
-
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" />
-
-~~~r
-# plot the second EOF
-quilt.plot(loc, eof[,2], nx = length(lon_ind), 
-           ny = length(lat_ind), xlab = "longitude",
-           ylab = "latitude", axes = F,
-           main = "2nd EOF", col = coltab,
-           cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5)
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
 maps::map(database = "world", fill = TRUE, col = "gray", 
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height = "350" style="display: block; margin: auto;" />
+
+~~~r
+# plot the second EOF
+par(mar = c(5,5,3,3), oma=c(1,1,1,1))
+quilt.plot(loc, eof[,2], nx = length(lon_ind), 
+           ny = length(lat_ind), xlab = "longitude",
+           ylab = "latitude", 
+           main = "2nd EOF", col = coltab,
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
+maps::map(database = "world", fill = TRUE, col = "gray", 
+          ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
+~~~
+
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height = "350" style="display: block; margin: auto;" />
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 
