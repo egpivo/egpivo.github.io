@@ -181,8 +181,7 @@ quilt.plot(loc, eof[,2], nx = length(lon_ind),
            cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5)
 maps::map(database="world", fill=TRUE, col="gray",ylim=c(-19.5, 19.5), xlim=c(39.5,119.5), add=T)
 ~~~
-
-<img src="{{ site.url }}/assets/how-to-work-on-sst-data/unnamed-chunk-7-2..svg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+![plot of chunk eof2]({{ site.url }}/assets/how-to-work-on-sst-data/unnamed-chunk-7-2..svg")
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 
