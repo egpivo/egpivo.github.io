@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>How to work on sea surface temperature (SST) data</title>
-  <meta name="description" content="Install the nesessary tools for NetCDF">
+  <meta name="description" content="In this post, I will show you step-by-step instructions to  work on SST data in R.">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
@@ -102,7 +102,9 @@
   </header>
 
   <article class="post-content">
-    <h2 id="install-the-nesessary-tools-for-netcdf">Install the nesessary tools for NetCDF</h2>
+    <p>In this post, I will show you step-by-step instructions to  work on SST data in R.</p>
+
+<h2 id="install-the-nesessary-tools-for-netcdf">Install the nesessary tools for NetCDF</h2>
 
 <p>Before importing NetCDF files in R, we should install the necessary tools. Mac user require Xcode Command Line Tools, and can use <a href="https://www.macports.org">MacPorts</a> to finish the installation of NetCDF by typing the following lines into terminal.</p>
 
@@ -258,7 +260,7 @@ sudo port install ncview
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" /></p>
+<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height="350" style="display: block; margin: auto;" /></p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the second EOF
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
@@ -273,7 +275,7 @@ sudo port install ncview
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" /></p>
+<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height="350" style="display: block; margin: auto;" /></p>
 
 <p>The first EOF is known as a basin-wide mode, and the second one is a dipole mode.</p>
 
