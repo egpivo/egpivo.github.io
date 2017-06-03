@@ -115,7 +115,7 @@ sudo port install ncview
 
 <h2 id="download-an-sst-dataset">Download an SST dataset</h2>
 
-<p>For convience sake, we download a lower resolution dataset, <a href="ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc">Kaplan Extended SST data</a> from <a href="https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html">ESRL PSD</a> on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.</p>
+<p>For convenience’ sake, we download a lower resolution dataset, <a href="ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc">Kaplan Extended SST data</a> from <a href="https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html">ESRL PSD</a> on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set a url of the Kaplan SST data
 </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc'</span><span class="w">
@@ -258,7 +258,7 @@ sudo port install ncview
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height="350" style="display: block; margin: auto;" /></p>
+<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" /></p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the second EOF
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
@@ -273,7 +273,7 @@ sudo port install ncview
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height="350" style="display: block; margin: auto;" /></p>
+<p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" /></p>
 
 <p>The first EOF is known as a basin-wide mode, and the second one is a dipole mode.</p>
 

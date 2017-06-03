@@ -34,7 +34,7 @@ More details can be found [here](http://mazamascience.com/WorkingWithData/?p=147
 
 ## Download an SST dataset
 
-For convience sake, we download a lower resolution dataset, [Kaplan Extended SST data](ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc) from [ESRL PSD](https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html) on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.
+For convenience' sake, we download a lower resolution dataset, [Kaplan Extended SST data](ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc) from [ESRL PSD](https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html) on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.
 
 ```{r}
 # set a url of the Kaplan SST data

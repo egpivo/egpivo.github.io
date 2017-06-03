@@ -25,7 +25,7 @@ More details can be found [here](http://mazamascience.com/WorkingWithData/?p=147
 
 ## Download an SST dataset
 
-For convience sake, we download a lower resolution dataset, [Kaplan Extended SST data](ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc) from [ESRL PSD](https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html) on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.
+For convenience' sake, we download a lower resolution dataset, [Kaplan Extended SST data](ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc) from [ESRL PSD](https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html) on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.
 
 
 ~~~r
@@ -176,7 +176,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height = "350" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" />
 
 ~~~r
 # plot the second EOF
@@ -191,7 +191,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height = "350" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" />
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 
