@@ -1,9 +1,9 @@
-Stat:
-    slug: Stat
-    name: Stat
-Spatial
-    slug: Spatial
-    name: Spatial
+Statistics:
+    slug: Statistics
+    name: Statistics
+Spatial Statistics:
+    slug: Spatial Statistics
+    name: Spatial Statistics
 R:
     slug: R
     name: R

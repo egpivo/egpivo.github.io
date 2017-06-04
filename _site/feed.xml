@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 04 Jun 2017 13:28:20 +0800</pubDate>
-    <lastBuildDate>Sun, 04 Jun 2017 13:28:20 +0800</lastBuildDate>
+    <pubDate>Sun, 04 Jun 2017 13:54:17 +0800</pubDate>
+    <lastBuildDate>Sun, 04 Jun 2017 13:54:17 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -265,6 +265,8 @@ sudo port install ncview
         <category>R</category>
         
         <category>Spatial Statistics</category>
+        
+        <category>Statistics</category>
         
         
       </item>
@@ -524,7 +526,7 @@ Iteration 5 -- loss: 0.004199
         
         <category>Python</category>
         
-        <category>Deep Learning</category>
+        <category>ML</category>
         
         
       </item>
@@ -771,7 +773,7 @@ $$
         
         <category>Python</category>
         
-        <category>Deep Learning</category>
+        <category>ML</category>
         
         
       </item>

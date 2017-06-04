@@ -4,7 +4,7 @@ date: "2017-06-03"
 layout: post
 output:
   html_document
-tags: [R, Spatial]
+tags: [R, Spatial Statistics, Statistics]
 ---
 
 
