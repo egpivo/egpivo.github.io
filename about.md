@@ -20,7 +20,7 @@ I received my Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.p
     <div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483">Journal of Computational and Graphical Statistics</a>.</div>
     <div>
       <ul class="list-inline">
-         <li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">Pubmed</span></a></li>
+         <li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">pdf link</span></a></li>
       </ul>
     </div>
   </div>
@@ -31,7 +31,7 @@ I received my Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.p
     </div>
 <div>
 <ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Pubmed</span></a></li>
+<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">pdf link</span></a></li>
 </ul>
 </div>
 </div>
