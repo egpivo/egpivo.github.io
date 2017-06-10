@@ -19,7 +19,7 @@ theme_set(theme_grey())
 ```
 In this post, I will show you step-by-step instructions to  work on SST data in R.
 
-## Install the nesessary tools for NetCDF
+## Install the necessary tools for NetCDF
 
 Before importing NetCDF files in R, we should install the necessary tools. Mac user require Xcode Command Line Tools, and can use [MacPorts](https://www.macports.org) to finish the installation of NetCDF by typing the following lines into terminal.
 
@@ -55,7 +55,7 @@ Before importing the file, we install an R package, [```ncdf4```](https://cran.r
 ```{r eval=FALSE}
 install.packages("ncdf4")
 ```
-Then, we can extract the SST anamolies and their corresponding coordinates from the file.
+Then, we can extract the SST anomalies and their corresponding coordinates from the file.
 
 ```{r}
 library(ncdf4)
@@ -65,7 +65,7 @@ ex.nc <- nc_open(file)
 y <- ncvar_get(ex.nc, "lat")
 # set coordinate variable: longitude
 x <- ncvar_get(ex.nc, "lon")  
-# extract SST annmolies
+# extract SST anomalies
 df <- ncvar_get(ex.nc, ex.nc$var[[1]])
 # close an NetCDF file
 nc_close(ex.nc)
@@ -76,7 +76,7 @@ Note that we can type ```print(ex.nc)``` to gain more information.
 
 
 ## Example: Indian Ocean SST
-The following example is inspired by [Deser et al.(2009)](http://www.cgd.ucar.edu/staff/cdeser/docs/deser.sstvariability.annrevmarsci10.pdf). The region of indian ocean is set between latitudes $20^{\circ}$N and $20^{\circ}$S between longitudes $40^{\circ}$E and $120^{\circ}$E. 
+The following example is inspired by [Deser et al.(2009)](http://www.cgd.ucar.edu/staff/cdeser/docs/deser.sstvariability.annrevmarsci10.pdf). The region of Indian ocean is set between latitudes $20^{\circ}$N and $20^{\circ}$S between longitudes $40^{\circ}$E and $120^{\circ}$E. 
 
 ```{r}
 # set the region of Indian Ocean
@@ -90,7 +90,7 @@ print(length(lat_ind)*length(lon_ind))
 sst_ind <- df[which(x == 42.5):which(x == 117.5), 
               which(y == -17.5):which(y == 17.5),]
 
-# defien which location is ocean (s2: Not NA) or land (s1: NA)
+# define which location is ocean (s2: Not NA) or land (s1: NA)
 s1 <- which(is.na(sst_ind[,,1]))
 s2 <- which(!is.na(sst_ind[,,1]))
 
@@ -103,7 +103,7 @@ print(dim(sst_ind))
 
 Out of 8 × 16 = 128 grid cells, there are 4 cells on the land where no data are available. The time period are from January 1856 to April 2017. Here the data we use observed at $124$ grids and 1936 time points.
 
-### Vectorize the SST anomailies 
+### Vectorize the SST anomalies 
 
 We reshape the data as a $1936 \times 124$ matrix by vectorizing the anomalies corresponding to each time.
 

@@ -63,7 +63,7 @@ print(lyrics)
 ~~~
 
 
-### View the Match patterns with repeated characters.
+### View the matched patterns with repeated characters.
 
 We want to see which character repeated twice in the lyric. We will view which line is matched.
 
@@ -81,7 +81,7 @@ str_view_all(lyrics, pattern = pattern , match = TRUE)
 
 ![plot of chunk unnamed-chunk-4]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png)
 
-### Extract the mathced lines
+### Extract the matched lines
 Before we extracting matched lines,  we use `str_subset` to store subset of matched lines first. 
 
 

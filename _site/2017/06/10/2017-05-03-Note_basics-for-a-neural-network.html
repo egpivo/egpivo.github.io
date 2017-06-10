@@ -1,0 +1,229 @@
+<p>We will introduce basic components of a neural network briefly in this note.</p>
+
+<h2 id="1-activation-function">1. Activation function</h2>
+
+<p>An “activation function” is a function applied at each node. Its purpose is to ensure that the representation in the input space is transformed to a different space in the output. That is, to produce a non-linear decision boundary based on non-linear combinations of the weighted inputs.</p>
+
+<p>For example, a rectified linear unit  (reLU) function is defined as</p>
+<div>
+$$ f(x) = \max(0, x), x \in (-\infty, \infty); \label{eq:relu}$$
+</div>
+<p>a softplus function, a smoothed version of reLU, is</p>
+<div>
+$$f(x) = \log(1+e^x) \label{eq:softplus}$$
+</div>
+<p>where <span class="inlinecode">$x$</span> is the input to a neuron.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reLU</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+<span class="c"># Calculate the value for the output of the reLU function: output</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+<span class="c"># Return the value just calculated</span>
+<span class="k">return</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">softplus</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log</span>
+<span class="c"># Calculate the value for the output of the softplus function: output</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+<span class="c"># Return the value just calculated</span>
+<span class="k">return</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="visualization-of-relu-and-softplus">Visualization of reLU and softplus</h4>
+
+<p>Let’s see the difference b/w (\ref{eq:relu}) and (\ref{eq:softplus}). We will consider <script type="math/tex">256</script> values of <script type="math/tex">x</script> from <script type="math/tex">-5</script> to <script type="math/tex">5</script> equally spaced.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">a1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">):</span>
+<span class="n">a1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reLU</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="n">a2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">softplus</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"blue"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"reLU"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span>  <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"softplus"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>  <span class="c"># gca stands for 'get current axis'</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">'right'</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'none'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">'top'</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">'none'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s">'bottom'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">'bottom'</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s">'data'</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s">'left'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">'left'</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s">'data'</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><img src="http://localhost:4000/assets/note1_basics_files/note1_basics_3_0.png" alt="png" /></p>
+
+<p>The above figure shows that the softplus (red line) is smoother than the reLU (blue line), especially when <script type="math/tex">x = [-2, 2]</script>.</p>
+
+<h2 id="2-forward-propagation-in-one-layer">2. Forward propagation in one layer</h2>
+
+<p>Let each of the <script type="math/tex">M</script> hidden layer nodes, <script type="math/tex">a_j</script>, be a linear combination of the input variables:</p>
+<div>
+$$
+a_j = \sum_{i = 1}^{p_1} \omega_{1ij}x_{i} + \theta_{1i}, \label{eq:hiddensum}
+$$
+</div>
+<p>where <script type="math/tex">x_1, \dots, x_{p_1}</script> are <script type="math/tex">p_1</script> input variables, <script type="math/tex">\omega_{11j}, \dots, \omega_{1{p_1}j}</script> are <script type="math/tex">p_1</script> unknown parameters, and <script type="math/tex">\theta_{1j}</script> is an unknown bias node. The prediction with one hidden layer is</p>
+<div>
+$$
+\hat{y}_k = \tilde{f}\left(\sum_{j = 1}^M \gamma_{jk}\cdot f(a_j) + \beta_{j}\right), \label{eq:onelayer}
+$$
+</div>
+<p>where <script type="math/tex">\gamma_{1k}, \dots, \gamma_{Mk}</script> are <script type="math/tex">M</script> unknown parameters, <script type="math/tex">\beta_{j}</script> is an unknown bias node, <script type="math/tex">f(\cdot)</script> and <script type="math/tex">\tilde{f}(\cdot)</script> are the activation functions for the hidden nodes and the response respectively, and <script type="math/tex">k = 1, \dots, n</script>.</p>
+
+<h3 id="practice">Practice</h3>
+<p>For the next example, we apply the reLU (\ref{eq:relu})and an identity function as <script type="math/tex">f(\cdot)</script> and <script type="math/tex">\tilde{f}(\cdot)</script>, respectively. The weights are given.</p>
+
+<h4 id="define-a-prediction-function">Define a prediction function</h4>
+<p>Here, we follow the above equation w/o bias parameters.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Define predict_with_network()</span>
+<span class="k">def</span> <span class="nf">predict_with_one_layer</span><span class="p">(</span><span class="n">input_data_row</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+
+<span class="c"># Calculate node 0 value</span>
+<span class="n">node_0_input</span> <span class="o">=</span>  <span class="p">(</span><span class="n">input_data_row</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_0'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_0_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_0_input</span><span class="p">)</span>
+
+<span class="c"># Calculate node 1 value</span>
+<span class="n">node_1_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_data_row</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_1'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_1_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_1_input</span><span class="p">)</span>
+
+<span class="c"># Put node values into array: hidden_layer_outputs</span>
+<span class="n">hidden_layer_outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node_0_output</span><span class="p">,</span> <span class="n">node_1_output</span><span class="p">])</span>
+
+<span class="c"># Calculate model output</span>
+<span class="n">input_to_final_layer</span> <span class="o">=</span> <span class="p">(</span><span class="n">hidden_layer_outputs</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'output'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">model_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">input_to_final_layer</span><span class="p">)</span>
+
+<span class="c"># Return model output</span>
+<span class="k">return</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="toy-example">Toy example</h4>
+<p>Set the weights as <script type="math/tex">% <![CDATA[
+{\bf{\omega}}_1 = \left[ \begin{array}{cc}
+-5 & 5 \\
+-1 & 1\\
+\end{array} \right] %]]></script>, <script type="math/tex">{\bf{\gamma}} = \left[ \begin{array}{c}
+3  \\
+7\\
+\end{array} \right]</script>, and the input data as <script type="math/tex">{\bf{x}} = \left[ \begin{array}{c}
+7 \\
+5\\
+\end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_one_layer()</code> to calculate the prediciton as follows.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Example</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s">'node_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]),</span>
+<span class="s">'node_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]),</span>
+<span class="s">'output'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">])}</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">predict_with_one_layer</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>30</p>
+
+<h2 id="3-forward-propagation-in-two-layers">3. Forward propagation in two layers</h2>
+<p>Similar to the prediction with one hidden layer (\ref{eq:hiddensum}, \ref{eq:onelayer}), the prediction with two hidden layers is</p>
+<div>
+$$
+\hat{y}_k = \tilde{f}\left(\sum_{j = 1}^M \gamma_{jk}\cdot f\left(\sum_{\ell = 1}^{p_2} \omega_{2\ell j} \cdot f(a_{\ell j}) + \theta_{2\ell}\right) + \beta_{j}\right),
+$$
+</div>
+<p>where <script type="math/tex">\omega_{21j}, \dots, \omega_{2{p_2}j}</script> are <script type="math/tex">p_2</script> unknown parameters, <script type="math/tex">\theta_{2\ell}</script> is an unknown bias node.</p>
+
+<h3 id="practice-1">Practice</h3>
+<p>For the next example, we apply the reLU and an identity function as <script type="math/tex">f(\cdot)</script> and <script type="math/tex">\tilde{f}(\cdot)</script>, respectively. The weights are given.</p>
+
+<h4 id="define-a-prediction-function-with-two-layers">Define a prediction function with two layers</h4>
+<p>Here, we follow the above equation w/o bias parameters, and set <script type="math/tex">p_1 =p_2</script>.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">predict_with_two_layers</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+<span class="c"># Calculate node 0 in the first hidden layer</span>
+<span class="n">node_0_0_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_data</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_0_0'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_0_0_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_0_0_input</span><span class="p">)</span>
+
+<span class="c"># Calculate node 1 in the first hidden layer</span>
+<span class="n">node_0_1_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_data</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_0_1'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_0_1_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_0_1_input</span><span class="p">)</span>
+
+<span class="c"># Put node values into array: hidden_0_outputs</span>
+<span class="n">hidden_0_outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node_0_0_output</span><span class="p">,</span> <span class="n">node_0_1_output</span><span class="p">])</span>
+
+<span class="c"># Calculate node 0 in the second hidden layer</span>
+<span class="n">node_1_0_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">hidden_0_outputs</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_1_0'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_1_0_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_1_0_input</span><span class="p">)</span>
+
+<span class="c"># Calculate node 1 in the second hidden layer</span>
+<span class="n">node_1_1_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">hidden_0_outputs</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_1_1'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<span class="n">node_1_1_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_1_1_input</span><span class="p">)</span>
+
+<span class="c"># Put node values into array: hidden_1_outputs</span>
+<span class="n">hidden_1_outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node_1_0_output</span><span class="p">,</span> <span class="n">node_1_1_output</span><span class="p">])</span>
+
+<span class="c"># Calculate model output: model_output</span>
+<span class="n">model_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">hidden_1_outputs</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'output'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+
+<span class="c"># Return model_output</span>
+<span class="k">return</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="toy-example-1">Toy example</h4>
+<p>Set the weights as <script type="math/tex">% <![CDATA[
+{\bf{\omega}}_1 = \left[ \begin{array}{cc}
+-5 & 5 \\
+-1 & 3\\
+\end{array} \right] %]]></script>, <script type="math/tex">% <![CDATA[
+{\bf{\omega}}_2 = \left[ \begin{array}{cc}
+-3 & 4 \\
+2 & 2\\
+\end{array} \right] %]]></script>, <script type="math/tex">{\bf{\gamma}} = \left[ \begin{array}{c}
+2 \\
+7\\
+\end{array} \right]</script>, and the input data as <script type="math/tex">{\bf{x}} = \left[ \begin{array}{c}
+7 \\
+5\\
+\end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_two_layer()</code> to calculate the prediction as follows.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Example</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s">'node_0_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+<span class="s">'node_0_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="s">'node_1_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]),</span>
+<span class="s">'node_1_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+<span class="s">'output'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">])}</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">predict_with_two_layers</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>176</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.datacamp.com/courses/deep-learning-in-python">DataCamp: Deep Learning in Python</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU and softplu</a></li>
+  <li><a href="https://www.quora.com/What-is-the-role-of-the-activation-function-in-a-neural-network/answer/Sebastian-Raschka-1">Role of the activation function in a neural netword</a></li>
+</ul>

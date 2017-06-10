@@ -24,7 +24,7 @@ In practice, `backreference` is an R function in `rebus`, which is useful for re
 
 ### Download a Chinese lyric
 We download the file at beginning.
-```{r, messsage = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE}
 # set a url of the lyric
 url <- 'egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics'
 # create a name for temporary files in the working directory
@@ -47,7 +47,7 @@ print(lyrics)
 ```
 
 
-### View the Match patterns with repeated characters.
+### View the matched patterns with repeated characters.
 
 We want to see which character repeated twice in the lyric. We will view which line is matched.
 
@@ -62,7 +62,7 @@ pattern <- capture(WRD) %R% REF1
 str_view_all(lyrics, pattern = pattern , match = TRUE)
 ```
 
-### Extract the mathced lines
+### Extract the matched lines
 Before we extracting matched lines,  we use `str_subset` to store subset of matched lines first. 
 
 ```{r}

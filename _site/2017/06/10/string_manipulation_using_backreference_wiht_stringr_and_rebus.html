@@ -154,7 +154,7 @@ more stable.</p>
 </code></pre>
 </div>
 
-<h3 id="view-the-match-patterns-with-repeated-characters">View the Match patterns with repeated characters.</h3>
+<h3 id="view-the-matched-patterns-with-repeated-characters">View the matched patterns with repeated characters.</h3>
 
 <p>We want to see which character repeated twice in the lyric. We will view which line is matched.</p>
 
@@ -171,7 +171,7 @@ more stable.</p>
 
 <p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
 
-<h3 id="extract-the-mathced-lines">Extract the mathced lines</h3>
+<h3 id="extract-the-matched-lines">Extract the matched lines</h3>
 <p>Before we extracting matched lines,  we use <code class="highlighter-rouge">str_subset</code> to store subset of matched lines first.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">lines</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">str_subset</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">)</span><span class="w">
