@@ -13,7 +13,28 @@ In practice, `backreference` is an R function in `rebus`, which is useful for re
 
 ## Example: Chinese Lyric
 
-### Import a lyric
+### Download a Chinese lyric
+We download the file at beginning.
+
+~~~r
+# set a url of the lyric
+url <- 'egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics'
+# create a name for temporary files in the working directory
+file <- tempfile(tmpdir = getwd()) 
+# creates a file with the given name
+file.create(file)
+~~~
+
+~~~
+## [1] TRUE
+~~~
+
+~~~r
+#download the file
+download.file(url, file)
+~~~
+
+### Import the lyric
 
 We can use the function `readLines` in `base`, but we have a better choice. That is, `stri_read_lines` in `stringi`, which is faster and
 more stable.
@@ -21,7 +42,7 @@ more stable.
 
 ~~~r
 library(stringi)
-lyrics <- stri_read_lines("/Users/wen-tingwang/egpivo/_rmd/lyrics")
+lyrics <- stri_read_lines(file)
 print(lyrics)
 ~~~
 
@@ -58,7 +79,7 @@ pattern <- capture(WRD) %R% REF1
 str_view_all(lyrics, pattern = pattern , match = TRUE)
 ~~~
 
-![plot of chunk unnamed-chunk-3]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-4]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png)
 
 ### Extract the mathced lines
 Before we extracting matched lines,  we use `str_subset` to store subset of matched lines first. 
@@ -94,7 +115,7 @@ reverse <- capture(WRD) %R% capture(WRD) %R% REF2 %R% REF1
 str_view_all(lyrics, pattern = reverse, match = TRUE)
 ~~~
 
-![plot of chunk unnamed-chunk-6]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-7]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png)
 
 ### Replace with backreferces
 #### Build a pattern to be replaced
@@ -105,7 +126,7 @@ replacePattern <- "愛"
 str_view_all(lyrics, pattern = replacePattern)
 ~~~
 
-![plot of chunk unnamed-chunk-7]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-8]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png)
 
 #### Test out the replacement 
 Then, we apply `str_replace_all` to replace the pattern with some words including '愛' and a unicode around it. 

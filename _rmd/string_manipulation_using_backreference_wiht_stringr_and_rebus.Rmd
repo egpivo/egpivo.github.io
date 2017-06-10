@@ -22,14 +22,27 @@ In practice, `backreference` is an R function in `rebus`, which is useful for re
 
 ## Example: Chinese Lyric
 
-### Import a lyric
+### Download a Chinese lyric
+We download the file at beginning.
+```{r, messsage = FALSE, warning = FALSE}
+# set a url of the lyric
+url <- 'egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics'
+# create a name for temporary files in the working directory
+file <- tempfile(tmpdir = getwd()) 
+# creates a file with the given name
+file.create(file)
+#download the file
+download.file(url, file)
+```
+
+### Import the lyric
 
 We can use the function `readLines` in `base`, but we have a better choice. That is, `stri_read_lines` in `stringi`, which is faster and
 more stable.
 
 ```{r, message = FALSE}
 library(stringi)
-lyrics <- stri_read_lines("/Users/wen-tingwang/egpivo/_rmd/lyrics")
+lyrics <- stri_read_lines(file)
 print(lyrics)
 ```
 

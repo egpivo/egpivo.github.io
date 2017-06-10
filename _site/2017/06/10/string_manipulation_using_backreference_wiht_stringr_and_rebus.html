@@ -106,13 +106,34 @@
 
 <h2 id="example-chinese-lyric">Example: Chinese Lyric</h2>
 
-<h3 id="import-a-lyric">Import a lyric</h3>
+<h3 id="download-a-chinese-lyric">Download a Chinese lyric</h3>
+<p>We download the file at beginning.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set a url of the lyric
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics'</span><span class="w">
+</span><span class="c1"># create a name for temporary files in the working directory
+</span><span class="n">file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tempfile</span><span class="p">(</span><span class="n">tmpdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getwd</span><span class="p">())</span><span class="w"> 
+</span><span class="c1"># creates a file with the given name
+</span><span class="n">file.create</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] TRUE
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#download the file
+</span><span class="n">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="import-the-lyric">Import the lyric</h3>
 
 <p>We can use the function <code class="highlighter-rouge">readLines</code> in <code class="highlighter-rouge">base</code>, but we have a better choice. That is, <code class="highlighter-rouge">stri_read_lines</code> in <code class="highlighter-rouge">stringi</code>, which is faster and
 more stable.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">stringi</span><span class="p">)</span><span class="w">
-</span><span class="n">lyrics</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stri_read_lines</span><span class="p">(</span><span class="s2">"/Users/wen-tingwang/egpivo/_rmd/lyrics"</span><span class="p">)</span><span class="w">
+</span><span class="n">lyrics</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stri_read_lines</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span><span class="w">
 </span></code></pre>
 </div>
@@ -148,7 +169,7 @@ more stable.</p>
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
 
 <h3 id="extract-the-mathced-lines">Extract the mathced lines</h3>
 <p>Before we extracting matched lines,  we use <code class="highlighter-rouge">str_subset</code> to store subset of matched lines first.</p>
@@ -203,7 +224,7 @@ more stable.</p>
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
 
 <h3 id="replace-with-backreferces">Replace with backreferces</h3>
 <h4 id="build-a-pattern-to-be-replaced">Build a pattern to be replaced</h4>
@@ -214,7 +235,7 @@ more stable.</p>
 </span></code></pre>
 </div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
 
 <h4 id="test-out-the-replacement">Test out the replacement</h4>
 <p>Then, we apply <code class="highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode around it.</p>
