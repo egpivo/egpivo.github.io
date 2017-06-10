@@ -11,8 +11,8 @@ parser$add_argument("filename", nargs = 1, type = "character",
 help = "Rmarkdown filename")
 
 if (interactive()){
-    opt <- c("--imgdir", "how_to_work_on_SST_data")
-    filename <- "how_to_work_on_SST_data.Rmd"
+    opt <- c("--imgdir", "string_manipulation_using_backreference_wiht_stringr_and_rebus")
+    filename <- "string_manipulation_using_backreference_wiht_stringr_and_rebus.Rmd"
     arguments <- parser$parse_args(c(filename, opt))
 } else {
     arguments <- parser$parse_args()

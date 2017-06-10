@@ -1,0 +1,88 @@
+---
+title: "String manipulation using backreference wiht `Stringr` + `rebus`"
+date: "`r Sys.Date()`"
+layout: post
+output:
+  html_document
+tags: [R]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In practice, `backreference` is an R function in `rebus`, which is useful for replacement operations. I will apply some functions in stringr with `backreference` by a Chinese lyric. 
+
+## Example: Chinese Lyric
+
+### Import a lyric
+
+We can use the function `readLines` in `base`, but we have a better choice. That is, `stri_read_lines` in `stringi`, which is faster and
+more stable.
+
+```{r, message = FALSE}
+library(stringi)
+lyrics <- stri_read_lines("/Users/wen-tingwang/egpivo/_rmd/lyrics")
+print(lyrics)
+```
+
+
+### View the Match patterns with repeated characters.
+
+We want to see which character repeated twice in the lyric. We will view which line is matched.
+
+```{r, message = FALSE, warning = FALSE}
+library(stringr)
+library(rebus)
+
+# Define the pattern
+pattern <- capture(WRD) %R% REF1
+
+#View matches of pattern
+str_view_all(lyrics, pattern = pattern , match = TRUE)
+```
+
+### Extract the mathced lines
+Before we extracting matched lines,  we use `str_subset` to store subset of matched lines first. 
+
+```{r}
+lines <- str_subset(lyrics, pattern = pattern)
+```
+Then, we apply `str_extract` to extract the lines, and show the repeated characters.
+```{r}
+# Extract matches from lines
+chr <- str_extract_all(lines, pattern = pattern)
+# Show the frequencies of repeated characters
+knitr::kable(plyr::count(chr[[1]]))
+```
+
+### View characters with a pair that reverses
+
+```{r}
+reverse <- capture(WRD) %R% capture(WRD) %R% REF2%R% REF1
+str_view_all(lyrics, pattern = reverse, match = TRUE)
+```
+
+### Replace with backreferces
+#### Build a pattern to be replaced
+We build a pattern that finds a chines character "愛". We first check it against `lyrics`. 
+```{r,}
+replacePattern <- "愛"
+str_view_all(lyrics, pattern = replacePattern)
+```
+
+#### Test out the replacement 
+Then, we apply `str_replace_all` to replace the pattern with some words including '愛' and a unicode around it. 
+
+```{r}
+str_replace_all(lyrics, pattern = capture(replacePattern), str_c("\u2661", REF1, "\u2661", sep = ""))
+```
+
+## References
+* DataCamp: [String Manipulation in R with stringr](https://www.datacamp.com/courses/string-manipulation-in-r-with-stringr).
+
+## R Session
+
+```{r session, echo = FALSE}
+devtools::session_info()
+```
