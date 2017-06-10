@@ -3,7 +3,7 @@ layout: post
 title: "Note: basics for a neural network"
 date: "May 2nd, 2017"
 output:
-html_document
+  html_document
 tags: [Python, ML]
 use_math : true
 ---
