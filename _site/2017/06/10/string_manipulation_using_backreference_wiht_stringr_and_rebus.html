@@ -107,7 +107,7 @@
 <h2 id="example-chinese-lyric">Example: Chinese Lyric</h2>
 
 <h3 id="download-a-chinese-lyric">Download a Chinese lyric</h3>
-<p>We download the file at beginning.</p>
+<p>We download the file first.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set a url of the lyric
 </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics'</span><span class="w">
@@ -156,7 +156,7 @@ more stable.</p>
 
 <h3 id="view-the-matched-patterns-with-repeated-characters">View the matched patterns with repeated characters.</h3>
 
-<p>We want to see which character repeated twice in the lyric. We will view which line is matched.</p>
+<p>We want to see which character repeated twice in the lyric. We will view which line is matched by using <code class="highlighter-rouge">capture()</code> in <code class="highlighter-rouge">stringr</code> and a backreference <code class="highlighter-rouge">REF1</code> in <code class="highlighter-rouge">rebus</code> where beckreferecens can be <code class="highlighter-rouge">REF1</code> $\dots$ <code class="highlighter-rouge">REF9</code>.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">rebus</span><span class="p">)</span><span class="w">
@@ -218,6 +218,7 @@ more stable.</p>
 </table>
 
 <h3 id="view-characters-with-a-pair-that-reverses">View characters with a pair that reverses</h3>
+<p>Here we want to detect a reversed pair by using <code class="highlighter-rouge">REF1</code> and <code class="highlighter-rouge">REF2</code>.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">reverse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">WRD</span><span class="p">)</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">WRD</span><span class="p">)</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">REF2</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">REF1</span><span class="w">
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
@@ -238,7 +239,7 @@ more stable.</p>
 <p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
 
 <h4 id="test-out-the-replacement">Test out the replacement</h4>
-<p>Then, we apply <code class="highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode around it.</p>
+<p>Then, we apply <code class="highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">str_replace_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">replacePattern</span><span class="p">),</span><span class="w"> </span><span class="n">str_c</span><span class="p">(</span><span class="s2">"\u2661"</span><span class="p">,</span><span class="w"> </span><span class="n">REF1</span><span class="p">,</span><span class="w"> </span><span class="s2">"\u2661"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">))</span><span class="w">
 </span></code></pre>

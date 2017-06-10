@@ -14,7 +14,7 @@ In practice, `backreference` is an R function in `rebus`, which is useful for re
 ## Example: Chinese Lyric
 
 ### Download a Chinese lyric
-We download the file at beginning.
+We download the file first.
 
 ~~~r
 # set a url of the lyric
@@ -65,7 +65,8 @@ print(lyrics)
 
 ### View the matched patterns with repeated characters.
 
-We want to see which character repeated twice in the lyric. We will view which line is matched.
+We want to see which character repeated twice in the lyric. We will view which line is matched by using `capture()` in `stringr` and a backreference `REF1` in `rebus` where beckreferecens can be `REF1` $\dots$ `REF9`.
+
 
 
 ~~~r
@@ -108,7 +109,7 @@ knitr::kable(plyr::count(chr[[1]]))
 |圓圓 |    1|
 
 ### View characters with a pair that reverses
-
+Here we want to detect a reversed pair by using `REF1` and `REF2`.
 
 ~~~r
 reverse <- capture(WRD) %R% capture(WRD) %R% REF2 %R% REF1
@@ -129,7 +130,7 @@ str_view_all(lyrics, pattern = replacePattern)
 ![plot of chunk unnamed-chunk-8]({{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png)
 
 #### Test out the replacement 
-Then, we apply `str_replace_all` to replace the pattern with some words including '愛' and a unicode around it. 
+Then, we apply `str_replace_all` to replace the pattern with some words including '愛' and a unicode, ♡, around it. 
 
 
 ~~~r
