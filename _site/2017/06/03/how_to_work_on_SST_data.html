@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="http://localhost:4000/2017/06/03/how_to_work_on_SST_data.html">
+  <link rel="canonical" href="http://localhost:4000/2017/06/03/how_to_work_on_sst_data.html">
   <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
@@ -98,7 +98,7 @@
   <header class="post-header">
     <h1 class="post-title">How to work on sea surface temperature (SST) data</h1>
     <p class="post-meta">Jun 3, 2017</p>
-    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a>, <a href="/tags/Statistics/">Statistics</a></p>
+    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, </p>
   </header>
 
   <article class="post-content">
@@ -149,76 +149,20 @@ sudo port install ncview
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ncdf4</span><span class="p">)</span><span class="w">
 </span><span class="c1"># open an NetCDF file
 </span><span class="n">ex.nc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in R_nc4_open: No such file or directory
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in nc_open(file): Error in nc_open trying to open file /Users/wen-tingwang/egpivo/_rmd/fileea62d518dcd
-</code></pre>
-</div>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set coordinate variable: latitude
+</span><span class="c1"># set coordinate variable: latitude
 </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in ncvar_ndims(ncid, varid): error returned from C call
-</code></pre>
-</div>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set coordinate variable: longitude
+</span><span class="c1"># set coordinate variable: longitude
 </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="s2">"lon"</span><span class="p">)</span><span class="w">  
-</span></code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in ncvar_ndims(ncid, varid): error returned from C call
-</code></pre>
-</div>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># extract SST anomalies
+</span><span class="c1"># extract SST anomalies
 </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="n">ex.nc</span><span class="o">$</span><span class="n">var</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
-</span></code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in ncvar_ndims(ncid, varid): error returned from C call
-</code></pre>
-</div>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># close an NetCDF file
+</span><span class="c1"># close an NetCDF file
 </span><span class="n">nc_close</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## Error in R_nc4_close: NetCDF: Not a valid ID
-</code></pre>
-</div>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># delete the file
+</span><span class="c1"># delete the file
 </span><span class="n">file.remove</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">  
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## Warning in file.remove(file): 無法移除檔案 '/Users/wen-tingwang/egpivo/
-## _rmd/fileea62d518dcd' ，原因是 'No such file or directory'
-</code></pre>
-</div>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1] FALSE
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] TRUE
 </code></pre>
 </div>
 <p>Note that we can type <code class="highlighter-rouge">print(ex.nc)</code> to gain more information.</p>
@@ -241,7 +185,7 @@ sudo port install ncview
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># extract the Indian Ocean SST anomalies
 </span><span class="n">sst_ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">117.5</span><span class="p">),</span><span class="w"> 
-</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">-17.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">17.5</span><span class="p">),]</span><span class="w">
+              </span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">-17.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">17.5</span><span class="p">),]</span><span class="w">
 
 </span><span class="c1"># define which location is ocean (s2: Not NA) or land (s1: NA)
 </span><span class="n">s</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">[,,</span><span class="m">1</span><span class="p">]))</span><span class="w">
@@ -261,7 +205,7 @@ sudo port install ncview
 </span></code></pre>
 </div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1]   16    8 1936
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1]   16    8 1937
 </code></pre>
 </div>
 
@@ -274,7 +218,7 @@ sudo port install ncview
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">)[</span><span class="m">3</span><span class="p">],</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="m">2</span><span class="p">))</span><span class="w">
 
 </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">)[</span><span class="m">3</span><span class="p">])</span><span class="w">
-</span><span class="n">sst</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sst_ind</span><span class="p">[,,</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">s</span><span class="m">1</span><span class="p">]</span><span class="w">
+  </span><span class="n">sst</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sst_ind</span><span class="p">[,,</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">s</span><span class="m">1</span><span class="p">]</span><span class="w">
 </span></code></pre>
 </div>
 
@@ -287,14 +231,14 @@ sudo port install ncview
 
 </span><span class="c1"># require an R package, fields
 </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"fields"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"fields"</span><span class="p">)</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span><span class="w">
+  </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"fields"</span><span class="p">)</span><span class="w">
+  </span><span class="n">library</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="c1"># require an R package, RColorBrewer
 </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"RColorBrewer"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"RColorBrewer"</span><span class="p">)</span><span class="w">
-</span><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
+  </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"RColorBrewer"</span><span class="p">)</span><span class="w">
+  </span><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="c1"># Define the location in ocean
@@ -306,13 +250,13 @@ sudo port install ncview
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the first EOF
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
 </span><span class="n">quilt.plot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">eof</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lon_ind</span><span class="p">),</span><span class="w"> 
-</span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
-</span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"latitude"</span><span class="p">,</span><span class="w"> 
-</span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1st EOF"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coltab</span><span class="p">,</span><span class="w">
-</span><span class="n">cex.lab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
-</span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
+           </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
+           </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"latitude"</span><span class="p">,</span><span class="w"> 
+           </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1st EOF"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coltab</span><span class="p">,</span><span class="w">
+           </span><span class="n">cex.lab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+           </span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
 </span><span class="n">maps</span><span class="o">::</span><span class="n">map</span><span class="p">(</span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
-</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+          </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
 </span></code></pre>
 </div>
 
@@ -321,13 +265,13 @@ sudo port install ncview
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the second EOF
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
 </span><span class="n">quilt.plot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">eof</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lon_ind</span><span class="p">),</span><span class="w"> 
-</span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
-</span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"latitude"</span><span class="p">,</span><span class="w"> 
-</span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2nd EOF"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coltab</span><span class="p">,</span><span class="w">
-</span><span class="n">cex.lab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
-</span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
+           </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
+           </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"latitude"</span><span class="p">,</span><span class="w"> 
+           </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2nd EOF"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coltab</span><span class="p">,</span><span class="w">
+           </span><span class="n">cex.lab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex.main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+           </span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
 </span><span class="n">maps</span><span class="o">::</span><span class="n">map</span><span class="p">(</span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
-</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+          </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
 </span></code></pre>
 </div>
 

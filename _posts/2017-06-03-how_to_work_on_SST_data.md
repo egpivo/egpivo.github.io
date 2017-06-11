@@ -4,8 +4,9 @@ date: "2017-06-03"
 layout: post
 output:
   html_document
-tags: [R, Spatial Statistics, Statistics]
+tags: [R, Spatial]
 ---
+
 
 In this post, I will show you step-by-step instructions to  work on SST data in R.
 
@@ -61,76 +62,20 @@ Then, we can extract the SST anomalies and their corresponding coordinates from 
 library(ncdf4)
 # open an NetCDF file
 ex.nc <- nc_open(file)
-~~~
-
-~~~
-## Error in R_nc4_open: No such file or directory
-~~~
-
-~~~
-## Error in nc_open(file): Error in nc_open trying to open file /Users/wen-tingwang/egpivo/_rmd/fileea62d518dcd
-~~~
-
-~~~r
 # set coordinate variable: latitude
 y <- ncvar_get(ex.nc, "lat")
-~~~
-
-~~~
-## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-~~~
-
-~~~
-## Error in ncvar_ndims(ncid, varid): error returned from C call
-~~~
-
-~~~r
 # set coordinate variable: longitude
 x <- ncvar_get(ex.nc, "lon")  
-~~~
-
-~~~
-## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-~~~
-
-~~~
-## Error in ncvar_ndims(ncid, varid): error returned from C call
-~~~
-
-~~~r
 # extract SST anomalies
 df <- ncvar_get(ex.nc, ex.nc$var[[1]])
-~~~
-
-~~~
-## Error in R_nc4_inq_varndims: NetCDF: Not a valid ID
-~~~
-
-~~~
-## Error in ncvar_ndims(ncid, varid): error returned from C call
-~~~
-
-~~~r
 # close an NetCDF file
 nc_close(ex.nc)
-~~~
-
-~~~
-## Error in R_nc4_close: NetCDF: Not a valid ID
-~~~
-
-~~~r
 # delete the file
 file.remove(file)  
 ~~~
 
 ~~~
-## Warning in file.remove(file): 無法移除檔案 '/Users/wen-tingwang/egpivo/
-## _rmd/fileea62d518dcd' ，原因是 'No such file or directory'
-~~~
-
-~~~
-## [1] FALSE
+## [1] TRUE
 ~~~
 Note that we can type ```print(ex.nc)``` to gain more information.
 
@@ -155,7 +100,7 @@ print(length(lat_ind)*length(lon_ind))
 ~~~r
 # extract the Indian Ocean SST anomalies
 sst_ind <- df[which(x == 42.5):which(x == 117.5), 
-which(y == -17.5):which(y == 17.5),]
+              which(y == -17.5):which(y == 17.5),]
 
 # define which location is ocean (s2: Not NA) or land (s1: NA)
 s1 <- which(is.na(sst_ind[,,1]))
@@ -175,7 +120,7 @@ print(dim(sst_ind))
 ~~~
 
 ~~~
-## [1]   16    8 1936
+## [1]   16    8 1937
 ~~~
 
 Out of 8 × 16 = 128 grid cells, there are 4 cells on the land where no data are available. The time period are from January 1856 to April 2017. Here the data we use observed at $124$ grids and 1936 time points.
@@ -189,7 +134,7 @@ We reshape the data as a $1936 \times 124$ matrix by vectorizing the anomalies c
 sst <- matrix(0, nrow = dim(sst_ind)[3], ncol = length(s2))
 
 for(i in 1:dim(sst_ind)[3])
-sst[i,] <- sst_ind[,,i][-s1]
+  sst[i,] <- sst_ind[,,i][-s1]
 ~~~
 
 ### Detect the dominant patterns
@@ -203,14 +148,14 @@ eof <- svd(sst)$v
 
 # require an R package, fields
 if (!require("fields")) {
-install.packages("fields")
-library(fields)
+  install.packages("fields")
+  library(fields)
 }
 
 # require an R package, RColorBrewer
 if (!require("RColorBrewer")) {
-install.packages("RColorBrewer")
-library(RColorBrewer)
+  install.packages("RColorBrewer")
+  library(RColorBrewer)
 }
 
 # Define the location in ocean
@@ -222,13 +167,13 @@ coltab <- colorRampPalette(brewer.pal(9,"BrBG"))(2048)
 # plot the first EOF
 par(mar = c(5,5,3,3), oma=c(1,1,1,1))
 quilt.plot(loc, eof[,1], nx = length(lon_ind), 
-ny = length(lat_ind), xlab = "longitude",
-ylab = "latitude", 
-main = "1st EOF", col = coltab,
-cex.lab = 3, cex.axis = 3, cex.main = 3,
-legend.cex = 20)
+           ny = length(lat_ind), xlab = "longitude",
+           ylab = "latitude", 
+           main = "1st EOF", col = coltab,
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
 maps::map(database = "world", fill = TRUE, col = "gray", 
-ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
+          ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
 <img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" style="display: block; margin: auto;" />
@@ -237,13 +182,13 @@ ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 # plot the second EOF
 par(mar = c(5,5,3,3), oma=c(1,1,1,1))
 quilt.plot(loc, eof[,2], nx = length(lon_ind), 
-ny = length(lat_ind), xlab = "longitude",
-ylab = "latitude", 
-main = "2nd EOF", col = coltab,
-cex.lab = 3, cex.axis = 3, cex.main = 3,
-legend.cex = 20)
+           ny = length(lat_ind), xlab = "longitude",
+           ylab = "latitude", 
+           main = "2nd EOF", col = coltab,
+           cex.lab = 3, cex.axis = 3, cex.main = 3,
+           legend.cex = 20)
 maps::map(database = "world", fill = TRUE, col = "gray", 
-ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
+          ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
 <img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" style="display: block; margin: auto;" />
