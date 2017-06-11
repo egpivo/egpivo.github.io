@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Jun 2017 08:08:11 +0800</pubDate>
-    <lastBuildDate>Sun, 11 Jun 2017 08:08:11 +0800</lastBuildDate>
+    <pubDate>Sun, 11 Jun 2017 08:12:47 +0800</pubDate>
+    <lastBuildDate>Sun, 11 Jun 2017 08:12:47 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -48,27 +48,19 @@ more stable.&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;&quot;                                                                                                  
-##  [2] &quot;\t\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Javascript\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;                                                              
-##  [3] &quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;twindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.wifly.com.tw/StarbucksFree/rule.aspx?DeviceKind=2&amp;amp;RTYPE=2\&quot;;&quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;##&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;                                                                                     
-##  [5] &quot;&quot;                                                                                                  
-##  [6] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&quot;                                                                                            
-##  [7] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;&quot;                                                                                            
-##  [8] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;WIFLY&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;&quot;                                                                              
-##  [9] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Content-Type\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/html;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;utf-8\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                           
-## [10] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Expires\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;-1\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                                                      
-## [11] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;javascript\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;/WiflyLogin/js/codec.js\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/javascript\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;
-## [12] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/javascript\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;/WiflyLogin/js/cookie.js\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;                       
-## [13] &quot;\t&quot;                                                                                                
-## [14] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&quot;                                                                                           
-## [15] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [16] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;align=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;font-size:40px;\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                                                      
-## [17] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;BR&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [18] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [19] &quot;&quot;                                                                                                  
-## [20] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&quot;                                                                                           
-## [21] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;風到這裡就是黏 黏住過客的思念&quot;                        
+##  [2] &quot;雨到了這裡纏成線 纏著我們流連人世間&quot;                  
+##  [3] &quot;妳在身邊就是緣 緣分寫在三生石上面&quot;                    
+##  [4] &quot;愛有萬分之一甜 寧願我就葬在這一點&quot;                    
+##  [5] &quot;&quot;                                                     
+##  [6] &quot;圈圈圓圓圈圈 天天年年天天的我 深深看你的臉&quot;           
+##  [7] &quot;生氣的溫柔 埋怨的溫柔的臉&quot;                            
+##  [8] &quot;&quot;                                                     
+##  [9] &quot;不懂愛恨情仇煎熬的我們 都以為相愛就像風雲的善變&quot;      
+## [10] &quot;相信愛一天 抵過永遠 在這一剎那凍結了時間&quot;             
+## [11] &quot;&quot;                                                     
+## [12] &quot;不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言&quot;      
+## [13] &quot;離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -113,15 +105,23 @@ more stable.&lt;/p&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ee&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;年年&lt;/td&gt;
       &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;tt&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;圈圈&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;深深&lt;/td&gt;
       &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;ww&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;天天&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;圓圓&lt;/td&gt;
       &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
@@ -155,27 +155,19 @@ more stable.&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;&quot;                                                                                                  
-##  [2] &quot;\t\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Javascript\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;                                                              
-##  [3] &quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;twindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://www.wifly.com.tw/StarbucksFree/rule.aspx?DeviceKind=2&amp;amp;RTYPE=2\&quot;;&quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;##&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&quot;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;                                                                                     
-##  [5] &quot;&quot;                                                                                                  
-##  [6] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&quot;                                                                                            
-##  [7] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;&quot;                                                                                            
-##  [8] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;WIFLY&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;&quot;                                                                              
-##  [9] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Content-Type\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/html;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;utf-8\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                           
-## [10] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;Expires\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;-1\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                                                      
-## [11] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;javascript\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;/WiflyLogin/js/codec.js\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/javascript\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;
-## [12] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;text/javascript\&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;/WiflyLogin/js/cookie.js\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&quot;                       
-## [13] &quot;\t&quot;                                                                                                
-## [14] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&quot;                                                                                           
-## [15] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [16] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;align=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;center&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;\&quot;font-size:40px;\&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&quot;                                                      
-## [17] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;BR&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [18] &quot;\t&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&quot;                                                                                            
-## [19] &quot;&quot;                                                                                                  
-## [20] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&quot;                                                                                           
-## [21] &quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;風到這裡就是黏 黏住過客的思念&quot;                        
+##  [2] &quot;雨到了這裡纏成線 纏著我們流連人世間&quot;                  
+##  [3] &quot;妳在身邊就是緣 緣分寫在三生石上面&quot;                    
+##  [4] &quot;♡愛♡有萬分之一甜 寧願我就葬在這一點&quot;                  
+##  [5] &quot;&quot;                                                     
+##  [6] &quot;圈圈圓圓圈圈 天天年年天天的我 深深看你的臉&quot;           
+##  [7] &quot;生氣的溫柔 埋怨的溫柔的臉&quot;                            
+##  [8] &quot;&quot;                                                     
+##  [9] &quot;不懂♡愛♡恨情仇煎熬的我們 都以為相♡愛♡就像風雲的善變&quot;  
+## [10] &quot;相信♡愛♡一天 抵過永遠 在這一剎那凍結了時間&quot;           
+## [11] &quot;&quot;                                                     
+## [12] &quot;不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言&quot;      
+## [13] &quot;離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂&quot;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

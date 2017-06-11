@@ -47,27 +47,19 @@ print(lyrics)
 ~~~
 
 ~~~
-##  [1] ""                                                                                                  
-##  [2] "\t\t<script language=\"Javascript\">"                                                              
-##  [3] "\t\t\twindow.location = \"https://www.wifly.com.tw/StarbucksFree/rule.aspx?DeviceKind=2&RTYPE=2\";"
-##  [4] "\t\t</script>"                                                                                     
-##  [5] ""                                                                                                  
-##  [6] "<html>"                                                                                            
-##  [7] "<head>"                                                                                            
-##  [8] "<title>WIFLY</title>"                                                                              
-##  [9] "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"                           
-## [10] "<meta http-equiv=\"Expires\" content=\"-1\">"                                                      
-## [11] "<script language=\"javascript\" src=\"/WiflyLogin/js/codec.js\" type=\"text/javascript\"></script>"
-## [12] "<script type=\"text/javascript\" src=\"/WiflyLogin/js/cookie.js\"></script>"                       
-## [13] "\t"                                                                                                
-## [14] "</head>"                                                                                           
-## [15] "<body>"                                                                                            
-## [16] "\t<p align=center style=\"font-size:40px;\">"                                                      
-## [17] "\t<BR>"                                                                                            
-## [18] "\t</p>"                                                                                            
-## [19] ""                                                                                                  
-## [20] "</body>"                                                                                           
-## [21] "</html>"
+##  [1] "風到這裡就是黏 黏住過客的思念"                        
+##  [2] "雨到了這裡纏成線 纏著我們流連人世間"                  
+##  [3] "妳在身邊就是緣 緣分寫在三生石上面"                    
+##  [4] "愛有萬分之一甜 寧願我就葬在這一點"                    
+##  [5] ""                                                     
+##  [6] "圈圈圓圓圈圈 天天年年天天的我 深深看你的臉"           
+##  [7] "生氣的溫柔 埋怨的溫柔的臉"                            
+##  [8] ""                                                     
+##  [9] "不懂愛恨情仇煎熬的我們 都以為相愛就像風雲的善變"      
+## [10] "相信愛一天 抵過永遠 在這一剎那凍結了時間"             
+## [11] ""                                                     
+## [12] "不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言"      
+## [13] "離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂"
 ~~~
 
 
@@ -108,11 +100,13 @@ knitr::kable(plyr::count(chr[[1]]))
 
 
 
-|x  | freq|
-|:--|----:|
-|ee |    1|
-|tt |    1|
-|ww |    1|
+|x    | freq|
+|:----|----:|
+|年年 |    1|
+|圈圈 |    2|
+|深深 |    1|
+|天天 |    2|
+|圓圓 |    1|
 
 ### View characters with a pair that reverses
 Here we want to detect a reversed pair by using `REF1` and `REF2`.
@@ -144,27 +138,19 @@ str_replace_all(lyrics, pattern = capture(replacePattern), str_c("\u2661", REF1,
 ~~~
 
 ~~~
-##  [1] ""                                                                                                  
-##  [2] "\t\t<script language=\"Javascript\">"                                                              
-##  [3] "\t\t\twindow.location = \"https://www.wifly.com.tw/StarbucksFree/rule.aspx?DeviceKind=2&RTYPE=2\";"
-##  [4] "\t\t</script>"                                                                                     
-##  [5] ""                                                                                                  
-##  [6] "<html>"                                                                                            
-##  [7] "<head>"                                                                                            
-##  [8] "<title>WIFLY</title>"                                                                              
-##  [9] "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"                           
-## [10] "<meta http-equiv=\"Expires\" content=\"-1\">"                                                      
-## [11] "<script language=\"javascript\" src=\"/WiflyLogin/js/codec.js\" type=\"text/javascript\"></script>"
-## [12] "<script type=\"text/javascript\" src=\"/WiflyLogin/js/cookie.js\"></script>"                       
-## [13] "\t"                                                                                                
-## [14] "</head>"                                                                                           
-## [15] "<body>"                                                                                            
-## [16] "\t<p align=center style=\"font-size:40px;\">"                                                      
-## [17] "\t<BR>"                                                                                            
-## [18] "\t</p>"                                                                                            
-## [19] ""                                                                                                  
-## [20] "</body>"                                                                                           
-## [21] "</html>"
+##  [1] "風到這裡就是黏 黏住過客的思念"                        
+##  [2] "雨到了這裡纏成線 纏著我們流連人世間"                  
+##  [3] "妳在身邊就是緣 緣分寫在三生石上面"                    
+##  [4] "♡愛♡有萬分之一甜 寧願我就葬在這一點"                  
+##  [5] ""                                                     
+##  [6] "圈圈圓圓圈圈 天天年年天天的我 深深看你的臉"           
+##  [7] "生氣的溫柔 埋怨的溫柔的臉"                            
+##  [8] ""                                                     
+##  [9] "不懂♡愛♡恨情仇煎熬的我們 都以為相♡愛♡就像風雲的善變"  
+## [10] "相信♡愛♡一天 抵過永遠 在這一剎那凍結了時間"           
+## [11] ""                                                     
+## [12] "不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言"      
+## [13] "離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂"
 ~~~
 
 ## References
