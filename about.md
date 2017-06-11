@@ -8,8 +8,8 @@ permalink: /about/
 Dr. Wen-Ting Wang is a Data Scientistat, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statisitcs, his interests are broad. Mainly, however, he is interested in high-dimensional data analysis, and spatial data analysis. He is enthusiatic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
 
 1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
-2. expertise in dealing with masive data in the R programming language (e.g. data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
-3. experience in doing reproducible research by interactive applications (e.g. Rmarkdown, knitr, pandoc, shiny).
+2. expertise in dealing with masive data in the R programming language (e.g., data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
+3. experience in doing reproducible research by interactive applications (e.g., Rmarkdown, knitr, pandoc, shiny).
 
 
 <h3>Publications 
