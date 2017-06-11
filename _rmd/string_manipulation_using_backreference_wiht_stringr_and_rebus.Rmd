@@ -1,5 +1,5 @@
 ---
-title: "String manipulation: backreference with `Stringr` + `rebus`"
+title: "String manipulation: backreference with `stringr` + `rebus`"
 date: "`r Sys.Date()`"
 layout: post
 output:
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.path='{{ site.url }}/assets/string_manipulation_using_
 theme_set(theme_grey())
 ```
 
-In practice, `backreference` is an R function in `rebus`, which is useful for replacement operations. I will apply some functions in stringr with `backreference` to a Chinese lyric. 
+In practice, `backreference` is an R function in `rebus`, which is useful for replacement operations. I will apply some functions in `stringr` combined with `backreference` to a Chinese lyric. 
 
 ## Example: Chinese Lyric
 
