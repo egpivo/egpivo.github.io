@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Jun 2017 15:52:00 +0800</pubDate>
-    <lastBuildDate>Sat, 17 Jun 2017 15:52:00 +0800</lastBuildDate>
+    <pubDate>Sat, 17 Jun 2017 15:54:25 +0800</pubDate>
+    <lastBuildDate>Sat, 17 Jun 2017 15:54:25 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -63,6 +63,9 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $\bf{\phi}_1,\dots, \bf{\phi}_K$ are the first $K$ eigenvector of $\textbf{S}$, $\tilde{\bf{\phi}}_1,\dots, \tilde{\bf{\phi}}_K$.&lt;/p&gt;
 
 &lt;p&gt;In some fields, the patterns found by PCA are also called empirical orthogonal functions (EOF). In many situations, e.g. irregular-location data, we would like to have a functional form of pattern via a PCA estimate so there are a bunch of two-stage methods to interpolate the PCA estimates.&lt;/p&gt;
+
+&lt;p&gt;The reader can be referred to &lt;a href=&quot;/2017/06/03/how_to_work_on_sst_data.html&quot;&gt;How to work on sea surface temperature (SST) data&lt;/a&gt; to practice detecting spatial patterns via PCA with R.&lt;/p&gt;
+
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
 
 &lt;ul&gt;
