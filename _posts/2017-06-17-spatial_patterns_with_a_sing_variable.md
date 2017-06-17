@@ -1,6 +1,6 @@
 ---
 title: "Spatial patterns with a single variable"
-date: "`r Sys.Date()`"
+date: "2017-06-17"
 layout: post
 output:
   html_document
@@ -8,9 +8,7 @@ tags: [Statistics, Spatial Statistics]
 use_math : true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 In this post, we're about to discuss dominant spatial patterns formally.
 
