@@ -147,6 +147,15 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 
 <p>We can rewrite our data as a matrix form. Namely, $\textbf{Y} = (\textbf{Y}_1, \dots, \textbf{Y}_n)’$ is an $n\times p$ matrix where, at each time point, we vectorize our observations over $p$ locations as $\textbf{Y}_i = (Y_i(s_1), \dots,Y_i(s_p))’$, $i = 1, \dots n$.</p>
 
+<h3 id="spatial-patterns-via-principal-component-analysis">Spatial patterns via principal component analysis</h3>
+
+<p>We assume that $\textbf{Y}\sim(\textbf{0}, \Sigma)$. The idea of principal component analysis (PCA) is to find a direction,  $\bf{\phi}\in \mathbb{R}^{p\times 1}$, where the variance of $\textbf{Y}_i$ projecting onto $\bf{\phi}$ is maximum. Following the same idea, we can successively find the second $\bf{\phi}$, the third $\bf{\phi}$, and so on. These $\bf{\phi}$’s are subject to orthogonal. Alternatively, we can directly obtain $\bf{\phi}$’s by the eigen-decomposition of $\Sigma = \Phi’\Lambda\Phi$ where $\Phi = (\phi_1, \dots, \phi_p)’$ is a $p\times p$ matrix, and $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_p)$ with nonnegative eigenvalues $\lambda_1\geq  \dots\geq \lambda_p\geq 0$. Therefore, we can define the first $\bf{\phi}_1,\dots, \bf{\phi}_K$ with the corresponding largest eigenvalues as dominant spatial patterns. In practice, $\Sigma$ is unknown, and usually estimated by 
+a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $\bf{\phi}_1,\dots, \bf{\phi}_K$ are the first $K$ eigenvector of $\textbf{S}$, $\tilde{\bf{\phi}}_1,\dots, \tilde{\bf{\phi}}_K$.</p>
+
+<p>In some fields, the patterns found by PCA are also called empirical orthogonal functions (EOF). In many situations, e.g. irregular-location data, we would like to have a functional form of pattern via a PCA estimate so there are a bunch of two-stage methods to interpolate the PCA estimates.</p>
+
+<p>The reader can be referred to <a href="/2017/06/03/how_to_work_on_sst_data.html">How to work on sea surface temperature (SST) data</a> to practice detecting spatial patterns via PCA with R.</p>
+
 
 
     <div id="disqus_thread"></div>
