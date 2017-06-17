@@ -11,7 +11,7 @@ markdown: kramdown
 
 kramdown:
     input: GFM
-timezone: UTC-0800  
+timezone: Asia/Taipei  
 highlighter: rouge
 # Google services
 google_analytics: UA-16805442-1
