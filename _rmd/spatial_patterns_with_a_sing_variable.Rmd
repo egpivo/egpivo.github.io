@@ -66,8 +66,6 @@ a sample covariance $\textbf{S} = \textbf{Y}'\textbf{Y}/n$. The estimates of $\b
 
 In some fields, the patterns found by PCA are also called empirical orthogonal functions (EOF). In many situations, e.g. irregular-location data, we would like to have a functional form of pattern via a PCA estimate so there are a bunch of two-stage methods to interpolate the PCA estimates.
 
-The reader can be referred to [How to work on sea surface temperature (SST) data]({% post_url 2017-06-03-how_to_work_on_sst_data %}) to practice detecting spatial patterns via PCA with R.
-
 ## References
 
 * Wang and Huang, (2017). [Regularized Principal Component Analysis for Spatial Data](http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483").
