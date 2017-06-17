@@ -14,7 +14,9 @@ In this post, we're about to discuss dominant spatial patterns formally.
 
 ## What's spatial patterns?
 
-In climate research, it is usually find dominant spatial patterns to interpret physical phenomenon of a climate variable, e.g., sea surface temperature. For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.
+In climate researches, it is common to apply dominant spatial patterns to interpret physical phenomenon and spatial variation of a climate variable, e.g., sea surface temperature. 
+
+For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.
 
 <center>
   <img src="{{ site.url }}/assets/spatial_patterns_with_a_sing_variable/spatpcak1_t.png"   width="60%" height="40%">

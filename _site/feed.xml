@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Jun 2017 15:24:13 +0800</pubDate>
-    <lastBuildDate>Sat, 17 Jun 2017 15:24:13 +0800</lastBuildDate>
+    <pubDate>Sat, 17 Jun 2017 15:28:04 +0800</pubDate>
+    <lastBuildDate>Sat, 17 Jun 2017 15:28:04 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -16,7 +16,9 @@
 
 &lt;h2 id=&quot;whats-spatial-patterns&quot;&gt;What’s spatial patterns?&lt;/h2&gt;
 
-&lt;p&gt;In climate research, it is usually find dominant spatial patterns to interpret physical phenomenon of a climate variable, e.g., sea surface temperature. For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.&lt;/p&gt;
+&lt;p&gt;In climate researches, it is common to apply dominant spatial patterns to interpret physical phenomenon and spatial variation of a climate variable, e.g., sea surface temperature.&lt;/p&gt;
+
+&lt;p&gt;For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.&lt;/p&gt;
 
 &lt;center&gt;
   &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/spatpcak1_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
