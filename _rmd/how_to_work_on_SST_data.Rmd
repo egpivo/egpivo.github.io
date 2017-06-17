@@ -4,7 +4,7 @@ date: "`r Sys.Date()`"
 layout: post
 output:
   html_document
-tags: [R, Spatial]
+tags: [R, Statistics, Spatial Statistics]
 ---
 
 ```{r message = FALSE, echo = FALSE}

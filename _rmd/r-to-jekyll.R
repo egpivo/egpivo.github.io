@@ -11,8 +11,8 @@ parser$add_argument("filename", nargs = 1, type = "character",
 help = "Rmarkdown filename")
 
 if (interactive()){
-    opt <- c("--imgdir", "string_manipulation_using_backreference_wiht_stringr_and_rebus")
-    filename <- "string_manipulation_using_backreference_wiht_stringr_and_rebus.Rmd"
+    opt <- c("--imgdir", "spatial_patterns_with_a_sing_variable")
+    filename <- "spatial_patterns_with_a_sing_variable.Rmd"
     arguments <- parser$parse_args(c(filename, opt))
 } else {
     arguments <- parser$parse_args()
@@ -53,4 +53,5 @@ pics <- sapply(pics, function(x) paste(fromdir, x, sep="/"))
 file.copy(pics, todir, overwrite = TRUE)
 
 #unlink("{{ site.url }}", recursive = TRUE)
+
 
