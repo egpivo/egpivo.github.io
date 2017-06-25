@@ -12,7 +12,7 @@ use_math : true
 
 In this post, we're about to discuss dominant spatial patterns formally.
 
-## What's spatial patterns?
+## What's a spatial pattern?
 
 In climate researches, it is common to apply dominant spatial patterns to interpret physical phenomenon and spatial variation of a climate variable, e.g., sea surface temperature. 
 
