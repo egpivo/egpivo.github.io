@@ -6,27 +6,66 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 19 Jun 2017 07:53:54 +0800</pubDate>
-    <lastBuildDate>Mon, 19 Jun 2017 07:53:54 +0800</lastBuildDate>
+    <pubDate>Mon, 26 Jun 2017 13:14:45 +0800</pubDate>
+    <lastBuildDate>Mon, 26 Jun 2017 13:14:45 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Problems: EOF patterns with a single variable</title>
+        <description>&lt;p&gt;In this post, we talk about possible problems of EOF patterns.&lt;/p&gt;
+
+&lt;h2 id=&quot;problems-about-eof-patterns&quot;&gt;Problems about EOF patterns&lt;/h2&gt;
+
+&lt;p&gt;As our previous post, we’re aware that diminant spatial patterns, a.k.a. EOF patterns, can be found by principal component analysis (PCA). However, there are two major problems. The first one is about high estimation variability. 
+When sample size n is smaller or the number of locations is higher, the EOF pattens are often too rough to interpret.&lt;/p&gt;
+
+&lt;p&gt;Besides, it is sound to assume that EOF patterns are smooth function since the correlation between two closer locations is lower. However, the patterns by PCA do not take care of it. That is, the second problem is that EOF patterns by PCA are not considered any spatial structure.&lt;/p&gt;
+
+&lt;p&gt;For example, we randomly generate a sample based on the true pattern in the left panel of the below plot. The first EOF by PCA is in the right panel below, and is too noisy to identify the major signal, but, in fact, the true pattern in the left panel is crystal clear, a localied pattern.&lt;/p&gt;
+
+&lt;center&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/true.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/pca.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;/center&gt;
+&lt;center&gt;
+&lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/bar.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;/center&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Wang and Huang, (2017). &lt;a href=&quot;http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483&amp;quot;&quot;&gt;Regularized Principal Component Analysis for Spatial Data&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Mon, 26 Jun 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/06/26/problems_eof_patterns_with_a_single_variable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/06/26/problems_eof_patterns_with_a_single_variable.html</guid>
+        
+        <category>Statistics</category>
+        
+        <category>Spatial Statistics</category>
+        
+        
+      </item>
     
       <item>
         <title>Spatial patterns with a single variable</title>
         <description>&lt;p&gt;In this post, we’re about to discuss dominant spatial patterns formally.&lt;/p&gt;
 
-&lt;h2 id=&quot;whats-spatial-patterns&quot;&gt;What’s spatial patterns?&lt;/h2&gt;
+&lt;h2 id=&quot;whats-a-spatial-pattern&quot;&gt;What’s a spatial pattern?&lt;/h2&gt;
 
 &lt;p&gt;In climate researches, it is common to apply dominant spatial patterns to interpret physical phenomenon and spatial variation of a climate variable, e.g., sea surface temperature.&lt;/p&gt;
 
 &lt;p&gt;For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.&lt;/p&gt;
 
 &lt;center&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/spatpcak1_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Basin mode&lt;/div&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/spatpcak2_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Dipole mode&lt;/div&gt;
 
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/bar.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/bar.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;A basin-wide mode indicates that there is a sub-region with a u-shaped hole in the pattern, and means the spatial variation in this sub-region is clearly decreasing downside (or increasing upside). An east-west dipole mode illustrates that the variation of sea surface temperature in the eastern region is opposite to the one in the wester region. In other words, while the sea surface temperature in the eastern Indian Ocean becomes higher, the temperature in the western Indian Ocean more likely becomes lower. It is worth to notice that the interaction between these two patterns and El Niño–Southern Oscillation (ENSO) is a popular topic in the climate field.&lt;/p&gt;
@@ -52,7 +91,7 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 &lt;p&gt;The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.&lt;/p&gt;
 &lt;center&gt;
  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/data_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
-  &lt;div class=&quot;caption&quot;&gt;Observed Data in the Indian Ocean&lt;/div&gt;
+  &lt;div class=&quot;caption&quot;&gt;Observed data in the Indian Ocean&lt;/div&gt;
 &lt;/center&gt;
 
 &lt;p&gt;We can rewrite our data as a matrix form. Namely, $\textbf{Y} = (\textbf{Y}_1, \dots, \textbf{Y}_n)’$ is an $n\times p$ matrix where, at each time point, we vectorize our observations over $p$ locations as $\textbf{Y}_i = (Y_i(s_1), \dots,Y_i(s_p))’$, $i = 1, \dots n$.&lt;/p&gt;
@@ -72,8 +111,8 @@ a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $
 
 </description>
         <pubDate>Sat, 17 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/17/spatial_patterns_with_a_sing_variable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/17/spatial_patterns_with_a_sing_variable.html</guid>
+        <link>http://localhost:4000/2017/06/17/spatial_patterns_with_a_single_variable.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/06/17/spatial_patterns_with_a_single_variable.html</guid>
         
         <category>Statistics</category>
         

@@ -11,8 +11,8 @@ parser$add_argument("filename", nargs = 1, type = "character",
 help = "Rmarkdown filename")
 
 if (interactive()){
-    opt <- c("--imgdir", "spatial_patterns_with_a_sing_variable")
-    filename <- "spatial_patterns_with_a_sing_variable.Rmd"
+    opt <- c("--imgdir", "problems_eof_patterns_with_a_single_variable")
+    filename <- "problems_eof_patterns_with_a_single_variable.Rmd"
     arguments <- parser$parse_args(c(filename, opt))
 } else {
     arguments <- parser$parse_args()

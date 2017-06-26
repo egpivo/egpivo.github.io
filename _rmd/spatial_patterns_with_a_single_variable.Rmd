@@ -21,12 +21,12 @@ In climate researches, it is common to apply dominant spatial patterns to interp
 For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.
 
 <center>
-  <img src="{{ site.url }}/assets/spatial_patterns_with_a_sing_variable/spatpcak1_t.png"   width="60%" height="40%">
+  <img src="{{ site.url }}/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png"   width="60%" height="40%">
   <div class="caption">Basin mode</div>
-  <img src="{{ site.url }}/assets/spatial_patterns_with_a_sing_variable/spatpcak2_t.png" width="60%" height="40%">
+  <img src="{{ site.url }}/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png" width="60%" height="40%">
   <div class="caption">Dipole mode</div>
 
-  <img src="{{ site.url }}/assets/spatial_patterns_with_a_sing_variable/bar.png" width="60%" height="40%">
+  <img src="{{ site.url }}/assets/spatial_patterns_with_a_single_variable/bar.png" width="60%" height="40%">
 </center>
  
  
@@ -54,7 +54,7 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 
 The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.
 <center>
- <img src="{{ site.url }}/assets/spatial_patterns_with_a_sing_variable/data_example.png" width="60%" height="40%">
+ <img src="{{ site.url }}/assets/spatial_patterns_with_a_single_variable/data_example.png" width="60%" height="40%">
   <div class="caption">Observed Data in the Indian Ocean</div>
 </center>
 
