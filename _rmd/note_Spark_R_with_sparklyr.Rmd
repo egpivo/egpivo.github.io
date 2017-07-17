@@ -93,6 +93,9 @@ easily manipulating datasets, and performing machine learning algorithms.
           - more models can be found on http://spark.rstudio.com/mllib.html
   - Disconnection: ```spark_connect()```
         
+## Note:
+- The full HDFS path is needed for accessing files stored in Hadoop
+
 
 ## References
 * DataCamp: [Introduction to Spark in R using sparklyr](https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr).
