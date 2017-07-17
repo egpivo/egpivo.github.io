@@ -6,9 +6,146 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 Jul 2017 20:14:45 +0800</pubDate>
-    <lastBuildDate>Sun, 16 Jul 2017 20:14:45 +0800</lastBuildDate>
+    <pubDate>Mon, 17 Jul 2017 08:47:10 +0800</pubDate>
+    <lastBuildDate>Mon, 17 Jul 2017 08:47:10 +0800</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Note: Spark + R with `sparklyr`</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; is designed to process large-scale datasets efficently. Thanks to the authors of &lt;code class=&quot;highlighter-rouge&quot;&gt;sparklyr&lt;/code&gt; package for using R code on a Spark cluster, e.g.,
+easily manipulating datasets, and performing machine learning algorithms.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Java:
+    &lt;ol&gt;
+      &lt;li&gt;Mac:
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;brew cask install java&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;CentOS:
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo yum install java-1.7.0-openjdk-devel&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Other operating systems: https://www.java.com/en/download/help/download_options.xml&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Rsutdio + ‘sparklyr’:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;install.packages(&quot;sparklyr&quot;)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Set an environment variable Spark if needed: &lt;code class=&quot;highlighter-rouge&quot;&gt;Sys.setenv(SPARK_HOME = &quot;where_you_install_spark&quot;)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;More details: http://spark.rstudio.com&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process:&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Connection: &lt;code class=&quot;highlighter-rouge&quot;&gt;spark_connect()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;I/O:
+    &lt;ul&gt;
+      &lt;li&gt;list the data frames available in Spark: &lt;code class=&quot;highlighter-rouge&quot;&gt;src_tbls(spark_conn)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;write the data into Spark:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_write_csv(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_write_parquet(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_write_json(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;import the data into Spark:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_read_csv(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_read_parquet(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spark_read_json(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Data wrangling:
+    &lt;ul&gt;
+      &lt;li&gt;link to data in Spark: &lt;code class=&quot;highlighter-rouge&quot;&gt;tbl(connection,  dataname)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;see dimensionality of a dataframe from Spark:  &lt;code class=&quot;highlighter-rouge&quot;&gt;dim(df_tbl)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;print 10 rows with all columns&lt;code class=&quot;highlighter-rouge&quot;&gt;print(df_tbl, n = 10, width = Inf)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;examine structure of a dataframe from Spark: &lt;code class=&quot;highlighter-rouge&quot;&gt;glimpse(track_metadata_tbl)&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;work with dplyr:
+        &lt;ol&gt;
+          &lt;li&gt;select columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;select()&lt;/code&gt;
+            &lt;ul&gt;
+              &lt;li&gt;select columns starting with a string: &lt;code class=&quot;highlighter-rouge&quot;&gt;select(starts_with(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;select columns ending with a string: &lt;code class=&quot;highlighter-rouge&quot;&gt;select(ends_with(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;select columns containing with a string: &lt;code class=&quot;highlighter-rouge&quot;&gt;select(contains(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;select columns matching with a regex: &lt;code class=&quot;highlighter-rouge&quot;&gt;select(matches(&quot;regex&quot;))&lt;/code&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;select rows: &lt;code class=&quot;highlighter-rouge&quot;&gt;distinct()&lt;/code&gt;
+            &lt;ul&gt;
+              &lt;li&gt;count the unqiue values: &lt;code class=&quot;highlighter-rouge&quot;&gt;count()&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;show the top n rows: &lt;code class=&quot;highlighter-rouge&quot;&gt;top_n()&lt;/code&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;filter rows: &lt;code class=&quot;highlighter-rouge&quot;&gt;filter()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;arrange rows: &lt;code class=&quot;highlighter-rouge&quot;&gt;arrange()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;change/add columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;mutate()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;summarize statistics: &lt;code class=&quot;highlighter-rouge&quot;&gt;summarize()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;group by unquoted names of columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;group_by()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;join tables:
+            &lt;ul&gt;
+              &lt;li&gt;left join by columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;left_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;anti join by columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;anti_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
+              &lt;li&gt;semi join by columns: &lt;code class=&quot;highlighter-rouge&quot;&gt;semi_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;copy an R dataframe to Spark: &lt;code class=&quot;highlighter-rouge&quot;&gt;copy_to(connection, df)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;collect data back from Spark with a name: &lt;code class=&quot;highlighter-rouge&quot;&gt;collect('name_in_spark')&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;store the results of intermediate calculations: &lt;code class=&quot;highlighter-rouge&quot;&gt;compute()&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;covert R code into SQL and return the results to R immediately:&lt;code class=&quot;highlighter-rouge&quot;&gt;dbGetQuery(connection, query)&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Machine learning with MLlib:
+    &lt;ul&gt;
+      &lt;li&gt;feature transformation functions named starting with “ft_” or “sdf_”
+        &lt;ul&gt;
+          &lt;li&gt;binarize continuous variables to logical with a threshold:  &lt;code class=&quot;highlighter-rouge&quot;&gt;ft_binarizer(&quot;target_col&quot;, &quot;new_col&quot;, threshold = a)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;bucketize continuous variables into categorical with a set of thresholds: &lt;code class=&quot;highlighter-rouge&quot;&gt;ft_bucketizer(&quot;target_col&quot;, &quot;new_col&quot;, splits = vec)&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;quantilize continuous variables into categorical with a number of groups: &lt;code class=&quot;highlighter-rouge&quot;&gt;ft_quantile_discretizer(&quot;target_col&quot;, &quot;new_col&quot;, n.buckets = n)&lt;/code&gt;     - tokenize simply&lt;code class=&quot;highlighter-rouge&quot;&gt;ft_tokenizer('target_col', 'new_col')&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;tokenize with regex &lt;code class=&quot;highlighter-rouge&quot;&gt;ft_regex_tokenizer('target_col', 'new_col', pattern)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;arrange rows using a Spark function: &lt;code class=&quot;highlighter-rouge&quot;&gt;sdf_sort()&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;exploring the columns of a tibble: &lt;code class=&quot;highlighter-rouge&quot;&gt;sdf_schema(spark_tbl)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;sample the data without replacement, with a rate of fraction and a seed: &lt;code class=&quot;highlighter-rouge&quot;&gt;sdf_sample(tbl, fraction = fraction, replacement = FALSE, seed = seed)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;split data into training and testing sets:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sdf_partition(training = training_rate, testing = testing_rate)&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;machine learning functions named starting with “ml_”
+        &lt;ul&gt;
+          &lt;li&gt;linear regression:&lt;code class=&quot;highlighter-rouge&quot;&gt;ml_linear_regression(response, feature)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;gradient boosted tree:
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;ml_gradient_boosted_trees(response, feature)&lt;/code&gt;             - random forest: &lt;code class=&quot;highlighter-rouge&quot;&gt;ml_random_forest(response, feature)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;predict: &lt;code class=&quot;highlighter-rouge&quot;&gt;sdf_predict(spark_model, testing_set)&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;more models can be found on http://spark.rstudio.com/mllib.html&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Disconnection: &lt;code class=&quot;highlighter-rouge&quot;&gt;spark_connect()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;DataCamp: &lt;a href=&quot;https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr&quot;&gt;Introduction to Spark in R using sparklyr&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 17 Jul 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</guid>
+        
+        <category>R</category>
+        
+        
+      </item>
     
       <item>
         <title>Note: Spark + R with `sparklyr`</title>

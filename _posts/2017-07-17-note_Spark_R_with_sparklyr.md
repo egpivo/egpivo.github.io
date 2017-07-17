@@ -1,22 +1,13 @@
 ---
 title: "Note: Spark + R with `sparklyr`"
-date: "`r Sys.Date()`"
+date: "2017-07-17"
 layout: post
 output:
   html_document
 tags: [R]
 ---
 
-```{r message = FALSE, echo = FALSE}
-library("knitr")
-library("cowplot")
-library("svglite")
 
-knitr::opts_chunk$set(fig.path='{{ site.url }}/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/',
-                      dev = "svglite", 
-                      fig.ext = ".svg")
-theme_set(theme_grey())
-```
 
 [Apache Spark](https://spark.apache.org) is designed to process large-scale datasets efficently. Thanks to the authors of `sparklyr` package for using R code on a Spark cluster, e.g.,
 easily manipulating datasets, and performing machine learning algorithms. 
