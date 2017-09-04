@@ -5,7 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-Dr. Wen-Ting Wang is a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, he is capable of multiple professional skills. Mainly he concentrates on high-dimensional data analysis, and spatial data analysis. He is enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
+I'm' a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm' capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
 
 1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
 2. expertise in dealing with massive data in the R programming language (e.g., data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
@@ -20,7 +20,8 @@ Dr. Wen-Ting Wang is a Data Scientist, working for a technology company located 
 <div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483">Journal of Computational and Graphical Statistics</a>.</div>
 <div>
 <ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">pdf link</span></a></li>
+<li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">Paper</span></a></li>
+<li><a href="https://www.slideshare.net/WenTingWang5/spatpca3"><span class="label label-success">Slide</span></a></li>
 </ul>
 </div>
 </div>
@@ -31,7 +32,8 @@ Dr. Wen-Ting Wang is a Data Scientist, working for a technology company located 
 </div>
 <div>
 <ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">pdf link</span></a></li>
+<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
+<li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
 </ul>
 </div>
 </div>
