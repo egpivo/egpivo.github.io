@@ -60,11 +60,13 @@
           
         
           
-        
-          
-        
-          
 						<a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
           
         
           
@@ -118,7 +120,7 @@ $$f(x) = \log(1+e^x) \label{eq:softplus}$$
 </div>
 <p>where <span class="inlinecode">$x$</span> is the input to a neuron.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reLU</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reLU</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
 <span class="c"># Calculate the value for the output of the reLU function: output</span>
 <span class="n">output</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
@@ -134,15 +136,14 @@ $$f(x) = \log(1+e^x) \label{eq:softplus}$$
 
 <span class="c"># Return the value just calculated</span>
 <span class="k">return</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="visualization-of-relu-and-softplus">Visualization of reLU and softplus</h4>
 
 <p>Let’s see the difference b/w (\ref{eq:relu}) and (\ref{eq:softplus}). We will consider <script type="math/tex">256</script> values of <script type="math/tex">x</script> from <script type="math/tex">-5</script> to <script type="math/tex">5</script> equally spaced.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
@@ -165,8 +166,7 @@ $$f(x) = \log(1+e^x) \label{eq:softplus}$$
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">'left'</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s">'data'</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="http://localhost:4000/assets/note1_basics_files/note1_basics_3_0.png" alt="png" /></p>
 
@@ -194,7 +194,7 @@ $$
 <h4 id="define-a-prediction-function">Define a prediction function</h4>
 <p>Here, we follow the above equation w/o bias parameters.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Define predict_with_network()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define predict_with_network()</span>
 <span class="k">def</span> <span class="nf">predict_with_one_layer</span><span class="p">(</span><span class="n">input_data_row</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
 
 <span class="c"># Calculate node 0 value</span>
@@ -214,8 +214,7 @@ $$
 
 <span class="c"># Return model output</span>
 <span class="k">return</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="toy-example">Toy example</h4>
 <p>Set the weights as <script type="math/tex">% <![CDATA[
@@ -230,8 +229,8 @@ $$
 5\\
 \end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_one_layer()</code> to calculate the prediciton as follows.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Example</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Example</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
 <span class="s">'node_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]),</span>
@@ -240,8 +239,7 @@ $$
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">predict_with_one_layer</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>30</p>
 
@@ -260,7 +258,7 @@ $$
 <h4 id="define-a-prediction-function-with-two-layers">Define a prediction function with two layers</h4>
 <p>Here, we follow the above equation w/o bias parameters, and set <script type="math/tex">p_1 =p_2</script>.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">predict_with_two_layers</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">predict_with_two_layers</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
 <span class="c"># Calculate node 0 in the first hidden layer</span>
 <span class="n">node_0_0_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_data</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="s">'node_0_0'</span><span class="p">])</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
 <span class="n">node_0_0_output</span> <span class="o">=</span> <span class="n">reLU</span><span class="p">(</span><span class="n">node_0_0_input</span><span class="p">)</span>
@@ -288,8 +286,7 @@ $$
 
 <span class="c"># Return model_output</span>
 <span class="k">return</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="toy-example-1">Toy example</h4>
 <p>Set the weights as <script type="math/tex">% <![CDATA[
@@ -308,8 +305,8 @@ $$
 5\\
 \end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_two_layer()</code> to calculate the prediction as follows.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># Example</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Example</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s">'node_0_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
 <span class="s">'node_0_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
@@ -319,8 +316,7 @@ $$
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">predict_with_two_layers</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>176</p>
 

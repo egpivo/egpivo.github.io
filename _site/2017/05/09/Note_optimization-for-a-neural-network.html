@@ -60,11 +60,13 @@
           
         
           
-        
-          
-        
-          
 						<a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
           
         
           
@@ -154,8 +156,8 @@ $$L_2({\bf{w}}) = \sum_{i=1}^n \left|e_i({\bf{w}})\right|.$$
 20\\
 \end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_one_layer()</code> to calculate the predictions, and the squared error loss function to measure the performance. The result below shows that the second candidate set of weights performs better than the first one.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="c"># import the functions in note1</span>
 <span class="kn">from</span> <span class="nn">note1</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -196,8 +198,7 @@ $$L_2({\bf{w}}) = \sum_{i=1}^n \left|e_i({\bf{w}})\right|.$$
 <span class="c"># Print mse_0 and mse_1</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"Mean squared error with weights_1: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span><span class="n">mse_1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"Mean squared error with weights_2: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span><span class="n">mse_2</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Mean squared error with weights_1: 1779.500000
 Mean squared error with weights_2: 1188.020625</p>
@@ -212,7 +213,7 @@ Mean squared error with weights_2: 1188.020625</p>
 <h3 id="gradient-decent-gd">Gradient decent (GD)</h3>
 <p>Simply, we can apply the gradient descent to address this problem. Gradient descent is a first-order iterative optimization algorithm, that is, the solution is computed along with the paths of the slope of loss function with respect to the weights. More detail can be found in <a href="https://en.wikipedia.org/wiki/Gradient_descent">here</a>.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="k">def</span> <span class="nf">gradientDescent</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">n_updates</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
@@ -233,8 +234,7 @@ Mean squared error with weights_2: 1188.020625</p>
 <span class="k">print</span><span class="p">(</span><span class="s">"Iteration </span><span class="si">%</span><span class="s">d -- loss: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">mse</span><span class="p">))</span>
 
 <span class="k">return</span> <span class="n">weights</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="practice-toy-example-1">Practice: toy example</h3>
 
@@ -249,13 +249,12 @@ ${\bf{\omega}} = \left[ \begin{array}{c}
 5
 \end{array} \right]$, and the response is  $ y=8$. Use <code class="highlighter-rouge">gradientDescent()</code> to calculate the estimation of weights.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>     
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>     
 <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="n">target</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span>
 <span class="n">new_weight</span> <span class="o">=</span> <span class="n">gradientDescent</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">new_weight</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Iteration 1 – loss: 64.000000
 Iteration 2 – loss: 5.760000

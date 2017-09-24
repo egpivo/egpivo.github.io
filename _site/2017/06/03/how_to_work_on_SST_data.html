@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="http://localhost:4000/2017/06/03/how_to_work_on_sst_data.html">
+  <link rel="canonical" href="http://localhost:4000/2017/06/03/how_to_work_on_SST_data.html">
   <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
@@ -60,11 +60,13 @@
           
         
           
-        
-          
-        
-          
 						<a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
           
         
           
@@ -108,106 +110,93 @@
 
 <p>Before importing NetCDF files in R, we should install the necessary tools. Mac user require Xcode Command Line Tools, and can use <a href="https://www.macports.org">MacPorts</a> to finish the installation of NetCDF by typing the following lines into terminal.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo port install netcdf
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo port install netcdf
 sudo port install nco
 sudo port install ncview
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>More details can be found <a href="http://mazamascience.com/WorkingWithData/?p=1474">here</a>; by the way, Ubuntu users can be referred to <a href="https://stackoverflow.com/questions/11319698/how-to-install-r-packages-rnetcdf-and-ncdf-on-ubuntu">here</a>.</p>
 
 <h2 id="download-an-sst-dataset">Download an SST dataset</h2>
 
 <p>For convenience’ sake, we download a lower resolution dataset, <a href="ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc">Kaplan Extended SST data</a> from <a href="https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html">ESRL PSD</a> on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set a url of the Kaplan SST data
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># set a url of the Kaplan SST data</span><span class="w">
 </span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc'</span><span class="w">
-</span><span class="c1"># create a name for temporary files in the working directory
+</span><span class="c1"># create a name for temporary files in the working directory</span><span class="w">
 </span><span class="n">file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tempfile</span><span class="p">(</span><span class="n">tmpdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getwd</span><span class="p">())</span><span class="w"> 
-</span><span class="c1"># creates a file with the given name
+</span><span class="c1"># creates a file with the given name</span><span class="w">
 </span><span class="n">file.create</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1] TRUE
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] TRUE
+</code></pre></div></div>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#download the file
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#download the file</span><span class="w">
 </span><span class="n">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h2 id="import-the-netcdf-file">Import the NetCDF file</h2>
 
 <p>Before importing the file, we install an R package, <a href="https://cran.r-project.org/web/packages/ncdf4/ncdf4.pdf"><code class="highlighter-rouge">ncdf4</code></a>, for the interface of NetCDF.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"ncdf4"</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">install.packages</span><span class="p">(</span><span class="s2">"ncdf4"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 <p>Then, we can extract the SST anomalies and their corresponding coordinates from the file.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ncdf4</span><span class="p">)</span><span class="w">
-</span><span class="c1"># open an NetCDF file
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ncdf4</span><span class="p">)</span><span class="w">
+</span><span class="c1"># open an NetCDF file</span><span class="w">
 </span><span class="n">ex.nc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nc_open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
-</span><span class="c1"># set coordinate variable: latitude
+</span><span class="c1"># set coordinate variable: latitude</span><span class="w">
 </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">)</span><span class="w">
-</span><span class="c1"># set coordinate variable: longitude
+</span><span class="c1"># set coordinate variable: longitude</span><span class="w">
 </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="s2">"lon"</span><span class="p">)</span><span class="w">  
-</span><span class="c1"># extract SST anomalies
+</span><span class="c1"># extract SST anomalies</span><span class="w">
 </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ncvar_get</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">,</span><span class="w"> </span><span class="n">ex.nc</span><span class="o">$</span><span class="n">var</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
-</span><span class="c1"># close an NetCDF file
+</span><span class="c1"># close an NetCDF file</span><span class="w">
 </span><span class="n">nc_close</span><span class="p">(</span><span class="n">ex.nc</span><span class="p">)</span><span class="w">
-</span><span class="c1"># delete the file
+</span><span class="c1"># delete the file</span><span class="w">
 </span><span class="n">file.remove</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">  
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1] TRUE
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] TRUE
+</code></pre></div></div>
 <p>Note that we can type <code class="highlighter-rouge">print(ex.nc)</code> to gain more information.</p>
 
 <h2 id="example-indian-ocean-sst">Example: Indian Ocean SST</h2>
 <p>The following example is inspired by <a href="http://www.cgd.ucar.edu/staff/cdeser/docs/deser.sstvariability.annrevmarsci10.pdf">Deser et al.(2009)</a>. The region of Indian ocean is set between latitudes $20^{\circ}$N and $20^{\circ}$S between longitudes $40^{\circ}$E and $120^{\circ}$E.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># set the region of Indian Ocean
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># set the region of Indian Ocean</span><span class="w">
 </span><span class="n">lat_ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">-17.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">17.5</span><span class="p">)]</span><span class="w">
 </span><span class="n">lon_ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">117.5</span><span class="p">)]</span><span class="w">
 
-</span><span class="c1"># print the total number of grids
+</span><span class="c1"># print the total number of grids</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">)</span><span class="o">*</span><span class="nf">length</span><span class="p">(</span><span class="n">lon_ind</span><span class="p">))</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 128
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 128
+</code></pre></div></div>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># extract the Indian Ocean SST anomalies
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># extract the Indian Ocean SST anomalies</span><span class="w">
 </span><span class="n">sst_ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">117.5</span><span class="p">),</span><span class="w"> 
               </span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">-17.5</span><span class="p">)</span><span class="o">:</span><span class="n">which</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">17.5</span><span class="p">),]</span><span class="w">
 
-</span><span class="c1"># define which location is ocean (s2: Not NA) or land (s1: NA)
+</span><span class="c1"># define which location is ocean (s2: Not NA) or land (s1: NA)</span><span class="w">
 </span><span class="n">s</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">[,,</span><span class="m">1</span><span class="p">]))</span><span class="w">
 </span><span class="n">s</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">[,,</span><span class="m">1</span><span class="p">]))</span><span class="w">
 
-</span><span class="c1"># print the number of grids on the land
+</span><span class="c1"># print the number of grids on the land</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="m">1</span><span class="p">))</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 4
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] 4
+</code></pre></div></div>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># print the dimension of sst_ind
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># print the dimension of sst_ind</span><span class="w">
 </span><span class="n">print</span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">))</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## [1]   16    8 1937
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1]   16    8 1937
+</code></pre></div></div>
 
 <p>Out of 8 × 16 = 128 grid cells, there are 4 cells on the land where no data are available. The time period are from January 1856 to April 2017. Here the data we use observed at $124$ grids and 1936 time points.</p>
 
@@ -215,39 +204,37 @@ sudo port install ncview
 
 <p>We reshape the data as a $1936 \times 124$ matrix by vectorizing the anomalies corresponding to each time.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">)[</span><span class="m">3</span><span class="p">],</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="m">2</span><span class="p">))</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">)[</span><span class="m">3</span><span class="p">],</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="m">2</span><span class="p">))</span><span class="w">
 
 </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">sst_ind</span><span class="p">)[</span><span class="m">3</span><span class="p">])</span><span class="w">
   </span><span class="n">sst</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sst_ind</span><span class="p">[,,</span><span class="n">i</span><span class="p">][</span><span class="o">-</span><span class="n">s</span><span class="m">1</span><span class="p">]</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <h3 id="detect-the-dominant-patterns">Detect the dominant patterns</h3>
 
 <p>For simplicity, we assume the time effect is ignorable. We use the <a href="https://en.wikipedia.org/wiki/Empirical_orthogonal_functions">empirical orthogonal functions</a> (EOF) to represent the dominant patterns.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># Extract the EOFs of data
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract the EOFs of data</span><span class="w">
 </span><span class="n">eof</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">svd</span><span class="p">(</span><span class="n">sst</span><span class="p">)</span><span class="o">$</span><span class="n">v</span><span class="w">
 
-</span><span class="c1"># require an R package, fields
+</span><span class="c1"># require an R package, fields</span><span class="w">
 </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"fields"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"fields"</span><span class="p">)</span><span class="w">
   </span><span class="n">library</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="c1"># require an R package, RColorBrewer
+</span><span class="c1"># require an R package, RColorBrewer</span><span class="w">
 </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">require</span><span class="p">(</span><span class="s2">"RColorBrewer"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"RColorBrewer"</span><span class="p">)</span><span class="w">
   </span><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="c1"># Define the location in ocean
+</span><span class="c1"># Define the location in ocean</span><span class="w">
 </span><span class="n">loc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">expand.grid</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon_ind</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat_ind</span><span class="p">))[</span><span class="n">s</span><span class="m">2</span><span class="p">,]</span><span class="w">
 </span><span class="n">coltab</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colorRampPalette</span><span class="p">(</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="s2">"BrBG"</span><span class="p">))(</span><span class="m">2048</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the first EOF
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># plot the first EOF</span><span class="w">
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
 </span><span class="n">quilt.plot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">eof</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lon_ind</span><span class="p">),</span><span class="w"> 
            </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
@@ -257,12 +244,11 @@ sudo port install ncview
            </span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
 </span><span class="n">maps</span><span class="o">::</span><span class="n">map</span><span class="p">(</span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
           </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height="300" width="500" style="display: block; margin: auto;" /></p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># plot the second EOF
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># plot the second EOF</span><span class="w">
 </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">oma</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="w">
 </span><span class="n">quilt.plot</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">eof</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">nx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lon_ind</span><span class="p">),</span><span class="w"> 
            </span><span class="n">ny</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lat_ind</span><span class="p">),</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
@@ -272,8 +258,7 @@ sudo port install ncview
            </span><span class="n">legend.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">
 </span><span class="n">maps</span><span class="o">::</span><span class="n">map</span><span class="p">(</span><span class="n">database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"world"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
           </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-19.5</span><span class="p">,</span><span class="w"> </span><span class="m">19.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">39.5</span><span class="p">,</span><span class="m">119.5</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p><img src="http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height="300" width="500" style="display: block; margin: auto;" /></p>
 
@@ -286,11 +271,10 @@ sudo port install ncview
 
 <h2 id="r-session">R Session</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## Session info --------------------------------------------------------------
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Session info --------------------------------------------------------------
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>##  setting  value                                             
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  setting  value                                             
 ##  version  R Under development (unstable) (2017-03-16 r72359)
 ##  system   x86_64, darwin13.4.0                              
 ##  ui       RStudio (1.0.136)                                 
@@ -298,14 +282,12 @@ sudo port install ncview
 ##  collate  zh_TW.UTF-8                                       
 ##  tz       Asia/Taipei                                       
 ##  date     2017-06-10
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>## Packages ------------------------------------------------------------------
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Packages ------------------------------------------------------------------
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>##  package         * version    date       source                         
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  package         * version    date       source                         
 ##  argparse        * 1.0.4      2016-10-28 CRAN (R 3.4.0)                 
 ##  assertthat        0.1        2013-12-06 CRAN (R 3.4.0)                 
 ##  backports         1.0.5      2017-01-18 CRAN (R 3.4.0)                 
@@ -353,8 +335,7 @@ sudo port install ncview
 ##  webshot           0.4.0      2016-12-27 CRAN (R 3.4.0)                 
 ##  withr             1.0.2      2016-06-20 CRAN (R 3.4.0)                 
 ##  yaml              2.1.14     2016-11-12 CRAN (R 3.4.0)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
     <div id="disqus_thread"></div>
