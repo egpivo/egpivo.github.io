@@ -5,7 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-I'm' a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm' capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
+I'm' a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
 
 1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
 2. expertise in dealing with massive data in the R programming language (e.g., data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
