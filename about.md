@@ -28,7 +28,7 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 
 <div class="list-group-item">
 <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. Environmetrics, 29, https://doi.org/10.1002/env.2481.
+<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="https://doi.org/10.1002/env.2481">Environmetrics</a>.
 </div>
 <div>
 <ul class="list-inline">
