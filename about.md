@@ -5,7 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-I'm' a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
+I'm a Data Scientist, working for a technology company located in Taiwan, after receiving Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
 
 1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
 2. expertise in dealing with massive data in the R programming language (e.g., data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
@@ -28,7 +28,7 @@ I'm' a Data Scientist, working for a technology company located in Taiwan, after
 
 <div class="list-group-item">
 <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. Environmetrics, accepted.
+<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. Environmetrics, 29, https://doi.org/10.1002/env.2481.
 </div>
 <div>
 <ul class="list-inline">
@@ -48,7 +48,7 @@ I'm' a Data Scientist, working for a technology company located in Taiwan, after
 <h4 class="list-group-item-heading">SpatPCA</h4>
 <p class="list-group-item-text">An R package facilitates regularized principal component analysis by (1) seeking the dominant patterns (eigenfunctions), which can be smooth and localized; (2)
 computing spatial prediction (Kriging) at new locations; (3)
-suitable for either regularly or irregularly spaced data;
+suitable for either regularly or irregularly spaced data, including 1D, 2D, and 3D;
 (4) using the alternating direction method of multipliers (ADMM) algorithm.
 </p>
 <br />
@@ -64,7 +64,7 @@ suitable for either regularly or irregularly spaced data;
 <div class="list-group-item">
 <h4 class="list-group-item-heading">SpatMCA</h4>
 <p class="list-group-item-text"> This package provides regularized maximum covariance analysis by (1)
-identifying smooth and localized couple patterns to understand how one spatial process is affected by another; (2) suitable for either regularly or irregularly spaced data; (3) the alternating direction method of multipliers (ADMM) algorithm.
+identifying smooth and localized couple patterns to understand how one spatial process is affected by another; (2) suitable for either regularly or irregularly spaced data, including 1D, 2D, and 3D; (3) the alternating direction method of multipliers (ADMM) algorithm.
 </p>
 <br />
 <ul class="list-inline">
