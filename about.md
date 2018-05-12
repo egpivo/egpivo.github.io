@@ -48,7 +48,7 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 <h4 class="list-group-item-heading">autoFRK</h4>
  <div>ShengLi Tzeng, Hsin-Cheng Huang, Wen-Ting Wang, Douglas Nychka, Colin Gillespie, 2018. </div>
  <br />
-<p class="list-group-item-text"> This package is written by RcppEigen, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
+<p class="list-group-item-text"> This package is written by RcppEigen, and provides automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
 </p>
 <br />
 <ul class="list-inline">
