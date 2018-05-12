@@ -76,3 +76,16 @@ identifying smooth and localized couple patterns to understand how one spatial p
 </ul>
 </div>		
 
+<div class="list-group">
+<div class="list-group-item">
+<h4 class="list-group-item-heading">autoFRK</h4>
+<p class="list-group-item-text"> This package is written by `RcppEigen`, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
+</p>
+<br />
+<ul class="list-inline">
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://www.r-pkg.org/badges/version/autoFRK" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://cranlogs.r-pkg.org/badges/autoFRK" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
+</ul>
+</div>	
+
