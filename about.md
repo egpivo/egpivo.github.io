@@ -12,8 +12,20 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 3. experience in doing reproducible research by interactive applications (e.g., Rmarkdown, knitr, pandoc, shiny).
 
 
-<h3>Publications 
-</h3>
+<h3>Publications </h3>
+
+<div class="list-group-item">
+<h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
+<div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://doi.org/10.1002/env.2481">Environmetrics</a>.
+</div>
+<div>
+<ul class="list-inline">
+<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
+<li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
+</ul>
+</div>
+</div>
+</div>
 <div class="list-group">
 <div class="list-group-item">
 <h4 class="list-group-item-heading"> Regularized Principal Component Analysis for Spatial Data</h4>
@@ -26,18 +38,6 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 </div>
 </div>
 
-<div class="list-group-item">
-<h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="https://doi.org/10.1002/env.2481">Environmetrics</a>.
-</div>
-<div>
-<ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
-<li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
-</ul>
-</div>
-</div>
-</div>
 
 
 
