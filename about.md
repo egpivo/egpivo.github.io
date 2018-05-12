@@ -25,7 +25,7 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 </ul>
 </div>
 </div>
-</div>
+
 <div class="list-group">
 <div class="list-group-item">
 <h4 class="list-group-item-heading"> Regularized Principal Component Analysis for Spatial Data</h4>
