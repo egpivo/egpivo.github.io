@@ -47,6 +47,7 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 <div class="list-group-item">
 <h4 class="list-group-item-heading">autoFRK</h4>
  <div>ShengLi Tzeng, Hsin-Cheng Huang, Wen-Ting Wang, Douglas Nychka, Colin Gillespie, 2018. </div>
+ <br />
 <p class="list-group-item-text"> This package is written by RcppEigen, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
 </p>
 <br />
@@ -60,6 +61,7 @@ I'm a Data Scientist, working for a technology company located in Taiwan, after 
 <div class="list-group-item">
 <h4 class="list-group-item-heading">SpatMCA</h4>
   <div>Wen-Ting Wang and Hsin-Cheng Huang, 2017.</div>
+ <br />
 <p class="list-group-item-text"> This package provides regularized maximum covariance analysis by (1)
 identifying smooth and localized couple patterns to understand how one spatial process is affected by another; (2) suitable for either regularly or irregularly spaced data, including 1D, 2D, and 3D; (3) the alternating direction method of multipliers (ADMM) algorithm.
 </p>
@@ -78,6 +80,7 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <div class="list-group-item">
 <h4 class="list-group-item-heading">SpatPCA</h4>
 <div>Wen-Ting Wang and Hsin-Cheng Huang, 2016.</div>
+ <br />
 <p class="list-group-item-text">An R package facilitates regularized principal component analysis by (1) seeking the dominant patterns (eigenfunctions), which can be smooth and localized; (2)
 computing spatial prediction (Kriging) at new locations; (3)
 suitable for either regularly or irregularly spaced data, including 1D, 2D, and 3D;
