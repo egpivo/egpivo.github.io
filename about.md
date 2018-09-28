@@ -89,5 +89,3 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
 </ul>
 </div>	
-
-<h3>Certificates on <a href="https://www.datacamp.com">DataCamp</a></h3>
