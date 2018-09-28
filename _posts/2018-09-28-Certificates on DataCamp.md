@@ -8,11 +8,11 @@ tags: [R, Python]
 use_math : true
 ---
 
-## Career Tracks Completed:
+### Career Tracks Completed:
 
-### R
-#### 1. [Data Analyst with R Track](https://www.datacamp.com/statement-of-accomplishment/track/783bd2f1e0cf5dd3d9270a958e339a45f9ea8379)
-#### 2.  [Data Scientist with R Track](https://www.datacamp.com/statement-of-accomplishment/track/54c84e8c314930704d177c7b02e1c602a7793328)
+#### R
+##### 1. [Data Analyst with R Track](https://www.datacamp.com/statement-of-accomplishment/track/783bd2f1e0cf5dd3d9270a958e339a45f9ea8379)
+##### 2.  [Data Scientist with R Track](https://www.datacamp.com/statement-of-accomplishment/track/54c84e8c314930704d177c7b02e1c602a7793328)
   - [Introduction to R](https://www.datacamp.com/statement-of-accomplishment/course/14c61538f30bc2cfc0a941bcb99709c375053332)
   - [Intermediate R](https://www.datacamp.com/statement-of-accomplishment/course/2fbfc6eb1fc094e1e60bb6117ce6a27072a8d1fb)
   - Introduction to the Tidyverse
@@ -37,7 +37,7 @@ use_math : true
   - Joining Data in PostgreSQL
   - [Reporting with R Markdown](https://www.datacamp.com/statement-of-accomplishment/course/d8e9476f9ce942cf6e19a4c66c98159d40799a6e)
 
-#### 3.  [Quantitative Analyst with R Track](https://www.datacamp.com/statement-of-accomplishment/track/11701a5ec0215173d902fbf13cba51181ec0666d)
+##### 3.  [Quantitative Analyst with R Track](https://www.datacamp.com/statement-of-accomplishment/track/11701a5ec0215173d902fbf13cba51181ec0666d)
   - [Introduction to R for Finance](https://www.datacamp.com/statement-of-accomplishment/course/d03a5694c97acfa8a96c7908ba126c2e0072c664)
   - [Intermediate R for Finance](https://www.datacamp.com/statement-of-accomplishment/course/f58c6a262fed32dcc0a5b9fe1eb68af57f4784c6)
   - [Manipulating Time Series Data in R with xts & zoo](https://www.datacamp.com/statement-of-accomplishment/course/09b27a726b18f631714ea582021773b37cc22f46)
@@ -54,11 +54,11 @@ use_math : true
   - [Quantitative Risk Management in R](https://www.datacamp.com/statement-of-accomplishment/course/f9ca167c46c0608d5e4d7da3bdde2fa89cf6373e)
   - [Financial Trading in R](https://www.datacamp.com/statement-of-accomplishment/course/6b4da5b38e395bd79304f3b1ac96be2e1c9db8d7)
 
-#### 4. [R Developer Track](https://www.datacamp.com/statement-of-accomplishment/track/c30be0134aff168c7fddc492a96e63811b435bf2)
+##### 4. [R Developer Track](https://www.datacamp.com/statement-of-accomplishment/track/c30be0134aff168c7fddc492a96e63811b435bf2)
  
-### Python
-####  1.  [Data Analyst with Python Track](https://www.datacamp.com/statement-of-accomplishment/track/0c0ed65a0776d41d466e4193eb6198c0ff871306)
-####  2.  [Data Scientist with Python Track](https://www.datacamp.com/statement-of-accomplishment/track/52453cd81f8fa540b199766e28ee2e0e7ccb909d)
+#### Python
+#####  1.  [Data Analyst with Python Track](https://www.datacamp.com/statement-of-accomplishment/track/0c0ed65a0776d41d466e4193eb6198c0ff871306)
+#####  2.  [Data Scientist with Python Track](https://www.datacamp.com/statement-of-accomplishment/track/52453cd81f8fa540b199766e28ee2e0e7ccb909d)
   - [Intro to Python for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/9a5b26cb65b7f2834a59bced3970a690ec3973f3)
   - [Intermediate Python for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/2c9313d97e8033b526f1ea1bb2c40f6eead90b8f)
   - [Python Data Science Toolbox (Part 1)](https://www.datacamp.com/statement-of-accomplishment/course/1c912463b7326ceedae719c6ae60c05881009470)
@@ -82,11 +82,11 @@ use_math : true
   - [Deep Learning in Python](https://www.datacamp.com/statement-of-accomplishment/course/b0bff0ab5c5beff8da3460b377e895745d4790b2)
   - [Network Analysis in Python (Part 1)](https://www.datacamp.com/statement-of-accomplishment/course/92b5797ee5a492169bac84cfbcfe9aa1b114c76a)
   
-####  3.  [Python Programmer Track](https://www.datacamp.com/statement-of-accomplishment/track/88e63c7c7b37665a806a58254c7cdcc272a97c25)
+#####  3.  [Python Programmer Track](https://www.datacamp.com/statement-of-accomplishment/track/88e63c7c7b37665a806a58254c7cdcc272a97c25)
 
 
-## Courses Completed:
-### R
+### Courses Completed:
+#### R
    - [Introduction to Spark in R using sparklyr](https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371)
    - [Object-Oriented Programming in R: S3 and R6](https://www.datacamp.com/statement-of-accomplishment/course/b0c34756317d9ca123036c025c4e312274964ce9)
    - [Support Vector Machines in R](https://www.datacamp.com/statement-of-accomplishment/course/68d82a3eaa8fcc5ad45c0ffe090c45b5eb6a8fab)
@@ -102,7 +102,7 @@ use_math : true
    - [Building Dashboards with shinydashboard](https://www.datacamp.com/statement-of-accomplishment/course/06456126e91135189978519f98051fda06fbb87f)
    - [Hierarchical and Mixed Effects Models](https://www.datacamp.com/statement-of-accomplishment/course/1ddcea100e9ac902b4741d08f2eb695cfc7dae2d)
    
-### Python
+#### Python
   - [Building Recommendation Engines in PySpark](https://www.datacamp.com/statement-of-accomplishment/course/0260939a586325d0b3c971a526363b96309241eb)
   - [Convolutional Neural Networks for Image Processing](https://www.datacamp.com/statement-of-accomplishment/course/20d18905892fa4423257b1fbc772f9763f167157)
   - [Data Types for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/166c2edbf833eb2650ca810e96046205b263a4e9)

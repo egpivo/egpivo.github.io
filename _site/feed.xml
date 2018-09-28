@@ -6,17 +6,17 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 28 Sep 2018 21:32:48 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Sep 2018 21:32:48 +0800</lastBuildDate>
+    <pubDate>Fri, 28 Sep 2018 21:35:35 +0800</pubDate>
+    <lastBuildDate>Fri, 28 Sep 2018 21:35:35 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
         <title>Certificates on DataCamp</title>
-        <description>&lt;h2 id=&quot;career-tracks-completed&quot;&gt;Career Tracks Completed:&lt;/h2&gt;
+        <description>&lt;h3 id=&quot;career-tracks-completed&quot;&gt;Career Tracks Completed:&lt;/h3&gt;
 
-&lt;h3 id=&quot;r&quot;&gt;R&lt;/h3&gt;
-&lt;h4 id=&quot;1-data-analyst-with-r-track&quot;&gt;1. &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/783bd2f1e0cf5dd3d9270a958e339a45f9ea8379&quot;&gt;Data Analyst with R Track&lt;/a&gt;&lt;/h4&gt;
-&lt;h4 id=&quot;2--data-scientist-with-r-track&quot;&gt;2.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/54c84e8c314930704d177c7b02e1c602a7793328&quot;&gt;Data Scientist with R Track&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;r&quot;&gt;R&lt;/h4&gt;
+&lt;h5 id=&quot;1-data-analyst-with-r-track&quot;&gt;1. &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/783bd2f1e0cf5dd3d9270a958e339a45f9ea8379&quot;&gt;Data Analyst with R Track&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;2--data-scientist-with-r-track&quot;&gt;2.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/54c84e8c314930704d177c7b02e1c602a7793328&quot;&gt;Data Scientist with R Track&lt;/a&gt;&lt;/h5&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/14c61538f30bc2cfc0a941bcb99709c375053332&quot;&gt;Introduction to R&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/2fbfc6eb1fc094e1e60bb6117ce6a27072a8d1fb&quot;&gt;Intermediate R&lt;/a&gt;&lt;/li&gt;
@@ -43,7 +43,7 @@
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/d8e9476f9ce942cf6e19a4c66c98159d40799a6e&quot;&gt;Reporting with R Markdown&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;3--quantitative-analyst-with-r-track&quot;&gt;3.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/11701a5ec0215173d902fbf13cba51181ec0666d&quot;&gt;Quantitative Analyst with R Track&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;3--quantitative-analyst-with-r-track&quot;&gt;3.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/11701a5ec0215173d902fbf13cba51181ec0666d&quot;&gt;Quantitative Analyst with R Track&lt;/a&gt;&lt;/h5&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/d03a5694c97acfa8a96c7908ba126c2e0072c664&quot;&gt;Introduction to R for Finance&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/f58c6a262fed32dcc0a5b9fe1eb68af57f4784c6&quot;&gt;Intermediate R for Finance&lt;/a&gt;&lt;/li&gt;
@@ -62,11 +62,11 @@
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/6b4da5b38e395bd79304f3b1ac96be2e1c9db8d7&quot;&gt;Financial Trading in R&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;4-r-developer-track&quot;&gt;4. &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/c30be0134aff168c7fddc492a96e63811b435bf2&quot;&gt;R Developer Track&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;4-r-developer-track&quot;&gt;4. &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/c30be0134aff168c7fddc492a96e63811b435bf2&quot;&gt;R Developer Track&lt;/a&gt;&lt;/h5&gt;
 
-&lt;h3 id=&quot;python&quot;&gt;Python&lt;/h3&gt;
-&lt;h4 id=&quot;1--data-analyst-with-python-track&quot;&gt;1.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/0c0ed65a0776d41d466e4193eb6198c0ff871306&quot;&gt;Data Analyst with Python Track&lt;/a&gt;&lt;/h4&gt;
-&lt;h4 id=&quot;2--data-scientist-with-python-track&quot;&gt;2.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/52453cd81f8fa540b199766e28ee2e0e7ccb909d&quot;&gt;Data Scientist with Python Track&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;python&quot;&gt;Python&lt;/h4&gt;
+&lt;h5 id=&quot;1--data-analyst-with-python-track&quot;&gt;1.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/0c0ed65a0776d41d466e4193eb6198c0ff871306&quot;&gt;Data Analyst with Python Track&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&quot;2--data-scientist-with-python-track&quot;&gt;2.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/52453cd81f8fa540b199766e28ee2e0e7ccb909d&quot;&gt;Data Scientist with Python Track&lt;/a&gt;&lt;/h5&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/9a5b26cb65b7f2834a59bced3970a690ec3973f3&quot;&gt;Intro to Python for Data Science&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/2c9313d97e8033b526f1ea1bb2c40f6eead90b8f&quot;&gt;Intermediate Python for Data Science&lt;/a&gt;&lt;/li&gt;
@@ -92,10 +92,10 @@
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/92b5797ee5a492169bac84cfbcfe9aa1b114c76a&quot;&gt;Network Analysis in Python (Part 1)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;3--python-programmer-track&quot;&gt;3.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/88e63c7c7b37665a806a58254c7cdcc272a97c25&quot;&gt;Python Programmer Track&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;3--python-programmer-track&quot;&gt;3.  &lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/track/88e63c7c7b37665a806a58254c7cdcc272a97c25&quot;&gt;Python Programmer Track&lt;/a&gt;&lt;/h5&gt;
 
-&lt;h2 id=&quot;courses-completed&quot;&gt;Courses Completed:&lt;/h2&gt;
-&lt;h3 id=&quot;r-1&quot;&gt;R&lt;/h3&gt;
+&lt;h3 id=&quot;courses-completed&quot;&gt;Courses Completed:&lt;/h3&gt;
+&lt;h4 id=&quot;r-1&quot;&gt;R&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371&quot;&gt;Introduction to Spark in R using sparklyr&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/b0c34756317d9ca123036c025c4e312274964ce9&quot;&gt;Object-Oriented Programming in R: S3 and R6&lt;/a&gt;&lt;/li&gt;
@@ -113,7 +113,7 @@
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/1ddcea100e9ac902b4741d08f2eb695cfc7dae2d&quot;&gt;Hierarchical and Mixed Effects Models&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;python-1&quot;&gt;Python&lt;/h3&gt;
+&lt;h4 id=&quot;python-1&quot;&gt;Python&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/0260939a586325d0b3c971a526363b96309241eb&quot;&gt;Building Recommendation Engines in PySpark&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/20d18905892fa4423257b1fbc772f9763f167157&quot;&gt;Convolutional Neural Networks for Image Processing&lt;/a&gt;&lt;/li&gt;
