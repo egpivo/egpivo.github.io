@@ -90,4 +90,4 @@ identifying smooth and localized couple patterns to understand how one spatial p
 </ul>
 </div>	
 
-<h3>Certificates on [DataCamp](https://www.datacamp.com/home)</h3>
+<h3>Certificates on <a href="https://www.datacamp.com">DataCamp</a></h3>
