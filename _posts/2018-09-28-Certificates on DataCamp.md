@@ -32,7 +32,7 @@ use_math : true
   - [Exploratory Data Analysis in R: Case Study](https://www.datacamp.com/statement-of-accomplishment/course/7fbd606467e95fadcc3ab95dbfd544ac574bef0f)
   - [Correlation and Regression](https://www.datacamp.com/statement-of-accomplishment/course/c6bffbcd4b10f5219e9c1aee4159fbd827eadfcf)
   - Cluster Analysis in R
-  - Supervised Learning in R: Classification
+  - [Supervised Learning in R: Classification](https://www.datacamp.com/statement-of-accomplishment/course/aa3588c047244580515b4819f80fa206cc674f6c)
   - [Unsupervised Learning in R](https://www.datacamp.com/statement-of-accomplishment/course/95cab565d40674c9512654ecbf6dc82a1c440cc2)
   - [Joining Data in PostgreSQL](https://www.datacamp.com/statement-of-accomplishment/course/6729b11eab2bbbd35e7b02b8e9012cd8cd8d954a)
   - [Reporting with R Markdown](https://www.datacamp.com/statement-of-accomplishment/course/d8e9476f9ce942cf6e19a4c66c98159d40799a6e)
