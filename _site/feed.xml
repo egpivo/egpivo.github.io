@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 28 Sep 2018 21:35:35 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Sep 2018 21:35:35 +0800</lastBuildDate>
+    <pubDate>Sat, 29 Sep 2018 14:07:10 +0800</pubDate>
+    <lastBuildDate>Sat, 29 Sep 2018 14:07:10 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -97,6 +97,7 @@
 &lt;h3 id=&quot;courses-completed&quot;&gt;Courses Completed:&lt;/h3&gt;
 &lt;h4 id=&quot;r-1&quot;&gt;R&lt;/h4&gt;
 &lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/20d8a69a2abf451ba8ffa803946ff655aba1ae82&quot;&gt;Scalable Data Processing in R&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371&quot;&gt;Introduction to Spark in R using sparklyr&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/b0c34756317d9ca123036c025c4e312274964ce9&quot;&gt;Object-Oriented Programming in R: S3 and R6&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.datacamp.com/statement-of-accomplishment/course/68d82a3eaa8fcc5ad45c0ffe090c45b5eb6a8fab&quot;&gt;Support Vector Machines in R&lt;/a&gt;&lt;/li&gt;

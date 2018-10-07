@@ -34,7 +34,7 @@ use_math : true
   - Cluster Analysis in R
   - Supervised Learning in R: Classification
   - [Unsupervised Learning in R](https://www.datacamp.com/statement-of-accomplishment/course/95cab565d40674c9512654ecbf6dc82a1c440cc2)
-  - Joining Data in PostgreSQL
+  - [Joining Data in PostgreSQL](https://www.datacamp.com/statement-of-accomplishment/course/6729b11eab2bbbd35e7b02b8e9012cd8cd8d954a)
   - [Reporting with R Markdown](https://www.datacamp.com/statement-of-accomplishment/course/d8e9476f9ce942cf6e19a4c66c98159d40799a6e)
 
 ##### 3.  [Quantitative Analyst with R Track](https://www.datacamp.com/statement-of-accomplishment/track/11701a5ec0215173d902fbf13cba51181ec0666d)
@@ -75,7 +75,7 @@ use_math : true
   - [Interactive Data Visualization with Bokeh](https://www.datacamp.com/statement-of-accomplishment/course/a5999694b59f642c4bdf3a75c9abdf3902bcdf78)
   - [Statistical Thinking in Python (Part 1)](https://www.datacamp.com/statement-of-accomplishment/course/7aff0b5ce44a90dd6ac5ad9958612e3ff40134f3)
   - [Statistical Thinking in Python (Part 2)](https://www.datacamp.com/statement-of-accomplishment/course/7701ebf63fc67ddf11d102be5346f095e9d69391)
-  - Joining Data in PostgreSQL
+  - [Joining Data in PostgreSQL](https://www.datacamp.com/statement-of-accomplishment/course/6729b11eab2bbbd35e7b02b8e9012cd8cd8d954a)
   - [Supervised Learning with scikit-learn](https://www.datacamp.com/statement-of-accomplishment/course/4707795cabe6d548393c380942c36c1ba0ec8200)
   - [Machine Learning with the Experts: School Budgets](https://www.datacamp.com/statement-of-accomplishment/course/59b9933bb9d782d84b60976e6923bdd95ddf0829)
   - [Unsupervised Learning in Python](https://www.datacamp.com/statement-of-accomplishment/course/d25fddac3947d646063f6641481b9c43a0b33a12)
@@ -87,6 +87,7 @@ use_math : true
 
 ### Courses Completed:
 #### R
+   - [Scalable Data Processing in R](https://www.datacamp.com/statement-of-accomplishment/course/20d8a69a2abf451ba8ffa803946ff655aba1ae82) 
    - [Introduction to Spark in R using sparklyr](https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371)
    - [Object-Oriented Programming in R: S3 and R6](https://www.datacamp.com/statement-of-accomplishment/course/b0c34756317d9ca123036c025c4e312274964ce9)
    - [Support Vector Machines in R](https://www.datacamp.com/statement-of-accomplishment/course/68d82a3eaa8fcc5ad45c0ffe090c45b5eb6a8fab)
