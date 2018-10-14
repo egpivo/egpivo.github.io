@@ -15,7 +15,7 @@ use_math : true
 ##### 2.  [Data Scientist with R Track](https://www.datacamp.com/statement-of-accomplishment/track/54c84e8c314930704d177c7b02e1c602a7793328)
   - [Introduction to R](https://www.datacamp.com/statement-of-accomplishment/course/14c61538f30bc2cfc0a941bcb99709c375053332)
   - [Intermediate R](https://www.datacamp.com/statement-of-accomplishment/course/2fbfc6eb1fc094e1e60bb6117ce6a27072a8d1fb)
-  - Introduction to the Tidyverse
+  - [Introduction to the Tidyverse](https://www.datacamp.com/statement-of-accomplishment/course/cc6875b42becfcd425b6db8b96fa17bb93b9bc1d)
   - [Importing Data in R (Part 1)](https://www.datacamp.com/statement-of-accomplishment/course/256cf62127efe87107744f9ff7301ea086ef57bf)
   - [Importing Data in R (Part 2)](https://www.datacamp.com/statement-of-accomplishment/course/ca53150aba68b51b19ca8fddbb9bd29467b2089e)
   - [Cleaning Data in R](https://www.datacamp.com/statement-of-accomplishment/course/8bfce8ffa9ae24814b6b7ddab3d2657ad40b78af)
