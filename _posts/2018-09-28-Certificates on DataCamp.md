@@ -31,7 +31,7 @@ use_math : true
   - [Exploratory Data Analysis](https://www.datacamp.com/statement-of-accomplishment/course/6156ad01e38cc9a650535c662d47dbd9c8ffeb92)
   - [Exploratory Data Analysis in R: Case Study](https://www.datacamp.com/statement-of-accomplishment/course/7fbd606467e95fadcc3ab95dbfd544ac574bef0f)
   - [Correlation and Regression](https://www.datacamp.com/statement-of-accomplishment/course/c6bffbcd4b10f5219e9c1aee4159fbd827eadfcf)
-  - Cluster Analysis in R
+  - [Cluster Analysis in R](https://www.datacamp.com/statement-of-accomplishment/course/1de9b1ebeac054e0b508b53a12b01206cc0ddaf8)
   - [Supervised Learning in R: Classification](https://www.datacamp.com/statement-of-accomplishment/course/aa3588c047244580515b4819f80fa206cc674f6c)
   - [Unsupervised Learning in R](https://www.datacamp.com/statement-of-accomplishment/course/95cab565d40674c9512654ecbf6dc82a1c440cc2)
   - [Joining Data in PostgreSQL](https://www.datacamp.com/statement-of-accomplishment/course/6729b11eab2bbbd35e7b02b8e9012cd8cd8d954a)
@@ -104,6 +104,7 @@ use_math : true
    - [Hierarchical and Mixed Effects Models](https://www.datacamp.com/statement-of-accomplishment/course/1ddcea100e9ac902b4741d08f2eb695cfc7dae2d)
    
 #### Python
+  - [Extreme Gradient Boosting with XGBoost](https://www.datacamp.com/statement-of-accomplishment/course/53d51038c61b12ab36d2c6473012e91b5f1c194e)
   - [Building Recommendation Engines in PySpark](https://www.datacamp.com/statement-of-accomplishment/course/0260939a586325d0b3c971a526363b96309241eb)
   - [Convolutional Neural Networks for Image Processing](https://www.datacamp.com/statement-of-accomplishment/course/20d18905892fa4423257b1fbc772f9763f167157)
   - [Data Types for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/166c2edbf833eb2650ca810e96046205b263a4e9)
