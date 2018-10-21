@@ -26,7 +26,7 @@ use_math : true
   - [Intro to SQL for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/e648841f25f224a8cf2c9fc51f812e767b999792)
   - [Data Visualization with ggplot2 (Part 1)](https://www.datacamp.com/statement-of-accomplishment/course/413055d66892b0585329c0c519b7bb6e18d86503)
   - [Data Visualization with ggplot2 (Part 2)](https://www.datacamp.com/statement-of-accomplishment/course/92e895ae8d193da7d29115b165c2fb508a8c2130)
-  - Working with Dates and Times in R
+  - [Working with Dates and Times in R](https://www.datacamp.com/statement-of-accomplishment/course/13d0ee89a58459555e9289bb62fccb72164f2407)
   - [Introduction to Data](https://www.datacamp.com/statement-of-accomplishment/course/db3474db51531e7742563b0a9959e81a0706acb6)
   - [Exploratory Data Analysis](https://www.datacamp.com/statement-of-accomplishment/course/6156ad01e38cc9a650535c662d47dbd9c8ffeb92)
   - [Exploratory Data Analysis in R: Case Study](https://www.datacamp.com/statement-of-accomplishment/course/7fbd606467e95fadcc3ab95dbfd544ac574bef0f)
