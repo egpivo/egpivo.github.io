@@ -85,7 +85,7 @@ use_math : true
 #####  3.  [Python Programmer Track](https://www.datacamp.com/statement-of-accomplishment/track/88e63c7c7b37665a806a58254c7cdcc272a97c25)
 
 
-### Courses Completed:
+### Other Courses Completed:
 #### R
    - [Scalable Data Processing in R](https://www.datacamp.com/statement-of-accomplishment/course/20d8a69a2abf451ba8ffa803946ff655aba1ae82) 
    - [Introduction to Spark in R using sparklyr](https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371)
