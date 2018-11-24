@@ -104,6 +104,7 @@ use_math : true
    - [Hierarchical and Mixed Effects Models](https://www.datacamp.com/statement-of-accomplishment/course/1ddcea100e9ac902b4741d08f2eb695cfc7dae2d)
    
 #### Python
+ - [Parallel Computing with Dask](https://www.datacamp.com/statement-of-accomplishment/course/764fb0cc28379742f853630f3f3ad25aab2d0e62)
   - [Extreme Gradient Boosting with XGBoost](https://www.datacamp.com/statement-of-accomplishment/course/53d51038c61b12ab36d2c6473012e91b5f1c194e)
   - [Building Recommendation Engines in PySpark](https://www.datacamp.com/statement-of-accomplishment/course/0260939a586325d0b3c971a526363b96309241eb)
   - [Convolutional Neural Networks for Image Processing](https://www.datacamp.com/statement-of-accomplishment/course/20d18905892fa4423257b1fbc772f9763f167157)
