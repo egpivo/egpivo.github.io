@@ -89,7 +89,7 @@ use_math : true
 #### R
    - [Scalable Data Processing in R](https://www.datacamp.com/statement-of-accomplishment/course/20d8a69a2abf451ba8ffa803946ff655aba1ae82) 
    - [Introduction to Spark in R using sparklyr](https://www.datacamp.com/statement-of-accomplishment/course/2039e40f7ee6d23e5c7f336f6b54002c021ec371)
-   -[Sentiment Analysis in R](https://www.datacamp.com/statement-of-accomplishment/track/bd50480ee13529c6b07829fda428893d5f3650aa)
+   -[Sentiment Analysis in R](https://www.datacamp.com/statement-of-accomplishment/course/a033452d7b1f39ddbd1cdbe2fa8230ca572f9e74)
    - [Object-Oriented Programming in R: S3 and R6](https://www.datacamp.com/statement-of-accomplishment/course/b0c34756317d9ca123036c025c4e312274964ce9)
    - [Support Vector Machines in R](https://www.datacamp.com/statement-of-accomplishment/course/68d82a3eaa8fcc5ad45c0ffe090c45b5eb6a8fab)
    - [Data Analysis in R, the data.table Way](https://www.datacamp.com/statement-of-accomplishment/course/635a7487da0cd2c9a0ef5640b04ab2559f22d582)
