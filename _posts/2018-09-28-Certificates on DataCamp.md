@@ -109,6 +109,7 @@ use_math : true
   - [Extreme Gradient Boosting with XGBoost](https://www.datacamp.com/statement-of-accomplishment/course/53d51038c61b12ab36d2c6473012e91b5f1c194e)
   - [Building Recommendation Engines in PySpark](https://www.datacamp.com/statement-of-accomplishment/course/0260939a586325d0b3c971a526363b96309241eb)
   - [Convolutional Neural Networks for Image Processing](https://www.datacamp.com/statement-of-accomplishment/course/20d18905892fa4423257b1fbc772f9763f167157)
+  - [Statistical Simulation in Python](https://www.datacamp.com/statement-of-accomplishment/course/be89b41b56d3ae88c3ca6968d5ab89b19c9f6d9d)
   - [Data Types for Data Science](https://www.datacamp.com/statement-of-accomplishment/course/166c2edbf833eb2650ca810e96046205b263a4e9)
   - [Building Chatbots in Python](https://www.datacamp.com/statement-of-accomplishment/course/85caea9a236f7839f6e3a3856728531a022c2226)
   - [Introduction to PySpark](https://www.datacamp.com/statement-of-accomplishment/course/b5ee080839b80ab78c112f5900932b3d1f1bcd2e)
