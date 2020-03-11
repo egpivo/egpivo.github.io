@@ -5,12 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-I'm' a Data Scientist with Ph.D. in Statistics from [NCTU](http://www.stat.nctu.edu.tw/main.php). In the field of Statistics, I'm capable of multiple professional skills. Mainly I concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data, in terms of technical skills:
-
-1. expertise in developing statistical methodologies to cope with high-dimensional data problems by utilizing matrix factorization; 
-2. expertise in dealing with massive data in the R programming language (e.g., data.table, tidyr, dplyr, Rcpp) and a thorough understanding of the core principles around R;
-3. experience in doing reproducible research by interactive applications (e.g., Rmarkdown, knitr, pandoc, shiny).
-
+I'm' a Data Engineer and Scientist with Ph.D at an internet company. I used to concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data. Currently, being a Data Engineer, I focus more on building a solid process of producing data products with statistical perspectives. 
 
 <h3>Publications 
 </h3>
@@ -76,9 +71,7 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img src="https://cranlogs.r-pkg.org/badges/grand-total/SpatMCA" /></a></li>
 <li><a href="https://travis-ci.org/egpivo/SpatMCA"><img src="https://travis-ci.org/egpivo/SpatMCA.svg?branch=master" /></a></li>
 </ul>
-</div>		
-
-
+</div>
 <div class="list-group">
 <div class="list-group-item">
 <h4 class="list-group-item-heading">autoFRK</h4>
@@ -90,4 +83,12 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://cranlogs.r-pkg.org/badges/autoFRK" /></a></li>
 <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
 </ul>
-</div>	
+</div>
+<br />
+<ul class="list-inline">
+<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/BoShiangKe/influenceAUC">GitHub</a></li>
+<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="http://www.r-pkg.org/badges/version/influenceAUC" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="http://cranlogs.r-pkg.org/badges/influenceAUC" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC" /></a></li>
+</ul>
+</div>
