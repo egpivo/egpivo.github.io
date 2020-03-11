@@ -85,6 +85,12 @@ identifying smooth and localized couple patterns to understand how one spatial p
 </ul>
 </div>
 <br />
+
+<div class="list-group">
+<div class="list-group-item">
+<h4 class="list-group-item-heading">influenceAUC</h4>
+<p class="list-group-item-text"> This package focuses on identifying influential observations from the perspective of model diagnostics in binary classification, and provides a couple of visualization tools as well. 
+</p>
 <ul class="list-inline">
 <li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/BoShiangKe/influenceAUC">GitHub</a></li>
 <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="http://www.r-pkg.org/badges/version/influenceAUC" /></a></li>
