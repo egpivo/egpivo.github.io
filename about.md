@@ -84,8 +84,6 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
 </ul>
 </div>
-<br />
-
 <div class="list-group">
 <div class="list-group-item">
 <h4 class="list-group-item-heading">influenceAUC</h4>
@@ -98,3 +96,4 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC" /></a></li>
 </ul>
 </div>
+<br />
