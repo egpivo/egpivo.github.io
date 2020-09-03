@@ -5,8 +5,7 @@ menu: main
 permalink: /about/
 ---
 
-I'm' a Data Engineer and Scientist with Ph.D at an internet company. I used to concentrate on high-dimensional data analysis, and spatial data analysis. I'm enthusiastic in applying and developing statistical and machine learning methodologies to massive data. Currently, being a Data Engineer, I focus more on building a solid process of producing data products with statistical perspectives. 
-
+I am a Data Scientist working on building large-scale data products for e-commerce recommendation systems. Strengths in machine learning, high-dimensional data analysis, and spatial data analysis.
 <h3>Publications 
 </h3>
 
