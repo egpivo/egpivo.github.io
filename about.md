@@ -6,42 +6,13 @@ permalink: /about/
 ---
 
 I am a Data Scientist working on building large-scale data products for e-commerce recommendation systems. Strengths in machine learning, high-dimensional data analysis, and spatial data analysis.
-<h3>Publications 
-</h3>
-
-<div class="list-group-item">
-<h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-<div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29, 2</a>
-</div>
-<div>
-<ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
-<li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
-</ul>
-</div>
-</div>
-
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading"> Regularized Principal Component Analysis for Spatial Data</h4>
-<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483">Journal of Computational and Graphical Statistics, 26, 1</a></div>
-<div>
-<ul class="list-inline">
-<li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">Paper</span></a></li>
-<li><a href="https://www.slideshare.net/WenTingWang5/spatpca3"><span class="label label-success">Slide</span></a></li>
-</ul>
-</div>
-</div>
-</div>
-
-
 
 
 <h3>Software</h3>
 
 <div class="list-group">
 <div class="list-group-item">
-<h4 class="list-group-item-heading">SpatPCA</h4>
+<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatPCA/">SpatPCA</a></h4>
 <p class="list-group-item-text">An R package facilitates regularized principal component analysis by (1) seeking the dominant patterns (eigenfunctions), which can be smooth and localized; (2)
 computing spatial prediction (Kriging) at new locations; (3)
 suitable for either regularly or irregularly spaced data;
@@ -58,7 +29,7 @@ suitable for either regularly or irregularly spaced data;
 </div>
 <div class="list-group">
 <div class="list-group-item">
-<h4 class="list-group-item-heading">SpatMCA</h4>
+<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatMCA/">SpatMCA</a></h4>
 <p class="list-group-item-text"> This package provides regularized maximum covariance analysis by (1)
 identifying smooth and localized couple patterns to understand how one spatial process is affected by another; (2) suitable for either regularly or irregularly spaced data; (3) the alternating direction method of multipliers (ADMM) algorithm.
 </p>
@@ -97,3 +68,33 @@ identifying smooth and localized couple patterns to understand how one spatial p
 </ul>
 </div>
 <br />
+
+
+
+<h3>Publications</h3>
+
+<div class="list-group-item">
+<h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
+<div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29, 2</a>
+</div>
+<div>
+<ul class="list-inline">
+<li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
+<li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
+</ul>
+</div>
+</div>
+
+<div class="list-group">
+<div class="list-group-item">
+<h4 class="list-group-item-heading"> Regularized Principal Component Analysis for Spatial Data</h4>
+<div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483">Journal of Computational and Graphical Statistics, 26, 1</a></div>
+<div>
+<ul class="list-inline">
+<li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">Paper</span></a></li>
+<li><a href="https://www.slideshare.net/WenTingWang5/spatpca3"><span class="label label-success">Slide</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+
