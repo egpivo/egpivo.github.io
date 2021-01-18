@@ -1,9 +1,6 @@
 ---
 layout: post
 title:  "Appy SpatPCA to capture the dominant spatial patten with one-dimensional locations"
-output:
-    fig_width: 6
-    fig_height: 4
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 

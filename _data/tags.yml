@@ -16,3 +16,6 @@ Python:
 ML:
     slug: ML
     name: ML
+Software:
+    slug: Software
+    name: Software

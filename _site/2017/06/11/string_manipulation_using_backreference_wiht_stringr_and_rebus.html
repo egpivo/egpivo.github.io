@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -168,7 +168,7 @@ more stable.</p>
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
+<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
 
 <h3 id="extract-the-matched-lines">Extract the matched lines</h3>
 <p>Before we extracting matched lines,  we use <code class="highlighter-rouge">str_subset</code> to store subset of matched lines first.</p>
@@ -221,7 +221,7 @@ more stable.</p>
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
+<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
 
 <h3 id="replace-with-backreferces">Replace with backreferces</h3>
 <h4 id="build-a-pattern-to-be-replaced">Build a pattern to be replaced</h4>
@@ -231,7 +231,7 @@ more stable.</p>
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">replacePattern</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
+<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
 
 <h4 id="test-out-the-replacement">Test out the replacement</h4>
 <p>Then, we apply <code class="highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.</p>

@@ -4,10 +4,10 @@
     <title>Wen-Ting Wang's Blog</title>
     <description>Science is a means whereby learning is achieved.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 18 Jan 2021 22:17:07 +0800</pubDate>
-    <lastBuildDate>Mon, 18 Jan 2021 22:17:07 +0800</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 18 Jan 2021 22:29:58 +0800</pubDate>
+    <lastBuildDate>Mon, 18 Jan 2021 22:29:58 +0800</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -131,8 +131,8 @@
 &lt;p&gt;&lt;img src=&quot;/figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-10&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 18 Jan 2021 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2021/01/18/SpatPCA-demo-one-dim-location.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/01/18/SpatPCA-demo-one-dim-location.html</guid>
+        <link>/2021/01/18/SpatPCA-demo-one-dim-location.html</link>
+        <guid isPermaLink="true">/2021/01/18/SpatPCA-demo-one-dim-location.html</guid>
         
         <category>Software</category>
         
@@ -153,7 +153,7 @@
 &lt;div style=&quot;text-align:center&quot;&gt;
   &lt;figure&gt;
   &lt;center&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/文獻回顧_個資去識別化/workflow.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;600&quot; height=&quot;150&quot; /&gt;
+  &lt;img src=&quot;/assets/文獻回顧_個資去識別化/workflow.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;600&quot; height=&quot;150&quot; /&gt;
   &lt;/center&gt;
   &lt;figcaption&gt;圖1. - 資料去識別化流程圖 (來源 Garfinkel[5]).&lt;/figcaption&gt;
   &lt;/figure&gt;
@@ -168,7 +168,7 @@
 &lt;div style=&quot;text-align:center&quot;&gt;
   &lt;figure&gt;
   &lt;center&gt;
-&lt;img src=&quot;http://localhost:4000/assets/文獻回顧_個資去識別化/reidentified_data_example.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;304&quot; height=&quot;228&quot; /&gt;
+&lt;img src=&quot;/assets/文獻回顧_個資去識別化/reidentified_data_example.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;304&quot; height=&quot;228&quot; /&gt;
 &lt;figcaption&gt;圖2. - 資料重新辨識 (來源Sweeney [10]).&lt;/figcaption&gt;
   &lt;/center&gt;
   &lt;/figure&gt;
@@ -196,7 +196,7 @@
 &lt;div style=&quot;text-align:center&quot;&gt;
   &lt;figure&gt;
   &lt;center&gt;
-&lt;img src=&quot;http://localhost:4000/assets/文獻回顧_個資去識別化/one_way_linkage.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;304&quot; height=&quot;228&quot; /&gt;
+&lt;img src=&quot;/assets/文獻回顧_個資去識別化/one_way_linkage.png&quot; alt=&quot;The Pulpit Rock&quot; width=&quot;304&quot; height=&quot;228&quot; /&gt;
 &lt;figcaption&gt;圖3. - 臨床資料中利用雜湊函數的單向編碼 (來源 El Emam and Fineberg [3]).&lt;/figcaption&gt;
  &lt;/center&gt;
   &lt;/figure&gt;
@@ -425,8 +425,8 @@ Data (TKDD), 1:3, 2007.&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 13 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/09/13/%E6%96%87%E7%8D%BB%E5%9B%9E%E9%A1%A7_%E5%80%8B%E8%B3%87%E5%8E%BB%E8%AD%98%E5%88%A5%E5%8C%96.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/09/13/%E6%96%87%E7%8D%BB%E5%9B%9E%E9%A1%A7_%E5%80%8B%E8%B3%87%E5%8E%BB%E8%AD%98%E5%88%A5%E5%8C%96.html</guid>
+        <link>/2017/09/13/%E6%96%87%E7%8D%BB%E5%9B%9E%E9%A1%A7_%E5%80%8B%E8%B3%87%E5%8E%BB%E8%AD%98%E5%88%A5%E5%8C%96.html</link>
+        <guid isPermaLink="true">/2017/09/13/%E6%96%87%E7%8D%BB%E5%9B%9E%E9%A1%A7_%E5%80%8B%E8%B3%87%E5%8E%BB%E8%AD%98%E5%88%A5%E5%8C%96.html</guid>
         
         <category>De-identification</category>
         
@@ -564,8 +564,8 @@ easily manipulating datasets, and performing machine learning algorithms.&lt;/p&
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 17 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</guid>
+        <link>/2017/07/17/note_Spark_R_with_sparklyr.html</link>
+        <guid isPermaLink="true">/2017/07/17/note_Spark_R_with_sparklyr.html</guid>
         
         <category>R</category>
         
@@ -586,11 +586,11 @@ When sample size n is smaller or the number of locations is higher, the EOF patt
 &lt;p&gt;For example, we randomly generate a sample based on the true pattern in the left panel of the below plot. The first EOF by PCA is in the right panel below, and is too noisy to identify the major signal, but, in fact, the true pattern in the left panel is crystal clear, a localied pattern.&lt;/p&gt;
 
 &lt;center&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/true.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/pca.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;/assets/problems_eof_patterns_with_a_single_variable/true.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;/assets/problems_eof_patterns_with_a_single_variable/pca.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/center&gt;
 &lt;center&gt;
-&lt;img src=&quot;http://localhost:4000/assets/problems_eof_patterns_with_a_single_variable/bar.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img src=&quot;/assets/problems_eof_patterns_with_a_single_variable/bar.png&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
@@ -601,8 +601,8 @@ When sample size n is smaller or the number of locations is higher, the EOF patt
 
 </description>
         <pubDate>Mon, 26 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/26/problems_eof_patterns_with_a_single_variable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/26/problems_eof_patterns_with_a_single_variable.html</guid>
+        <link>/2017/06/26/problems_eof_patterns_with_a_single_variable.html</link>
+        <guid isPermaLink="true">/2017/06/26/problems_eof_patterns_with_a_single_variable.html</guid>
         
         <category>Statistics</category>
         
@@ -622,12 +622,12 @@ When sample size n is smaller or the number of locations is higher, the EOF patt
 &lt;p&gt;For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.&lt;/p&gt;
 
 &lt;center&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Basin mode&lt;/div&gt;
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Dipole mode&lt;/div&gt;
 
-  &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/bar.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+  &lt;img src=&quot;/assets/spatial_patterns_with_a_single_variable/bar.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;A basin-wide mode indicates that there is a sub-region with a u-shaped hole in the pattern, and means the spatial variation in this sub-region is clearly decreasing downside (or increasing upside). An east-west dipole mode illustrates that the variation of sea surface temperature in the eastern region is opposite to the one in the wester region. In other words, while the sea surface temperature in the eastern Indian Ocean becomes higher, the temperature in the western Indian Ocean more likely becomes lower. It is worth to notice that the interaction between these two patterns and El Niño–Southern Oscillation (ENSO) is a popular topic in the climate field.&lt;/p&gt;
@@ -652,7 +652,7 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 
 &lt;p&gt;The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.&lt;/p&gt;
 &lt;center&gt;
- &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/data_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+ &lt;img src=&quot;/assets/spatial_patterns_with_a_sing_variable/data_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Observed data in the Indian Ocean&lt;/div&gt;
 &lt;/center&gt;
 
@@ -673,8 +673,8 @@ a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $
 
 </description>
         <pubDate>Sat, 17 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/17/spatial_patterns_with_a_single_variable.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/17/spatial_patterns_with_a_single_variable.html</guid>
+        <link>/2017/06/17/spatial_patterns_with_a_single_variable.html</link>
+        <guid isPermaLink="true">/2017/06/17/spatial_patterns_with_a_single_variable.html</guid>
         
         <category>Statistics</category>
         
@@ -746,7 +746,7 @@ more stable.&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-4&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-4&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;extract-the-matched-lines&quot;&gt;Extract the matched lines&lt;/h3&gt;
 &lt;p&gt;Before we extracting matched lines,  we use &lt;code class=&quot;highlighter-rouge&quot;&gt;str_subset&lt;/code&gt; to store subset of matched lines first.&lt;/p&gt;
@@ -799,7 +799,7 @@ more stable.&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;replace-with-backreferces&quot;&gt;Replace with backreferces&lt;/h3&gt;
 &lt;h4 id=&quot;build-a-pattern-to-be-replaced&quot;&gt;Build a pattern to be replaced&lt;/h4&gt;
@@ -809,7 +809,7 @@ more stable.&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replacePattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-8&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-8&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;test-out-the-replacement&quot;&gt;Test out the replacement&lt;/h4&gt;
 &lt;p&gt;Then, we apply &lt;code class=&quot;highlighter-rouge&quot;&gt;str_replace_all&lt;/code&gt; to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.&lt;/p&gt;
@@ -838,8 +838,8 @@ more stable.&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Sun, 11 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</guid>
+        <link>/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</link>
+        <guid isPermaLink="true">/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</guid>
         
         <category>R</category>
         
@@ -990,7 +990,7 @@ sudo port install ncview
           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;39.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;119.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg&quot; title=&quot;plot of chunk eof1&quot; alt=&quot;plot of chunk eof1&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/how_to_work_on_sst_data/eof1-1..svg&quot; title=&quot;plot of chunk eof1&quot; alt=&quot;plot of chunk eof1&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# plot the second EOF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;par&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mar&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1004,7 +1004,7 @@ sudo port install ncview
           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;39.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;119.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg&quot; title=&quot;plot of chunk eof2&quot; alt=&quot;plot of chunk eof2&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/how_to_work_on_sst_data/eof2-1..svg&quot; title=&quot;plot of chunk eof2&quot; alt=&quot;plot of chunk eof2&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The first EOF is known as a basin-wide mode, and the second one is a dipole mode.&lt;/p&gt;
 
@@ -1082,8 +1082,8 @@ sudo port install ncview
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sat, 03 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/03/how_to_work_on_SST_data.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/03/how_to_work_on_SST_data.html</guid>
+        <link>/2017/06/03/how_to_work_on_SST_data.html</link>
+        <guid isPermaLink="true">/2017/06/03/how_to_work_on_SST_data.html</guid>
         
         <category>R</category>
         
@@ -1122,8 +1122,8 @@ Trade off (flexibility, dimensionality) = Trade off(bias, variance)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Fri, 19 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</guid>
+        <link>/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</link>
+        <guid isPermaLink="true">/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</guid>
         
         <category>Statistics</category>
         
@@ -1340,8 +1340,8 @@ Iteration 5 – loss: 0.004199
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 09 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/09/Note_optimization-for-a-neural-network.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/09/Note_optimization-for-a-neural-network.html</guid>
+        <link>/2017/05/09/Note_optimization-for-a-neural-network.html</link>
+        <guid isPermaLink="true">/2017/05/09/Note_optimization-for-a-neural-network.html</guid>
         
         <category>Python</category>
         
@@ -1416,7 +1416,7 @@ $$f(x) = \log(1+e^x) \label{eq:softplus}$$
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/note1_basics_files/note1_basics_3_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/note1_basics_files/note1_basics_3_0.png&quot; alt=&quot;png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The above figure shows that the softplus (red line) is smoother than the reLU (blue line), especially when &lt;script type=&quot;math/tex&quot;&gt;x = [-2, 2]&lt;/script&gt;.&lt;/p&gt;
 
@@ -1577,8 +1577,8 @@ $$
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 02 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/02/Note_basics-for-a-neural-network.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/02/Note_basics-for-a-neural-network.html</guid>
+        <link>/2017/05/02/Note_basics-for-a-neural-network.html</link>
+        <guid isPermaLink="true">/2017/05/02/Note_basics-for-a-neural-network.html</guid>
         
         <category>Python</category>
         

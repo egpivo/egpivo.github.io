@@ -9,9 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   tidy = "styler",
-  dpi = 300,
-  fig.width = 6,
-  fig.height = 4
+  dpi = 200,
+  fig.width = 4,
+  fig.height = 3
 )
 ```
 
