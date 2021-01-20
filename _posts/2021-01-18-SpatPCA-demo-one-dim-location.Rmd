@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
   fig.height = 3
 )
 ```
-
-### Objective
 We have two objectives
 1. Demonstrate how **SpatPCA** captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.
 2. Represent how to use **SpatPCA** for one-dimensional data

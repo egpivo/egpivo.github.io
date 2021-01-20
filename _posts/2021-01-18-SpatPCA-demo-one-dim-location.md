@@ -5,8 +5,6 @@ tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
 
-
-### Objective
 We have two objectives
 1. Demonstrate how **SpatPCA** captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.
 2. Represent how to use **SpatPCA** for one-dimensional data
