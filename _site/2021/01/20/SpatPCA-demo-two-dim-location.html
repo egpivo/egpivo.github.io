@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Capture the dominant spatial patten with two-dimensional locations by SpatPCA</title>
+  <title>Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</title>
   <meta name="description" content="We try to represent how to use SpatPCA for two-dimensional data for capturing the most dominant spatial pattern">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -101,7 +101,7 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Capture the dominant spatial patten with two-dimensional locations by SpatPCA</h1>
+    <h1 class="post-title">Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</h1>
     <p class="post-meta">Jan 20, 2021</p>
     <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Software/">Software</a>, <a href="/tags/R/">R</a>, <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
   </header>
@@ -112,7 +112,7 @@
 <h4 id="basic-settings">Basic settings</h4>
 <h5 id="used-packages">Used packages</h5>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">SpatPCA</span><span class="p">)</span><span class="w">
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">SpatPCA</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
@@ -128,14 +128,14 @@
   </span><span class="n">label.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="w">
 </span><span class="p">))</span><span class="w">
 </span><span class="n">coltab</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scico</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vik"</span><span class="p">)</span><span class="w">
-</span><span class="n">color_scale_limit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.28</span><span class="p">,</span><span class="w"> </span><span class="m">.28</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
+</span><span class="n">color_scale_limit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.28</span><span class="p">,</span><span class="w"> </span><span class="m">.28</span><span class="p">)</span></code></pre></figure>
+
 <h5 id="true-spatial-pattern-eigenfunction">True spatial pattern (eigenfunction)</h5>
 <ul>
-  <li>The underlying spatial pattern below indicates realizations will vary dramatically at the center and almost unchange at the both ends of the curve.</li>
+  <li>The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.</li>
 </ul>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">1024</span><span class="p">)</span><span class="w">
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">set.seed</span><span class="p">(</span><span class="m">1024</span><span class="p">)</span><span class="w">
 </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">30</span><span class="w">
 </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span><span class="w">
 </span><span class="n">location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
@@ -156,10 +156,9 @@
   </span><span class="n">scale_fill_gradientn</span><span class="p">(</span><span class="n">colours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coltab</span><span class="p">,</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color_scale_limit</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">base_theme</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"True Eigenfunction"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
-  </span><span class="n">fill_bar</span><span class="w">
-</span></code></pre></div></div>
+  </span><span class="n">fill_bar</span></code></pre></figure>
 
-<p><img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" /></p>
+<p><img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" /></p>
 
 <h4 id="experiment">Experiment</h4>
 <h5 id="generate-2-d-realizations">Generate 2-D realizations</h5>
@@ -172,15 +171,14 @@
   </li>
 </ul>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">realizations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">true_eigen_fn</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">
-</span></code></pre></div></div>
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">realizations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">true_eigen_fn</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">^</span><span class="m">2</span><span class="p">)</span></code></pre></figure>
 
 <h5 id="animate-realizations">Animate realizations</h5>
 <ul>
   <li>We can see simulated central realizations change in a wide range more frequently than the others.</li>
 </ul>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Times"</span><span class="p">)</span><span class="w">
   </span><span class="n">image.plot</span><span class="p">(</span><span class="w">
     </span><span class="n">matrix</span><span class="p">(</span><span class="n">realizations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">),</span><span class="w">
@@ -193,22 +191,21 @@
     </span><span class="n">axis.args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">cex.axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
     </span><span class="n">legend.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="w">
   </span><span class="p">)</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+</span><span class="p">}</span></code></pre></figure>
 
-<p><img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" /></p>
+<p><img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" /></p>
 
 <h5 id="apply-spatpcaspatpca">Apply <code class="highlighter-rouge">SpatPCA::spatpca</code></h5>
 <p>We add a candidate set of <code class="highlighter-rouge">tau2</code> to see how <strong>SpatPCA</strong> obtain a localized smoothe pattern.</p>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tau2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">seq</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">400</span><span class="p">),</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)))</span><span class="w">
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">tau2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">seq</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="m">400</span><span class="p">),</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)))</span><span class="w">
 </span><span class="n">cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spatpca</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded_location</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realizations</span><span class="p">,</span><span class="w"> </span><span class="n">tau2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tau2</span><span class="p">)</span><span class="w">
-</span><span class="n">eigen_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv</span><span class="o">$</span><span class="n">eigenfn</span><span class="w">
-</span></code></pre></div></div>
+</span><span class="n">eigen_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv</span><span class="o">$</span><span class="n">eigenfn</span></code></pre></figure>
+
 <h5 id="compare-spatpca-with-pca">Compare <strong>SpatPCA</strong> with PCA</h5>
 <p>The following figure shows that <strong>SpatPCA</strong> can find sparser pattern than PCA, which is close to the true pattern.</p>
 
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data.frame</span><span class="p">(</span><span class="w">
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">data.frame</span><span class="p">(</span><span class="w">
   </span><span class="n">location_dim1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded_location</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w">
   </span><span class="n">location_dim2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expanded_location</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w">
   </span><span class="n">spatpca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eigen_est</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w">
@@ -221,10 +218,9 @@
   </span><span class="n">base_theme</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">facet_wrap</span><span class="p">(</span><span class="n">.</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">estimate</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
-  </span><span class="n">fill_bar</span><span class="w">
-</span></code></pre></div></div>
+  </span><span class="n">fill_bar</span></code></pre></figure>
 
-<p><img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" /></p>
+<p><img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" /></p>
 
 
     <div id="disqus_thread"></div>

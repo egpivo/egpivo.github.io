@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Capture the dominant spatial patten with two-dimensional locations by SpatPCA"
+title:  "Capture the dominant spatial pattern with two-dimensional locations by SpatPCA"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
@@ -10,7 +10,7 @@ We try to represent how to use **SpatPCA** for two-dimensional data for capturin
 #### Basic settings
 ##### Used packages
 
-```r
+{% highlight r %}
 library(SpatPCA)
 library(ggplot2)
 library(dplyr)
@@ -28,11 +28,11 @@ fill_bar <- guides(fill = guide_colourbar(
 ))
 coltab <- scico(128, palette = "vik")
 color_scale_limit <- c(-.28, .28)
-```
+{% endhighlight %}
 ##### True spatial pattern (eigenfunction)
-- The underlying spatial pattern below indicates realizations will vary dramatically at the center and almost unchange at the both ends of the curve.
+- The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
 
-```r
+{% highlight r %}
 set.seed(1024)
 p <- 30
 n <- 50
@@ -55,9 +55,9 @@ data.frame(
   base_theme +
   labs(title = "True Eigenfunction", fill = "") +
   fill_bar
-```
+{% endhighlight %}
 
-<img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
+<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
 
 #### Experiment
 ##### Generate 2-D realizations 
@@ -66,14 +66,14 @@ data.frame(
   - The noise follows the standard normal distribution.
 
 
-```r
+{% highlight r %}
 realizations <- rnorm(n = n, sd = 10) %*% t(true_eigen_fn) + matrix(rnorm(n = n * p^2), n, p^2)
-```
+{% endhighlight %}
 
 ##### Animate realizations
 - We can see simulated central realizations change in a wide range more frequently than the others.
 
-```r
+{% highlight r %}
 for (i in 1:n) {
   par(mar = c(3, 3, 1, 1), family = "Times")
   image.plot(
@@ -88,22 +88,22 @@ for (i in 1:n) {
     legend.width = 0.5
   )
 }
-```
+{% endhighlight %}
 
-<img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
+<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
 
 ##### Apply `SpatPCA::spatpca`
 We add a candidate set of `tau2` to see how **SpatPCA** obtain a localized smoothe pattern.
 
-```r
+{% highlight r %}
 tau2 <- c(0, exp(seq(log(10), log(400), length = 10)))
 cv <- spatpca(x = expanded_location, Y = realizations, tau2 = tau2)
 eigen_est <- cv$eigenfn
-```
+{% endhighlight %}
 ##### Compare **SpatPCA** with PCA
 The following figure shows that **SpatPCA** can find sparser pattern than PCA, which is close to the true pattern.
 
-```r
+{% highlight r %}
 data.frame(
   location_dim1 = expanded_location[, 1],
   location_dim2 = expanded_location[, 2],
@@ -118,6 +118,6 @@ data.frame(
   facet_wrap(. ~ estimate) +
   labs(fill = "") +
   fill_bar
-```
+{% endhighlight %}
 
-<img src="/figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />
+<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />

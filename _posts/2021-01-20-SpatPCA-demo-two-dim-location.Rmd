@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Capture the dominant spatial patten with two-dimensional locations by SpatPCA"
+title:  "Capture the dominant spatial pattern with two-dimensional locations by SpatPCA"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
@@ -38,7 +38,7 @@ coltab <- scico(128, palette = 'vik')
 color_scale_limit <- c(-.28, .28)
 ```
 ##### True spatial pattern (eigenfunction)
-- The underlying spatial pattern below indicates realizations will vary dramatically at the center and almost unchange at the both ends of the curve.
+- The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
 ```{r, out.width = '100%'}
 set.seed(1024)
 p <- 30

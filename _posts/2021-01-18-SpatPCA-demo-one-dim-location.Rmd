@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Appy SpatPCA to capture the dominant spatial patten with one-dimensional locations"
+title:  "Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
@@ -29,7 +29,7 @@ library(gifski)
 base_theme <- theme_classic(base_size = 18, base_family = "Times")
 ```
 #### True spatial pattern (eigenfunction)
-The underlying spatial pattern below indicates realizations will vary dramatically at the center and almost unchange at the both ends of the curve.
+The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
 ```{r}
 set.seed(1024)
 position <- matrix(seq(-5, 5, length = 100))
