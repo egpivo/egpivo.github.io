@@ -5,11 +5,26 @@ menu: main
 permalink: /about/
 ---
 
-I am a Data Scientist working on building large-scale data products for e-commerce recommendation systems. Strengths in machine learning, high-dimensional data analysis, and spatial data analysis.
+I am a Machine Learning Engineer working on building large-scale commendation systems for e-commerce. Strengths in machine learning, high-dimensional data analysis, and spatial data analysis.
 
 
 <h3>Software</h3>
 
+
+<div class="list-group">
+<div class="list-group-item">
+<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/autoFRK/">autoFRK</a></h4>
+<p class="list-group-item-text"> This package is written by RcppEigen, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
+</p>
+<br />
+<ul class="list-inline">
+<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/autoFRK">GitHub</a></li>
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://www.r-pkg.org/badges/version/autoFRK" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://cranlogs.r-pkg.org/badges/autoFRK" /></a></li>
+<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
+<li><a href="https://codecov.io/github/egpivo/autoFRK?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/autoFRK/master.svg" /></a></li>
+</ul>
+</div>
 <div class="list-group">
 <div class="list-group-item">
 <h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatPCA/">SpatPCA</a></h4>
@@ -21,9 +36,7 @@ suitable for either regularly or irregularly spaced data;
 <br />
 <ul class="list-inline">
 <li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatPCA">GitHub</a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img src="http://www.r-pkg.org/badges/version/SpatPCA" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img src="http://cranlogs.r-pkg.org/badges/SpatPCA" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img src="https://cranlogs.r-pkg.org/badges/grand-total/SpatPCA" /></a></li>
+<li><a href="https://github.com/egpivo/SpatPCA/actions"><img src="https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg" /></a></li>
 <li><a href="https://codecov.io/github/egpivo/SpatpCA?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/SpatPCA/master.svg" /></a></li>
 </ul>
 </div>
@@ -36,23 +49,8 @@ identifying smooth and localized couple patterns to understand how one spatial p
 <br />
 <ul class="list-inline">
 <li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatMCA">GitHub</a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img src="http://www.r-pkg.org/badges/version/SpatMCA" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img src="http://cranlogs.r-pkg.org/badges/SpatMCA" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img src="https://cranlogs.r-pkg.org/badges/grand-total/SpatMCA" /></a></li>
+<li><a href="https://github.com/egpivo/SpatMCA/actions"><img src="https://github.com/egpivo/SpatMCA/workflows/R-CMD-check/badge.svg" /></a></li>
 <li><a href="https://codecov.io/github/egpivo/SpatMCA?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/SpatMCA/master.svg" /></a></li>
-</ul>
-</div>
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading">autoFRK</h4>
-<p class="list-group-item-text"> This package is written by RcppEigen, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
-</p>
-<br />
-<ul class="list-inline">
-<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/autoFRK">GitHub</a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://www.r-pkg.org/badges/version/autoFRK" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://cranlogs.r-pkg.org/badges/autoFRK" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
 </ul>
 </div>
 <div class="list-group">
