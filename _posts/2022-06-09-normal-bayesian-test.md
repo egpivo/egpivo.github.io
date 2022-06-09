@@ -1,0 +1,28 @@
+---
+layout: post
+title: "Note: Derivation of Normal Bayesian test"
+tags: [Statistics]
+---
+
+
+### Problem
+This is an example on page 379 og [Statistical Inference (2nd edition)](https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126) by Casella and Berger. 
+
+Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2$. According to Example 7.2.16, the posterior $\pi(\theta|\bar{x}) \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.
+
+Consider the hypotheses are
+$$\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta > \theta_0.$$
+What is the Bayesian test?
+
+### Normal Bayesian test
+- If we accept $\text{H}_0$, then
+$P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)\geq P(\theta \in \mathcal{\Theta}^c_0 |X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)$. Namely, $$P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n) = P(\theta \leq \theta_0|X_1, \dots, X_n) \geq \frac{1}{2} $$. 
+- Set $$Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}$$. Based on the posterior distribution $\pi(\theta|\bar{x})$, we have $Z|X_1, \dots, X_n ~ N(0, 1)$. Accordingly, we rewrite the inequality as
+$$P(\theta \leq \theta_0|X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\right)\geq \frac{1}{2} = P(Z \leq 0).$$
+ 
+Therefore, the acceptance region is derived below
+$$ \begin{array}{ll}
+&&\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0\\
+&\rightarrow & (n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu \\
+&\iff& \bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}. &
+\end{array}$$
