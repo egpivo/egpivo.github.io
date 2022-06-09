@@ -6,15 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Wen-Ting Wang's Blog</title>
-  <meta name="description" content="Science is a means whereby learning is achieved.
-">
+  <title>Note: Derivation of Normal Bayesian test</title>
+  <meta name="description" content="ProblemThis is an example on page 379 og Statistical Inference (2nd edition) by Casella and Berger.">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/tags/Statistics/">
+  <link rel="canonical" href="/2022/06/09/normal-bayesian-test.html">
   <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
@@ -96,26 +95,82 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <h2>Posts with Statistics Tag</h1>
+        
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Note: Derivation of Normal Bayesian test</h1>
+    <p class="post-meta">Jun 9, 2022</p>
+    <p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/Statistics/">Statistics</a></p>
+  </header>
+
+  <article class="post-content">
+    <h3 id="problem">Problem</h3>
+<p>This is an example on page 379 og <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2$. According to Example 7.2.16, the posterior $\pi(\theta</td>
+      <td>\bar{x}) \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Consider the hypotheses are
+<script type="math/tex">\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta > \theta_0.</script>
+What is the Bayesian test?</p>
+
+<h3 id="normal-bayesian-test">Normal Bayesian test</h3>
 <ul>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2022-06-09'>06/09/22</time> <a class="archive_list_article_link" href='/2022/06/09/normal-bayesian-test.html'>Note: Derivation of Normal Bayesian test</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2021-01-20'>01/20/21</time> <a class="archive_list_article_link" href='/2021/01/20/SpatPCA-demo-two-dim-location.html'>Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2021-01-18'>01/18/21</time> <a class="archive_list_article_link" href='/2021/01/18/SpatPCA-demo-one-dim-location.html'>Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2017-09-13'>09/13/17</time> <a class="archive_list_article_link" href='/2017/09/13/%E6%96%87%E7%8D%BB%E5%9B%9E%E9%A1%A7_%E5%80%8B%E8%B3%87%E5%8E%BB%E8%AD%98%E5%88%A5%E5%8C%96.html'>個人資料去識別化</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2017-06-26'>06/26/17</time> <a class="archive_list_article_link" href='/2017/06/26/problems_eof_patterns_with_a_single_variable.html'>Problems: EOF patterns with a single variable</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2017-06-17'>06/17/17</time> <a class="archive_list_article_link" href='/2017/06/17/spatial_patterns_with_a_single_variable.html'>Spatial patterns with a single variable</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2017-06-03'>06/03/17</time> <a class="archive_list_article_link" href='/2017/06/03/how_to_work_on_SST_data.html'>How to work on sea surface temperature (SST) data</a></li>
-	
-		<li class="archive_list"><time style="color:#666;font-size:11px;" datetime='2017-05-19'>05/19/17</time> <a class="archive_list_article_link" href='/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html'>Three fundamental aspects of statistical models</a></li>
-	
+  <li>If we accept $\text{H}_0$, then
+$P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)\geq P(\theta \in \mathcal{\Theta}^c_0 |X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)$. Namely, <script type="math/tex">P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n) = P(\theta \leq \theta_0|X_1, \dots, X_n) \geq \frac{1}{2}</script>.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Set <script type="math/tex">Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}</script>. Based on the posterior distribution $\pi(\theta</td>
+          <td>\bar{x})$, we have $Z</td>
+          <td>X_1, \dots, X_n ~ N(0, 1)$. Accordingly, we rewrite the inequality as</td>
+        </tr>
+        <tr>
+          <td>$$P(\theta \leq \theta_0</td>
+          <td>X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\right)\geq \frac{1}{2} = P(Z \leq 0).$$</td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
+
+<p>Therefore, the acceptance region is derived below
+<script type="math/tex">% <![CDATA[
+\begin{array}{ll}
+&&\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0\\
+&\rightarrow & (n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu \\
+&\iff& \bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}. &
+\end{array} %]]></script></p>
+
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egpivo';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </article>
+
+</div>
 
       </div>
     </div>

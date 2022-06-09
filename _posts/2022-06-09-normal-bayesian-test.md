@@ -4,7 +4,6 @@ title: "Note: Derivation of Normal Bayesian test"
 tags: [Statistics]
 ---
 
-
 ### Problem
 This is an example on page 379 og [Statistical Inference (2nd edition)](https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126) by Casella and Berger. 
 
