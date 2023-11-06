@@ -6,6 +6,11 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
+  <link rel="icon" type="image/png" href="{{ "/assets/images/favicons/android-chrome-192x192.png" | prepend: site.baseurl }}" sizes="192x192">
+  <link rel="icon" type="image/png" href="{{ "/assets/images/favicons/android-chrome-512x512.png" | prepend: site.baseurl }}" sizes="512x512">
+  <link rel="icon" type="image/png" href="{{ "/assets/images/favicons/favicon-16x16.png" | prepend: site.baseurl }}" sizes="16x16">
+  <link rel="icon" type="image/png" href="{{ "/assets/images/favicons/favicon-32x32.png" | prepend: site.baseurl }}" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ "/assets/images/favicons/apple-touch-icon.png" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/syntax-style.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" href="{{ "/css/site.css" | prepend: site.baseurl }}">

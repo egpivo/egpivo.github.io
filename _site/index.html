@@ -10,12 +10,17 @@
   <meta name="description" content="Science is a means whereby learning is achieved.
 ">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -113,20 +118,6 @@
 				<h3 id="problem">Problem</h3>
 <p>This is an example on page 379 of <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger. Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.</p>
 
-
-      </li>
-    
-			
-      <li>
-        <span class="post-meta">Jun 9, 2022</span>
-
-        <h2>
-          <a class="post-link" href="/2022/06/09/normal-bayesian-test.html">Normal Bayesian Test</a>
-        </h2>
-				<p id="post-meta"></p>
-				<!DOCTYPE html>
-
-
       </li>
     
 			
@@ -138,7 +129,6 @@
         </h2>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Software/">Software</a>, <a href="/tags/R/">R</a>, <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
 				<p>We try to represent how to use <strong>SpatPCA</strong> for two-dimensional data for capturing the most dominant spatial pattern</p>
-
 
       </li>
     
@@ -156,7 +146,6 @@
   <li>Represent how to use <strong>SpatPCA</strong> for one-dimensional data</li>
 </ol>
 
-
       </li>
     
 			
@@ -173,14 +162,13 @@
 <div style="text-align:center">
   <figure>
   <center>
-  <img src="/assets/文獻回顧_個資去識別化/workflow.png" alt="The Pulpit Rock" width="600" height="150" />
+  <img src="http://localhost:4000/assets/文獻回顧_個資去識別化/workflow.png" alt="The Pulpit Rock" width="600" height="150" />
   </center>
   <figcaption>圖1. - 資料去識別化流程圖 (來源 Garfinkel[5]).</figcaption>
   </figure>
 </div>
 <p><br />
 <br /></p>
-
 
       </li>
     
@@ -192,9 +180,8 @@
           <a class="post-link" href="/2017/07/17/note_Spark_R_with_sparklyr.html">Note: Spark + R with `sparklyr`</a>
         </h2>
 				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/R/">R</a></p>
-				<p><a href="https://spark.apache.org">Apache Spark</a> is designed to process large-scale datasets efficently. Thanks to the authors of <code class="highlighter-rouge">sparklyr</code> package for using R code on a Spark cluster, e.g.,
+				<p><a href="https://spark.apache.org">Apache Spark</a> is designed to process large-scale datasets efficently. Thanks to the authors of <code class="language-plaintext highlighter-rouge">sparklyr</code> package for using R code on a Spark cluster, e.g.,
 easily manipulating datasets, and performing machine learning algorithms.</p>
-
 
       </li>
     
@@ -208,7 +195,6 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
 				<p>In this post, we talk about possible problems of EOF patterns.</p>
 
-
       </li>
     
 			
@@ -221,7 +207,6 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
 				<p>In this post, we’re about to discuss dominant spatial patterns formally.</p>
 
-
       </li>
     
 			
@@ -232,8 +217,7 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
           <a class="post-link" href="/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html">String manipulation: backreference with `stringr` + `rebus`</a>
         </h2>
 				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/R/">R</a></p>
-				<p>In practice, <code class="highlighter-rouge">backreference</code> is an R function in <code class="highlighter-rouge">rebus</code>, which is useful for replacement operations. I will apply some functions in <code class="highlighter-rouge">stringr</code> combined with <code class="highlighter-rouge">backreference</code> to a Chinese lyric.</p>
-
+				<p>In practice, <code class="language-plaintext highlighter-rouge">backreference</code> is an R function in <code class="language-plaintext highlighter-rouge">rebus</code>, which is useful for replacement operations. I will apply some functions in <code class="language-plaintext highlighter-rouge">stringr</code> combined with <code class="language-plaintext highlighter-rouge">backreference</code> to a Chinese lyric.</p>
 
       </li>
     
@@ -247,7 +231,6 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/R/">R</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a>, <a href="/tags/Statistics/">Statistics</a></p>
 				<p>In this post, I will show you step-by-step instructions to  work on SST data in R.</p>
 
-
       </li>
     
 			
@@ -260,7 +243,6 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
 				<p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/Statistics/">Statistics</a></p>
 				<p>Recently, I’ve read a classic Annals’ article, “<a href="http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf">Additive regression and other nonparametric models</a>” by Stones (1985). There are a bunch of inspiring thoughts. Mainly, three fundamental aspects of statistical models are stated:</p>
 
-
       </li>
     
 			
@@ -272,7 +254,7 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
         </h2>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Python/">Python</a>, <a href="/tags/ML/">ML</a></p>
 				<h2 id="loss-function">Loss function</h2>
-<p>After fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the actual value. The prediction error is , <script type="math/tex">e_i({\bf{w}}) = y_i - \hat{y}_i({\bf{w}})</script>. However, how can we know the current predictions are the best ones? We can measure these by a loss function . For example, a squared error loss function is</p>
+<p>After fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the actual value. The prediction error is , \(e_i({\bf{w}}) = y_i - \hat{y}_i({\bf{w}})\). However, how can we know the current predictions are the best ones? We can measure these by a loss function . For example, a squared error loss function is</p>
 <div>
 $$L_1({\bf{w}}) = \sum_{i=1}^n e^2_i({\bf{w}});$$
 </div>
@@ -281,7 +263,6 @@ $$L_1({\bf{w}}) = \sum_{i=1}^n e^2_i({\bf{w}});$$
 $$L_2({\bf{w}}) = \sum_{i=1}^n \left|e_i({\bf{w}})\right|.$$
 </div>
 <p>That is, a lower loss function value means a better model performance.</p>
-
 
       </li>
     
@@ -294,7 +275,6 @@ $$L_2({\bf{w}}) = \sum_{i=1}^n \left|e_i({\bf{w}})\right|.$$
         </h2>
 				<p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Python/">Python</a>, <a href="/tags/ML/">ML</a></p>
 				<p>We will introduce basic components of a neural network briefly in this note.</p>
-
 
       </li>
     

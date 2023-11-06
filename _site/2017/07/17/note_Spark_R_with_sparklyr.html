@@ -9,12 +9,17 @@
   <title>Note: Spark + R with `sparklyr`</title>
   <meta name="description" content="Apache Spark is designed to process large-scale datasets efficently. Thanks to the authors of sparklyr package for using R code on a Spark cluster, e.g.,easi...">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2017/07/17/note_Spark_R_with_sparklyr.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -107,7 +112,7 @@
   </header>
 
   <article class="post-content">
-    <p><a href="https://spark.apache.org">Apache Spark</a> is designed to process large-scale datasets efficently. Thanks to the authors of <code class="highlighter-rouge">sparklyr</code> package for using R code on a Spark cluster, e.g.,
+    <p><a href="https://spark.apache.org">Apache Spark</a> is designed to process large-scale datasets efficently. Thanks to the authors of <code class="language-plaintext highlighter-rouge">sparklyr</code> package for using R code on a Spark cluster, e.g.,
 easily manipulating datasets, and performing machine learning algorithms.</p>
 
 <h2 id="installation">Installation</h2>
@@ -115,16 +120,16 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
   <li>Java:
     <ol>
       <li>Mac:
- <code class="highlighter-rouge">brew cask install java</code></li>
+ <code class="language-plaintext highlighter-rouge">brew cask install java</code></li>
       <li>CentOS:
- <code class="highlighter-rouge">sudo yum install java-1.7.0-openjdk-devel</code></li>
+ <code class="language-plaintext highlighter-rouge">sudo yum install java-1.7.0-openjdk-devel</code></li>
       <li>Other operating systems: https://www.java.com/en/download/help/download_options.xml</li>
     </ol>
   </li>
   <li>Rsutdio + ‘sparklyr’:
     <ul>
-      <li><code class="highlighter-rouge">install.packages("sparklyr")</code></li>
-      <li>Set an environment variable Spark if needed: <code class="highlighter-rouge">Sys.setenv(SPARK_HOME = "where_you_install_spark")</code></li>
+      <li><code class="language-plaintext highlighter-rouge">install.packages("sparklyr")</code></li>
+      <li>Set an environment variable Spark if needed: <code class="language-plaintext highlighter-rouge">Sys.setenv(SPARK_HOME = "where_you_install_spark")</code></li>
       <li>More details: http://spark.rstudio.com</li>
     </ul>
   </li>
@@ -132,100 +137,100 @@ easily manipulating datasets, and performing machine learning algorithms.</p>
 
 <h2 id="process">Process:</h2>
 <ul>
-  <li>Connection: <code class="highlighter-rouge">spark_connect()</code></li>
+  <li>Connection: <code class="language-plaintext highlighter-rouge">spark_connect()</code></li>
   <li>I/O:
     <ul>
-      <li>list the data frames available in Spark: <code class="highlighter-rouge">src_tbls(spark_conn)</code></li>
+      <li>list the data frames available in Spark: <code class="language-plaintext highlighter-rouge">src_tbls(spark_conn)</code></li>
       <li>write the data into Spark:
         <ul>
-          <li><code class="highlighter-rouge">spark_write_csv(r_dataframe, filename)</code></li>
-          <li><code class="highlighter-rouge">spark_write_parquet(r_dataframe, filename)</code></li>
-          <li><code class="highlighter-rouge">spark_write_json(r_dataframe, filename)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_write_csv(r_dataframe, filename)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_write_parquet(r_dataframe, filename)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_write_json(r_dataframe, filename)</code></li>
         </ul>
       </li>
       <li>import the data into Spark:
         <ul>
-          <li><code class="highlighter-rouge">spark_read_csv(connection, "tbl_name", dir_path)</code></li>
-          <li><code class="highlighter-rouge">spark_read_parquet(connection, "tbl_name", dir_path)</code></li>
-          <li><code class="highlighter-rouge">spark_read_json(connection, "tbl_name", dir_path)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_read_csv(connection, "tbl_name", dir_path)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_read_parquet(connection, "tbl_name", dir_path)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">spark_read_json(connection, "tbl_name", dir_path)</code></li>
         </ul>
       </li>
     </ul>
   </li>
   <li>Data wrangling:
     <ul>
-      <li>link to data in Spark: <code class="highlighter-rouge">tbl(connection,  dataname)</code>
+      <li>link to data in Spark: <code class="language-plaintext highlighter-rouge">tbl(connection,  dataname)</code>
         <ul>
-          <li>see dimensionality of a dataframe from Spark:  <code class="highlighter-rouge">dim(df_tbl)</code></li>
-          <li>print 10 rows with all columns<code class="highlighter-rouge">print(df_tbl, n = 10, width = Inf)</code></li>
-          <li>examine structure of a dataframe from Spark: <code class="highlighter-rouge">glimpse(track_metadata_tbl)</code></li>
+          <li>see dimensionality of a dataframe from Spark:  <code class="language-plaintext highlighter-rouge">dim(df_tbl)</code></li>
+          <li>print 10 rows with all columns<code class="language-plaintext highlighter-rouge">print(df_tbl, n = 10, width = Inf)</code></li>
+          <li>examine structure of a dataframe from Spark: <code class="language-plaintext highlighter-rouge">glimpse(track_metadata_tbl)</code></li>
         </ul>
       </li>
       <li>work with dplyr:
         <ol>
-          <li>select columns: <code class="highlighter-rouge">select()</code>
+          <li>select columns: <code class="language-plaintext highlighter-rouge">select()</code>
             <ul>
-              <li>select columns starting with a string: <code class="highlighter-rouge">select(starts_with("some string"))</code></li>
-              <li>select columns ending with a string: <code class="highlighter-rouge">select(ends_with("some string"))</code></li>
-              <li>select columns containing with a string: <code class="highlighter-rouge">select(contains("some string"))</code></li>
-              <li>select columns matching with a regex: <code class="highlighter-rouge">select(matches("regex"))</code></li>
+              <li>select columns starting with a string: <code class="language-plaintext highlighter-rouge">select(starts_with("some string"))</code></li>
+              <li>select columns ending with a string: <code class="language-plaintext highlighter-rouge">select(ends_with("some string"))</code></li>
+              <li>select columns containing with a string: <code class="language-plaintext highlighter-rouge">select(contains("some string"))</code></li>
+              <li>select columns matching with a regex: <code class="language-plaintext highlighter-rouge">select(matches("regex"))</code></li>
             </ul>
           </li>
-          <li>select rows: <code class="highlighter-rouge">distinct()</code>
+          <li>select rows: <code class="language-plaintext highlighter-rouge">distinct()</code>
             <ul>
-              <li>count the unqiue values: <code class="highlighter-rouge">count()</code></li>
-              <li>show the top n rows: <code class="highlighter-rouge">top_n()</code></li>
+              <li>count the unqiue values: <code class="language-plaintext highlighter-rouge">count()</code></li>
+              <li>show the top n rows: <code class="language-plaintext highlighter-rouge">top_n()</code></li>
             </ul>
           </li>
-          <li>filter rows: <code class="highlighter-rouge">filter()</code></li>
-          <li>arrange rows: <code class="highlighter-rouge">arrange()</code></li>
-          <li>change/add columns: <code class="highlighter-rouge">mutate()</code></li>
-          <li>summarize statistics: <code class="highlighter-rouge">summarize()</code></li>
-          <li>group by unquoted names of columns: <code class="highlighter-rouge">group_by()</code></li>
+          <li>filter rows: <code class="language-plaintext highlighter-rouge">filter()</code></li>
+          <li>arrange rows: <code class="language-plaintext highlighter-rouge">arrange()</code></li>
+          <li>change/add columns: <code class="language-plaintext highlighter-rouge">mutate()</code></li>
+          <li>summarize statistics: <code class="language-plaintext highlighter-rouge">summarize()</code></li>
+          <li>group by unquoted names of columns: <code class="language-plaintext highlighter-rouge">group_by()</code></li>
           <li>join tables:
             <ul>
-              <li>left join by columns: <code class="highlighter-rouge">left_join(, by = cols)</code></li>
-              <li>anti join by columns: <code class="highlighter-rouge">anti_join(, by = cols)</code></li>
-              <li>semi join by columns: <code class="highlighter-rouge">semi_join(, by = cols)</code></li>
+              <li>left join by columns: <code class="language-plaintext highlighter-rouge">left_join(, by = cols)</code></li>
+              <li>anti join by columns: <code class="language-plaintext highlighter-rouge">anti_join(, by = cols)</code></li>
+              <li>semi join by columns: <code class="language-plaintext highlighter-rouge">semi_join(, by = cols)</code></li>
             </ul>
           </li>
         </ol>
       </li>
-      <li>copy an R dataframe to Spark: <code class="highlighter-rouge">copy_to(connection, df)</code></li>
-      <li>collect data back from Spark with a name: <code class="highlighter-rouge">collect('name_in_spark')</code></li>
-      <li>store the results of intermediate calculations: <code class="highlighter-rouge">compute()</code></li>
-      <li>covert R code into SQL and return the results to R immediately:<code class="highlighter-rouge">dbGetQuery(connection, query)</code></li>
+      <li>copy an R dataframe to Spark: <code class="language-plaintext highlighter-rouge">copy_to(connection, df)</code></li>
+      <li>collect data back from Spark with a name: <code class="language-plaintext highlighter-rouge">collect('name_in_spark')</code></li>
+      <li>store the results of intermediate calculations: <code class="language-plaintext highlighter-rouge">compute()</code></li>
+      <li>covert R code into SQL and return the results to R immediately:<code class="language-plaintext highlighter-rouge">dbGetQuery(connection, query)</code></li>
     </ul>
   </li>
   <li>Machine learning with MLlib:
     <ul>
       <li>feature transformation functions named starting with “ft_” or “sdf_”
         <ul>
-          <li>binarize continuous variables to logical with a threshold:  <code class="highlighter-rouge">ft_binarizer("target_col", "new_col", threshold = a)</code></li>
+          <li>binarize continuous variables to logical with a threshold:  <code class="language-plaintext highlighter-rouge">ft_binarizer("target_col", "new_col", threshold = a)</code></li>
           <li>
-            <p>bucketize continuous variables into categorical with a set of thresholds: <code class="highlighter-rouge">ft_bucketizer("target_col", "new_col", splits = vec)</code></p>
+            <p>bucketize continuous variables into categorical with a set of thresholds: <code class="language-plaintext highlighter-rouge">ft_bucketizer("target_col", "new_col", splits = vec)</code></p>
           </li>
-          <li>quantilize continuous variables into categorical with a number of groups: <code class="highlighter-rouge">ft_quantile_discretizer("target_col", "new_col", n.buckets = n)</code>     - tokenize simply<code class="highlighter-rouge">ft_tokenizer('target_col', 'new_col')</code></li>
-          <li>tokenize with regex <code class="highlighter-rouge">ft_regex_tokenizer('target_col', 'new_col', pattern)</code></li>
-          <li>arrange rows using a Spark function: <code class="highlighter-rouge">sdf_sort()</code></li>
-          <li>exploring the columns of a tibble: <code class="highlighter-rouge">sdf_schema(spark_tbl)</code></li>
-          <li>sample the data without replacement, with a rate of fraction and a seed: <code class="highlighter-rouge">sdf_sample(tbl, fraction = fraction, replacement = FALSE, seed = seed)</code></li>
+          <li>quantilize continuous variables into categorical with a number of groups: <code class="language-plaintext highlighter-rouge">ft_quantile_discretizer("target_col", "new_col", n.buckets = n)</code>     - tokenize simply<code class="language-plaintext highlighter-rouge">ft_tokenizer('target_col', 'new_col')</code></li>
+          <li>tokenize with regex <code class="language-plaintext highlighter-rouge">ft_regex_tokenizer('target_col', 'new_col', pattern)</code></li>
+          <li>arrange rows using a Spark function: <code class="language-plaintext highlighter-rouge">sdf_sort()</code></li>
+          <li>exploring the columns of a tibble: <code class="language-plaintext highlighter-rouge">sdf_schema(spark_tbl)</code></li>
+          <li>sample the data without replacement, with a rate of fraction and a seed: <code class="language-plaintext highlighter-rouge">sdf_sample(tbl, fraction = fraction, replacement = FALSE, seed = seed)</code></li>
           <li>split data into training and testing sets:
-<code class="highlighter-rouge">sdf_partition(training = training_rate, testing = testing_rate)</code></li>
+<code class="language-plaintext highlighter-rouge">sdf_partition(training = training_rate, testing = testing_rate)</code></li>
         </ul>
       </li>
       <li>machine learning functions named starting with “ml_”
         <ul>
-          <li>linear regression:<code class="highlighter-rouge">ml_linear_regression(response, feature)</code></li>
+          <li>linear regression:<code class="language-plaintext highlighter-rouge">ml_linear_regression(response, feature)</code></li>
           <li>gradient boosted tree:
-  <code class="highlighter-rouge">ml_gradient_boosted_trees(response, feature)</code>             - random forest: <code class="highlighter-rouge">ml_random_forest(response, feature)</code></li>
-          <li>predict: <code class="highlighter-rouge">sdf_predict(spark_model, testing_set)</code></li>
+  <code class="language-plaintext highlighter-rouge">ml_gradient_boosted_trees(response, feature)</code>             - random forest: <code class="language-plaintext highlighter-rouge">ml_random_forest(response, feature)</code></li>
+          <li>predict: <code class="language-plaintext highlighter-rouge">sdf_predict(spark_model, testing_set)</code></li>
           <li>more models can be found on http://spark.rstudio.com/mllib.html</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Disconnection: <code class="highlighter-rouge">spark_connect()</code></li>
+  <li>Disconnection: <code class="language-plaintext highlighter-rouge">spark_connect()</code></li>
 </ul>
 
 <h2 id="references">References</h2>

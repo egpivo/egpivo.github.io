@@ -9,12 +9,17 @@
   <title>Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations</title>
   <meta name="description" content="We have two objectives  Demonstrate how SpatPCA captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.  Represent...">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2021/01/18/SpatPCA-demo-one-dim-location.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2021/01/18/SpatPCA-demo-one-dim-location.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -159,7 +164,7 @@
 
 <p><img src="figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif" alt="plot of chunk unnamed-chunk-5" /></p>
 
-<h4 id="apply-spatpcaspatpca">Apply <code class="highlighter-rouge">SpatPCA::spatpca</code></h4>
+<h4 id="apply-spatpcaspatpca">Apply <code class="language-plaintext highlighter-rouge">SpatPCA::spatpca</code></h4>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spatpca</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realizations</span><span class="p">)</span><span class="w">
 </span><span class="n">eigen_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv</span><span class="o">$</span><span class="n">eigenfn</span></code></pre></figure>

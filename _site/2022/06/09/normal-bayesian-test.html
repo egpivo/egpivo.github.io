@@ -9,12 +9,17 @@
   <title>Note: Derivation of Normal Bayesian test</title>
   <meta name="description" content="ProblemThis is an example on page 379 of Statistical Inference (2nd edition) by Casella and Berger. Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and ...">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2022/06/09/normal-bayesian-test.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2022/06/09/normal-bayesian-test.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -120,7 +125,7 @@ What is the Bayesian test?</p>
 $P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)\geq P(\theta \in \mathcal{\Theta}^c_0 |X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)$. Namely,<br />
 $\qquad\qquad\qquad P(\theta \in \mathcal{\Theta}_0 {|}X_1, \dots, X_n) = P(\theta \leq \theta_0 {|}X_1, \dots, X_n) \geq \frac{1}{2}.$</p>
 
-<p>Set <script type="math/tex">Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}</script>. Based on the posterior distribution $\pi(\theta \vert \bar{x})$, we have $Z\vert X_1, \dots, X_n \sim N(0, 1)$.</p>
+<p>Set \(Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\). Based on the posterior distribution $\pi(\theta \vert \bar{x})$, we have $Z\vert X_1, \dots, X_n \sim N(0, 1)$.</p>
 
 <p>Accordingly, we rewrite the inequality as <br />
 $\qquad\qquad\qquad P(\theta \leq \theta_0 {|} X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\vert X_1, \dots, X_n\right)\geq \frac{1}{2} = P(Z \leq 0{|}X_1, \dots, X_n).$</p>

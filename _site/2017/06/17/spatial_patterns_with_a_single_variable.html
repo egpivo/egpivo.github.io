@@ -9,12 +9,17 @@
   <title>Spatial patterns with a single variable</title>
   <meta name="description" content="In this post, we’re about to discuss dominant spatial patterns formally.">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2017/06/17/spatial_patterns_with_a_single_variable.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2017/06/17/spatial_patterns_with_a_single_variable.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -116,12 +121,12 @@
 <p>For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.</p>
 
 <center>
-  <img src="/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png" width="60%" height="40%" />
+  <img src="http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png" width="60%" height="40%" />
   <div class="caption">Basin mode</div>
-  <img src="/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png" width="60%" height="40%" />
+  <img src="http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak2_t.png" width="60%" height="40%" />
   <div class="caption">Dipole mode</div>
 
-  <img src="/assets/spatial_patterns_with_a_single_variable/bar.png" width="60%" height="40%" />
+  <img src="http://localhost:4000/assets/spatial_patterns_with_a_single_variable/bar.png" width="60%" height="40%" />
 </center>
 
 <p>A basin-wide mode indicates that there is a sub-region with a u-shaped hole in the pattern, and means the spatial variation in this sub-region is clearly decreasing downside (or increasing upside). An east-west dipole mode illustrates that the variation of sea surface temperature in the eastern region is opposite to the one in the wester region. In other words, while the sea surface temperature in the eastern Indian Ocean becomes higher, the temperature in the western Indian Ocean more likely becomes lower. It is worth to notice that the interaction between these two patterns and El Niño–Southern Oscillation (ENSO) is a popular topic in the climate field.</p>
@@ -130,7 +135,7 @@
 
 <h3 id="spatial-process-of-interest">Spatial process of interest</h3>
 
-<p>Suppose that a spatial process of interest is <script type="math/tex">\{\eta_i(\cdot); i = 1,\dots, n\}</script> which is on a region $D \subset \mathbb{R}^d$, and at $n$ different time points. For simplicity, we assume that $\eta_i$’s are mean zero, mutally uncorrelated with common covariance function.</p>
+<p>Suppose that a spatial process of interest is \(\{\eta_i(\cdot); i = 1,\dots, n\}\) which is on a region $D \subset \mathbb{R}^d$, and at $n$ different time points. For simplicity, we assume that $\eta_i$’s are mean zero, mutally uncorrelated with common covariance function.</p>
 
 <p>For example, we are interested in studying sea surface temperature monthly anomalies in the Indian Ocean during Jan., 2010 to Dec. 2016, formally. Then, we can define $\eta_i(\cdot)$ as a sea surface temperature monthly anomaly, $D$ as Indian Ocean (with blue color in the following plot), $n = 12\times 7$.</p>
 <center>
@@ -141,12 +146,12 @@
 <h3 id="observed-data">Observed data</h3>
 
 <p>We only observe data at $p$ locations, say $s_1, \dots, s_p$. The observed data are defined as
-<script type="math/tex">Y_i(s_j) = \eta_i(s_j) + \epsilon_{ij},</script>
+\(Y_i(s_j) = \eta_i(s_j) + \epsilon_{ij},\)
 where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covariance $\sigma^2$ for $i =1,\dots,n$, $j = 1, \dots,p$.</p>
 
 <p>The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.</p>
 <center>
- <img src="/assets/spatial_patterns_with_a_sing_variable/data_example.png" width="60%" height="40%" />
+ <img src="http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/data_example.png" width="60%" height="40%" />
   <div class="caption">Observed data in the Indian Ocean</div>
 </center>
 

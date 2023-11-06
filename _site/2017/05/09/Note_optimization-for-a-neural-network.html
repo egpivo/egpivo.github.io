@@ -9,12 +9,17 @@
   <title>Note: optimization for a neural network</title>
   <meta name="description" content="Loss functionAfter fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the...">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2017/05/09/Note_optimization-for-a-neural-network.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2017/05/09/Note_optimization-for-a-neural-network.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -108,7 +113,7 @@
 
   <article class="post-content">
     <h2 id="loss-function">Loss function</h2>
-<p>After fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the actual value. The prediction error is , <script type="math/tex">e_i({\bf{w}}) = y_i - \hat{y}_i({\bf{w}})</script>. However, how can we know the current predictions are the best ones? We can measure these by a loss function . For example, a squared error loss function is</p>
+<p>After fitting the model based on the certain weights, we can also calculate the prediction errors to see how accurate the predictions are to the actual value. The prediction error is , \(e_i({\bf{w}}) = y_i - \hat{y}_i({\bf{w}})\). However, how can we know the current predictions are the best ones? We can measure these by a loss function . For example, a squared error loss function is</p>
 <div>
 $$L_1({\bf{w}}) = \sum_{i=1}^n e^2_i({\bf{w}});$$
 </div>
@@ -125,82 +130,79 @@ $$L_2({\bf{w}}) = \sum_{i=1}^n \left|e_i({\bf{w}})\right|.$$
   <li>1st set:</li>
 </ul>
 
-<p><script type="math/tex">% <![CDATA[
-{\bf{\omega}}_{11} = \left[ \begin{array}{cc}
--5 & 5 \\
--1 & 1\\
-\end{array} \right] %]]></script>, <script type="math/tex">{\bf{\gamma}}_1 = \left[ \begin{array}{c}
+<p>\({\bf{\omega}}_{11} = \left[ \begin{array}{cc}
+-5 &amp; 5 \\
+-1 &amp; 1\\
+\end{array} \right]\), \({\bf{\gamma}}_1 = \left[ \begin{array}{c}
 3  \\
 7\\
-\end{array} \right]</script></p>
+\end{array} \right]\)</p>
 <ul>
   <li>2nd set:</li>
 </ul>
 
-<p><script type="math/tex">% <![CDATA[
-{\bf{\omega}}_{12} = \left[ \begin{array}{cc}
-1 & 1 \\
-2 & -1.5\\
-\end{array} \right] %]]></script>, <script type="math/tex">{\bf{\gamma}}_2 = \left[ \begin{array}{c}
+<p>\({\bf{\omega}}_{12} = \left[ \begin{array}{cc}
+1 &amp; 1 \\
+2 &amp; -1.5\\
+\end{array} \right]\), \({\bf{\gamma}}_2 = \left[ \begin{array}{c}
 1.9  \\
 3.5\\
-\end{array} \right]</script>.</p>
+\end{array} \right]\).</p>
 
-<p>The input dataset is <script type="math/tex">% <![CDATA[
-{\bf{X}}= \left[ \begin{array}{cc}
-0 & 1\\
-5 & 7\\
-6 & -2\\
-10 & 11\\
-\end{array} \right] %]]></script>, and the response is  <script type="math/tex">{\bf{y}}= \left[ \begin{array}{c}
+<p>The input dataset is \({\bf{X}}= \left[ \begin{array}{cc}
+0 &amp; 1\\
+5 &amp; 7\\
+6 &amp; -2\\
+10 &amp; 11\\
+\end{array} \right]\), and the response is  \({\bf{y}}= \left[ \begin{array}{c}
 7\\
 5\\
 2\\
 20\\
-\end{array} \right]</script>. Use <code class="highlighter-rouge">predict_with_one_layer()</code> to calculate the predictions, and the squared error loss function to measure the performance. The result below shows that the second candidate set of weights performs better than the first one.</p>
+\end{array} \right]\). Use <code class="language-plaintext highlighter-rouge">predict_with_one_layer()</code> to calculate the predictions, and the squared error loss function to measure the performance. The result below shows that the second candidate set of weights performs better than the first one.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="c"># import the functions in note1</span>
-<span class="kn">from</span> <span class="nn">note1</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c1"># import the functions in note1
+</span><span class="kn">from</span> <span class="n">note1</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c"># Create model_output_1 </span>
-<span class="n">model_output_1</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c"># Create model_output_2</span>
-<span class="n">model_output_2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Create model_output_1 
+</span><span class="n">model_output_1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Create model_output_2
+</span><span class="n">model_output_2</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="n">weights_1</span> <span class="o">=</span> <span class="p">{</span><span class="s">'node_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
-<span class="s">'node_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-<span class="s">'output'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])}</span>
+<span class="n">weights_1</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">node_0</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+<span class="sh">'</span><span class="s">node_1</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+<span class="sh">'</span><span class="s">output</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])}</span>
 
-<span class="n">weights_2</span> <span class="o">=</span> <span class="p">{</span><span class="s">'node_0'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-<span class="s">'node_1'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">]),</span>
-<span class="s">'output'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">])}</span>
+<span class="n">weights_2</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">node_0</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+<span class="sh">'</span><span class="s">node_1</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">]),</span>
+<span class="sh">'</span><span class="s">output</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">1.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">])}</span>
 
-<span class="n">input_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
-<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]),</span>
-<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]),</span>
-<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">])]</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]),</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]),</span>
+<span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">])]</span>
 
 <span class="n">target_actuals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 
-<span class="c"># Loop over input_data</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">:</span>
-<span class="c"># Append prediction to model_output_0</span>
-<span class="n">model_output_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predict_with_one_layer</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">weights_1</span><span class="p">))</span>
+<span class="c1"># Loop over input_data
+</span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">:</span>
+<span class="c1"># Append prediction to model_output_0
+</span><span class="n">model_output_1</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">predict_with_one_layer</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">weights_1</span><span class="p">))</span>
 
-<span class="c"># Append prediction to model_output_1</span>
-<span class="n">model_output_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predict_with_one_layer</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">weights_2</span><span class="p">))</span>
+<span class="c1"># Append prediction to model_output_1
+</span><span class="n">model_output_2</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">predict_with_one_layer</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">weights_2</span><span class="p">))</span>
 
-<span class="c"># Calculate the mean squared error for model_output_0: mse_0</span>
-<span class="n">mse_1</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">model_output_1</span><span class="p">,</span> <span class="n">target_actuals</span><span class="p">)</span>
+<span class="c1"># Calculate the mean squared error for model_output_0: mse_0
+</span><span class="n">mse_1</span> <span class="o">=</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">model_output_1</span><span class="p">,</span> <span class="n">target_actuals</span><span class="p">)</span>
 
-<span class="c"># Calculate the mean squared error for model_output_1: mse_1</span>
-<span class="n">mse_2</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">model_output_2</span><span class="p">,</span> <span class="n">target_actuals</span><span class="p">)</span>
+<span class="c1"># Calculate the mean squared error for model_output_1: mse_1
+</span><span class="n">mse_2</span> <span class="o">=</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">model_output_2</span><span class="p">,</span> <span class="n">target_actuals</span><span class="p">)</span>
 
-<span class="c"># Print mse_0 and mse_1</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Mean squared error with weights_1: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span><span class="n">mse_1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Mean squared error with weights_2: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span><span class="n">mse_2</span><span class="p">)</span>
+<span class="c1"># Print mse_0 and mse_1
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Mean squared error with weights_1: %f</span><span class="sh">"</span> <span class="o">%</span><span class="n">mse_1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Mean squared error with weights_2: %f</span><span class="sh">"</span> <span class="o">%</span><span class="n">mse_2</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Mean squared error with weights_1: 1779.500000
@@ -216,25 +218,25 @@ Mean squared error with weights_2: 1188.020625</p>
 <h3 id="gradient-decent-gd">Gradient decent (GD)</h3>
 <p>Simply, we can apply the gradient descent to address this problem. Gradient descent is a first-order iterative optimization algorithm, that is, the solution is computed along with the paths of the slope of loss function with respect to the weights. More detail can be found in <a href="https://en.wikipedia.org/wiki/Gradient_descent">here</a>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="k">def</span> <span class="nf">gradientDescent</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">n_updates</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
 
-<span class="c"># Iterate over the number of updates</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_updates</span><span class="p">):</span>
-<span class="c"># Calculate the predictions: preds</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="p">(</span><span class="n">weights</span> <span class="o">*</span> <span class="n">input_data</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
-<span class="c"># Calculate the error: error</span>
-<span class="n">error</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">preds</span>
-<span class="c"># Calculate the slope: slope</span>
-<span class="n">slope</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">input_data</span> <span class="o">*</span> <span class="n">error</span>
-<span class="c"># Update the weights: weights</span>
-<span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">learning_rate</span>
+<span class="c1"># Iterate over the number of updates
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_updates</span><span class="p">):</span>
+<span class="c1"># Calculate the predictions: preds
+</span><span class="n">preds</span> <span class="o">=</span> <span class="p">(</span><span class="n">weights</span> <span class="o">*</span> <span class="n">input_data</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span>
+<span class="c1"># Calculate the error: error
+</span><span class="n">error</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">preds</span>
+<span class="c1"># Calculate the slope: slope
+</span><span class="n">slope</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">input_data</span> <span class="o">*</span> <span class="n">error</span>
+<span class="c1"># Update the weights: weights
+</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">learning_rate</span>
 
 <span class="n">mse</span> <span class="o">=</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">**</span><span class="mi">2</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"Iteration </span><span class="si">%</span><span class="s">d -- loss: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">mse</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Iteration %d -- loss: %f</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">mse</span><span class="p">))</span>
 
 <span class="k">return</span> <span class="n">weights</span>
 </code></pre></div></div>
@@ -250,13 +252,13 @@ ${\bf{\omega}} = \left[ \begin{array}{c}
 3<br />
 1<br />
 5
-\end{array} \right]$, and the response is  $ y=8$. Use <code class="highlighter-rouge">gradientDescent()</code> to calculate the estimation of weights.</p>
+\end{array} \right]$, and the response is  $ y=8$. Use <code class="language-plaintext highlighter-rouge">gradientDescent()</code> to calculate the estimation of weights.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>     
-<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>     
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 <span class="n">target</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span>
-<span class="n">new_weight</span> <span class="o">=</span> <span class="n">gradientDescent</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">new_weight</span><span class="p">)</span>
+<span class="n">new_weight</span> <span class="o">=</span> <span class="nf">gradientDescent</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">new_weight</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Iteration 1 – loss: 64.000000
@@ -284,8 +286,8 @@ Iteration 5 – loss: 0.004199
       <li>Randomly shuffle the data</li>
       <li>Split m subsets</li>
       <li>Do{<br />
-<script type="math/tex">\quad</script> for i = 1, …, m:
-<script type="math/tex">\omega_i</script> := <script type="math/tex">\omega_i -</script> learning rate * slope<br />
+\(\quad\) for i = 1, …, m:
+\(\omega_i\) := \(\omega_i -\) learning rate * slope<br />
 } until convergence</li>
     </ol>
   </li>

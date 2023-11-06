@@ -9,12 +9,17 @@
   <title>String manipulation: backreference with `stringr` + `rebus`</title>
   <meta name="description" content="In practice, backreference is an R function in rebus, which is useful for replacement operations. I will apply some functions in stringr combined with backre...">
 
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax-style.css">
   <link rel="stylesheet" href="/css/site.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html">
+  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
 
   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
@@ -107,7 +112,7 @@
   </header>
 
   <article class="post-content">
-    <p>In practice, <code class="highlighter-rouge">backreference</code> is an R function in <code class="highlighter-rouge">rebus</code>, which is useful for replacement operations. I will apply some functions in <code class="highlighter-rouge">stringr</code> combined with <code class="highlighter-rouge">backreference</code> to a Chinese lyric.</p>
+    <p>In practice, <code class="language-plaintext highlighter-rouge">backreference</code> is an R function in <code class="language-plaintext highlighter-rouge">rebus</code>, which is useful for replacement operations. I will apply some functions in <code class="language-plaintext highlighter-rouge">stringr</code> combined with <code class="language-plaintext highlighter-rouge">backreference</code> to a Chinese lyric.</p>
 
 <h2 id="example-chinese-lyric">Example: Chinese Lyric</h2>
 
@@ -122,7 +127,7 @@
 </span><span class="n">file.create</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] TRUE
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## [1] TRUE
 </code></pre></div></div>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#download the file</span><span class="w">
@@ -131,7 +136,7 @@
 
 <h3 id="import-the-lyric">Import the lyric</h3>
 
-<p>We can use the function <code class="highlighter-rouge">readLines</code> in <code class="highlighter-rouge">base</code>, but we have a better choice. That is, <code class="highlighter-rouge">stri_read_lines</code> in <code class="highlighter-rouge">stringi</code>, which is faster and
+<p>We can use the function <code class="language-plaintext highlighter-rouge">readLines</code> in <code class="language-plaintext highlighter-rouge">base</code>, but we have a better choice. That is, <code class="language-plaintext highlighter-rouge">stri_read_lines</code> in <code class="language-plaintext highlighter-rouge">stringi</code>, which is faster and
 more stable.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">stringi</span><span class="p">)</span><span class="w">
@@ -139,7 +144,7 @@ more stable.</p>
 </span><span class="n">print</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "風到這裡就是黏 黏住過客的思念"                        
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "風到這裡就是黏 黏住過客的思念"                        
 ##  [2] "雨到了這裡纏成線 纏著我們流連人世間"                  
 ##  [3] "妳在身邊就是緣 緣分寫在三生石上面"                    
 ##  [4] "愛有萬分之一甜 寧願我就葬在這一點"                    
@@ -156,7 +161,7 @@ more stable.</p>
 
 <h3 id="view-the-matched-patterns-with-repeated-characters">View the matched patterns with repeated characters.</h3>
 
-<p>We want to see which character repeated twice in the lyric. We will view which line is matched by using <code class="highlighter-rouge">capture()</code> in <code class="highlighter-rouge">stringr</code> and a backreference <code class="highlighter-rouge">REF1</code> in <code class="highlighter-rouge">rebus</code> where beckreferecens can be <code class="highlighter-rouge">REF1</code> $\dots$ <code class="highlighter-rouge">REF9</code>.</p>
+<p>We want to see which character repeated twice in the lyric. We will view which line is matched by using <code class="language-plaintext highlighter-rouge">capture()</code> in <code class="language-plaintext highlighter-rouge">stringr</code> and a backreference <code class="language-plaintext highlighter-rouge">REF1</code> in <code class="language-plaintext highlighter-rouge">rebus</code> where beckreferecens can be <code class="language-plaintext highlighter-rouge">REF1</code> $\dots$ <code class="language-plaintext highlighter-rouge">REF9</code>.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">rebus</span><span class="p">)</span><span class="w">
@@ -168,14 +173,14 @@ more stable.</p>
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4" /></p>
 
 <h3 id="extract-the-matched-lines">Extract the matched lines</h3>
-<p>Before we extracting matched lines,  we use <code class="highlighter-rouge">str_subset</code> to store subset of matched lines first.</p>
+<p>Before we extracting matched lines,  we use <code class="language-plaintext highlighter-rouge">str_subset</code> to store subset of matched lines first.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lines</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">str_subset</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
-<p>Then, we apply <code class="highlighter-rouge">str_extract</code> to extract the lines, and show the repeated characters.</p>
+<p>Then, we apply <code class="language-plaintext highlighter-rouge">str_extract</code> to extract the lines, and show the repeated characters.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract matches from lines</span><span class="w">
 </span><span class="n">chr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">str_extract_all</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">)</span><span class="w">
@@ -215,31 +220,31 @@ more stable.</p>
 </table>
 
 <h3 id="view-characters-with-a-pair-that-reverses">View characters with a pair that reverses</h3>
-<p>Here we want to detect a reversed pair by using <code class="highlighter-rouge">REF1</code> and <code class="highlighter-rouge">REF2</code>.</p>
+<p>Here we want to detect a reversed pair by using <code class="language-plaintext highlighter-rouge">REF1</code> and <code class="language-plaintext highlighter-rouge">REF2</code>.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reverse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">WRD</span><span class="p">)</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">WRD</span><span class="p">)</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">REF2</span><span class="w"> </span><span class="o">%R%</span><span class="w"> </span><span class="n">REF1</span><span class="w">
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
 
 <h3 id="replace-with-backreferces">Replace with backreferces</h3>
 <h4 id="build-a-pattern-to-be-replaced">Build a pattern to be replaced</h4>
-<p>We build a pattern that finds a chines character “愛”. We first check it against <code class="highlighter-rouge">lyrics</code>.</p>
+<p>We build a pattern that finds a chines character “愛”. We first check it against <code class="language-plaintext highlighter-rouge">lyrics</code>.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">replacePattern</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"愛"</span><span class="w">
 </span><span class="n">str_view_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">replacePattern</span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><img src="/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
+<p><img src="http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /></p>
 
 <h4 id="test-out-the-replacement">Test out the replacement</h4>
-<p>Then, we apply <code class="highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.</p>
+<p>Then, we apply <code class="language-plaintext highlighter-rouge">str_replace_all</code> to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str_replace_all</span><span class="p">(</span><span class="n">lyrics</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capture</span><span class="p">(</span><span class="n">replacePattern</span><span class="p">),</span><span class="w"> </span><span class="n">str_c</span><span class="p">(</span><span class="s2">"\u2661"</span><span class="p">,</span><span class="w"> </span><span class="n">REF1</span><span class="p">,</span><span class="w"> </span><span class="s2">"\u2661"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "風到這裡就是黏 黏住過客的思念"                        
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##  [1] "風到這裡就是黏 黏住過客的思念"                        
 ##  [2] "雨到了這裡纏成線 纏著我們流連人世間"                  
 ##  [3] "妳在身邊就是緣 緣分寫在三生石上面"                    
 ##  [4] "♡愛♡有萬分之一甜 寧願我就葬在這一點"                  
