@@ -5,73 +5,13 @@ menu: main
 permalink: /about/
 ---
 
-I am a Machine Learning Engineer working on building large-scale commendation systems for e-commerce. Strengths in machine learning, high-dimensional data analysis, and spatial data analysis.
-
-
-<h3>Software</h3>
-
-
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/autoFRK/">autoFRK</a></h4>
-<p class="list-group-item-text"> This package is written by RcppEigen, and provides Automatic fixed rank kriging for (irregularly located) spatial data using a class of basis functions with multi-resolution features and ordered in terms of their resolutions. 
-</p>
-<br />
-<ul class="list-inline">
-<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/autoFRK">GitHub</a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://www.r-pkg.org/badges/version/autoFRK" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="http://cranlogs.r-pkg.org/badges/autoFRK" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img src="https://cranlogs.r-pkg.org/badges/grand-total/autoFRK" /></a></li>
-<li><a href="https://codecov.io/github/egpivo/autoFRK?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/autoFRK/master.svg" /></a></li>
-</ul>
-</div>
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatPCA/">SpatPCA</a></h4>
-<p class="list-group-item-text">An R package facilitates regularized principal component analysis by (1) seeking the dominant patterns (eigenfunctions), which can be smooth and localized; (2)
-computing spatial prediction (Kriging) at new locations; (3)
-suitable for either regularly or irregularly spaced data;
-(4) using the alternating direction method of multipliers (ADMM) algorithm.
-</p>
-<br />
-<ul class="list-inline">
-<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatPCA">GitHub</a></li>
-<li><a href="https://github.com/egpivo/SpatPCA/actions"><img src="https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg" /></a></li>
-<li><a href="https://codecov.io/github/egpivo/SpatpCA?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/SpatPCA/master.svg" /></a></li>
-</ul>
-</div>
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatMCA/">SpatMCA</a></h4>
-<p class="list-group-item-text"> This package provides regularized maximum covariance analysis by (1)
-identifying smooth and localized couple patterns to understand how one spatial process is affected by another; (2) suitable for either regularly or irregularly spaced data; (3) the alternating direction method of multipliers (ADMM) algorithm.
-</p>
-<br />
-<ul class="list-inline">
-<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatMCA">GitHub</a></li>
-<li><a href="https://github.com/egpivo/SpatMCA/actions"><img src="https://github.com/egpivo/SpatMCA/workflows/R-CMD-check/badge.svg" /></a></li>
-<li><a href="https://codecov.io/github/egpivo/SpatMCA?branch=master"><img src="https://img.shields.io/codecov/c/github/egpivo/SpatMCA/master.svg" /></a></li>
-</ul>
-</div>
-<div class="list-group">
-<div class="list-group-item">
-<h4 class="list-group-item-heading">influenceAUC</h4>
-<p class="list-group-item-text"> This package focuses on identifying influential observations from the perspective of model diagnostics in binary classification, and provides a couple of visualization tools as well. 
-</p>
-<br />
-<ul class="list-inline">
-<li><i class="fa fa-github fa-lg"></i> <a href="https://github.com/BoShiangKe/influenceAUC">GitHub</a></li>
-<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="http://www.r-pkg.org/badges/version/influenceAUC" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="http://cranlogs.r-pkg.org/badges/influenceAUC" /></a></li>
-<li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC" /></a></li>
-</ul>
-</div>
-<br />
-
-
+Hello, I'm a Machine Learning Engineer with 7 years of hands-on experience in building machine learning models,
+developing data products, and collaborating with diverse teams. My academic journey, spanning 5 years, was devoted to
+statistical methodologies and analyzing complex spatio-temporal datasets.
+My expertise lies in Recommendation Systems, Deep Learning, Bayesian Statistics, and Spatial Statistics. I'm well-versed
+in a variety of programming languages, including Python, PySpark, PyTorch, TensorFlow, R, C++, SQL.
 
 <h3>Publications</h3>
-
 <div class="list-group-item">
 <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
 <div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29, 2</a>

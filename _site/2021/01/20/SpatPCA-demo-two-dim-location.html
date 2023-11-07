@@ -1,118 +1,133 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</title>
-  <meta name="description" content="We try to represent how to use SpatPCA for two-dimensional data for capturing the most dominant spatial pattern">
+    <title>Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</title>
+    <meta name="description"
+          content="We try to represent how to use SpatPCA for two-dimensional data for capturing the most dominant spatial pattern">
 
-  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
-  <link rel="icon" type="image/png" href="/assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
-  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/assets/images/favicons/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/syntax-style.css">
-  <link rel="stylesheet" href="/css/site.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="canonical" href="http://localhost:4000/2021/01/20/SpatPCA-demo-two-dim-location.html">
-  <link rel="alternate" type="application/rss+xml" title="Wen-Ting Wang's Blog" href="http://localhost:4000/feed.xml" />
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="
+    /assets/images/favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="
+    /css/main.css">
+    <link rel="stylesheet" href="
+    /css/syntax-style.css">
+    <link rel="stylesheet" href="
+    /css/site.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="canonical" href="http://localhost:4000/2021/01/20/SpatPCA-demo-two-dim-location.html">
+    <link rel="alternate" type="application/rss+xml" title="Joseph Wang's Blog" href="http://localhost:4000
+    /feed.xml" />
 
-  <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-       <script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } });
+    </script>
+    <script type="text/x-mathjax-config">
          MathJax.Hub.Config({
            tex2jax: {
              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
              processEscapes: true
            }
          });
-       </script>
-       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="/js/jq_mathjax_parse.js"></script>
-  <script type="text/javascript" src="/js/jquery.toc.min.js"></script>
 
-  
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="
+    /js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="
+    /js/jq_mathjax_parse.js"></script>
+    <script type="text/javascript" src="
+    /js/jquery.toc.min.js"></script>
+
+    
 </head>
 
 
-  <body>
-    
-    <header class="site-header">
+<body>
 
-  <div class="wrapper">
+<header class="site-header">
 
-    <a class="site-title" href="/">Wen-Ting Wang's Blog</a>
+    <div class="wrapper">
 
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
+        <a class="site-title" href="/">Joseph Wang's Blog</a>
 
-      <div class="trigger">
-        
-          
-        
-          
-        
-          
-						<a class="page-link" href="/about/">About</a>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <a class="page-link" href="/tags/Python/">Python</a>
-        <a class="page-link" href="/tags/R/">R</a>
-        <a class="page-link" href="/tags/Statistics/">Statistics</a>
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242"
+                          d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242"
+                          d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242"
+                          d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
 
-        <a class="page-link" href="/tags/ML/">Machine Learning</a>
-                <a class="page-link" href="/tags/Software/">Software</a>
-      </div>
-    </nav>
+            <div class="trigger">
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/tags/software/">Software</a>
+            </div>
+        </nav>
 
-  </div>
+    </div>
 
 </header>
 
 
-    <div class="page-content">
-      <div class="wrapper">
+<div class="page-content">
+    <div class="wrapper">
         
 
 
 <div class="post">
 
-  <header class="post-header">
-    <h1 class="post-title">Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</h1>
-    <p class="post-meta">Jan 20, 2021</p>
-    <p id="post-meta"><i class="fa fa-tags"></i>: <a href="/tags/Software/">Software</a>, <a href="/tags/R/">R</a>, <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
-  </header>
+    <header class="post-header">
+        <h1 class="post-title">Capture the dominant spatial pattern with two-dimensional locations by SpatPCA</h1>
+        <p class="post-meta">Jan 20, 2021</p>
+        <p id="post-meta"><i
+        class="fa fa-tags"></i>: <a href="/tags/Software/">Software</a>, <a href="/tags/R/">R</a>, <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
+    </header>
 
-  <article class="post-content">
-    <p>We try to represent how to use <strong>SpatPCA</strong> for two-dimensional data for capturing the most dominant spatial pattern</p>
+    <article class="post-content">
+        <p>We try to represent how to use <strong>SpatPCA</strong> for two-dimensional data for capturing the most dominant spatial pattern</p>
 
 <h4 id="basic-settings">Basic settings</h4>
 <h5 id="used-packages">Used packages</h5>
@@ -228,7 +243,7 @@
 <p><img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" /></p>
 
 
-    <div id="disqus_thread"></div>
+        <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = 'egpivo';
@@ -239,49 +254,51 @@
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-  </article>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+    </article>
 
 </div>
 
-      </div>
     </div>
+</div>
 
-    <footer class="site-footer">
+<footer class="site-footer">
 
-  <div class="wrapper">
+    <div class="wrapper">
 
-      <div class="footer-col  footer-col-1">
-        <ul class="social-media-list">
-           <li>
-             <i class="fa fa-envelope"></i>
-             <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
-          </li>
-          
-          <li>
-              <i class="fa fa-github"></i>
-              <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
-          </li>
-          
-          <li>
-            <i class="fa fa-linkedin"></i>
-            <a href="https://www.linkedin.com/in/wtwang/"><span class="username">wtwang</span></a>
-          </li>
-        </ul>
-      </div>
+        <div class="footer-col  footer-col-1">
+            <ul class="social-media-list">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+                </li>
+                
+                <li>
+                    <i class="fa fa-github"></i>
+                    <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+                </li>
+                
+                <li>
+                    <i class="fa fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/wtwang/"><span class="username">wtwang</span></a>
+                </li>
+            </ul>
+        </div>
 
-      <div class="footer-col  footer-col-23">
-        <p class="text">Science is a means whereby learning is achieved.
+        <div class="footer-col  footer-col-23">
+            <p class="text">Science is a means whereby learning is achieved.
 </p>
-      </div>
+        </div>
     </div>
-  </div>
+    </div>
 
 </footer>
 
 
-  </body>
+</body>
 
 </html>

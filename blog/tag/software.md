@@ -1,5 +1,5 @@
 ---
-layout: posts_by_tag
-tag: Software
-permalink: /tags/Software/
+layout: posts_by_software
+tag: software
+permalink: /tags/software/
 ---
