@@ -5,11 +5,9 @@ menu: main
 permalink: /about/
 ---
 
-Hello, I'm a Machine Learning Engineer with 7 years of hands-on experience in building machine learning models,
-developing data products, and collaborating with diverse teams. My academic journey, spanning 5 years, was devoted to
-statistical methodologies and analyzing complex spatio-temporal datasets.
-My expertise lies in Recommendation Systems, Deep Learning, Bayesian Statistics, and Spatial Statistics. I'm well-versed
-in a variety of programming languages, including Python, PySpark, PyTorch, TensorFlow, R, C++, SQL.
+Hello, I'm a **Machine Learning Engineer** with **7 years** of hands-on experience in building machine learning models, developing data products, and collaborating with diverse teams. My academic journey, spanning **5 years**, was devoted to statistical methodologies and analyzing complex spatio-temporal datasets.
+
+My experience and expertise lie in **Recommendation Systems**, **Machine Learning**, **Deep Learning**, **Bayesian Statistics**, and **Spatial Statistics**. I'm well-versed in a variety of programming languages, including **Python**, **PySpark**, **PyTorch**, **TensorFlow**, **R**, **C++**, **SQL**.
 
 <h3>Publications</h3>
 <div class="list-group-item">
