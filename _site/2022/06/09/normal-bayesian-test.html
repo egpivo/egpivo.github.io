@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Note: Derivation of Normal Bayesian test</title>
+    <title>Note: Derivation of Normal Bayesian Test</title>
     <meta name="description"
           content="The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. It is applied to assess the ...">
 
@@ -128,25 +128,28 @@
 <div class="post">
 
     <header class="post-header">
-        <h1 class="post-title">Note: Derivation of Normal Bayesian test</h1>
+        <h1 class="post-title">Note: Derivation of Normal Bayesian Test</h1>
         <p class="post-meta">Jun 9, 2022</p>
         <p id="post-meta"><i class="fa fa-tag"></i>: <a href="/tags/Statistics/">Statistics</a></p>
     </header>
 
     <article class="post-content">
-        <p>The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. 
-It is applied to assess the validity of a null hypothesis (H0) versus an alternative hypothesis (H1) by considering the posterior distribution of a parameter of interest.</p>
-
-<p>This is an example on page 379 of <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger.</p>
+        <p>The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. It is applied to assess the validity of a null hypothesis ($H_0$) versus an alternative hypothesis ($H_1$) by considering the posterior distribution of a parameter of interest.
+This method is exemplified in <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger, as shown on page 379.</p>
 
 <h4 id="problem">Problem</h4>
-<p>Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.
-Consider the hypotheses are
-$\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta &gt; \theta_0.$
-What is the Bayesian test?</p>
+
+<p>Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.</p>
+
+<p>The hypotheses of interest are:</p>
+
+\[\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta &gt; \theta_0.\]
+
+<p>What is the Bayesian test?</p>
 
 <h4 id="normal-bayesian-test-derivation">Normal Bayesian Test Derivation</h4>
-<p>If we accept $\text{H}_0$, then we have:</p>
+
+<p>If we choose to accept $\text{H}_0$, we have:</p>
 
 \[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) \geq P(\theta \in \mathcal{\Theta}^c_0 \|X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n).\]
 
@@ -154,7 +157,7 @@ What is the Bayesian test?</p>
 
 \[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) = P(\theta \leq \theta_0 \|X_1, \dots, X_n) \geq \frac{1}{2}.\]
 
-<p>Let’s set:</p>
+<p>Let $Z$ be defined as:</p>
 
 \[Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}.\]
 
@@ -166,7 +169,7 @@ What is the Bayesian test?</p>
 
 \[P(\theta \leq \theta_0 \| X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\| X_1, \dots, X_n\right) \geq \frac{1}{2} = P(Z \leq 0\|X_1, \dots, X_n).\]
 
-<p>Therefore, the acceptance region is derived below:</p>
+<p>Therefore, the acceptance region is derived as:</p>
 
 \[\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0.\]
 
@@ -179,8 +182,8 @@ What is the Bayesian test?</p>
 \[\bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}.\]
 
 <h4 id="summary">Summary</h4>
-<p>In short, the Normal Bayesian test is a hypothesis test that uses the posterior distribution of a parameter to evaluate a null hypothesis that the parameter is less than or equal to a specific value.
-The test involves standardizing the parameter and defining an acceptance region for a standardized variable, allowing us to make a decision about the null hypothesis based on the observed data and posterior distribution.</p>
+<p>In summary, the Normal Bayesian test is a hypothesis test that uses the posterior distribution of a parameter to evaluate a null hypothesis that the parameter is less than or equal to a specific value under the assumption of normality. 
+This test involves standardizing the parameter and defining an acceptance region for a standardized variable, allowing us to make a decision about the null hypothesis based on the observed data and posterior distribution.</p>
 
 
         <div id="disqus_thread"></div>
