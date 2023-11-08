@@ -176,7 +176,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1..svg" title="plot of chunk eof1" alt="plot of chunk eof1" height="300" width="500" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof1-1.svg" title="plot of chunk eof1" alt="plot of chunk eof1" height="300" width="500" style="display: block; margin: auto;" />
 
 ~~~r
 # plot the second EOF
@@ -191,7 +191,7 @@ maps::map(database = "world", fill = TRUE, col = "gray",
           ylim=c(-19.5, 19.5), xlim = c(39.5,119.5), add = T)
 ~~~
 
-<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1..svg" title="plot of chunk eof2" alt="plot of chunk eof2" height="300" width="500" style="display: block; margin: auto;" />
+<img src="{{ site.url }}/assets/how_to_work_on_sst_data/eof2-1.svg" title="plot of chunk eof2" alt="plot of chunk eof2" height="300" width="500" style="display: block; margin: auto;" />
 
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 

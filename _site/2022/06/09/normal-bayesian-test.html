@@ -8,7 +8,7 @@
 
     <title>Note: Derivation of Normal Bayesian test</title>
     <meta name="description"
-          content="ProblemThis is an example on page 379 of Statistical Inference (2nd edition) by Casella and Berger. Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and ...">
+          content="The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. It is applied to assess the ...">
 
     <link rel="icon" type="image/png" href="
     /assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
@@ -82,6 +82,14 @@
                 
                 
                 
+                
+                
+                
+                
+                
+                
+                
+                
                 <a class="page-link" href="/about/">About</a>
                 
                 
@@ -126,34 +134,48 @@
     </header>
 
     <article class="post-content">
-        <h3 id="problem">Problem</h3>
-<p>This is an example on page 379 of <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger. Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.</p>
+        <p>The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. 
+It is applied to assess the validity of a null hypothesis (H0) versus an alternative hypothesis (H1) by considering the posterior distribution of a parameter of interest. 
+This is an example on page 379 of <a href="https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126">Statistical Inference (2nd edition)</a> by Casella and Berger.</p>
 
-<p>Consider the hypotheses are
+<h4 id="problem">Problem</h4>
+<p>Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.
+Consider the hypotheses are
 $\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta &gt; \theta_0.$
 What is the Bayesian test?</p>
 
-<h3 id="normal-bayesian-test">Normal Bayesian test</h3>
+<h4 id="normal-bayesian-test-derivation">Normal Bayesian Test Derivation</h4>
+<p>If we accept $\text{H}_0$, then we have:</p>
 
-<p>If we accept $\text{H}_0$, then
-$P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)\geq P(\theta \in \mathcal{\Theta}^c_0 |X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)$. Namely,<br />
-$\qquad\qquad\qquad P(\theta \in \mathcal{\Theta}_0 {|}X_1, \dots, X_n) = P(\theta \leq \theta_0 {|}X_1, \dots, X_n) \geq \frac{1}{2}.$</p>
+\[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) \geq P(\theta \in \mathcal{\Theta}^c_0 \|X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n).\]
 
-<p>Set \(Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\). Based on the posterior distribution $\pi(\theta \vert \bar{x})$, we have $Z\vert X_1, \dots, X_n \sim N(0, 1)$.</p>
+<p>Namely,</p>
 
-<p>Accordingly, we rewrite the inequality as <br />
-$\qquad\qquad\qquad P(\theta \leq \theta_0 {|} X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\vert X_1, \dots, X_n\right)\geq \frac{1}{2} = P(Z \leq 0{|}X_1, \dots, X_n).$</p>
+\[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) = P(\theta \leq \theta_0 \|X_1, \dots, X_n) \geq \frac{1}{2}.\]
 
-<p>Therefore, the acceptance region is derived below <br />
-$\qquad\qquad\qquad\qquad \begin{array}{ll}
-\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0
-\end{array}$<br />
-$\quad\qquad\qquad\qquad \begin{array}{ll}
-\Rightarrow (n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu
-\end{array}$<br />
-$\qquad\qquad\qquad \begin{array}{ll}
-\iff \bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}.
-\end{array}$</p>
+<p>Let’s set:</p>
+
+\[Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}.\]
+
+<p>Based on the posterior distribution $\pi(\theta | \bar{x})$, we have:</p>
+
+\[Z \| X_1, \dots, X_n \sim N(0, 1).\]
+
+<p>Accordingly, we can rewrite the inequality as:</p>
+
+\[P(\theta \leq \theta_0 \| X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\| X_1, \dots, X_n\right) \geq \frac{1}{2} = P(Z \leq 0\|X_1, \dots, X_n).\]
+
+<p>Therefore, the acceptance region is derived below:</p>
+
+\[\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0.\]
+
+<p>This simplifies to:</p>
+
+\[(n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu.\]
+
+<p>And further simplifies to:</p>
+
+\[\bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}.\]
 
 
         <div id="disqus_thread"></div>

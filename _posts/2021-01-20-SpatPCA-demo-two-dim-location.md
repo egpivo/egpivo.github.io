@@ -57,7 +57,7 @@ data.frame(
   fill_bar
 {% endhighlight %}
 
-<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
+<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
 
 #### Experiment
 ##### Generate 2-D realizations 
@@ -90,7 +90,7 @@ for (i in 1:n) {
 }
 {% endhighlight %}
 
-<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
+<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
 
 ##### Apply `SpatPCA::spatpca`
 We add a candidate set of `tau2` to see how **SpatPCA** obtain a localized smoothe pattern.
@@ -120,4 +120,4 @@ data.frame(
   fill_bar
 {% endhighlight %}
 
-<img src="figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />
+<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />

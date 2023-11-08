@@ -37,7 +37,8 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-3](figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png)
+
 
 ### Case I: Higher signal of the true eigenfunction
 #### Generate realizations 
@@ -58,8 +59,8 @@ for (i in 1:100) {
   plot(x = position, y = realizations[i, ], ylim = c(-10, 10), ylab = "realization")
 }
 {% endhighlight %}
+![plot of chunk unnamed-chunk-5]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif)
 
-![plot of chunk unnamed-chunk-5](figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif)
 
 #### Apply `SpatPCA::spatpca`
 
@@ -85,7 +86,7 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-7](figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png)
 
 ### Case II: Lower signal of the true eigenfunction
 #### Generate realizations with $\sigma=3$
@@ -103,7 +104,8 @@ for (i in 1:100) {
 }
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-9](figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif)
+
+![plot of chunk unnamed-chunk-9]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif)
 
 #### Compare resultant patterns
 The following panel indicates that **SpatPCA** outperforms to PCA visually when the signal-to-noise ratio is quite lower.
@@ -125,4 +127,4 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-10](figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-10]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png)

@@ -38,7 +38,7 @@ Suppose that a spatial process of interest is $$\{\eta_i(\cdot); i = 1,\dots, n\
 
 For example, we are interested in studying sea surface temperature monthly anomalies in the Indian Ocean during Jan., 2010 to Dec. 2016, formally. Then, we can define $\eta_i(\cdot)$ as a sea surface temperature monthly anomaly, $D$ as Indian Ocean (with blue color in the following plot), $n = 12\times 7$.  
 <center>
- <img src="/assets/spatial_patterns_with_a_sing_variable/process_example.png" width="60%" height="40%">
+ <img src="/assets/spatial_patterns_with_a_single_variable/process_example.png" width="60%" height="40%">
   <div class="caption">A spatial process in the Indian Ocean</div>
 </center>
  

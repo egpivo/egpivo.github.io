@@ -6,40 +6,54 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 07 Nov 2023 21:44:25 +0800</pubDate>
-    <lastBuildDate>Tue, 07 Nov 2023 21:44:25 +0800</lastBuildDate>
+    <pubDate>Wed, 08 Nov 2023 10:31:28 +0800</pubDate>
+    <lastBuildDate>Wed, 08 Nov 2023 10:31:28 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>Note: Derivation of Normal Bayesian test</title>
-        <description>&lt;h3 id=&quot;problem&quot;&gt;Problem&lt;/h3&gt;
-&lt;p&gt;This is an example on page 379 of &lt;a href=&quot;https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126&quot;&gt;Statistical Inference (2nd edition)&lt;/a&gt; by Casella and Berger. Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.&lt;/p&gt;
+        <description>&lt;p&gt;The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. 
+It is applied to assess the validity of a null hypothesis (H0) versus an alternative hypothesis (H1) by considering the posterior distribution of a parameter of interest. 
+This is an example on page 379 of &lt;a href=&quot;https://www.amazon.com/Statistical-Inference-George-Casella/dp/0534243126&quot;&gt;Statistical Inference (2nd edition)&lt;/a&gt; by Casella and Berger.&lt;/p&gt;
 
-&lt;p&gt;Consider the hypotheses are
+&lt;h4 id=&quot;problem&quot;&gt;Problem&lt;/h4&gt;
+&lt;p&gt;Let $X_1, \dots, X_n \sim_{iid} N(\theta, \sigma^2)$ and the prior distribution $\theta \sim N(\mu, \tau^2)$. According to Example 7.2.16, the posterior $\theta \vert \bar{x} \sim N\left(\frac{n\tau^2\bar{x}+\sigma^2\mu}{n\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}\right)$.
+Consider the hypotheses are
 $\text{H}_0: \theta\leq\theta_0 \mbox{ vs. } \text{H}_1: \theta &amp;gt; \theta_0.$
 What is the Bayesian test?&lt;/p&gt;
 
-&lt;h3 id=&quot;normal-bayesian-test&quot;&gt;Normal Bayesian test&lt;/h3&gt;
+&lt;h4 id=&quot;normal-bayesian-test-derivation&quot;&gt;Normal Bayesian Test Derivation&lt;/h4&gt;
+&lt;p&gt;If we accept $\text{H}_0$, then we have:&lt;/p&gt;
 
-&lt;p&gt;If we accept $\text{H}_0$, then
-$P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)\geq P(\theta \in \mathcal{\Theta}^c_0 |X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 |X_1, \dots, X_n)$. Namely,&lt;br /&gt;
-$\qquad\qquad\qquad P(\theta \in \mathcal{\Theta}_0 {|}X_1, \dots, X_n) = P(\theta \leq \theta_0 {|}X_1, \dots, X_n) \geq \frac{1}{2}.$&lt;/p&gt;
+\[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) \geq P(\theta \in \mathcal{\Theta}^c_0 \|X_1, \dots, X_n) = 1 - P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n).\]
 
-&lt;p&gt;Set \(Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\). Based on the posterior distribution $\pi(\theta \vert \bar{x})$, we have $Z\vert X_1, \dots, X_n \sim N(0, 1)$.&lt;/p&gt;
+&lt;p&gt;Namely,&lt;/p&gt;
 
-&lt;p&gt;Accordingly, we rewrite the inequality as &lt;br /&gt;
-$\qquad\qquad\qquad P(\theta \leq \theta_0 {|} X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\vert X_1, \dots, X_n\right)\geq \frac{1}{2} = P(Z \leq 0{|}X_1, \dots, X_n).$&lt;/p&gt;
+\[P(\theta \in \mathcal{\Theta}_0 \|X_1, \dots, X_n) = P(\theta \leq \theta_0 \|X_1, \dots, X_n) \geq \frac{1}{2}.\]
 
-&lt;p&gt;Therefore, the acceptance region is derived below &lt;br /&gt;
-$\qquad\qquad\qquad\qquad \begin{array}{ll}
-\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2} }{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0
-\end{array}$&lt;br /&gt;
-$\quad\qquad\qquad\qquad \begin{array}{ll}
-\Rightarrow (n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu
-\end{array}$&lt;br /&gt;
-$\qquad\qquad\qquad \begin{array}{ll}
-\iff \bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}.
-\end{array}$&lt;/p&gt;
+&lt;p&gt;Let’s set:&lt;/p&gt;
+
+\[Z = \frac{\theta - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}.\]
+
+&lt;p&gt;Based on the posterior distribution $\pi(\theta | \bar{x})$, we have:&lt;/p&gt;
+
+\[Z \| X_1, \dots, X_n \sim N(0, 1).\]
+
+&lt;p&gt;Accordingly, we can rewrite the inequality as:&lt;/p&gt;
+
+\[P(\theta \leq \theta_0 \| X_1, \dots, X_n) = P\left(Z \leq \frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}}\| X_1, \dots, X_n\right) \geq \frac{1}{2} = P(Z \leq 0\|X_1, \dots, X_n).\]
+
+&lt;p&gt;Therefore, the acceptance region is derived below:&lt;/p&gt;
+
+\[\frac{\theta_0 - \frac{n\tau^2\bar{X}+\sigma^2\mu}{n\tau^2 + \sigma^2}}{\sqrt{\frac{\sigma^2\tau^2}{n\tau^2 + \sigma^2}}} \geq 0.\]
+
+&lt;p&gt;This simplifies to:&lt;/p&gt;
+
+\[(n\tau^2 + \sigma^2) \theta_0 \geq n\tau^2\bar{X} + \sigma^2\mu.\]
+
+&lt;p&gt;And further simplifies to:&lt;/p&gt;
+
+\[\bar{X} \leq \theta_0 + \frac{\sigma^2(\theta_0 - \mu)}{n\tau^2}.\]
 </description>
         <pubDate>Thu, 09 Jun 2022 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2022/06/09/normal-bayesian-test.html</link>
@@ -103,7 +117,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;True Eigenfunction&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill_bar&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png&quot; title=&quot;plot of chunk unnamed-chunk-3&quot; alt=&quot;plot of chunk unnamed-chunk-3&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png&quot; title=&quot;plot of chunk unnamed-chunk-3&quot; alt=&quot;plot of chunk unnamed-chunk-3&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;experiment&quot;&gt;Experiment&lt;/h4&gt;
 &lt;h5 id=&quot;generate-2-d-realizations&quot;&gt;Generate 2-D realizations&lt;/h5&gt;
@@ -138,7 +152,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif&quot; title=&quot;plot of chunk unnamed-chunk-5&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif&quot; title=&quot;plot of chunk unnamed-chunk-5&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;apply-spatpcaspatpca&quot;&gt;Apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpatPCA::spatpca&lt;/code&gt;&lt;/h5&gt;
 &lt;p&gt;We add a candidate set of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tau2&lt;/code&gt; to see how &lt;strong&gt;SpatPCA&lt;/strong&gt; obtain a localized smoothe pattern.&lt;/p&gt;
@@ -165,7 +179,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill_bar&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png&quot; title=&quot;plot of chunk unnamed-chunk-7&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png&quot; title=&quot;plot of chunk unnamed-chunk-7&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 20 Jan 2021 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2021/01/20/SpatPCA-demo-two-dim-location.html</link>
@@ -215,7 +229,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;geom_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base_theme&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-3&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-3&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;case-i-higher-signal-of-the-true-eigenfunction&quot;&gt;Case I: Higher signal of the true eigenfunction&lt;/h3&gt;
 &lt;h4 id=&quot;generate-realizations&quot;&gt;Generate realizations&lt;/h4&gt;
@@ -234,7 +248,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;realizations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylab&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;realization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;apply-spatpcaspatpca&quot;&gt;Apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpatPCA::spatpca&lt;/code&gt;&lt;/h4&gt;
 
@@ -259,7 +273,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;geom_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base_theme&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;case-ii-lower-signal-of-the-true-eigenfunction&quot;&gt;Case II: Lower signal of the true eigenfunction&lt;/h3&gt;
 &lt;h4 id=&quot;generate-realizations-with-sigma3&quot;&gt;Generate realizations with $\sigma=3$&lt;/h4&gt;
@@ -273,7 +287,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;realizations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylab&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;realization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif&quot; alt=&quot;plot of chunk unnamed-chunk-9&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif&quot; alt=&quot;plot of chunk unnamed-chunk-9&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;compare-resultant-patterns&quot;&gt;Compare resultant patterns&lt;/h4&gt;
 &lt;p&gt;The following panel indicates that &lt;strong&gt;SpatPCA&lt;/strong&gt; outperforms to PCA visually when the signal-to-noise ratio is quite lower.&lt;/p&gt;
@@ -292,7 +306,7 @@ $\qquad\qquad\qquad \begin{array}{ll}
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;geom_line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base_theme&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;figure/posts/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-10&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-10&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 18 Jan 2021 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2021/01/18/SpatPCA-demo-one-dim-location.html</link>
@@ -600,143 +614,6 @@ Data (TKDD), 1:3, 2007.&lt;/p&gt;
       </item>
     
       <item>
-        <title>Note: Spark + R with `sparklyr`</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; is designed to process large-scale datasets efficently. Thanks to the authors of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sparklyr&lt;/code&gt; package for using R code on a Spark cluster, e.g.,
-easily manipulating datasets, and performing machine learning algorithms.&lt;/p&gt;
-
-&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Java:
-    &lt;ol&gt;
-      &lt;li&gt;Mac:
- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew cask install java&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;CentOS:
- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo yum install java-1.7.0-openjdk-devel&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;Other operating systems: https://www.java.com/en/download/help/download_options.xml&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Rsutdio + ‘sparklyr’:
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;install.packages(&quot;sparklyr&quot;)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;Set an environment variable Spark if needed: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sys.setenv(SPARK_HOME = &quot;where_you_install_spark&quot;)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;More details: http://spark.rstudio.com&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;process&quot;&gt;Process:&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Connection: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_connect()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;I/O:
-    &lt;ul&gt;
-      &lt;li&gt;list the data frames available in Spark: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src_tbls(spark_conn)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;write the data into Spark:
-        &lt;ul&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_write_csv(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_write_parquet(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_write_json(r_dataframe, filename)&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;import the data into Spark:
-        &lt;ul&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_read_csv(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_read_parquet(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_read_json(connection, &quot;tbl_name&quot;, dir_path)&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Data wrangling:
-    &lt;ul&gt;
-      &lt;li&gt;link to data in Spark: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tbl(connection,  dataname)&lt;/code&gt;
-        &lt;ul&gt;
-          &lt;li&gt;see dimensionality of a dataframe from Spark:  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dim(df_tbl)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;print 10 rows with all columns&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print(df_tbl, n = 10, width = Inf)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;examine structure of a dataframe from Spark: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;glimpse(track_metadata_tbl)&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;work with dplyr:
-        &lt;ol&gt;
-          &lt;li&gt;select columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select()&lt;/code&gt;
-            &lt;ul&gt;
-              &lt;li&gt;select columns starting with a string: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select(starts_with(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;select columns ending with a string: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select(ends_with(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;select columns containing with a string: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select(contains(&quot;some string&quot;))&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;select columns matching with a regex: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;select(matches(&quot;regex&quot;))&lt;/code&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;select rows: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distinct()&lt;/code&gt;
-            &lt;ul&gt;
-              &lt;li&gt;count the unqiue values: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;count()&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;show the top n rows: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;top_n()&lt;/code&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;filter rows: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filter()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;arrange rows: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arrange()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;change/add columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mutate()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;summarize statistics: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;summarize()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;group by unquoted names of columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;group_by()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;join tables:
-            &lt;ul&gt;
-              &lt;li&gt;left join by columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;anti join by columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anti_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;semi join by columns: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;semi_join(, by = cols)&lt;/code&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-      &lt;li&gt;copy an R dataframe to Spark: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copy_to(connection, df)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;collect data back from Spark with a name: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;collect(&apos;name_in_spark&apos;)&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;store the results of intermediate calculations: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compute()&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;covert R code into SQL and return the results to R immediately:&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dbGetQuery(connection, query)&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Machine learning with MLlib:
-    &lt;ul&gt;
-      &lt;li&gt;feature transformation functions named starting with “ft_” or “sdf_”
-        &lt;ul&gt;
-          &lt;li&gt;binarize continuous variables to logical with a threshold:  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft_binarizer(&quot;target_col&quot;, &quot;new_col&quot;, threshold = a)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;bucketize continuous variables into categorical with a set of thresholds: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft_bucketizer(&quot;target_col&quot;, &quot;new_col&quot;, splits = vec)&lt;/code&gt;&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;quantilize continuous variables into categorical with a number of groups: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft_quantile_discretizer(&quot;target_col&quot;, &quot;new_col&quot;, n.buckets = n)&lt;/code&gt;     - tokenize simply&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft_tokenizer(&apos;target_col&apos;, &apos;new_col&apos;)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;tokenize with regex &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ft_regex_tokenizer(&apos;target_col&apos;, &apos;new_col&apos;, pattern)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;arrange rows using a Spark function: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdf_sort()&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;exploring the columns of a tibble: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdf_schema(spark_tbl)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;sample the data without replacement, with a rate of fraction and a seed: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdf_sample(tbl, fraction = fraction, replacement = FALSE, seed = seed)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;split data into training and testing sets:
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdf_partition(training = training_rate, testing = testing_rate)&lt;/code&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;machine learning functions named starting with “ml_”
-        &lt;ul&gt;
-          &lt;li&gt;linear regression:&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ml_linear_regression(response, feature)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;gradient boosted tree:
-  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ml_gradient_boosted_trees(response, feature)&lt;/code&gt;             - random forest: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ml_random_forest(response, feature)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;predict: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdf_predict(spark_model, testing_set)&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;more models can be found on http://spark.rstudio.com/mllib.html&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Disconnection: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spark_connect()&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;DataCamp: &lt;a href=&quot;https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr&quot;&gt;Introduction to Spark in R using sparklyr&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Mon, 17 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/17/note_Spark_R_with_sparklyr.html</guid>
-        
-        <category>R</category>
-        
-        
-      </item>
-    
-      <item>
         <title>Problems: EOF patterns with a single variable</title>
         <description>&lt;p&gt;In this post, we talk about possible problems of EOF patterns.&lt;/p&gt;
 
@@ -804,7 +681,7 @@ When sample size n is smaller or the number of locations is higher, the EOF patt
 
 &lt;p&gt;For example, we are interested in studying sea surface temperature monthly anomalies in the Indian Ocean during Jan., 2010 to Dec. 2016, formally. Then, we can define $\eta_i(\cdot)$ as a sea surface temperature monthly anomaly, $D$ as Indian Ocean (with blue color in the following plot), $n = 12\times 7$.&lt;/p&gt;
 &lt;center&gt;
- &lt;img src=&quot;/assets/spatial_patterns_with_a_sing_variable/process_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+ &lt;img src=&quot;/assets/spatial_patterns_with_a_single_variable/process_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;A spatial process in the Indian Ocean&lt;/div&gt;
 &lt;/center&gt;
 
@@ -816,7 +693,7 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 
 &lt;p&gt;The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.&lt;/p&gt;
 &lt;center&gt;
- &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_sing_variable/data_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
+ &lt;img src=&quot;http://localhost:4000/assets/spatial_patterns_with_a_single_variable/data_example.png&quot; width=&quot;60%&quot; height=&quot;40%&quot; /&gt;
   &lt;div class=&quot;caption&quot;&gt;Observed data in the Indian Ocean&lt;/div&gt;
 &lt;/center&gt;
 
@@ -843,169 +720,6 @@ a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $
         <category>Statistics</category>
         
         <category>Spatial Statistics</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>String manipulation: backreference with `stringr` + `rebus`</title>
-        <description>&lt;p&gt;In practice, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backreference&lt;/code&gt; is an R function in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rebus&lt;/code&gt;, which is useful for replacement operations. I will apply some functions in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stringr&lt;/code&gt; combined with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backreference&lt;/code&gt; to a Chinese lyric.&lt;/p&gt;
-
-&lt;h2 id=&quot;example-chinese-lyric&quot;&gt;Example: Chinese Lyric&lt;/h2&gt;
-
-&lt;h3 id=&quot;download-a-chinese-lyric&quot;&gt;Download a Chinese lyric&lt;/h3&gt;
-&lt;p&gt;We download the file first.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# set a url of the lyric&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;egpivo.github.io/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/lyrics&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# create a name for temporary files in the working directory&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tempfile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpdir&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# creates a file with the given name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file.create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;## [1] TRUE
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#download the file&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;download.file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;import-the-lyric&quot;&gt;Import the lyric&lt;/h3&gt;
-
-&lt;p&gt;We can use the function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readLines&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base&lt;/code&gt;, but we have a better choice. That is, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stri_read_lines&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stringi&lt;/code&gt;, which is faster and
-more stable.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stri_read_lines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;風到這裡就是黏 黏住過客的思念&quot;                        
-##  [2] &quot;雨到了這裡纏成線 纏著我們流連人世間&quot;                  
-##  [3] &quot;妳在身邊就是緣 緣分寫在三生石上面&quot;                    
-##  [4] &quot;愛有萬分之一甜 寧願我就葬在這一點&quot;                    
-##  [5] &quot;&quot;                                                     
-##  [6] &quot;圈圈圓圓圈圈 天天年年天天的我 深深看你的臉&quot;           
-##  [7] &quot;生氣的溫柔 埋怨的溫柔的臉&quot;                            
-##  [8] &quot;&quot;                                                     
-##  [9] &quot;不懂愛恨情仇煎熬的我們 都以為相愛就像風雲的善變&quot;      
-## [10] &quot;相信愛一天 抵過永遠 在這一剎那凍結了時間&quot;             
-## [11] &quot;&quot;                                                     
-## [12] &quot;不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言&quot;      
-## [13] &quot;離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;view-the-matched-patterns-with-repeated-characters&quot;&gt;View the matched patterns with repeated characters.&lt;/h3&gt;
-
-&lt;p&gt;We want to see which character repeated twice in the lyric. We will view which line is matched by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;capture()&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stringr&lt;/code&gt; and a backreference &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REF1&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rebus&lt;/code&gt; where beckreferecens can be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REF1&lt;/code&gt; $\dots$ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REF9&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rebus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Define the pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WRD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%R%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;REF1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#View matches of pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-4-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-4&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;extract-the-matched-lines&quot;&gt;Extract the matched lines&lt;/h3&gt;
-&lt;p&gt;Before we extracting matched lines,  we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;str_subset&lt;/code&gt; to store subset of matched lines first.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;lines&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_subset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Then, we apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;str_extract&lt;/code&gt; to extract the lines, and show the repeated characters.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Extract matches from lines&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_extract_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Show the frequencies of repeated characters&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;knitr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plyr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;x&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;freq&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;年年&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;圈圈&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;深深&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;天天&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;圓圓&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;view-characters-with-a-pair-that-reverses&quot;&gt;View characters with a pair that reverses&lt;/h3&gt;
-&lt;p&gt;Here we want to detect a reversed pair by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REF1&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REF2&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WRD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%R%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WRD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%R%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;REF2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%R%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;REF1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-7-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;replace-with-backreferces&quot;&gt;Replace with backreferces&lt;/h3&gt;
-&lt;h4 id=&quot;build-a-pattern-to-be-replaced&quot;&gt;Build a pattern to be replaced&lt;/h4&gt;
-&lt;p&gt;We build a pattern that finds a chines character “愛”. We first check it against &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lyrics&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;replacePattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;愛&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_view_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replacePattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/string_manipulation_using_backreference_wiht_stringr_and_rebus/unnamed-chunk-8-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-8&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;test-out-the-replacement&quot;&gt;Test out the replacement&lt;/h4&gt;
-&lt;p&gt;Then, we apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;str_replace_all&lt;/code&gt; to replace the pattern with some words including ‘愛’ and a unicode, ♡, around it.&lt;/p&gt;
-
-&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;str_replace_all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lyrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replacePattern&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\u2661&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;REF1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\u2661&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sep&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;##  [1] &quot;風到這裡就是黏 黏住過客的思念&quot;                        
-##  [2] &quot;雨到了這裡纏成線 纏著我們流連人世間&quot;                  
-##  [3] &quot;妳在身邊就是緣 緣分寫在三生石上面&quot;                    
-##  [4] &quot;♡愛♡有萬分之一甜 寧願我就葬在這一點&quot;                  
-##  [5] &quot;&quot;                                                     
-##  [6] &quot;圈圈圓圓圈圈 天天年年天天的我 深深看你的臉&quot;           
-##  [7] &quot;生氣的溫柔 埋怨的溫柔的臉&quot;                            
-##  [8] &quot;&quot;                                                     
-##  [9] &quot;不懂♡愛♡恨情仇煎熬的我們 都以為相♡愛♡就像風雲的善變&quot;  
-## [10] &quot;相信♡愛♡一天 抵過永遠 在這一剎那凍結了時間&quot;           
-## [11] &quot;&quot;                                                     
-## [12] &quot;不懂怎麼表現溫柔的我們 還以為殉情只是古老的傳言&quot;      
-## [13] &quot;離愁能有多痛 痛有多濃 當夢被埋在江南煙雨中 心碎了才懂&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;DataCamp: &lt;a href=&quot;https://www.datacamp.com/courses/string-manipulation-in-r-with-stringr&quot;&gt;String Manipulation in R with stringr&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 11 Jun 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/06/11/string_manipulation_using_backreference_wiht_stringr_and_rebus.html</guid>
-        
-        <category>R</category>
         
         
       </item>
@@ -1154,7 +868,7 @@ sudo port install ncview
           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;39.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;119.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1..svg&quot; title=&quot;plot of chunk eof1&quot; alt=&quot;plot of chunk eof1&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof1-1.svg&quot; title=&quot;plot of chunk eof1&quot; alt=&quot;plot of chunk eof1&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# plot the second EOF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;par&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mar&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -1168,7 +882,7 @@ sudo port install ncview
           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;19.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;39.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;119.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1..svg&quot; title=&quot;plot of chunk eof2&quot; alt=&quot;plot of chunk eof2&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/how_to_work_on_sst_data/eof2-1.svg&quot; title=&quot;plot of chunk eof2&quot; alt=&quot;plot of chunk eof2&quot; height=&quot;300&quot; width=&quot;500&quot; style=&quot;display: block; margin: auto;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The first EOF is known as a basin-wide mode, and the second one is a dipole mode.&lt;/p&gt;
 
