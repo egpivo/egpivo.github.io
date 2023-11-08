@@ -4,12 +4,20 @@ title: About
 menu: main
 permalink: /about/
 ---
+**Greetings! I'm a Machine Learning Engineer** with **7 years** of hands-on experience in building cutting-edge machine learning models, developing data-driven products, and fostering collaboration within cross-functional teams. I hold a Ph.D. in Statistics, and my academic journey spans **5 years**, delving deep into statistical methodologies and exploring the intricacies of complex spatio-temporal datasets.
 
-Hello, I'm a **Machine Learning Engineer** with **7 years** of hands-on experience in building machine learning models, developing data products, and collaborating with diverse teams. My academic journey, spanning **5 years**, was devoted to statistical methodologies and analyzing complex spatio-temporal datasets.
+<h4>Expertise</h4>
+My experience and expertise lie in 
+- *Recommendation Systems*
+- *Machine Learning*
+- *Deep Learning*
+- *Bayesian Statistics*
+- *Spatial Statistics*
 
-My experience and expertise lie in **Recommendation Systems**, **Machine Learning**, **Deep Learning**, **Bayesian Statistics**, and **Spatial Statistics**. I'm well-versed in a variety of programming languages, including **Python**, **PySpark**, **PyTorch**, **TensorFlow**, **R**, **C++**, **SQL**.
+I'm well-versed in a variety of programming languages, including *Python*, *PySpark*, *PyTorch*, *TensorFlow*, *R*, *C++*, *SQL*.
 
-<h3>Publications</h3>
+
+<h4>Publications</h4>
 <div class="list-group-item">
 <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
 <div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29, 2</a>
