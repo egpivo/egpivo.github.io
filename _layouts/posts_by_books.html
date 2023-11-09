@@ -1,0 +1,101 @@
+---
+layout: default
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .category {
+      margin-top: 20px;
+    }
+
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .book {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: calc(25% - 20px);
+    }
+
+    .book-image {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .book-title {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .book-author {
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Tech Section -->
+<div class="category">
+    <h2>Tech</h2>
+    <div class="book-container">
+    </div>
+</div>
+
+<!-- Personal Growth Section -->
+<div class="category">
+    <h2>Personal Growth</h2>
+    <div class="book-container">
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/high-performance-habits.png" alt="Book 1">
+            <div class="book-title">High Performance Habits</div>
+            <div class="book-author">Brendon Burchard</div>
+        </div>
+
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/mindset.png" alt="Book 2">
+            <div class="book-title">Mindset</div>
+            <div class="book-author">Carol Dweck</div>
+        </div>
+
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/the-subtle-art-of-not-giving-a-fuck.png" alt="Book 3">
+            <div class="book-title">The Subtle Art of Not Giving A Fxck</div>
+            <div class="book-author">Mark Manson</div>
+        </div>
+
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/essentialism.png" alt="Book 4">
+            <div class="book-title">Essentialism: The Disciplined Pursuit of Less</div>
+            <div class="book-author">Greg McKeown</div>
+        </div>
+
+        <div class="book">
+            <img class="book-image"
+                 src="{{ site.url }}/assets/books/make-your-bed-little-things-that-can-change-your-life.png" alt="Book 5">
+            <div class="book-title">Make Your Bed: Little Things That Can Change Your Life... and Maybe the Worlds</div>
+            <div class="book-author">Admiral William H. McRaven</div>
+        </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/the-power-of-now.png" alt="Book 6">
+            <div class="book-title">The Power of Now</div>
+            <div class="book-author">Eckhart Tolle</div>
+        </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/atomic-habits.jpg" alt="Book 6">
+            <div class="book-title">Atomic Habits</div>
+            <div class="book-author">James Clear</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
