@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 Nov 2023 10:50:35 +0800</pubDate>
-    <lastBuildDate>Sun, 12 Nov 2023 10:50:35 +0800</lastBuildDate>
+    <pubDate>Sun, 12 Nov 2023 10:54:04 +0800</pubDate>
+    <lastBuildDate>Sun, 12 Nov 2023 10:54:04 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -125,7 +125,9 @@ This test involves standardizing the parameter and defining an acceptance region
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;True Eigenfunction&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill_bar&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png&quot; title=&quot;plot of chunk unnamed-chunk-3&quot; alt=&quot;plot of chunk unnamed-chunk-3&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png&quot; width=&quot;500&quot; height=&quot;400&quot; alt=&quot;Description&quot; /&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;experiment&quot;&gt;Experiment&lt;/h3&gt;
 &lt;h4 id=&quot;generate-2-d-realizations&quot;&gt;Generate 2-D Realizations&lt;/h4&gt;
@@ -155,7 +157,9 @@ This test involves standardizing the parameter and defining an acceptance region
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif&quot; title=&quot;plot of chunk unnamed-chunk-5&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif&quot; width=&quot;500&quot; height=&quot;400&quot; alt=&quot;Description&quot; /&gt;
+&lt;/div&gt;
 
 &lt;h4 id=&quot;apply-spatpcaspatpca&quot;&gt;Apply &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpatPCA::spatpca&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;Add a candidate set of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tau2&lt;/code&gt; to observe how &lt;strong&gt;SpatPCA&lt;/strong&gt; obtains a localized smooth pattern.&lt;/p&gt;
@@ -182,7 +186,9 @@ This test involves standardizing the parameter and defining an acceptance region
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fill_bar&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png&quot; title=&quot;plot of chunk unnamed-chunk-7&quot; alt=&quot;plot of chunk unnamed-chunk-7&quot; width=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png&quot; width=&quot;500&quot; height=&quot;400&quot; alt=&quot;Description&quot; /&gt;
+&lt;/div&gt;
 
 &lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
 &lt;p&gt;In conclusion, this tutorial delves into the powerful capabilities of SpatPCA for analyzing spatial patterns in two-dimensional data. By leveraging SpatPCA, we’ve demonstrated its efficacy in capturing dominant spatial patterns through simulated realizations 

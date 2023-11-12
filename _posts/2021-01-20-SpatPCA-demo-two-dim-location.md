@@ -57,7 +57,9 @@ data.frame(
   fill_bar
 {% endhighlight %}
 
-<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" width="500" height="400" alt="Description">
+</div>
 
 ### Experiment
 #### Generate 2-D Realizations 
@@ -87,7 +89,9 @@ for (i in 1:n) {
 }
 {% endhighlight %}
 
-<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" width="500" height="400" alt="Description">
+</div>
 
 #### Apply `SpatPCA::spatpca`
 Add a candidate set of `tau2` to observe how **SpatPCA** obtains a localized smooth pattern.
@@ -117,7 +121,9 @@ data.frame(
   fill_bar
 {% endhighlight %}
 
-<img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" width="500" height="400" alt="Description">
+</div>
 
 ### Summary
 In conclusion, this tutorial delves into the powerful capabilities of SpatPCA for analyzing spatial patterns in two-dimensional data. By leveraging SpatPCA, we've demonstrated its efficacy in capturing dominant spatial patterns through simulated realizations 
