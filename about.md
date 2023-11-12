@@ -10,22 +10,17 @@ Welcome to my corner of the digital world! I am a seasoned **Machine Learning En
 
 <h4>Filed of Interests</h4>
 My passion and expertise lie in several domains, including:
-- 
 - *Recommendation Systems*
 - *Machine Learning*
 - *Deep Learning*
 - *Bayesian Statistics*
 - *Spatial Statistics*
 
-I am well-versed in a variety of programming languages, which include:
+I possess proficiency in a diverse range of programming languages tailored for specific tasks, including:
 
-- *Python*
-- *PySpark*
-- *PyTorch*
-- *TensorFlow*
-- *R*
-- *C++*
-- *SQL*
+- General-purpose programming: Python, C++
+- Data processing and analytics: PySpark, R, SQL
+- Machine learning and deep learning frameworks: PyTorch, TensorFlow
 
 <h4>Publications</h4>
 Here are some of my notable publications:
