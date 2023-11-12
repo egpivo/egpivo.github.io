@@ -1,16 +1,13 @@
 ---
 layout: post
-title:  "Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations"
+title:  "Apply SpatPCA to Capture the Dominant Spatial Pattern with One-Dimensional Locations"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
+In this tutorial, we explore the application of **SpatPCA** to capture the most dominant spatial patterns in one-dimensional data, highlighting its performance under varying signal-to-noise ratios.
 
-We have two objectives
-1. Demonstrate how **SpatPCA** captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.
-2. Represent how to use **SpatPCA** for one-dimensional data
-
-### Basic settings
-#### Used packages
+### Basic Settings
+#### Used Packages
 
 {% highlight r %}
 library(SpatPCA)
@@ -20,8 +17,9 @@ library(tidyr)
 library(gifski)
 base_theme <- theme_classic(base_size = 18, base_family = "Times")
 {% endhighlight %}
-#### True spatial pattern (eigenfunction)
-The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
+
+#### True Spatial Pattern (Eigenfunction)
+The underlying spatial pattern exhibits significant variation at the center and remains nearly unchanged at both ends of the curve.
 
 {% highlight r %}
 set.seed(1024)
@@ -37,30 +35,31 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-3]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png)
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png" width="400" height="300" alt="Description">
+</div>
 
-
-### Case I: Higher signal of the true eigenfunction
-#### Generate realizations 
-We want to generate 100 random sample based on 
-  - The spatial signal for the true spatial pattern is distributed normally with $\sigma=20$
-  - The noise follows the standard normal distribution.
+### Case I: Higher Signal of the True Eigenfunction
+#### Generate Realizations 
+We generate 100 random samples based on a spatial signal with a standard deviation of 20 and standard normal distribution for noise.
 
 
 {% highlight r %}
 realizations <- rnorm(n = 100, sd = 20) %*% t(true_eigen_fn) + matrix(rnorm(n = 100 * 100), 100, 100)
 {% endhighlight %}
 
-#### Animate realizations
-We can see simulated central realizations change in a wide range more frequently than the others.
+#### Animate Realizations
+Simulated central realizations exhibit a wider range of variation than others.
 
 {% highlight r %}
 for (i in 1:100) {
   plot(x = position, y = realizations[i, ], ylim = c(-10, 10), ylab = "realization")
 }
 {% endhighlight %}
-![plot of chunk unnamed-chunk-5]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif)
 
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif" width="400" height="300" alt="Description">
+</div>
 
 #### Apply `SpatPCA::spatpca`
 
@@ -68,10 +67,10 @@ for (i in 1:100) {
 cv <- spatpca(x = position, Y = realizations)
 eigen_est <- cv$eigenfn
 {% endhighlight %}
+
 #### Compare **SpatPCA** with PCA
-There are two comparison remarks 
-  1. Two estimates are similar to the true eigenfunctions
-  2. **SpatPCA** can perform better at the both ends.
+
+Comparison reveals that SpatPCA provides sparser patterns than PCA, closely resembling the true eigenfunction.
 
 {% highlight r %}
 data.frame(
@@ -86,17 +85,20 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-7]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png)
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png" width="400" height="300" alt="Description">
+</div>
 
-### Case II: Lower signal of the true eigenfunction
-#### Generate realizations with $\sigma=3$
+### Case II: Lower Signal of the True Eigenfunction
+#### Generate Realizations with $\sigma=3$
 
 {% highlight r %}
 realizations <- rnorm(n = 100, sd = 3) %*% t(true_eigen_fn) + matrix(rnorm(n = 100 * 100), 100, 100)
 {% endhighlight %}
 
-#### Animate realizations
-It is hard to see a crystal clear spatial pattern via the simluated sample shown below.
+#### Animate Realizations
+Simulated samples show a less clear spatial pattern.
+
 
 {% highlight r %}
 for (i in 1:100) {
@@ -105,10 +107,12 @@ for (i in 1:100) {
 {% endhighlight %}
 
 
-![plot of chunk unnamed-chunk-9]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif)
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif" width="400" height="300" alt="Description">
+</div>
 
-#### Compare resultant patterns
-The following panel indicates that **SpatPCA** outperforms to PCA visually when the signal-to-noise ratio is quite lower.
+#### Compare Resultant Patterns
+**SpatPCA** outperforms PCA visually when the signal-to-noise ratio is lower.
 
 
 {% highlight r %}
@@ -127,4 +131,10 @@ data.frame(
   base_theme
 {% endhighlight %}
 
-![plot of chunk unnamed-chunk-10]({{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png)
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png" width="400" height="300" alt="Description">
+</div>
+
+### Summary
+In this article, we explore the application of the SpatPCA R package to capture dominant spatial patterns in one-dimensional data. The tutorial focuses on demonstrating SpatPCA's performance under different signal-to-noise ratios. 
+Two cases are considered: one with a higher signal and another with a lower signal. Animated realizations and comparisons with traditional PCA illustrate SpatPCA's ability to provide sparser and more accurate patterns, particularly in scenarios with lower signal-to-noise ratios.

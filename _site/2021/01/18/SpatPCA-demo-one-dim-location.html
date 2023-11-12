@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations</title>
+    <title>Apply SpatPCA to Capture the Dominant Spatial Pattern with One-Dimensional Locations</title>
     <meta name="description"
-          content="We have two objectives  Demonstrate how SpatPCA captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.  Represent...">
+          content="In this tutorial, we explore the application of SpatPCA to capture the most dominant spatial patterns in one-dimensional data, highlighting its performance u...">
 
     <link rel="icon" type="image/png" href="
     /assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
@@ -132,21 +132,17 @@
 <div class="post">
 
     <header class="post-header">
-        <h1 class="post-title">Appy SpatPCA to capture the dominant spatial pattern with one-dimensional locations</h1>
+        <h1 class="post-title">Apply SpatPCA to Capture the Dominant Spatial Pattern with One-Dimensional Locations</h1>
         <p class="post-meta">Jan 18, 2021</p>
         <p id="post-meta"><i
         class="fa fa-tags"></i>: <a href="/tags/Software/">Software</a>, <a href="/tags/R/">R</a>, <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
     </header>
 
     <article class="post-content">
-        <p>We have two objectives</p>
-<ol>
-  <li>Demonstrate how <strong>SpatPCA</strong> captures the most dominant spatial pattern of variation based on different signal-to-noise ratios.</li>
-  <li>Represent how to use <strong>SpatPCA</strong> for one-dimensional data</li>
-</ol>
+        <p>In this tutorial, we explore the application of <strong>SpatPCA</strong> to capture the most dominant spatial patterns in one-dimensional data, highlighting its performance under varying signal-to-noise ratios.</p>
 
-<h3 id="basic-settings">Basic settings</h3>
-<h4 id="used-packages">Used packages</h4>
+<h3 id="basic-settings">Basic Settings</h3>
+<h4 id="used-packages">Used Packages</h4>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">SpatPCA</span><span class="p">)</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
@@ -155,8 +151,8 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">gifski</span><span class="p">)</span><span class="w">
 </span><span class="n">base_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theme_classic</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Times"</span><span class="p">)</span></code></pre></figure>
 
-<h4 id="true-spatial-pattern-eigenfunction">True spatial pattern (eigenfunction)</h4>
-<p>The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.</p>
+<h4 id="true-spatial-pattern-eigenfunction">True Spatial Pattern (Eigenfunction)</h4>
+<p>The underlying spatial pattern exhibits significant variation at the center and remains nearly unchanged at both ends of the curve.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">set.seed</span><span class="p">(</span><span class="m">1024</span><span class="p">)</span><span class="w">
 </span><span class="n">position</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">seq</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">))</span><span class="w">
@@ -170,26 +166,26 @@
   </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">base_theme</span></code></pre></figure>
 
-<p><img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3" /></p>
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png" width="400" height="300" alt="Description" />
+</div>
 
-<h3 id="case-i-higher-signal-of-the-true-eigenfunction">Case I: Higher signal of the true eigenfunction</h3>
-<h4 id="generate-realizations">Generate realizations</h4>
-<p>We want to generate 100 random sample based on</p>
-<ul>
-  <li>The spatial signal for the true spatial pattern is distributed normally with $\sigma=20$</li>
-  <li>The noise follows the standard normal distribution.</li>
-</ul>
+<h3 id="case-i-higher-signal-of-the-true-eigenfunction">Case I: Higher Signal of the True Eigenfunction</h3>
+<h4 id="generate-realizations">Generate Realizations</h4>
+<p>We generate 100 random samples based on a spatial signal with a standard deviation of 20 and standard normal distribution for noise.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">realizations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">true_eigen_fn</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)</span></code></pre></figure>
 
-<h4 id="animate-realizations">Animate realizations</h4>
-<p>We can see simulated central realizations change in a wide range more frequently than the others.</p>
+<h4 id="animate-realizations">Animate Realizations</h4>
+<p>Simulated central realizations exhibit a wider range of variation than others.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realizations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"realization"</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-<p><img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif" alt="plot of chunk unnamed-chunk-5" /></p>
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-5-.gif" width="400" height="300" alt="Description" />
+</div>
 
 <h4 id="apply-spatpcaspatpca">Apply <code class="language-plaintext highlighter-rouge">SpatPCA::spatpca</code></h4>
 
@@ -197,11 +193,8 @@
 </span><span class="n">eigen_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv</span><span class="o">$</span><span class="n">eigenfn</span></code></pre></figure>
 
 <h4 id="compare-spatpca-with-pca">Compare <strong>SpatPCA</strong> with PCA</h4>
-<p>There are two comparison remarks</p>
-<ol>
-  <li>Two estimates are similar to the true eigenfunctions</li>
-  <li><strong>SpatPCA</strong> can perform better at the both ends.</li>
-</ol>
+
+<p>Comparison reveals that SpatPCA provides sparser patterns than PCA, closely resembling the true eigenfunction.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">data.frame</span><span class="p">(</span><span class="w">
   </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w">
@@ -214,24 +207,28 @@
   </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">base_theme</span></code></pre></figure>
 
-<p><img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /></p>
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-7-1.png" width="400" height="300" alt="Description" />
+</div>
 
-<h3 id="case-ii-lower-signal-of-the-true-eigenfunction">Case II: Lower signal of the true eigenfunction</h3>
-<h4 id="generate-realizations-with-sigma3">Generate realizations with $\sigma=3$</h4>
+<h3 id="case-ii-lower-signal-of-the-true-eigenfunction">Case II: Lower Signal of the True Eigenfunction</h3>
+<h4 id="generate-realizations-with-sigma3">Generate Realizations with $\sigma=3$</h4>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">realizations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">true_eigen_fn</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)</span></code></pre></figure>
 
-<h4 id="animate-realizations-1">Animate realizations</h4>
-<p>It is hard to see a crystal clear spatial pattern via the simluated sample shown below.</p>
+<h4 id="animate-realizations-1">Animate Realizations</h4>
+<p>Simulated samples show a less clear spatial pattern.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realizations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"realization"</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span></code></pre></figure>
 
-<p><img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif" alt="plot of chunk unnamed-chunk-9" /></p>
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-9-.gif" width="400" height="300" alt="Description" />
+</div>
 
-<h4 id="compare-resultant-patterns">Compare resultant patterns</h4>
-<p>The following panel indicates that <strong>SpatPCA</strong> outperforms to PCA visually when the signal-to-noise ratio is quite lower.</p>
+<h4 id="compare-resultant-patterns">Compare Resultant Patterns</h4>
+<p><strong>SpatPCA</strong> outperforms PCA visually when the signal-to-noise ratio is lower.</p>
 
 <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">cv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spatpca</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">realizations</span><span class="p">)</span><span class="w">
 </span><span class="n">eigen_est</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cv</span><span class="o">$</span><span class="n">eigenfn</span><span class="w">
@@ -247,7 +244,13 @@
   </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
   </span><span class="n">base_theme</span></code></pre></figure>
 
-<p><img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" /></p>
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-10-1.png" width="400" height="300" alt="Description" />
+</div>
+
+<h3 id="summary">Summary</h3>
+<p>In this article, we explore the application of the SpatPCA R package to capture dominant spatial patterns in one-dimensional data. The tutorial focuses on demonstrating SpatPCA’s performance under different signal-to-noise ratios. 
+Two cases are considered: one with a higher signal and another with a lower signal. Animated realizations and comparisons with traditional PCA illustrate SpatPCA’s ability to provide sparser and more accurate patterns, particularly in scenarios with lower signal-to-noise ratios.</p>
 
 
         <div id="disqus_thread"></div>
