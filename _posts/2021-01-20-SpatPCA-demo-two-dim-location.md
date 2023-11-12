@@ -1,14 +1,13 @@
 ---
 layout: post
-title:  "Capture the dominant spatial pattern with two-dimensional locations by SpatPCA"
+title:  "Capturing Dominant Spatial Patterns with Two-Dimensional Locations Using SpatPCA"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
+In this demonstration, we showcase how to utilize **SpatPCA** for analyzing two-dimensional data to capture the most dominant spatial pattern.
 
-We try to represent how to use **SpatPCA** for two-dimensional data for capturing the most dominant spatial pattern
-
-#### Basic settings
-##### Used packages
+### Basic Settings
+#### Used Packages
 
 {% highlight r %}
 library(SpatPCA)
@@ -29,8 +28,9 @@ fill_bar <- guides(fill = guide_colourbar(
 coltab <- scico(128, palette = "vik")
 color_scale_limit <- c(-.28, .28)
 {% endhighlight %}
-##### True spatial pattern (eigenfunction)
-- The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
+
+#### True Spatial Pattern (Eigenfunction)
+- The underlying spatial pattern indicates variations at the center and stability at both ends of the curve.
 
 {% highlight r %}
 set.seed(1024)
@@ -59,19 +59,16 @@ data.frame(
 
 <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="100%" />
 
-#### Experiment
-##### Generate 2-D realizations 
-- We want to generate 100 random sample based on 
-  - The spatial signal for the true spatial pattern is distributed normally with $\sigma=20$
-  - The noise follows the standard normal distribution.
-
+### Experiment
+#### Generate 2-D Realizations 
+- Generate 100 random samples based on a spatial signal with $\sigma=20$ and standard normal distribution noise.
 
 {% highlight r %}
 realizations <- rnorm(n = n, sd = 10) %*% t(true_eigen_fn) + matrix(rnorm(n = n * p^2), n, p^2)
 {% endhighlight %}
 
-##### Animate realizations
-- We can see simulated central realizations change in a wide range more frequently than the others.
+#### Animate Realizations
+- Observe central realizations changing more frequently than others.
 
 {% highlight r %}
 for (i in 1:n) {
@@ -92,17 +89,17 @@ for (i in 1:n) {
 
 <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-5-.gif" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" />
 
-##### Apply `SpatPCA::spatpca`
-We add a candidate set of `tau2` to see how **SpatPCA** obtain a localized smoothe pattern.
+#### Apply `SpatPCA::spatpca`
+Add a candidate set of `tau2` to observe how **SpatPCA** obtains a localized smooth pattern.
+
 
 {% highlight r %}
 tau2 <- c(0, exp(seq(log(10), log(400), length = 10)))
 cv <- spatpca(x = expanded_location, Y = realizations, tau2 = tau2)
 eigen_est <- cv$eigenfn
 {% endhighlight %}
-##### Compare **SpatPCA** with PCA
-The following figure shows that **SpatPCA** can find sparser pattern than PCA, which is close to the true pattern.
-
+#### Compare **SpatPCA** with PCA
+The figure below illustrates that **SpatPCA** can find a sparser pattern than PCA, which closely matches the true pattern.
 {% highlight r %}
 data.frame(
   location_dim1 = expanded_location[, 1],
@@ -121,3 +118,7 @@ data.frame(
 {% endhighlight %}
 
 <img src="{{ site.url }}/assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="100%" />
+
+### Summary
+In conclusion, this tutorial delves into the powerful capabilities of SpatPCA for analyzing spatial patterns in two-dimensional data. By leveraging SpatPCA, we've demonstrated its efficacy in capturing dominant spatial patterns through simulated realizations 
+and comparisons with traditional PCA. The intuitive visualizations showcase SpatPCA's ability to provide localized and smooth eigenfunctions, making it a valuable tool for understanding complex spatial structures.

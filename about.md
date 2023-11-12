@@ -4,20 +4,32 @@ title: About
 menu: main
 permalink: /about/
 ---
-**Greetings! I'm a Machine Learning Engineer** with **7 years** of hands-on experience in building cutting-edge machine learning models, developing data-driven products, and fostering collaboration within cross-functional teams. I hold a Ph.D. in Statistics, and my academic journey spans **5 years**, delving deep into statistical methodologies and exploring the intricacies of complex spatio-temporal datasets.
+<h4> Greetings! </h4>
 
-<h4>Expertise</h4>
-My experience and expertise lie in 
+Welcome to my corner of the digital world! I am a seasoned **Machine Learning Engineer** with an extensive **7 years** of hands-on experience crafting cutting-edge machine learning models, developing data-driven products, and fostering collaboration within cross-functional teams. Holding a Ph.D. in Statistics, my academic journey spans **5 years**, where I immersed myself in the intricate world of statistical methodologies, particularly exploring the nuances of complex spatio-temporal datasets.
+
+<h4>Filed of Interests</h4>
+My passion and expertise lie in several domains, including:
+- 
 - *Recommendation Systems*
 - *Machine Learning*
 - *Deep Learning*
 - *Bayesian Statistics*
 - *Spatial Statistics*
 
-I'm well-versed in a variety of programming languages, including *Python*, *PySpark*, *PyTorch*, *TensorFlow*, *R*, *C++*, *SQL*.
+I am well-versed in a variety of programming languages, which include:
 
+- *Python*
+- *PySpark*
+- *PyTorch*
+- *TensorFlow*
+- *R*
+- *C++*
+- *SQL*
 
 <h4>Publications</h4>
+Here are some of my notable publications:
+
 <div class="list-group-item">
 <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
 <div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29, 2</a>

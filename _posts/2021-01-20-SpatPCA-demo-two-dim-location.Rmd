@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Capture the dominant spatial pattern with two-dimensional locations by SpatPCA"
+title: "Capturing Dominant Spatial Patterns with Two-Dimensional Locations Using SpatPCA"
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 
@@ -14,10 +14,11 @@ knitr::opts_chunk$set(
   fig.height = 3
 )
 ```
-We try to represent how to use **SpatPCA** for two-dimensional data for capturing the most dominant spatial pattern
+In this demonstration, we showcase how to utilize SpatPCA for analyzing two-dimensional data to capture the most dominant spatial pattern.
 
-#### Basic settings
-##### Used packages
+
+#### Basic Settings
+##### Used Packages
 ```{r message=FALSE}
 library(SpatPCA)
 library(ggplot2)
@@ -37,8 +38,8 @@ fill_bar <- guides(fill = guide_colourbar(
 coltab <- scico(128, palette = 'vik')
 color_scale_limit <- c(-.28, .28)
 ```
-##### True spatial pattern (eigenfunction)
-- The underlying spatial pattern below indicates realizations will vary dramatically at the center and be almost unchanged at the both ends of the curve.
+##### True Spatial Pattern (Eigenfunction)
+- The underlying spatial pattern indicates variations at the center and stability at both ends of the curve.
 ```{r, out.width = '100%'}
 set.seed(1024)
 p <- 30
@@ -66,17 +67,16 @@ data.frame(
 ```
 
 #### Experiment
-##### Generate 2-D realizations 
-- We want to generate 100 random sample based on 
-  - The spatial signal for the true spatial pattern is distributed normally with $\sigma=20$
-  - The noise follows the standard normal distribution.
+##### Generate 2-D Eealizations
+- Generate 100 random samples based on a spatial signal with $\sigma=20$ and standard normal distribution noise.
 
 ```{r}
 realizations <- rnorm(n = n, sd = 10) %*% t(true_eigen_fn) + matrix(rnorm(n = n * p^2), n, p^2)
 ```
 
-##### Animate realizations
-- We can see simulated central realizations change in a wide range more frequently than the others.
+##### Animate Realizations
+- Observe central realizations changing more frequently than others.
+
 ```{r, animation.hook="gifski", out.width = '100%'}
 for (i in 1:n) {
   par(mar = c(3, 3, 1, 1), family = "Times")
@@ -95,14 +95,15 @@ for (i in 1:n) {
 ```
 
 ##### Apply `SpatPCA::spatpca`
-We add a candidate set of `tau2` to see how **SpatPCA** obtain a localized smoothe pattern.
+Add a candidate set of tau2 to observe how **SpatPCA** obtains a localized smooth pattern.
+
 ```{r}
 tau2 <- c(0, exp(seq(log(10), log(400), length = 10)))
 cv <- spatpca(x = expanded_location, Y = realizations, tau2 = tau2)
 eigen_est <- cv$eigenfn
 ```
 ##### Compare **SpatPCA** with PCA
-The following figure shows that **SpatPCA** can find sparser pattern than PCA, which is close to the true pattern.
+The figure below illustrates that **SpatPCA** can find a sparser pattern than PCA, which closely matches the true pattern.
 ```{r, out.width = '100%'}
 data.frame(
   location_dim1 = expanded_location[, 1],
