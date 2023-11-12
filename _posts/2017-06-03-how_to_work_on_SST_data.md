@@ -1,5 +1,5 @@
 ---
-title: "How to Work on Sea Surface Temperature (SST) Data""
+title: "How to Work on Sea Surface Temperature (SST) Data"
 date: "2017-06-03"
 layout: post
 output:
