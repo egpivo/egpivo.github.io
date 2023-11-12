@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Spatial patterns with a single variable</title>
+    <title>Exploring Dominant Spatial Patterns with a Single Variable</title>
     <meta name="description"
-          content="In this post, we’re about to discuss dominant spatial patterns formally.">
+          content="In this post, we delve into the formal exploration of dominant spatial patterns, particularly in the context of climate research.">
 
     <link rel="icon" type="image/png" href="
     /assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
@@ -132,20 +132,17 @@
 <div class="post">
 
     <header class="post-header">
-        <h1 class="post-title">Spatial patterns with a single variable</h1>
+        <h1 class="post-title">Exploring Dominant Spatial Patterns with a Single Variable</h1>
         <p class="post-meta">Jun 17, 2017</p>
         <p id="post-meta"><i
         class="fa fa-tags"></i>: <a href="/tags/Statistics/">Statistics</a>, <a href="/tags/Spatial Statistics/">Spatial Statistics</a></p>
     </header>
 
     <article class="post-content">
-        <p>In this post, we’re about to discuss dominant spatial patterns formally.</p>
+        <p>In this post, we delve into the formal exploration of dominant spatial patterns, particularly in the context of climate research.</p>
 
-<h2 id="whats-a-spatial-pattern">What’s a spatial pattern?</h2>
-
-<p>In climate researches, it is common to apply dominant spatial patterns to interpret physical phenomenon and spatial variation of a climate variable, e.g., sea surface temperature.</p>
-
-<p>For example, there are two major spatial patters (mode) of sea surface temperature in the Indian Ocean. That is, a basin model (top panel) and a dipole model (bottom panel) in the following graph.</p>
+<h3 id="understanding-spatial-patterns">Understanding Spatial Patterns</h3>
+<p>In climate research, the interpretation of physical phenomena and spatial variations often involves the application of dominant spatial patterns. For instance, consider the two major spatial patterns (modes) of sea surface temperature in the Indian Ocean: the basin mode and the dipole mode.</p>
 
 <center>
   <img src="http://localhost:4000/assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png" width="60%" height="40%" />
@@ -156,13 +153,12 @@
   <img src="http://localhost:4000/assets/spatial_patterns_with_a_single_variable/bar.png" width="60%" height="40%" />
 </center>
 
-<p>A basin-wide mode indicates that there is a sub-region with a u-shaped hole in the pattern, and means the spatial variation in this sub-region is clearly decreasing downside (or increasing upside). An east-west dipole mode illustrates that the variation of sea surface temperature in the eastern region is opposite to the one in the wester region. In other words, while the sea surface temperature in the eastern Indian Ocean becomes higher, the temperature in the western Indian Ocean more likely becomes lower. It is worth to notice that the interaction between these two patterns and El Niño–Southern Oscillation (ENSO) is a popular topic in the climate field.</p>
+<p>These patterns play a crucial role in deciphering the spatial variation of climate variables, such as sea surface temperature, with implications for phenomena like El Niño–Southern Oscillation (ENSO).</p>
 
-<h2 id="formalize-spatial-patterns-mathematically">Formalize spatial patterns mathematically</h2>
+<h3 id="mathematical-formalization-of-spatial-patterns">Mathematical Formalization of Spatial Patterns</h3>
+<h4 id="spatial-process-of-interest">Spatial Process of Interest</h4>
 
-<h3 id="spatial-process-of-interest">Spatial process of interest</h3>
-
-<p>Suppose that a spatial process of interest is \(\{\eta_i(\cdot); i = 1,\dots, n\}\) which is on a region $D \subset \mathbb{R}^d$, and at $n$ different time points. For simplicity, we assume that $\eta_i$’s are mean zero, mutally uncorrelated with common covariance function.</p>
+<p>Let’s consider a spatial process denoted as \(\{\eta_i(\cdot); i = 1,\dots, n\}\)  representing a climate variable over a region $D \subset \mathbb{R}^d$ at $n$ different time points. The process is assumed to be mean zero, mutually uncorrelated, and characterized by a common covariance function.</p>
 
 <p>For example, we are interested in studying sea surface temperature monthly anomalies in the Indian Ocean during Jan., 2010 to Dec. 2016, formally. Then, we can define $\eta_i(\cdot)$ as a sea surface temperature monthly anomaly, $D$ as Indian Ocean (with blue color in the following plot), $n = 12\times 7$.</p>
 <center>
@@ -170,11 +166,11 @@
   <div class="caption">A spatial process in the Indian Ocean</div>
 </center>
 
-<h3 id="observed-data">Observed data</h3>
+<h4 id="observed-data">Observed Data</h4>
 
-<p>We only observe data at $p$ locations, say $s_1, \dots, s_p$. The observed data are defined as
+<p>Observations are available at $p$ locations, denoted as $s_1, \dots, s_p$. The observed data at these locations are defined as
 \(Y_i(s_j) = \eta_i(s_j) + \epsilon_{ij},\)
-where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covariance $\sigma^2$ for $i =1,\dots,n$, $j = 1, \dots,p$.</p>
+where $\epsilon_{ij}$ represents white noise with mean zero and covariance $\sigma^2$ for $i =1,\dots,n$ and $j = 1, \dots,p$.</p>
 
 <p>The graph below indicates that the observation at some cell, where the size of cells depends on the resolution of measurement. By the way, the gray color represent the land, and the observation here is usually define as $NA$ in datasets.</p>
 <center>
@@ -184,14 +180,16 @@ where $\epsilon_{ij}$ is supposed to be a white noise with mean zero and covaria
 
 <p>We can rewrite our data as a matrix form. Namely, $\textbf{Y} = (\textbf{Y}_1, \dots, \textbf{Y}_n)’$ is an $n\times p$ matrix where, at each time point, we vectorize our observations over $p$ locations as $\textbf{Y}_i = (Y_i(s_1), \dots,Y_i(s_p))’$, $i = 1, \dots n$.</p>
 
-<h3 id="spatial-patterns-via-principal-component-analysis">Spatial patterns via principal component analysis</h3>
+<h4 id="spatial-patterns-via-principal-component-analysis-pca">Spatial Patterns via Principal Component Analysis (PCA)</h4>
 
-<p>We assume that $\textbf{Y}\sim(\textbf{0}, \Sigma)$. The idea of principal component analysis (PCA) is to find a direction,  $\bf{\phi}\in \mathbb{R}^{p\times 1}$, where the variance of $\textbf{Y}_i$ projecting onto $\bf{\phi}$ is maximum. Following the same idea, we can successively find the second $\bf{\phi}$, the third $\bf{\phi}$, and so on. These $\bf{\phi}$’s are subject to orthogonal. Alternatively, we can directly obtain $\bf{\phi}$’s by the eigen-decomposition of $\Sigma = \Phi’\Lambda\Phi$ where $\Phi = (\phi_1, \dots, \phi_p)’$ is a $p\times p$ matrix, and $\Lambda = \text{diag}(\lambda_1, \dots, \lambda_p)$ with nonnegative eigenvalues $\lambda_1\geq  \dots\geq \lambda_p\geq 0$. Therefore, we can define the first $\bf{\phi}_1,\dots, \bf{\phi}_K$ with the corresponding largest eigenvalues as dominant spatial patterns. In practice, $\Sigma$ is unknown, and usually estimated by 
-a sample covariance $\textbf{S} = \textbf{Y}’\textbf{Y}/n$. The estimates of $\bf{\phi}_1,\dots, \bf{\phi}_K$ are the first $K$ eigenvector of $\textbf{S}$, $\tilde{\bf{\phi}}_1,\dots, \tilde{\bf{\phi}}_K$.</p>
+<p>Assuming $\textbf{Y}\sim(\textbf{0}, \Sigma)$, Principal Component Analysis (PCA) aims to find directions, $\bf{\phi}\in \mathbb{R}^{p\times 1}$, maximizing the variance of $\textbf{Y}_i$ projected onto $\bf{\phi}$. The first $K$ eigenvectors of the estimated covariance matrix $\textbf{S}$ provide the dominant spatial patterns.</p>
 
-<p>In some fields, the patterns found by PCA are also called empirical orthogonal functions (EOF). In many situations, e.g. irregular-location data, we would like to have a functional form of pattern via a PCA estimate so there are a bunch of two-stage methods to interpolate the PCA estimates.</p>
+<p>In practice, these patterns, often referred to as empirical orthogonal functions (EOF), are crucial for interpreting spatial variations, especially in irregular-location data.</p>
 
-<h2 id="references">References</h2>
+<h3 id="summary">Summary</h3>
+<p>The article explores the formalization of dominant spatial patterns, particularly in climate research. It introduces the concept of spatial patterns, essential in interpreting physical phenomena and spatial variations in climate variables. Using examples from sea surface temperature in the Indian Ocean, the article illustrates basin and dipole modes as significant spatial patterns. The mathematical formalization involves defining a spatial process of interest, observing data at specific locations, and employing Principal Component Analysis (PCA) to identify dominant spatial patterns. The insights gained from these patterns contribute to understanding climate variations and phenomena like El Niño–Southern Oscillation.</p>
+
+<h3 id="references">References</h3>
 
 <ul>
   <li>Wang and Huang (2017). <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483&quot;">Regularized Principal Component Analysis for Spatial Data</a>.</li>

@@ -177,10 +177,10 @@
 
 <p>在PPDP模型會將資料中個人隱私的部分直接進行處理，公開一份修改過的資料； 另一方面，資料用於PPDM模型，是將資料中身份或是敏感屬性的部分利用統計分析或是機器學習來保持資料原有的統計特性，進而將資料重新彙整公開。接下來，我們將根據這兩個模型介紹幾種不同常用的方法。</p>
 
-<h3 id="ppdp-隨機化randomization">PPDP: 隨機化(Randomization)</h3>
+<h4 id="ppdp-隨機化randomization">PPDP: 隨機化(Randomization)</h4>
 <p>隨機化的方法是將可以辨識的屬性中的資料，隨機的替換相對應屬性的資料而不考慮刪除或是隱藏其屬性。例如，將真實的姓名、生日、身分證號碼，從另外較大的資料庫隨機選取相對應的屬性的假資料，進而取代原本屬性中某幾筆資料。 進一步來說，隨機化可以透過一些對屬性的限制讓取代後的資料擬真度提高。例如：姓名屬性在隨機化替換過程，透過限制相同性別或是限制相同區域的姓名進行隨機抽取。 El Emam and Fineberg [3]指出此類方法的缺點為：隨機化後的資料沒辦法有效了解被重新辨識的風險，因此此資料的隱私分析需要透過自己的觀點判斷是否資料被重新辨識的可能性。</p>
 
-<h3 id="ppdp-虛擬化假名pseudonymization">PPDP: 虛擬化假名(Pseudonymization)</h3>
+<h4 id="ppdp-虛擬化假名pseudonymization">PPDP: 虛擬化假名(Pseudonymization)</h4>
 <p>虛擬化假名是利用暫時性的身份用來取代真實姓名，透過刪除或是隱藏個人身份指標來使得個人身份無法辨識，而常用的工具為雜湊函數(hash function) 。當我們使用雜湊函式在個人資訊上，我們是把訊息透夠複雜的密碼運算轉換成雜湊值(hash value)。雜湊值常用英文字母和數字隨機組成的字串表示，而且一個雜湊值只能對應一組個人資訊。例如圖3表示在臨床資料中，我們將受測者的姓名以及電話號碼以一組虛擬化假名的密碼來取代。</p>
 
 <p><br />
@@ -232,7 +232,7 @@ SHA-512 - 可以接受最大$(2^{128}-1)$ 位元組長度的訊息字串，輸�
 </table>
 <p><br />
 <br /></p>
-<h3 id="ppdp-k-匿名k-anonymity">PPDP: $k$-匿名($k$-anonymity)</h3>
+<h4 id="ppdp-k-匿名k-anonymity">PPDP: $k$-匿名($k$-anonymity)</h4>
 <p>Sweeney [10] 提出 $k$-匿名($k$-anonymity) 演算法用於防止鏈結攻擊(linking attack)透過在其他資料中有相似的紀錄而竊取個人隱私。其方法是透過修改資料表中準識別符屬性(泛化或是抑制)，使得資料表中至少$k-1$筆資料無法與所選的的資料在區隔，即與所選的資料相同。因此無法直接或是間接重新識別身份。例如，表2是原始資料表、表3是將準識別符資訊隱藏的3-匿名化資料表，其中郵遞區號是經過抑制轉換，年齡是經過抑制以及泛化轉換。</p>
 
 <p><br /></p>
@@ -374,12 +374,12 @@ SHA-512 - 可以接受最大$(2^{128}-1)$ 位元組長度的訊息字串，輸�
 <p>然而，$k$-匿名方法仍有許多不完備之處。Machanavajjhala et al. [9]指出對於敏感資料中，兩種$k$-匿名可能遭受的攻擊。首先是同質性攻擊(homogeneity attach)，攻擊者可以透過資料敏感屬性中的些微差異來復原原來的敏感屬性。例如，表3
 中的敏感屬性為違規項目 ，若攻擊者知道某人年齡32歲住在郵遞區號23131，可以間接推斷他有酒駕。其二是背景知識攻擊(background knowledge attack)，攻擊者對原先資料的背景知識有一定程度了解，進而透過敏感資訊與個人關係來還原資料。。例如，攻擊者知道李四的年齡及居住地在表3的最後一個區塊，且知道李四不喝酒只開車，可以間接推斷李四可能紅燈右轉。為了防止這些攻擊，Machanavajjhala et al. [9]提出$\ell$多樣性($\ell$-diversity)改善了$k$-匿名，保證任意一個等價類中的敏感屬性都至少有$\ell$個不同的值。更進一步的，Li et al. [8] 根據$\ell$-diversity 提出$t$-Closeness，要求所有等價類中敏感屬性的機率分布儘量接近該屬性的機率分布。</p>
 
-<h3 id="ppdm-統計洩漏控制流程statistical-disclosure-control-process">PPDM: 統計洩漏控制流程(Statistical Disclosure Control Process)</h3>
+<h4 id="ppdm-統計洩漏控制流程statistical-disclosure-control-process">PPDM: 統計洩漏控制流程(Statistical Disclosure Control Process)</h4>
 
 <p>統計洩漏控制流程是預防資料庫中公開提供統計分析的微資料(microdata)被用來識別資料的身份及隱私
 ，常用的方法為多維度微聚合(multivariate microaggregation)。多維度微聚合與$k$-匿名方法不同之處在於微聚合修改資料不需要透過泛化或是抑制，而是將微資料進行分群(clustering)，每一群體都至少有 $k$ 筆資料，以每一群體的中心位置(如平均數或是中位數)來取代該群內的記錄。 此類的微聚合是透過最大距離到平均向量(Maximum Distance to Average Vector)演算法實現[1]。其他多維度微聚合分群的演算法是透過不同的距離尺度來分類，如根據 馬氏距離(Mahalanobis distance)的演算法、或是根據相關係數矩陣的主成份分析(Princiapl Component Analysis) (Hundepool et al. [6])。</p>
 
-<h2 id="references">References</h2>
+<h3 id="references">References</h3>
 
 <ul>
   <li>

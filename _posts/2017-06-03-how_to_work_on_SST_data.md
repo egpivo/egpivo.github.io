@@ -1,5 +1,5 @@
 ---
-title: "How to work on sea surface temperature (SST) data"
+title: "How to Work on Sea Surface Temperature (SST) Data""
 date: "2017-06-03"
 layout: post
 output:
@@ -8,13 +8,14 @@ tags: [R, Spatial Statistics, Statistics]
 ---
 
 
-In this post, I will show you step-by-step instructions to  work on SST data in R.
+In this post, I will show you step-by-step instructions to work on SST data in R.
 
-## Install the necessary tools for NetCDF
 
-Before importing NetCDF files in R, we should install the necessary tools. Mac user require Xcode Command Line Tools, and can use [MacPorts](https://www.macports.org) to finish the installation of NetCDF by typing the following lines into terminal.
+### Install the Necessary Tools for NetCDF
 
-```
+Before importing NetCDF files in R, we should install the necessary tools. Mac users require Xcode Command Line Tools, and can use [MacPorts](https://www.macports.org) to finish the installation of NetCDF by typing the following lines into the terminal.
+
+```bash
 sudo port install netcdf
 sudo port install nco
 sudo port install ncview
@@ -23,7 +24,7 @@ More details can be found [here](http://mazamascience.com/WorkingWithData/?p=147
 
 
 
-## Download an SST dataset
+## Download an SST Dataset
 
 For convenience' sake, we download a lower resolution dataset, [Kaplan Extended SST data](ftp://ftp.cdc.noaa.gov/Datasets/kaplan_sst/sst.mon.anom.nc) from [ESRL PSD](https://www.esrl.noaa.gov/psd/data/gridded/data.kaplan_sst.html) on 5 degree latitude by 5 degree longitude ($5^{\circ} \times 5^{\circ}$) equiangular grid cells.
 
@@ -47,7 +48,7 @@ download.file(url, file)
 ~~~
 
 
-## Import the NetCDF file
+## Import the NetCDF File
 
 Before importing the file, we install an R package, [```ncdf4```](https://cran.r-project.org/web/packages/ncdf4/ncdf4.pdf), for the interface of NetCDF.
 
@@ -137,7 +138,7 @@ for(i in 1:dim(sst_ind)[3])
   sst[i,] <- sst_ind[,,i][-s1]
 ~~~
 
-### Detect the dominant patterns
+### Detect the Dominant Patterns
 
 For simplicity, we assume the time effect is ignorable. We use the [empirical orthogonal functions](https://en.wikipedia.org/wiki/Empirical_orthogonal_functions) (EOF) to represent the dominant patterns.
 
@@ -196,10 +197,10 @@ maps::map(database = "world", fill = TRUE, col = "gray",
 The first EOF is known as a basin-wide mode, and the second one is a dipole mode. 
 
 
-## References
+### References
 * Deser et al. (2009), [Sea Surface Temperature Variability: Patterns and Mechanisms](http://www.cgd.ucar.edu/staff/cdeser/docs/deser.sstvariability.annrevmarsci10.pdf).
 
-## R Session
+### R Session
 
 
 ~~~

@@ -1,5 +1,5 @@
 ---
-title: "Problems: EOF patterns with a single variable"
+title: "Challenges in EOF Patterns with a Single Variable"
 date: "2017-06-26"
 layout: post
 output:
@@ -8,29 +8,29 @@ tags: [Statistics, Spatial Statistics]
 use_math : true
 ---
 
+In this post, we delve into potential challenges associated with Empirical Orthogonal Function (EOF) patterns.
 
+### Issues with EOF Patterns
 
-In this post, we talk about possible problems of EOF patterns.
+In our previous discussions, we explored how dominant spatial patterns, known as EOF patterns, can be extracted using Principal Component Analysis (PCA). However, two significant problems arise in this context. The first challenge pertains to high estimation variability. When the sample size (n) is small or the number of locations is high, EOF patterns can become excessively rough, making interpretation challenging.
 
-## Problems about EOF patterns
+Additionally, it is reasonable to assume that EOF patterns exhibit smoothness, given that the correlation between closer locations is lower. However, PCA-derived patterns often fail to capture this spatial structure. Thus, the second problem lies in the insufficient consideration of any inherent spatial characteristics in PCA-generated EOF patterns.
 
-As our previous post, we're aware that diminant spatial patterns, a.k.a. EOF patterns, can be found by principal component analysis (PCA). However, there are two major problems. The first one is about high estimation variability. 
-When sample size n is smaller or the number of locations is higher, the EOF pattens are often too rough to interpret.
+As an illustration, consider a randomly generated sample based on the true pattern depicted in the left panel of the following plot. The first EOF derived through PCA is shown in the right panel, appearing too noisy to identify the major signal. In reality, the true pattern is crystal clear, showcasing a localized pattern.
 
-Besides, it is sound to assume that EOF patterns are smooth function since the correlation between two closer locations is lower. However, the patterns by PCA do not take care of it. That is, the second problem is that EOF patterns by PCA are not considered any spatial structure. 
-
-For example, we randomly generate a sample based on the true pattern in the left panel of the below plot. The first EOF by PCA is in the right panel below, and is too noisy to identify the major signal, but, in fact, the true pattern in the left panel is crystal clear, a localied pattern.
-
-<center>
+<div style="text-align:center;">
   <img src="{{ site.url }}/assets/problems_eof_patterns_with_a_single_variable/true.png"   width="40%" height="40%">
   <img src="{{ site.url }}/assets/problems_eof_patterns_with_a_single_variable/pca.png"  width="40%" height="40%">
-</center>
-<center>
+</div>
+<div style="text-align:center;">
 <img src="{{ site.url }}/assets/problems_eof_patterns_with_a_single_variable/bar.png"   width="40%" height="40%">
-</center>
+</div>
 
 
-## References
+### Summary
+This post briefly highlights challenges associated with Empirical Orthogonal Function (EOF) patterns, particularly in the context of Principal Component Analysis (PCA). It addresses issues such as high estimation variability and the failure of PCA-derived EOF patterns to consider inherent spatial structures. Illustrated with examples, the article emphasizes the importance of addressing these challenges for accurate interpretation of dominant spatial patterns.
+
+### References
 
 * Wang and Huang, (2017). [Regularized Principal Component Analysis for Spatial Data](http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483").
 
