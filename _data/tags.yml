@@ -13,9 +13,15 @@ R:
 Python:
     slug: Python
     name: Python
-ML:
-    slug: ML
-    name: ML
+Machine Learning:
+    slug: Machine Learning
+    name: Machine Learning
+Deep Learning:
+    slug: Deep Learning
+    name: Deep Learning
 Software:
     slug: Software
     name: Software
+NLP:
+    slug: NLP
+    name: NLP

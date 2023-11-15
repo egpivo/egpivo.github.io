@@ -6,9 +6,263 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Nov 2023 19:28:00 +0800</pubDate>
-    <lastBuildDate>Mon, 13 Nov 2023 19:28:00 +0800</lastBuildDate>
+    <pubDate>Wed, 15 Nov 2023 22:33:49 +0800</pubDate>
+    <lastBuildDate>Wed, 15 Nov 2023 22:33:49 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Comparing Sequence-to-Sequence Decoders: With and Without Attention</title>
+        <description>&lt;p&gt;This post goes beyond a simple code walkthrough inspired by &lt;a href=&quot;https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html&quot;&gt;this tutorial&lt;/a&gt;. Here, I aim to enrich the narrative by providing a detailed comparison between Seq2Seq models with and without attention. Expect not only code insights but also a closer look at the nuances that make attention mechanisms a game-changer in the realm of sequence-to-sequence modeling.&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Seq2Seq (sequence-to-sequence) models are pivotal in machine translation, enabling tasks like language translation. Comprising an encoder and a decoder, these models process input sequences, create a semantic context, and generate an output sequence.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Encoder: Processes input into a fixed-size context vector representing semantic meaning.&lt;/li&gt;
+  &lt;li&gt;Decoder: Takes the context vector and generates an output sequence, token by token.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this article, we explore and compare two decoder types within the Seq2Seq model: one with a basic Recurrent Neural Network (RNN) and another enhanced with an attention mechanism. The latter, Decoder-RNN-Attention, proves more complex yet often yields superior performance, especially for longer sequences.&lt;/p&gt;
+
+&lt;h3 id=&quot;decoders&quot;&gt;Decoders&lt;/h3&gt;
+&lt;h4 id=&quot;decoder-rnn&quot;&gt;Decoder-RNN&lt;/h4&gt;
+&lt;p&gt;This decoder is a basic Recurrent Neural Network (RNN) decoder. It takes the encoder’s outputs and hidden states as input, and sequentially generates the output sequence. Here are some key points:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Generation Process&lt;/strong&gt;: It generates the output sequence one token at a time, feeding the predicted token back into the model at each step.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Hidden State&lt;/strong&gt;: It maintains a hidden state that captures the context and information from the encoder. This hidden state is updated at each decoding step.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Output:&lt;/strong&gt; This decoder doesn’t employ an attention mechanism, relying solely on the final hidden state to capture the entire input sequence’s context.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;decoder-rnn-attention&quot;&gt;Decoder-RNN-Attention&lt;/h4&gt;
+&lt;p&gt;This decoder incorporates an attention mechanism, significantly enhancing its ability to focus on different parts of the input sequence during the decoding process. Here are its key characteristics:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Attention Mechanism:&lt;/strong&gt; Utilizing &lt;a href=&quot;https://arxiv.org/pdf/1409.0473.pdf&quot;&gt;Bahdanau Attention&lt;/a&gt; (See Fig. 1), the decoder selectively focuses on different segments of the encoder’s output sequence at each decoding step.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Context Vector:&lt;/strong&gt; The attention mechanism calculates a context vector, which is a weighted sum of the encoder’s output sequence. This context vector, combined with the embedding of the previous token, serves as input to the GRU cell.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Generation Process:&lt;/strong&gt; Similar to the Decoder-RNN, this decoder generates the output sequence one token at a time. However, it takes into account the attention mechanism’s enhanced context, providing a more refined output.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/bahdanau-attention.jpg&quot; width=&quot;250&quot; height=&quot;250&quot; alt=&quot;Bahdanau Attention Illustration&quot; /&gt;
+  &lt;figcaption&gt;Fig. 1: Illustration of Bahdanau Attention (Bahdanau, Cho &amp;amp; Bengio, 2015)&lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;comparison&quot;&gt;Comparison&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;Complexity: Decoder-RNN-Attentio is more complex owing to the attention mechanism, allowing it to focus on different parts of the input sequence dynamically.&lt;/li&gt;
+  &lt;li&gt;Performance: In practice, attention mechanisms often lead to improved performance, especially when dealing with long sequences, as they enable the model to selectively attend to relevant information, as demonstrated in the results below.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;practical-implementation-seq2seq-model-training&quot;&gt;Practical Implementation: Seq2Seq Model Training&lt;/h3&gt;
+
+&lt;p&gt;In this practical implementation, we meticulously structure and enhance the entire model training process, building upon &lt;a href=&quot;https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html&quot;&gt;this tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;data-preparation&quot;&gt;Data Preparation&lt;/h4&gt;
+
+&lt;p&gt;We utilize a dataset of English to French translation pairs from the open translation site Tatoeba, downloadable &lt;a href=&quot;https://www.manythings.org/anki/&quot;&gt;here&lt;/a&gt; in tab-separated format. 
+The dataset is carefully trimmed to include only a few thousand words per language, managing the encoding vector’s size. The whole preprocessing is similar to &lt;a href=&quot;https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html&quot;&gt;this tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our data preparation implementation is encapsulated in the following classes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/data_handler.py#L9&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LanguageData&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Manages language-specific data.&lt;/li&gt;
+      &lt;li&gt;Tokenizes sentences and maintains vocabulary.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/data_handler.py#L29&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataReader&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Reads raw data, optionally reversing language pairs.&lt;/li&gt;
+      &lt;li&gt;Filters pairs based on specified prefixes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/preprocessor.py#L6&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Preprocessor&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Orchestrates the data processing workflow.&lt;/li&gt;
+      &lt;li&gt;Enriches language data with sentences.&lt;/li&gt;
+      &lt;li&gt;Filters valid pairs.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;model-training-setup&quot;&gt;Model Training Setup&lt;/h4&gt;
+
+&lt;h5 id=&quot;dataloader-classes&quot;&gt;Dataloader Classes&lt;/h5&gt;
+&lt;p&gt;We’ve implemented custom dataloader classes based on training and testing datasets, featuring:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/dataloader.py#L12&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PairDataset&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Converts sentence pairs into tensor datasets.&lt;/li&gt;
+      &lt;li&gt;Prepares data for model consumption.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/dataloader.py#L61&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PairDataLoader&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Manages train and test dataloaders.&lt;/li&gt;
+      &lt;li&gt;Efficiently feeds batches into the model.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;model-architecture&quot;&gt;Model Architecture&lt;/h5&gt;
+&lt;p&gt;The model architecture comprises:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/encoder.py#L5&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EncoderRNN&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Embedding layer captures context from input sequences.&lt;/li&gt;
+      &lt;li&gt;GRU layer encodes contextual information.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/decoder.py#L37&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DecoderRNN&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Unfolds sequence generation process.&lt;/li&gt;
+      &lt;li&gt;Produces translated sequences step by step.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/decoder.py#L76&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttentionDecoderRNN&lt;/code&gt;&lt;/a&gt; Class&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Advanced decoder with attention mechanisms.&lt;/li&gt;
+      &lt;li&gt;Enhances model focus on relevant parts of the input sequence.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Explore the detailed implementation &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;training-process&quot;&gt;Training Process&lt;/h5&gt;
+&lt;p&gt;For the training process, our &lt;a href=&quot;https://github.com/egpivo/nlp_practice/case/translation/training/trainer.py&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt;&lt;/a&gt; class efficiently manages optimization with ADAM, cross-entropy loss calculation, and the training loop. Key hyperparameters are configured as follows:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Parameters
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;hidden_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dropout_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;num_epochs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;training_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.001&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Trigger the training job with the following CLI command:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Command
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python examples/translation/cli/run_model_evaluation.py &lt;span class=&quot;nt&quot;&gt;--data_base_path&lt;/span&gt; examples/translation/data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Find the script with its arguments &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/run_model_training.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;training-result&quot;&gt;Training Result&lt;/h5&gt;
+&lt;p&gt;Explore the cross-entropy losses of both models across different epochs for a thorough understanding of their training performance.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/loss.png&quot; width=&quot;700&quot; height=&quot;250&quot; alt=&quot;Description&quot; /&gt;
+  &lt;figcaption&gt;Fig. 2: Losses of two models&lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Fig. 2 shows that the losses of both models appear similar and converge, indicating comparable training dynamics.&lt;/p&gt;
+
+&lt;h4 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h4&gt;
+&lt;p&gt;This section provides a comprehensive evaluation by examining both inference outputs and relevant metrics.&lt;/p&gt;
+
+&lt;p&gt;To reproduce the following results, you can execute the &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/evaluation.ipynb&quot;&gt;notebook&lt;/a&gt;.&lt;/p&gt;
+&lt;h5 id=&quot;i-inference&quot;&gt;I. Inference&lt;/h5&gt;
+&lt;p&gt;To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Predictor&lt;/code&gt;[https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12] class to showcase the capabilities of both models in translating these sentences.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Example 1
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Translate &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;True: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result without attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result with attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attention_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Translate&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;je suis en train de me peser&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i am weighing myself&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;without&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i am bound to him by a close friendship&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i am weighing myself&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Example 2
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Translate &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;True: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result without attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result with attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attention_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Translate&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;vous etes bon cuisinier n est ce pas ?&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;you are a good cook aren t you ?&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;without&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;you re kind of cute when you re mad&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;you are a good cook aren t you ?&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Example 3
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Translate &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;True: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result without attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LOGGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Result with attention: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attention_predictor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;!r}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Translate&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;je suis plus petite que vous&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i m shorter than you&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;without&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i m glad you re ok now&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;INFO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attention&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;i m shorter than you&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The results highlight a significant distinction: the “With Attention” decoder consistently provides accurate translations, aligning well with the true results. In contrast, the “Without Attention” decoder falls short in capturing the nuances of the translations, emphasizing the impact of the attention mechanism on improving translation accuracy.&lt;/p&gt;
+
+&lt;h5 id=&quot;ii-metric-evaluation-using-the-test-dataset&quot;&gt;II. Metric Evaluation using the Test Dataset&lt;/h5&gt;
+&lt;p&gt;To assess our models’ performance, we employ key metrics, providing unique insights into their capabilities:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Accuracy:&lt;/strong&gt; Measures the exact match between the model’s predictions and the actual results, offering a straightforward measure of correctness.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/ROUGE_(metric)&quot;&gt;ROUGE-1&lt;/a&gt;:&lt;/strong&gt; Focused on unigrams, ROUGE-1 evaluates alignment between the model’s output and the reference text at the level of individual words. Precision, recall, and the F1 score within the ROUGE-1 framework offer distinct perspectives on the model’s effectiveness in capturing relevant information from the reference, particularly at the granularity of unigrams.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/metric.png&quot; width=&quot;550&quot; height=&quot;450&quot; alt=&quot;Evaluation Results&quot; /&gt;
+  &lt;figcaption&gt;Fig. 3: Evaluation results of the two models&lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Fig. 3 illustrates that the “With Attention” decoder consistently outperforms the “Without Attention” decoder across all metrics—ROUGE-1 Precision, ROUGE-1 Recall, ROUGE-1 F1, and accuracy. This consistent superiority suggests that the attention mechanism significantly contributes to enhanced accuracy and improved text generation quality. The emphasis on individual words (ROUGE-1) reinforces the importance of attention in capturing precise details and nuances during translation.&lt;/p&gt;
+
+&lt;p&gt;To quantify these observations, we introduce an &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/evalution/evaluator.py#L14&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Evaluator&lt;/code&gt;&lt;/a&gt; class that systematically assesses the model’s performance using the specified metrics. The class takes the test dataset and a predictor as inputs and calculates accuracy, ROUGE-1 precision, recall, and F1 score. This comprehensive evaluation enhances our understanding of the models’ strengths and weaknesses.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+&lt;p&gt;The Decoder-RNN-Attention, with its intricate attention mechanism, outperforms the basic Decoder-RNN, showcasing higher complexity and dynamic focus on input sequences. 
+Its consistent superiority, particularly in handling longer sequences, highlights the crucial role of selective attention in machine translation. Despite convergent losses during training, the “With Attention” decoder consistently outshines the “Without Attention” decoder across various metrics, emphasizing the critical importance of attention mechanisms for accuracy and text generation quality in Seq2Seq models for machine translation.&lt;/p&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html&quot;&gt;NLP FROM SCRATCH: TRANSLATION WITH A SEQUENCE TO SEQUENCE NETWORK AND ATTENTION&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1409.0473.pdf&quot;&gt;NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 15 Nov 2023 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2023/11/15/comparing-sequence-to-sequence-decoders-with-and-without-attention.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2023/11/15/comparing-sequence-to-sequence-decoders-with-and-without-attention.html</guid>
+        
+        <category>Software</category>
+        
+        <category>Machine Learning</category>
+        
+        <category>Deep Learning</category>
+        
+        <category>NLP</category>
+        
+        
+      </item>
     
       <item>
         <title>Note: Derivation of Normal Bayesian Test</title>
