@@ -128,7 +128,7 @@ This section provides a comprehensive evaluation by examining both inference out
 
 To reproduce the following results, you can execute the [notebook](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/evaluation.ipynb).
 ##### I. Inference
-To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the `Predictor`[https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12] class to showcase the capabilities of both models in translating these sentences.
+To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the [`Predictor`](https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12) class to showcase the capabilities of both models in translating these sentences.
 - Example 1
 ```python
 >>> input_sentence, answer = random.choice(pairs)
