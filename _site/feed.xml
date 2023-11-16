@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Nov 2023 11:28:16 +0800</pubDate>
-    <lastBuildDate>Thu, 16 Nov 2023 11:28:16 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Nov 2023 11:43:08 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Nov 2023 11:43:08 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -228,8 +228,6 @@ The dataset is carefully trimmed to include only a few thousand words per langua
 &lt;h4 id=&quot;v-evaluation&quot;&gt;V. Evaluation&lt;/h4&gt;
 &lt;p&gt;This section provides a comprehensive evaluation by examining relevant metrics.&lt;/p&gt;
 
-&lt;p&gt;To reproduce the following results, you can execute the &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/evaluation.ipynb&quot;&gt;notebook&lt;/a&gt;.&lt;/p&gt;
-
 &lt;h5 id=&quot;metric-evaluation-using-the-test-dataset&quot;&gt;Metric Evaluation using the Test Dataset&lt;/h5&gt;
 &lt;p&gt;To assess our models’ performance, we employ key metrics, providing unique insights into their capabilities:&lt;/p&gt;
 
@@ -250,6 +248,10 @@ The dataset is carefully trimmed to include only a few thousand words per langua
 &lt;p&gt;Fig. 3 illustrates that the “With Attention” decoder consistently outperforms the “Without Attention” decoder across all metrics—ROUGE-1 Precision, ROUGE-1 Recall, ROUGE-1 F1, and accuracy. This consistent superiority suggests that the attention mechanism significantly contributes to enhanced accuracy and improved text generation quality. The emphasis on individual words (ROUGE-1) reinforces the importance of attention in capturing precise details and nuances during translation.&lt;/p&gt;
 
 &lt;p&gt;To quantify these observations, we introduce an &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/evalution/evaluator.py#L14&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Evaluator&lt;/code&gt;&lt;/a&gt; class that systematically assesses the model’s performance using the specified metrics. The class takes the test dataset and a predictor as inputs and calculates accuracy, ROUGE-1 precision, recall, and F1 score. This comprehensive evaluation enhances our understanding of the models’ strengths and weaknesses.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note that you can execute the &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/execution.ipynb&quot;&gt;notebook&lt;/a&gt; to reproduce the above results.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h3 id=&quot;summary-and-acknowledgment&quot;&gt;Summary and Acknowledgment&lt;/h3&gt;
 
