@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Comparing Sequence-to-Sequence Decoders: With and Without Attention</title>
+    <meta name="description"
+          content="This post goes beyond a conventional code walkthrough inspired by this tutorial. My goal is to elevate the narrative by offering a comprehensive comparison b...">
+
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/android-chrome-512x512.png" sizes="512x512">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="
+    /assets/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="
+    /assets/images/favicons/apple-touch-icon.png">
+    <link rel="stylesheet" href="
+    /css/main.css">
+    <link rel="stylesheet" href="
+    /css/syntax-style.css">
+    <link rel="stylesheet" href="
+    /css/site.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="canonical" href="http://localhost:4000/2023/11/15/comparing-sequence-to-sequence-decoders-with-and-without-attention.html">
+    <link rel="alternate" type="application/rss+xml" title="Joseph Wang" href="http://localhost:4000
+    /feed.xml" />
+
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } });
+    </script>
+    <script type="text/x-mathjax-config">
+         MathJax.Hub.Config({
+           tex2jax: {
+             inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+             processEscapes: true
+           }
+         });
+
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="
+    /js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="
+    /js/jq_mathjax_parse.js"></script>
+    <script type="text/javascript" src="
+    /js/jquery.toc.min.js"></script>
+
+    
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <div class="wrapper">
+
+        <a class="site-title" href="/">Joseph Wang</a>
+
+        <nav class="site-nav">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242"
+                          d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242"
+                          d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242"
+                          d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+
+            <div class="trigger">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/about/">About</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a class="page-link" href="/tags/software/">Software</a>
+                <a class="page-link" href="/tags/books/">Books</a>
+
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<div class="page-content">
+    <div class="wrapper">
+        
+
+
+<div class="post">
+
+    <header class="post-header">
+        <h1 class="post-title">Comparing Sequence-to-Sequence Decoders: With and Without Attention</h1>
+        <p class="post-meta">Nov 15, 2023</p>
+        <p id="post-meta"><i
+        class="fa fa-tags"></i>: <a href="/tags/machine-learning/">Machine Learning</a>, <a href="/tags/deep-learning/">Deep Learning</a>, <a href="/tags/NLP/">NLP</a></p>
+    </header>
+
+    <article class="post-content">
+        <p>This post goes beyond a conventional code walkthrough inspired by <a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">this tutorial</a>. My goal is to elevate the narrative by offering a comprehensive comparison between Seq2Seq (sequence-to-sequence) models with and without attention.</p>
+
+<p>Anticipate not only code insights but also a detailed exploration of the intricacies that position attention mechanisms as transformative elements in the landscape of sequence-to-sequence modeling.</p>
+
+<h3 id="introduction">Introduction</h3>
+<p>In this article, I guide you through the intricacies of NLP code implementation, emphasizing a structured and organized approach. We draw inspiration from a foundational <a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">tutorial</a> to delve into the nuances of Seq2Seq models.</p>
+
+<p>What sets this exploration apart is the comprehensive comparison between Seq2Seq models with and without attention mechanisms. While the original <a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">tutorial</a> laid the groundwork, this article extends the narrative by evaluating and contrasting these models. Through this analysis, my goal is twofold: to provide a clear understanding of NLP implementation steps and offer insights into the structural organization of code components.</p>
+
+<p>As we traverse Seq2Seq models, attention mechanisms, and code implementation, the intention is to enhance your understanding of NLP intricacies and showcase the meticulous approach applied to every code endeavor.</p>
+
+<p>Let’s dive into the intricacies of Seq2Seq models.</p>
+
+<p>Seq2Seq models play a pivotal role in machine translation, handling tasks like language translation. Consisting of an encoder and a decoder, these models process input sequences, create a semantic context, and generate an output sequence:</p>
+
+<ul>
+  <li>Encoder processes input into a fixed-size context vector representing semantic meaning.</li>
+  <li>Decoder takes the context vector and generates an output sequence, token by token.</li>
+</ul>
+
+<p>In this exploration, we compare two decoder types within the Seq2Seq model: one with a basic Recurrent Neural Network (RNN) and another enhanced with an attention mechanism. The latter, Decoder-RNN-Attention, proves more complex yet often yields superior performance, especially for longer sequences.</p>
+
+<h4 id="decoders">Decoders</h4>
+<p>Decoders are fundamental components within Seq2Seq models, serving as the generative core responsible for translating encoded information into coherent output sequences. A decoder’s primary task involves taking a context vector, which captures the semantic essence of the input sequence, and meticulously generating an output sequence token by token. These tokens collectively compose the translated or transformed sequence. Decoders exhibit a spectrum of complexities and capabilities. Now, let’s explore the intricacies of both the basic RNN decoder, both with and without attention mechanisms.</p>
+<h5 id="decoder-rnn">Decoder-RNN</h5>
+<p>The Decoder-RNN, a fundamental RNN decoder, generates output sequences sequentially based on the encoder’s outputs and hidden states. Key attributes include:</p>
+<ul>
+  <li><strong>Generation Process</strong>: Outputs tokens one at a time, iteratively incorporating predicted tokens back into the model.</li>
+  <li><strong>Hidden State</strong>: Maintains a hidden state capturing context and information from the encoder, updated at each decoding step.</li>
+  <li><strong>Output:</strong> Lacks an attention mechanism, relying solely on the final hidden state for the entire input sequence context.</li>
+</ul>
+
+<h5 id="decoder-rnn-attention">Decoder-RNN-Attention</h5>
+<p>Incorporating an attention mechanism, the Decoder-RNN-Attention significantly enhances its decoding prowess by selectively focusing on diverse segments of the input sequence. Key features include:</p>
+<ul>
+  <li>
+    <p><strong>Attention Mechanism:</strong>: Leverages <a href="https://arxiv.org/pdf/1409.0473.pdf">Bahdanau Attention</a> (See Fig. 1) to dynamically focus on different encoder output segments during each decoding step.</p>
+  </li>
+  <li><strong>Context Vector:</strong>: Utilizes the attention mechanism to calculate a context vector, a weighted sum of the encoder’s output sequence. This context vector, combined with the previous token’s embedding, serves as input to the GRU cell.</li>
+  <li><strong>Generation Process:</strong> Similar to the Decoder-RNN, it produces the output sequence token by token. However, it incorporates the attention mechanism’s enhanced context, resulting in a more refined output.</li>
+</ul>
+
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/bahdanau-attention.jpg" width="250" height="250" alt="Bahdanau Attention Illustration" />
+  <figcaption>Fig. 1: Illustration of Bahdanau Attention (Bahdanau, Cho &amp; Bengio, 2015)</figcaption>
+</div>
+
+<h6 id="comparison">Comparison</h6>
+<ul>
+  <li>Complexity: The Decoder-RNN-Attention introduces increased complexity due to the attention mechanism, allowing dynamic focus on different parts of the input sequence.</li>
+  <li>Performance: In practical applications, attention mechanisms often lead to superior performance, particularly evident when handling longer sequences. This improvement is showcased in the following results, emphasizing the attention mechanism’s ability to selectively attend to pertinent information, thereby enhancing translation quality.</li>
+</ul>
+
+<p>The exploration of Seq2Seq models and their decoders lays a foundational understanding for the practical implementation that follows. Now, let’s dive into the intricacies of training these models and evaluating their performance in real-world translation tasks.</p>
+
+<h3 id="practical-implementation-seq2seq-modeling">Practical Implementation: Seq2Seq Modeling</h3>
+
+<p>In this practical implementation, we meticulously structure and enhance the entire model training process, building upon <a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">tutorial</a>.</p>
+
+<h4 id="i-data-preparation">I. Data Preparation</h4>
+
+<p>We utilize a dataset of English to French translation pairs from the open translation site Tatoeba, downloadable <a href="https://www.manythings.org/anki/">here</a> in tab-separated format. 
+The dataset is carefully trimmed to include only a few thousand words per language, managing the encoding vector’s size. The whole preprocessing is similar to <a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">tutorial</a>.</p>
+
+<p>Our data preparation implementation is encapsulated in the following classes:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/data_handler.py#L9"><code class="language-plaintext highlighter-rouge">LanguageData</code></a> Class</strong>
+    <ul>
+      <li>Manages language-specific data.</li>
+      <li>Tokenizes sentences and maintains vocabulary.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/data_handler.py#L29"><code class="language-plaintext highlighter-rouge">DataReader</code></a> Class</strong>
+    <ul>
+      <li>Reads raw data, optionally reversing language pairs.</li>
+      <li>Filters pairs based on specified prefixes.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/preprocessor.py#L6"><code class="language-plaintext highlighter-rouge">Preprocessor</code></a> Class</strong>
+    <ul>
+      <li>Orchestrates the data processing workflow.</li>
+      <li>Enriches language data with sentences.</li>
+      <li>Filters valid pairs.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="ii-model-training-setup">II. Model Training Setup</h4>
+
+<h5 id="dataloader-classes">Dataloader Classes</h5>
+<p>We’ve implemented custom dataloader classes based on training and testing datasets, featuring:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/dataloader.py#L12"><code class="language-plaintext highlighter-rouge">PairDataset</code></a> Class</strong>
+    <ul>
+      <li>Converts sentence pairs into tensor datasets.</li>
+      <li>Prepares data for model consumption.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/data/dataloader.py#L61"><code class="language-plaintext highlighter-rouge">PairDataLoader</code></a> Class</strong>
+    <ul>
+      <li>Manages train and test dataloaders.</li>
+      <li>Efficiently feeds batches into the model.</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="model-architecture">Model Architecture</h5>
+<p>The model architecture comprises:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/encoder.py#L5"><code class="language-plaintext highlighter-rouge">EncoderRNN</code></a> Class</strong>
+    <ul>
+      <li>Embedding layer captures context from input sequences.</li>
+      <li>GRU layer encodes contextual information.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/decoder.py#L37"><code class="language-plaintext highlighter-rouge">DecoderRNN</code></a> Class</strong>
+    <ul>
+      <li>Unfolds sequence generation process.</li>
+      <li>Produces translated sequences step by step.</li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/decoder.py#L76"><code class="language-plaintext highlighter-rouge">AttentionDecoderRNN</code></a> Class</strong>
+    <ul>
+      <li>Advanced decoder with attention mechanisms.</li>
+      <li>Enhances model focus on relevant parts of the input sequence.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Explore the detailed implementation <a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/">here</a>.</p>
+
+<h4 id="iii-training-process">III. Training Process</h4>
+<p>In the training process, our <a href="https://github.com/egpivo/nlp_practice/case/translation/training/trainer.py"><code class="language-plaintext highlighter-rouge">Trainer</code></a> class efficiently manages optimization using ADAM, cross-entropy loss calculation, and the training loop. It’s essential to note that this work simplifies the settings, with a focus on random dataset splitting for training and testing, rather than extensive hyperparameter tuning or early stopping.</p>
+
+<p>Key hyperparameters are configured as follows:</p>
+<ul>
+  <li>Parameters
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">dropout_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">training_rate</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>To initiate the training job, use the following CLI command:</p>
+
+<ul>
+  <li>Command
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python examples/translation/cli/run_model_evaluation.py <span class="nt">--data_base_path</span> examples/translation/data
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Find the script with its arguments <a href="https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/run_model_training.py">here</a>.</p>
+
+<h5 id="training-result">Training Result</h5>
+<p>Explore the cross-entropy losses of both models across different epochs for a thorough understanding of their training performance.</p>
+
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/loss.png" width="700" height="250" alt="Description" />
+  <figcaption>Fig. 2: Losses of two models</figcaption>
+</div>
+
+<p>Fig. 2 shows that the losses of both models appear similar and converge, indicating comparable training dynamics.</p>
+
+<h4 id="iv-inference">IV. Inference</h4>
+<p>To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the <a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12"><code class="language-plaintext highlighter-rouge">Predictor</code></a> class to showcase the capabilities of both models in translating these sentences.</p>
+<ul>
+  <li>Example 1
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">input_sentence</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Translate </span><span class="si">{</span><span class="n">input_sentence</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Translate</span> <span class="sh">'</span><span class="s">je suis en train de me peser</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">True: </span><span class="si">{</span><span class="n">answer</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="bp">True</span><span class="p">:</span> <span class="sh">'</span><span class="s">i am weighing myself</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result without attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">normal_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Result</span> <span class="k">with</span> <span class="n">attention</span><span class="p">:</span> <span class="sh">'</span><span class="s">i am weighing myself</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result with attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">attention_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Example 2
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">input_sentence</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Translate </span><span class="si">{</span><span class="n">input_sentence</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Translate</span> <span class="sh">'</span><span class="s">vous etes bon cuisinier n est ce pas ?</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">True: </span><span class="si">{</span><span class="n">answer</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="bp">True</span><span class="p">:</span> <span class="sh">'</span><span class="s">you are a good cook aren t you ?</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result without attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">normal_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Result</span> <span class="n">without</span> <span class="n">attention</span><span class="p">:</span> <span class="sh">'</span><span class="s">you re kind of cute when you re mad</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result with attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">attention_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Result</span> <span class="k">with</span> <span class="n">attention</span><span class="p">:</span> <span class="sh">'</span><span class="s">you are a good cook aren t you ?</span><span class="sh">'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Example 3
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">input_sentence</span><span class="p">,</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Translate </span><span class="si">{</span><span class="n">input_sentence</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Translate</span> <span class="sh">'</span><span class="s">je suis plus petite que vous</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">True: </span><span class="si">{</span><span class="n">answer</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="bp">True</span><span class="p">:</span> <span class="sh">'</span><span class="s">i m shorter than you</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result without attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">normal_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Result</span> <span class="n">without</span> <span class="n">attention</span><span class="p">:</span> <span class="sh">'</span><span class="s">i m glad you re ok now</span><span class="sh">'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">LOGGER</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Result with attention: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">attention_predictor</span><span class="p">.</span><span class="nf">translate</span><span class="p">(</span><span class="n">input_sentence</span><span class="p">))</span><span class="si">!r}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">INFO</span><span class="p">:</span><span class="n">root</span><span class="p">:</span><span class="n">Result</span> <span class="k">with</span> <span class="n">attention</span><span class="p">:</span> <span class="sh">'</span><span class="s">i m shorter than you</span><span class="sh">'</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>The results highlight a significant distinction: the “With Attention” decoder consistently provides accurate translations, aligning well with the true results. In contrast, the “Without Attention” decoder falls short in capturing the nuances of the translations, emphasizing the impact of the attention mechanism on improving translation accuracy.</p>
+
+<h4 id="v-evaluation">V. Evaluation</h4>
+<p>This section provides a comprehensive evaluation by examining relevant metrics.</p>
+
+<h5 id="metric-evaluation-using-the-test-dataset">Metric Evaluation using the Test Dataset</h5>
+<p>To assess our models’ performance, we employ key metrics, providing unique insights into their capabilities:</p>
+
+<ul>
+  <li>
+    <p><strong>Accuracy:</strong> Measures the exact match between the model’s predictions and the actual results, offering a straightforward measure of correctness.</p>
+  </li>
+  <li>
+    <p><strong><a href="https://en.wikipedia.org/wiki/ROUGE_(metric)">ROUGE-1</a>:</strong> Focused on unigrams, ROUGE-1 evaluates alignment between the model’s output and the reference text at the level of individual words. Precision, recall, and the F1 score within the ROUGE-1 framework offer distinct perspectives on the model’s effectiveness in capturing relevant information from the reference, particularly at the granularity of unigrams.</p>
+  </li>
+</ul>
+
+<div style="text-align:center;">
+  <img src="http://localhost:4000/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/metric.png" width="550" height="450" alt="Evaluation Results" />
+  <figcaption>Fig. 3: Evaluation results of the two models</figcaption>
+</div>
+
+<p>Fig. 3 illustrates that the “With Attention” decoder consistently outperforms the “Without Attention” decoder across all metrics—ROUGE-1 Precision, ROUGE-1 Recall, ROUGE-1 F1, and accuracy. This consistent superiority suggests that the attention mechanism significantly contributes to enhanced accuracy and improved text generation quality. The emphasis on individual words (ROUGE-1) reinforces the importance of attention in capturing precise details and nuances during translation.</p>
+
+<p>To quantify these observations, we introduce an <a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/evalution/evaluator.py#L14"><code class="language-plaintext highlighter-rouge">Evaluator</code></a> class that systematically assesses the model’s performance using the specified metrics. The class takes the test dataset and a predictor as inputs and calculates accuracy, ROUGE-1 precision, recall, and F1 score. This comprehensive evaluation enhances our understanding of the models’ strengths and weaknesses.</p>
+
+<blockquote>
+  <p>Note that you can execute the <a href="https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/execution.ipynb">notebook</a> to reproduce the above results.</p>
+</blockquote>
+
+<h3 id="summary-and-acknowledgment">Summary and Acknowledgment</h3>
+
+<p>In conclusion, the Decoder-RNN-Attention, with its sophisticated attention mechanism, outperforms the basic Decoder-RNN, showcasing enhanced complexity and dynamic focus on input sequences. Its superiority is particularly evident when handling longer sequences, emphasizing the pivotal role of selective attention in machine translation. Despite both models converging in training losses, the ‘With Attention’ decoder consistently outperforms the ‘Without Attention’ decoder across diverse metrics, highlighting the critical significance of attention mechanisms.</p>
+
+<p>These findings not only contribute insights into the nuanced performance of Seq2Seq models but also underscore the indispensable nature of attention mechanisms in shaping the future of Natural Language Processing. I encourage readers to explore the provided code and experiment with these models themselves.</p>
+
+<h4 id="acknowledgment">Acknowledgment</h4>
+
+<p>I would like to express my gratitude to the authors and contributors of the tutorial on which this article is heavily based:</p>
+
+<ul>
+  <li><a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">NLP FROM SCRATCH: TRANSLATION WITH A SEQUENCE TO SEQUENCE NETWORK AND ATTENTION</a></li>
+</ul>
+
+<p>The insights and guidance provided in this tutorial laid the groundwork for the content presented here. This article extends the narrative by evaluating and contrasting sequence-to-sequence models with and without attention mechanisms, offering additional insights and practical implementation details.</p>
+
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html">NLP FROM SCRATCH: TRANSLATION WITH A SEQUENCE TO SEQUENCE NETWORK AND ATTENTION</a></li>
+  <li><a href="https://arxiv.org/pdf/1409.0473.pdf">NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE</a></li>
+</ul>
+
+
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egpivo';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+    </article>
+
+</div>
+
+    </div>
+</div>
+
+<footer class="site-footer">
+
+    <div class="wrapper">
+
+        <div class="footer-col  footer-col-1">
+            <ul class="social-media-list">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:egpivo@gmail.com">egpivo@gmail.com</a>
+                </li>
+                
+                <li>
+                    <i class="fa fa-github"></i>
+                    <a href="https://github.com/egpivo"><span class="username">egpivo</span></a>
+                </li>
+                
+                <li>
+                    <i class="fa fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/wtwang/"><span class="username">wtwang</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-col  footer-col-23">
+            <p class="text">Science is a means whereby learning is achieved.
+</p>
+        </div>
+    </div>
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

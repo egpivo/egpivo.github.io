@@ -25,3 +25,6 @@ Software:
 NLP:
     slug: NLP
     name: NLP
+LLM:
+    slug: LLM
+    name: LLM

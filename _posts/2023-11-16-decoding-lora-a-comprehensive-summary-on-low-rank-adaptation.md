@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Decoding LoRA: A Comprehensive Summary on Low-Rank Adaptation"
-tags:  [Machine Learning, Deep Learning, NLP]
+tags:  [Machine Learning, Deep Learning, NLP, LLM]
 ---
 
 Recently, I came across an intriguing article on low-rank techniques employed in Large Language Models (LLM) specifically focusing on LoRA: Low-Rank Adaptation of Large Language Models. Here's a succinct summary of the key concepts, along with additional discussions.
