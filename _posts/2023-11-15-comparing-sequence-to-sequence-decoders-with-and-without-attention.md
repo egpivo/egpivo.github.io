@@ -22,20 +22,19 @@ Seq2Seq models play a pivotal role in machine translation, handling tasks like l
 In this exploration, we compare two decoder types within the Seq2Seq model: one with a basic Recurrent Neural Network (RNN) and another enhanced with an attention mechanism. The latter, Decoder-RNN-Attention, proves more complex yet often yields superior performance, especially for longer sequences.
 
 ### Decoders
+Decoders are fundamental components within Seq2Seq models, serving as the generative core responsible for translating encoded information into coherent output sequences. A decoder's primary task involves taking a context vector, which captures the semantic essence of the input sequence, and meticulously generating an output sequence token by token. These tokens collectively compose the translated or transformed sequence. Decoders exhibit a spectrum of complexities and capabilities. Now, let's explore the intricacies of both the basic Recurrent Neural Network (RNN) decoder, both with and without attention mechanisms.
 #### Decoder-RNN
-This decoder is a basic Recurrent Neural Network (RNN) decoder. It takes the encoder's outputs and hidden states as input, and sequentially generates the output sequence. Here are some key points:
-  - **Generation Process**: It generates the output sequence one token at a time, feeding the predicted token back into the model at each step.
-  - **Hidden State**: It maintains a hidden state that captures the context and information from the encoder. This hidden state is updated at each decoding step.
-  - **Output:** This decoder doesn't employ an attention mechanism, relying solely on the final hidden state to capture the entire input sequence's context.
+The Decoder-RNN, a fundamental RNN decoder, generates output sequences sequentially based on the encoder's outputs and hidden states. Key attributes include:
+  - **Generation Process**: Outputs tokens one at a time, iteratively incorporating predicted tokens back into the model.
+  - **Hidden State**: Maintains a hidden state capturing context and information from the encoder, updated at each decoding step.
+  - **Output:** Lacks an attention mechanism, relying solely on the final hidden state for the entire input sequence context.
 
 #### Decoder-RNN-Attention
-This decoder incorporates an attention mechanism, significantly enhancing its ability to focus on different parts of the input sequence during the decoding process. Here are its key characteristics:
+Incorporating an attention mechanism, the Decoder-RNN-Attention significantly enhances its decoding prowess by selectively focusing on diverse segments of the input sequence. Key features include:
+- **Attention Mechanism:**: Leverages [Bahdanau Attention](https://arxiv.org/pdf/1409.0473.pdf) (See Fig. 1) to dynamically focus on different encoder output segments during each decoding step.
 
-- **Attention Mechanism:** Utilizing [Bahdanau Attention](https://arxiv.org/pdf/1409.0473.pdf) (See Fig. 1), the decoder selectively focuses on different segments of the encoder's output sequence at each decoding step.
-
-- **Context Vector:** The attention mechanism calculates a context vector, which is a weighted sum of the encoder's output sequence. This context vector, combined with the embedding of the previous token, serves as input to the GRU cell.
-
-- **Generation Process:** Similar to the Decoder-RNN, this decoder generates the output sequence one token at a time. However, it takes into account the attention mechanism's enhanced context, providing a more refined output.
+- **Context Vector:**: Utilizes the attention mechanism to calculate a context vector, a weighted sum of the encoder's output sequence. This context vector, combined with the previous token's embedding, serves as input to the GRU cell.
+- **Generation Process:** Similar to the Decoder-RNN, it produces the output sequence token by token. However, it incorporates the attention mechanism's enhanced context, resulting in a more refined output.
 
 <div style="text-align:center;">
   <img src="{{ site.url }}/assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/bahdanau-attention.jpg" width="250" height="250" alt="Bahdanau Attention Illustration">
@@ -43,8 +42,8 @@ This decoder incorporates an attention mechanism, significantly enhancing its ab
 </div>
 
 ##### Comparison
-   - Complexity: Decoder-RNN-Attentio is more complex owing to the attention mechanism, allowing it to focus on different parts of the input sequence dynamically.
-   - Performance: In practice, attention mechanisms often lead to improved performance, especially when dealing with long sequences, as they enable the model to selectively attend to relevant information, as demonstrated in the results below.
+   - Complexity: The Decoder-RNN-Attention introduces increased complexity due to the attention mechanism, allowing dynamic focus on different parts of the input sequence.
+   - Performance: In practical applications, attention mechanisms often lead to superior performance, particularly evident when handling longer sequences. This improvement is showcased in the following results, emphasizing the attention mechanism's ability to selectively attend to pertinent information, thereby enhancing translation quality.
 
 ### Practical Implementation: Seq2Seq Model Training
 
