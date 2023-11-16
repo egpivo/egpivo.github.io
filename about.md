@@ -10,9 +10,10 @@ Welcome to my corner of the digital world! I am a seasoned **Machine Learning En
 
 <h4>Filed of Interests</h4>
 My passion and expertise lie in several domains, including:
+- *Natural Language Processing (NLP)*
 - *Recommendation Systems*
-- *Machine Learning*
 - *Deep Learning*
+- *Machine Learning*
 - *Bayesian Statistics*
 - *Spatial Statistics*
 

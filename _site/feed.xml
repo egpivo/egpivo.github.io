@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 15 Nov 2023 22:49:12 +0800</pubDate>
-    <lastBuildDate>Wed, 15 Nov 2023 22:49:12 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Nov 2023 09:40:07 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Nov 2023 09:40:07 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -176,7 +176,7 @@ The dataset is carefully trimmed to include only a few thousand words per langua
 
 &lt;p&gt;To reproduce the following results, you can execute the &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/evaluation.ipynb&quot;&gt;notebook&lt;/a&gt;.&lt;/p&gt;
 &lt;h5 id=&quot;i-inference&quot;&gt;I. Inference&lt;/h5&gt;
-&lt;p&gt;To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Predictor&lt;/code&gt;[https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12] class to showcase the capabilities of both models in translating these sentences.&lt;/p&gt;
+&lt;p&gt;To assess the translation quality of the trained Seq2Seq models, we conduct a human evaluation by randomly selecting three sentences from the dataset. We utilize the &lt;a href=&quot;https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/Inference/predictor.py#L12&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Predictor&lt;/code&gt;&lt;/a&gt; class to showcase the capabilities of both models in translating these sentences.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Example 1
     &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_sentence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
