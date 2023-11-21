@@ -109,7 +109,7 @@ The model architecture comprises:
 Explore the detailed implementation [here](https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/).
 
 #### III. Training Process
-In the training process, our [`Trainer`](https://github.com/egpivo/nlp_practice/case/translation/training/trainer.py) class efficiently manages optimization using ADAM, cross-entropy loss calculation, and the training loop. It's essential to note that this work simplifies the settings, with a focus on random dataset splitting for training and testing, rather than extensive hyperparameter tuning or early stopping.
+In the training process, our [`Seq2SeqTrainer`](https://github.com/egpivo/nlp-practice/blob/65f9e15455a225ff59b0096b200aee8d81ca624b/nlp_practice/case/translation/training/trainer.py#L15) class efficiently manages optimization using ADAM, cross-entropy loss calculation, and the training loop. It's essential to note that this work simplifies the settings, with a focus on random dataset splitting for training and testing, rather than extensive hyperparameter tuning or early stopping.
 
 Key hyperparameters are configured as follows:
 - Parameters
@@ -129,7 +129,7 @@ To initiate the training job, use the following CLI command:
 python examples/translation/cli/run_model_evaluation.py --data_base_path examples/translation/data
 ```
 
-Find the script with its arguments [here](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/run_model_training.py).
+Find the script with its arguments [here](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/seq2seq/run_model_training.py).
 
 ##### Training Result
 Explore the cross-entropy losses of both models across different epochs for a thorough understanding of their training performance.

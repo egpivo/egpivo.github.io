@@ -280,7 +280,7 @@ The dataset is carefully trimmed to include only a few thousand words per langua
 <p>Explore the detailed implementation <a href="https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/model/">here</a>.</p>
 
 <h4 id="iii-training-process">III. Training Process</h4>
-<p>In the training process, our <a href="https://github.com/egpivo/nlp_practice/case/translation/training/trainer.py"><code class="language-plaintext highlighter-rouge">Trainer</code></a> class efficiently manages optimization using ADAM, cross-entropy loss calculation, and the training loop. It’s essential to note that this work simplifies the settings, with a focus on random dataset splitting for training and testing, rather than extensive hyperparameter tuning or early stopping.</p>
+<p>In the training process, our <a href="https://github.com/egpivo/nlp-practice/blob/65f9e15455a225ff59b0096b200aee8d81ca624b/nlp_practice/case/translation/training/trainer.py#L15"><code class="language-plaintext highlighter-rouge">Seq2SeqTrainer</code></a> class efficiently manages optimization using ADAM, cross-entropy loss calculation, and the training loop. It’s essential to note that this work simplifies the settings, with a focus on random dataset splitting for training and testing, rather than extensive hyperparameter tuning or early stopping.</p>
 
 <p>Key hyperparameters are configured as follows:</p>
 <ul>
@@ -304,7 +304,7 @@ The dataset is carefully trimmed to include only a few thousand words per langua
   </li>
 </ul>
 
-<p>Find the script with its arguments <a href="https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/run_model_training.py">here</a>.</p>
+<p>Find the script with its arguments <a href="https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/seq2seq/run_model_training.py">here</a>.</p>
 
 <h5 id="training-result">Training Result</h5>
 <p>Explore the cross-entropy losses of both models across different epochs for a thorough understanding of their training performance.</p>
