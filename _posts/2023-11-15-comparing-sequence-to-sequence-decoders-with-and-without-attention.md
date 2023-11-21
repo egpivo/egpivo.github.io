@@ -126,7 +126,7 @@ To initiate the training job, use the following CLI command:
 
 - Command
 ```bash
-python examples/translation/cli/run_model_evaluation.py --data_base_path examples/translation/data
+python examples/translation/cli/seq2seq/run_model_evaluation.py --data_base_path examples/translation/data
 ```
 
 Find the script with its arguments [here](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/cli/seq2seq/run_model_training.py).
