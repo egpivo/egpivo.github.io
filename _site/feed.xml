@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Nov 2023 14:48:50 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Nov 2023 14:48:50 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Nov 2023 14:52:39 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Nov 2023 14:52:39 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -299,7 +299,7 @@ The dataset is carefully trimmed to include only a few thousand words per langua
 
 &lt;ul&gt;
   &lt;li&gt;Command
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python examples/translation/cli/run_model_evaluation.py &lt;span class=&quot;nt&quot;&gt;--data_base_path&lt;/span&gt; examples/translation/data
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python examples/translation/cli/seq2seq/run_model_evaluation.py &lt;span class=&quot;nt&quot;&gt;--data_base_path&lt;/span&gt; examples/translation/data
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
