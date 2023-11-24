@@ -202,7 +202,7 @@ Fig. 3 illustrates that the "With Attention" decoder consistently outperforms th
 To quantify these observations, we introduce an [`Evaluator`](https://github.com/egpivo/nlp-practice/blob/main/nlp_practice/case/translation/evalution/evaluator.py#L14) class that systematically assesses the model's performance using the specified metrics. The class takes the test dataset and a predictor as inputs and calculates accuracy, ROUGE-1 precision, recall, and F1 score. This comprehensive evaluation enhances our understanding of the models' strengths and weaknesses.
 
 
-> Note that you can execute the [notebook](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/execution.ipynb) to reproduce the above results.
+> Note that you can execute the [notebook](https://github.com/egpivo/nlp-practice/blob/main/examples/translation/notebooks/seq2seq/execution.ipynb) to reproduce the above results.
 
 ### Summary and Acknowledgment
 
