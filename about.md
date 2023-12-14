@@ -50,4 +50,4 @@ Here are some of my notable publications:
 </div>
 </div>
 </div>
-
+Note that here is my [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=GAKosCMAAAAJ&gmla=AH70aAVcwHyv3-ZWxaxaJN7yvp78XhpETV1GpwVWTllSCkVFwaH1_qwKrG1oxM9ex1K28vMvkI3LWVymAXgBGShrmaZzgU84AEAbWaONqJg).
