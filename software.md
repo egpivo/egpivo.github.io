@@ -292,26 +292,26 @@ permalink: /software/
         <div class="tech-stack">
             <strong>Tech Stack:</strong>
             <ul class="list-inline">
-                <li><a href="#"><img src="https://img.shields.io/badge/openai-black?style=flat-square&logo=openai"/></a>
+                <li><a href="https://openai.com/"><img src="https://img.shields.io/badge/openai-black?style=flat-square&logo=openai"/></a>
                 </li>
-                <li><a href="#"><img
+                <li><a href="https://huggingface.co/"><img
                         src="https://img.shields.io/badge/Hugging_Face-black?style=flat-square&logo=hugging%20face"/></a>
                 </li>
-                <li><a href="#"><img
+                <li><a href="https://www.langchain.com/"><img
                         src="https://img.shields.io/badge/LangChain-007ACC?style=flat-square&logo=langchain&logoColor=black"/></a>
                 </li>
-                <li><a href="#"><img
+                <li><a href="https://pytorch.org/"><img
                         src="https://img.shields.io/badge/PyTorch-black?style=flat-square&logo=pytorch"/></a></li>
-                <li><a href="#"><img
+                <li><a href="https://fastapi.tiangolo.com/"><img
                         src="https://img.shields.io/badge/fastapi-black?style=flat-square&logo=fastapi"/></a></li>
-                <li><a href="#"><img
+                <li><a href="https://www.bentoml.com/"><img
                         src="https://img.shields.io/badge/bentoml-black?style=flat-square&logo=bentoml"/></a></li>
-                <li><a href="#"><img
+                <li><a href="https://www.gradio.app/"><img
                         src="https://img.shields.io/badge/Gradio-4A4A4A?style=flat-square&logo=gradio&logoColor=black"/></a>
                 </li>
-                <li><a href="#"><img src="https://img.shields.io/badge/docker-black?style=flat-square&logo=docker"/></a>
+                <li><a href="https://www.docker.com/"><img src="https://img.shields.io/badge/docker-black?style=flat-square&logo=docker"/></a>
                 </li>
-                <li><a href="#"><img
+                <li><a href="https://www.alibabacloud.com/z"><img
                         src="https://img.shields.io/badge/AlibabaCloud-orange?logo=alibaba-cloud&color=black"/></a></li>
             </ul>
         </div>
