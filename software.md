@@ -1,5 +1,8 @@
 ---
-layout: default
+layout: page
+title: Software
+menu: main
+permalink: /software/
 ---
 
 <h3>R Packages for Advanced Statistical Analysis</h3>

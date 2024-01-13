@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: page
+title: Books Collection
+menu: main
+permalink: /books/
 ---
-<!DOCTYPE html>
-<html>
+
 <head>
   <style>
     .category {
@@ -49,9 +51,8 @@ layout: default
         </script>
 </head>
 <body>
-<h3>Book Collection</h3>
 
-Over the last five years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
+Over the last 7 years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
 These readings symbolize my dual commitment to tech excellence and personal growth. Each book has been a stepping stone in shaping both my professional and personal trajectory.
 
 <!-- Tech Section -->
@@ -178,5 +179,3 @@ These readings symbolize my dual commitment to tech excellence and personal grow
     </div>
 </div>
 
-</body>
-</html>
