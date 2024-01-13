@@ -116,15 +116,9 @@ permalink: /software/
     <div class="list-group-item row">
         <div class="col-md-6">
         <h4 class="list-group-item-heading"><a href="https://egpivo.github.io/autoFRK/">autoFRK</a></h4>
-        <p class="list-group-item-text"> The `autoFRK`, R package, built on RcppEigen, introduces automatic
-            fixed-rank
-            kriging for spatial data. It stands out for its capability to handle irregularly distributed data
-            points
-            using a set of basis functions with multi-resolution characteristics, intelligently ordered based on
-            their
-            resolutions.
+        <p class="list-group-item-text"> Transform spatial data modeling with autoFRK—utilizing thin-plate splines for efficient basis function selection and nonstationary spatial covariance representation. Featuring closed-form expressions for maximum likelihood estimates, it handles numerous basis functions effortlessly. Automated function selection via Akaike’s criterion requires no extra tuning. autoFRK excels in processing vast and irregular spatial datasets, providing a seamless and automatic solution.
         </p>
-        </div>>
+        </div>
         <div class="col-md-6">
         <div class="software-ref">
             <strong>Software References:</strong>
@@ -165,7 +159,7 @@ permalink: /software/
     <div class="list-group-item row">
         <div class="col-md-6">
         <h4 class="list-group-item-heading"><a href="https://boshiangke.github.io/InfluenceAUC/">influenceAUC</a></h4>
-        <p class="list-group-item-text"> Specialized in binary classification model diagnostics, the
+        <p class="list-group-item-text"> Specialize in binary classification model diagnostics, the
             influenceAUC package is essential for identifying influential observations. It provides crucial
             visualization tools to enhance the understanding of model performance and diagnostic insights.
         </p>
