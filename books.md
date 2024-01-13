@@ -70,6 +70,11 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Richard Sutton & Andrew Barto </div>
         </div>
         <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/mining-massive-dataset.png" alt="TBook 2">
+            <div class="book-title">Mining Massive Dataset</div>
+            <div class="book-author">Jure Leskovec, Anand Rajaraman, & Jeffrey David Ullman</div>
+        </div>
+        <div class="book">
             <img class="book-image" src="{{ site.url }}/assets/books/machine-learning-design-patterns.png" alt="TBook 3">
             <div class="book-title">Machine Learning Design Patterns: Solutions to Common Challenges in Data Preparation, Model Building, and MLOps</div>
             <div class="book-author">Valliappa Lakshmanan, Sara Robinson & Michael Munn</div>
