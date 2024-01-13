@@ -4,7 +4,6 @@ title: Software
 menu: main
 permalink: /software/
 ---
-
 <h3>R Packages for Advanced Statistical Analysis</h3>
 
 <p>Explore these R packages designed to address specific challenges in spatial data processing, high-dimensional
@@ -14,7 +13,6 @@ permalink: /software/
 <div class="list-group">
     <div class="list-group-item">
         <h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatPCA/">SpatPCA</a></h4>
-
         <p class="list-group-item-text"> Simplify spatial data analysis with the `SpatPCA` package. This tool excels
             in regularized principal component analysis, enabling the identification of dominant patterns
             (eigenfunctions) characterized by smoothness and localization. It also facilitates spatial prediction
@@ -35,7 +33,6 @@ permalink: /software/
                     src="https://img.shields.io/badge/JCGS-10.18637%2F10618600.2016.1157483-brightgreen"/></a></li>
         </ul>
     </div>
-
     <div class="list-group-item">
         <h4 class="list-group-item-heading"><a href="https://egpivo.github.io/SpatMCA/">SpatMCA</a></h4>
         <p class="list-group-item-text"> Delve into regularized maximum covariance analysis with the SpatMCA R
@@ -79,7 +76,6 @@ permalink: /software/
                     src="https://img.shields.io/codecov/c/github/egpivo/autoFRK/master.svg"/></a></li>
         </ul>
     </div>
-
     <div class="list-group-item">
         <h4 class="list-group-item-heading"><a href="https://boshiangke.github.io/InfluenceAUC/">influenceAUC</a></h4>
         <p class="list-group-item-text"> Specialized in binary classification model diagnostics, the
@@ -98,7 +94,6 @@ permalink: /software/
                     src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC"/></a></li>
         </ul>
     </div>
-
     <div class="list-group-item">
         <h4 class="list-group-item-heading"><a href="https://egpivo.github.io/QuantRegGLasso/">QuantRegGLasso</a></h4>
         <p class="list-group-item-text">
@@ -117,23 +112,18 @@ permalink: /software/
                     src="https://img.shields.io/codecov/c/github/egpivo/QuantRegGLasso/master.svg"/></a></li>
         </ul>
     </div>
-
 </div>
 
 
 <h3>Python Implementations</h3>
 <p>Explore the following Python applications showcasing a range of technologies and frameworks.</p>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-...." crossorigin="anonymous"/>
 
 <div class="list-group">
     <div class="list-group-item">
         <h4 class="list-group-item-heading"><a href="https://egpivo.com/chatbot">LLM Chatbot</a></h4>
         <p class="list-group-item-text">
-            Unleash the potential of conversational AI with the LLM Chatbot Framework. This Python framework, powered by LangChain Agent, seamlessly integrates advanced text-to-speech and speech-to-text models from Hugging Face. Craft dynamic chatbots with voice translation capabilities effortlessly.
-
-
+            Unleash the potential of conversational AI with the LLM Chatbot Framework.This Python framework, powered by LangChain Agent, seamlessly integrates advanced text-to-speech and speech-to-text models from Hugging Face. Craft dynamic chatbots with voice translation capabilities effortlessly.
         </p>
         <br>
         <div class="software-ref">
