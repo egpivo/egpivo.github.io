@@ -34,6 +34,8 @@ permalink: /software/
             <div class="build-deployment">
                 <strong>Build and Deployment:</strong>
                 <ul class="list-inline">
+            <li><a href="https://github.com/egpivo/SpatPCA/actions"><img
+                    src="https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg"/></a></li>
               <li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
                         src="http://www.r-pkg.org/badges/version/SpatPCA"/></a></li>
                 <li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
@@ -85,6 +87,8 @@ permalink: /software/
         <div class="build-deployment">
             <strong>Build and Deployment:</strong>
             <ul class="list-inline">
+            <li><a href="https://github.com/egpivo/SpatMCA/actions"><img
+                    src="https://github.com/egpivo/SpatMCA/workflows/R-CMD-check/badge.svg"/></a></li>
              <li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img
                     src="http://www.r-pkg.org/badges/version/SpatMCA"/></a></li>
             <li><a href="https://cran.rstudio.com/web/packages/SpatMCA"><img
@@ -132,6 +136,8 @@ permalink: /software/
         <div class="build-deployment">
             <strong>Build and Deployment:</strong>
             <ul class="list-inline">
+            <li><a href="https://github.com/egpivo/autoFRK/actions"><img
+                    src="https://github.com/egpivo/autoFRK/workflows/R-CMD-check/badge.svg"/></a></li>
             <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img
                     src="http://www.r-pkg.org/badges/version/autoFRK"/></a></li>
             <li><a href="https://cran.rstudio.com/web/packages/autoFRK"><img
@@ -152,44 +158,6 @@ permalink: /software/
                 </li>
                 <li><a href="https://eigen.tuxfamily.org/"><img
                         src="https://img.shields.io/badge/Eigen-black?style=flat-square&logo=eigen"/></a>
-                </li>
-             </ul>
-        </div>
-    </div></div>
-    <div class="list-group-item row">
-        <div class="col-md-6">
-        <h4 class="list-group-item-heading"><a href="https://boshiangke.github.io/InfluenceAUC/">influenceAUC</a></h4>
-        <p class="list-group-item-text"> Specialize in binary classification model diagnostics, the
-            influenceAUC package is essential for identifying influential observations. It provides crucial
-            visualization tools to enhance the understanding of model performance and diagnostic insights.
-        </p>
-        </div>
-        <div class="col-md-6">
-        <div class="software-ref">
-            <strong>Software References:</strong>
-            <ul class="list-inline">
-            <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/BoShiangKe/influenceAUC">GitHub</a></li>
-            <li><i class="fas fa-eye fa-lg"></i> <a href="https://boshiangke.github.io/InfluenceAUC/reference/IAUC.html">Demo</a></li>
-            <li><a href="https://doi.org/10.1080/10543406.2017.1377728"><img
-                    src="https://img.shields.io/badge/JBS-10.1080%2F10543406.2017.1377728-brightgreen"/></a>
-                </li>
-            </ul>
-        </div>
-        <div class="build-deployment">
-            <strong>Build and Deployment:</strong>
-            <ul class="list-inline">
-            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
-                    src="http://www.r-pkg.org/badges/version/influenceAUC"/></a></li>
-            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
-                    src="http://cranlogs.r-pkg.org/badges/influenceAUC"/></a></li>
-            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
-                    src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC"/></a></li>
-            </ul>
-        </div>
-        <div class="tech-stack">
-            <strong>Tech Stack:</strong>
-            <ul class="list-inline">
-                <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/r-black?style=flat-square&logo=r"/></a>
                 </li>
              </ul>
         </div>
@@ -240,6 +208,47 @@ permalink: /software/
                 </li>
                 <li><a href="https://arma.sourceforge.net/"><img
                         src="https://img.shields.io/badge/Armadillo-black?style=flat-square&logo=armadillo"/></a>
+                </li>
+             </ul>
+        </div>
+    </div>
+</div>
+    <div class="list-group-item row">
+        <div class="col-md-6">
+        <h4 class="list-group-item-heading"><a href="https://boshiangke.github.io/InfluenceAUC/">influenceAUC</a></h4>
+        <p class="list-group-item-text"> Specialize in binary classification model diagnostics, the
+            influenceAUC package is essential for identifying influential observations. It provides crucial
+            visualization tools to enhance the understanding of model performance and diagnostic insights.
+        </p>
+        </div>
+        <div class="col-md-6">
+        <div class="software-ref">
+            <strong>Software References:</strong>
+            <ul class="list-inline">
+            <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/BoShiangKe/influenceAUC">GitHub</a></li>
+            <li><i class="fas fa-eye fa-lg"></i> <a href="https://boshiangke.github.io/InfluenceAUC/reference/IAUC.html">Demo</a></li>
+            <li><a href="https://doi.org/10.1080/10543406.2017.1377728"><img
+                    src="https://img.shields.io/badge/JBS-10.1080%2F10543406.2017.1377728-brightgreen"/></a>
+                </li>
+            </ul>
+        </div>
+        <div class="build-deployment">
+            <strong>Build and Deployment:</strong>
+            <ul class="list-inline">
+            <li><a href="https://github.com/BoShiangKe/influenceAUC/actions"><img
+                    src="https://github.com/BoShiangKe/influenceAUC/workflows/R-CMD-check/badge.svg"/></a></li>
+            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
+                    src="http://www.r-pkg.org/badges/version/influenceAUC"/></a></li>
+            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
+                    src="http://cranlogs.r-pkg.org/badges/influenceAUC"/></a></li>
+            <li><a href="https://cran.rstudio.com/web/packages/influenceAUC"><img
+                    src="https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC"/></a></li>
+            </ul>
+        </div>
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            <ul class="list-inline">
+                <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/r-black?style=flat-square&logo=r"/></a>
                 </li>
              </ul>
         </div>
