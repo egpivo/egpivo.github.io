@@ -264,7 +264,7 @@ permalink: /software/
 <div class="list-group">
     <div class="list-group-item row">
         <div class="col-md-6">
-        <h4 class="list-group-item-heading"><a href="https://egpivo.com/chatbot">LLM Chatbot</a></h4>
+        <h4 class="list-group-item-heading"><a href="https://egpivo.com/llmchatbot">LLM Chatbot</a></h4>
         <p class="list-group-item-text">
             Unleash the potential of conversational AI with the LLM Chatbot Framework.This Python framework, powered by LangChain Agent, seamlessly integrates advanced text-to-speech and speech-to-text models from Hugging Face. Craft dynamic chatbots with voice translation capabilities effortlessly.
         </p>
@@ -273,23 +273,22 @@ permalink: /software/
         <div class="software-ref">
             <strong>Software References:</strong>
             <ul class="list-inline">
-                <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/chatbot">GitHub</a></li>
+                <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/llmchatbot">GitHub</a></li>
                 <li><i class="fas fa-eye fa-lg"></i> <a href="https://egpivo.com/chatbot/">Demo</a></li>
             </ul>
         </div>
         <div class="build-deployment">
             <strong>Build and Deployment:</strong>
             <ul class="list-inline">
-                <li><a href="https://github.com/egpivo/chatbot/actions"><img
-                        src="https://github.com/egpivo/chatbot/workflows/CI/badge.svg"/></a></li>
-                <li><a href="https://codecov.io/gh/egpivo/chatbot"><img
-                        src="https://codecov.io/gh/egpivo/chatbot/branch/main/graph/badge.svg"/></a></li>
-                <li><a href="https://hub.docker.com/r/egpivo/chatbot/tags"><img
+                <li><a href="https://github.com/egpivo/llmchatbot/actions"><img
+                        src="https://github.com/egpivo/llmchatbot/workflows/CI/badge.svg"/></a></li>
+                <li><a href="https://codecov.io/gh/egpivo/llmchatbot"><img
+                        src="https://codecov.io/gh/egpivo/llmchatbot/branch/main/graph/badge.svg"/></a></li>
+                <li><a href="https://hub.docker.com/r/egpivo/llmchatbot/tags"><img
                         src="https://img.shields.io/docker/pulls/egpivo/chatbot"/></a></li>
-                <li><a href="https://hub.docker.com/r/egpivo/chatbot/tags"><img
+                <li><a href="https://hub.docker.com/r/egpivo/llmchatbot/tags"><img
                         src="https://img.shields.io/docker/image-size/egpivo/chatbot"/></a></li>
-                <li><a href="https://hub.docker.com/r/egpivo/chatbot/tags"><img
-                        src="https://img.shields.io/docker/v/egpivo/chatbot/latest"/></a></li>
+                <li>  <a href="https://pypi.org/project/llmchatbot/"><img src="https://img.shields.io/pypi/v/llmchatbot.svg?logo=pypi&label=PyPI&logoColor=silver"/></a></li>
             </ul>
         </div>
         <div class="tech-stack">
