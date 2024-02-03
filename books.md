@@ -181,6 +181,11 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-title">The Mountain Is You</div>
             <div class="book-author">Brianna Wiest</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/12-week-year.png" alt="Book 11">
+            <div class="book-title">The 12 Week Year: Get More Done in 12 Weeks than Others Do in 12 Months</div>
+            <div class="book-author">Brian Morgan & Michael Lennington</div>
+        </div>
     </div>
 </div>
 
