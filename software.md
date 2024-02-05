@@ -264,7 +264,7 @@ permalink: /software/
 <div class="list-group">
     <div class="list-group-item row">
         <div class="col-md-6">
-        <h4 class="list-group-item-heading"><a href="https://egpivo.com/llmchatbot">LLM Chatbot</a></h4>
+        <h4 class="list-group-item-heading"><a href="https://egpivo.com/chatbot">LLM Chatbot</a></h4>
         <p class="list-group-item-text">
             Unleash the potential of conversational AI with the LLM Chatbot Framework.This Python framework, powered by LangChain Agent, seamlessly integrates advanced text-to-speech and speech-to-text models from Hugging Face. Craft dynamic chatbots with voice translation capabilities effortlessly.
         </p>
@@ -289,6 +289,7 @@ permalink: /software/
                 <li><a href="https://hub.docker.com/r/egpivo/llmchatbot/tags"><img
                         src="https://img.shields.io/docker/image-size/egpivo/chatbot"/></a></li>
                 <li>  <a href="https://pypi.org/project/llmchatbot/"><img src="https://img.shields.io/pypi/v/llmchatbot.svg?logo=pypi&label=PyPI&logoColor=silver"/></a></li>
+                <li><a href="https://pypi.org/project/llmchatbot/"><img src="https://img.shields.io/pypi/dm/llmchatbot"/></a></li>
             </ul>
         </div>
         <div class="tech-stack">
