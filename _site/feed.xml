@@ -6,9 +6,333 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 02 Mar 2024 17:09:04 +0800</pubDate>
-    <lastBuildDate>Sat, 02 Mar 2024 17:09:04 +0800</lastBuildDate>
+    <pubDate>Tue, 26 Mar 2024 21:46:11 +0800</pubDate>
+    <lastBuildDate>Tue, 26 Mar 2024 21:46:11 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>GMV Forecasting via XDeepFM</title>
+        <description>&lt;p&gt;In this post, I aim to share how I conducted a proof of concept (PoC) to solve a real-world problem using deep learning techniques with clean code structure.&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;Our initiative is centered on forecasting Gross Merchandise Volume (GMV) through sophisticated machine learning models. Crafted to navigate the complexities of real-world data scenarios, including cold starts, sparse signals, and voluminous datasets, our forecasting system is equipped with a suite of solutions engineered to methodically overcome these challenges.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: As the original data is confidential, we won’t disclose any data sources.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;For further details, please refer to the &lt;a href=&quot;https://github.com/egpivo/gmv-forecaster/tree/main&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
+&lt;p&gt;We will share the findings and feature engineering derived from three primary data sources: user, store, and transaction data.&lt;/p&gt;
+
+&lt;h4 id=&quot;findings&quot;&gt;Findings:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;User Behavior Variability: There is a noticeable fluctuation in user behaviors when observed over various time frames, such as hourly or monthly.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img.png&quot; width=&quot;800&quot; height=&quot;300&quot; alt=&quot;hourly-w&quot; /&gt;
+  &lt;figcaption&gt;Fig. 1: Weekdays vs. Hourly User Purchase Behaviour&lt;/figcaption&gt;
+&lt;/div&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_1.png&quot; width=&quot;800&quot; height=&quot;800&quot; alt=&quot;hourly-m&quot; /&gt;
+  &lt;figcaption&gt;Fig. 2: Monthly vs. Hourly User Purchase Behaviour&lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Spatial Relationship Analysis: K-means clustering has been applied to categorize spatial locations, effectively preserving their inherent spatial relationships.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_2.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;spatial-d&quot; /&gt;
+  &lt;figcaption&gt;Fig. 3: Spatial Distribution of Transaction &lt;/figcaption&gt;
+&lt;/div&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_3.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;k-means&quot; /&gt;
+  &lt;figcaption&gt;Fig. 3: K-means via Locations &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Context Feature Exploration: The RMF (Recency, Frequency, Monetary) analysis method has been utilized to pinpoint key context features that are significant.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_4.png&quot; width=&quot;800&quot; height=&quot;300&quot; alt=&quot;recent-purchase&quot; /&gt;
+  &lt;figcaption&gt;Fig. 4: Transaction Distributions of Recency &lt;/figcaption&gt;
+&lt;/div&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_5.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;store-t&quot; /&gt;
+  &lt;figcaption&gt;Fig. 5: Store Transaction Distributions &lt;/figcaption&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;For a comprehensive examination, please consult the exploratory data analysis notebook provided in the documentation - &lt;a href=&quot;https://github.com/egpivo/gmv-forecaster/blob/main/notebooks/exploratory_data_analysis.ipynb&quot;&gt;exploratory data analysis notebook&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;feature-engineering&quot;&gt;Feature Engineering:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Missing Value Imputation: For simplicity, apply median imputation to fill missing values in numeric features, and mode imputation for categorical features to maintain data integrity.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Context Feature Creation: Develop new context features derived from insights gathered during exploratory data analysis, enhancing model input.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Binarization of Continuous Features: Convert continuous features into binary form using summary statistics thresholds to streamline the xDeepFM model training process.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;methodology&quot;&gt;Methodology&lt;/h2&gt;
+
+&lt;p&gt;The forecasting of GMV is approached through two steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Predicting Purchase Probability: Utilize a Click-Through Rate (CTR) model to predict the likelihood of a user completing a purchase at a given store in the subsequent period.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Estimating GMV: Use the predicted purchase probability in conjunction with the store’s average GMV to forecast the forthcoming GMV for a user or a specific day.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;problem-transformation&quot;&gt;Problem Transformation&lt;/h4&gt;
+&lt;p&gt;Transform the Forecast GMV time series in terms of users or daily sum by the following three steps:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Estimate the probability of user purchase at a store on a daily basis: For each user, build a binary classification (CTR-like) model to predict the probability of the user placing an order at each store in January 2022. Let’s denote this probability as 
+\(P(\text{Order}_{\text{user, store}}| \text{date})\).&lt;/li&gt;
+  &lt;li&gt;For forecasting, use the trained model to predict
+\(P(\text{Order}_{\text{user, store}}| \text{date})\) for each user and store.&lt;/li&gt;
+  &lt;li&gt;Calculate the expected GMV for each user by taking the weighted average of the GMV amounts at the predicted stores:
+  \(\hat{\text{GMV}}_{\text{user}, \text{date}} = \sum_{\text{store}} \hat{P}(\text{Order}_{\text{user, store}}| \text{features}_\text{date}) \cdot \hat{\text{GMV}}_{\text{store}}\)
+    &lt;ul&gt;
+      &lt;li&gt;We assume $\hat{\text{GMV}}_{\text{store}}$ can be estimated by averaging their previous transactions due to low variation (based on exploratory data analysis). Alternatively, it can be estimated using another ML algorithm.&lt;/li&gt;
+      &lt;li&gt;Context features $\text{features}_\text{date}$ can be updated over time.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Main Forecast Problems:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;User-Level Forecast in a Month:&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;For forecasting user’s monthly GMV, aggregate the expected GMV amounts across all users.&lt;/li&gt;
+          &lt;li&gt;Mathematically:
+ \(\text{GMV}(\text{user}) = \sum_{\text{date}}  \hat{\text{GMV}}_{\text{user}, \text{date}}\)
+ where the sum is over all users.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Daily Forecast in a Month:&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;For forecasting daily GMV, aggregate the expected GMV amounts across all users.&lt;/li&gt;
+          &lt;li&gt;Mathematically:
+ \(\text{GMV}(\text{date}) = \sum_{\text{user}}  \hat{\text{GMV}}_{\text{user}, \text{date}}\)
+ where the sum is over all users.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;data-setup&quot;&gt;Data Setup:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Label Definition:&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;The label is binary information indicating whether the user placed an order at a specific store in January 2022.&lt;/li&gt;
+      &lt;li&gt;Use negative sampling for negative examples with a globally random sampling strategy.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Features:&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Utilize historical data features for each user and store, such as previous order history, user demographics, store characteristics, etc.&lt;/li&gt;
+      &lt;li&gt;Include context features, especially those describing the future time context for prediction.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;evaluation&quot;&gt;Evaluation:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Assess the performance of CTR-like model using standard binary classification metrics (recall, ROC-AUC, etc.).&lt;/li&gt;
+  &lt;li&gt;Evaluate the performance of GMV estimation using appropriate regression metrics (MAE, MSE, etc.).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This approach leverages the predicted probabilities to estimate the expected GMV for each user and store, aggregating these estimates as a whole. Adjust the model complexity and features based on the characteristics of data and business requirements.&lt;/p&gt;
+
+&lt;h2 id=&quot;model-training&quot;&gt;Model Training&lt;/h2&gt;
+&lt;h4 id=&quot;training-model-extreme-deepfm-xdeepfm&quot;&gt;Training Model: Extreme DeepFM (xDeepFM)&lt;/h4&gt;
+&lt;p&gt;The Extreme DeepFM (xDeepFM) model is an advanced neural network designed for click-through rate prediction and recommendation systems. It enhances the standard DeepFM framework by integrating a Compressed Interaction Network (CIN) layer, enabling the model to capture complex feature interactions at a higher order with greater efficacy.&lt;/p&gt;
+
+&lt;h5 id=&quot;key-components&quot;&gt;Key Components:&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Embedding Layer&lt;/strong&gt;: Transforms categorical features into dense vectors, enabling nuanced feature interactions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Deep Component&lt;/strong&gt;: Comprises several fully connected layers that learn intricate data patterns.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Compressed Interaction Network (CIN)&lt;/strong&gt;: Efficiently computes feature interactions across layers, ideal for handling large datasets.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;training-process&quot;&gt;Training Process:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Sampling&lt;/strong&gt;:  Trains on both positive (real transactions) and negative (randomly sampled) labels to differentiate between outcomes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Loss Function&lt;/strong&gt;: Employs binary cross-entropy loss to quantify the difference between predicted probabilities and actual labels.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Training Data Generation&lt;/strong&gt;:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Implement a strategy to redefine unseen users/stores during model validation and testing to prevent data leakage.&lt;/li&gt;
+      &lt;li&gt;Utilize a leave-one experiment approach for creating train/validation/test datasets, e.g.,
+        &lt;ul&gt;
+          &lt;li&gt;Test: Current month&lt;/li&gt;
+          &lt;li&gt;Valid: One month earlier than the test month&lt;/li&gt;
+          &lt;li&gt;Train: One month earlier than the validation month&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;architecture-overview&quot;&gt;Architecture Overview:&lt;/h4&gt;
+&lt;p&gt;The architecture diagram of xDeepFM illustrates the intricate design of the model, showcasing the embedding layers, deep network components, and the innovative CIN layer for advanced feature interaction learning.&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_7.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;xdeepfm&quot; /&gt;
+  &lt;figcaption&gt;Fig. 7: xDeepFM Architecture (source: J Lian, et al., 2018) &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;advantages-of-xdeepfm&quot;&gt;Advantages of xDeepFM:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Complex Feature Learning&lt;/strong&gt;: The CIN layer in xDeepFM intricately learns feature interactions, enhancing prediction accuracy.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Large-Scale Data Handling&lt;/strong&gt;: Its efficient computation makes xDeepFM ideal for processing extensive datasets.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Versatile Application:&lt;/strong&gt;: The model’s flexible design adapts to various domains, including recommendation systems and digital marketing.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The xDeepFM model’s sophisticated capabilities enable it to grasp the nuanced dynamics between users and stores, refining GMV forecast precision.&lt;/p&gt;
+
+&lt;h3 id=&quot;training-strategy-rolling-window&quot;&gt;Training Strategy: Rolling Window&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Temporal Dynamics&lt;/strong&gt;: A rolling window strategy captures time-dependent patterns, addressing autocorrelation concerns.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dynamic Adaptation&lt;/strong&gt;: Regular updates to the training data ensure the model stays attuned to evolving data trends.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Informed Predictions&lt;/strong&gt;: Historical data within each window informs the model, bolstering prediction reliability.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Feature Enrichment&lt;/strong&gt;: Rolling windows compute RFM-like metrics, offering additional data insights.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For visual representation, please include the rolling window figure in the final documentation as referenced.&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_8.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;rolling-window&quot; /&gt;
+  &lt;figcaption&gt;Fig. 8: Rolling Window &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;training-validation&quot;&gt;Training Validation&lt;/h3&gt;
+&lt;p&gt;During a typical training month, the AUC score averages around 0.84. There is room for enhancement through careful hyperparameter optimization.&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_9.png&quot; width=&quot;800&quot; height=&quot;100&quot; alt=&quot;valid&quot; /&gt;
+  &lt;figcaption&gt;Fig. 9: Validation Log &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;forecast&quot;&gt;Forecast&lt;/h2&gt;
+&lt;h3 id=&quot;workflow&quot;&gt;Workflow&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;The process from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;start_date&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;end_date&lt;/code&gt; involves the following steps:
+    &lt;ol&gt;
+      &lt;li&gt;&lt;strong&gt;Embedding Utilization&lt;/strong&gt;: Leverage user and store embeddings, adjusted for various dates, in conjunction with context embeddings from the trained model.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Top-1 Store Prediction by FAISS&lt;/strong&gt;: Use FAISS to pinpoint the store where a user is most likely to transact, informed by EDA insights.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;GMV Estimation&lt;/strong&gt;: Calculate the expected daily user GMV using the established formula.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Afterward, synthesize the findings to present a dual perspective: individual user behavior and daily aggregate trends.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Time-series comparison&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_10.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;xdeepfm&quot; /&gt;
+  &lt;figcaption&gt;Fig. 10: GMV Time-Series Prediction &lt;/figcaption&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Visualizations and further analysis can be found in the (notebook)[notebooks/forecast_analysis.ipynb]. F&lt;/li&gt;
+  &lt;li&gt;While the evaluation process may be simplified for this challenge, the necessary evaluation functions are prepared for integration within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forecaster/evaluation/&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;It is recommended to assess the mean-squared errors of the GMV forecasts to gain a deeper understanding of the model’s performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;engineering-aspects&quot;&gt;Engineering Aspects&lt;/h2&gt;
+&lt;h3 id=&quot;high-level-flow&quot;&gt;High-Level Flow&lt;/h3&gt;
+&lt;p&gt;In this real-world case, the architecture of the forecaster is depicted in the provided diagram, illustrating the system’s workflow and component interaction.&lt;/p&gt;
+&lt;div style=&quot;text-align:center;&quot;&gt;
+  &lt;img src=&quot;http://localhost:4000/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_11.png&quot; width=&quot;800&quot; height=&quot;400&quot; alt=&quot;flow&quot; /&gt;
+  &lt;figcaption&gt;Fig. 11: High-Level Flow &lt;/figcaption&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Note that we can easily change the csv files as other data sources e.g., Hive/HBase by adding more handlers in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forecaster/data/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;result-reproducible&quot;&gt;Result Reproducible&lt;/h3&gt;
+&lt;p&gt;To replicate the forecasting results, adhere to the following procedure:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Prerequisite&lt;/strong&gt;: Confirm the installation of &lt;a href=&quot;https://docs.anaconda.com/free/miniconda/miniconda-install/&quot;&gt;Miniconda&lt;/a&gt; is installed.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Environment Setup&lt;/strong&gt;: Use the command for environment preparation.
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Model Training&lt;/strong&gt;: Initiate rolling-window model training with
+    &lt;ul&gt;
+      &lt;li&gt;Default
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  make train
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Custom data path:
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate forecaster
+   python forecaster/run_training.py &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--user_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{user_data_path}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--transaction_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{transaction_data_path}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--store_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{transaction_data_path}&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;GMV Forecasting&lt;/strong&gt;: Generate GMV forecasts by running
+    &lt;ul&gt;
+      &lt;li&gt;Default:
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  make forecast
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Custom data path and predicted date range:
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;activate forecaster
+   python forecaster/run_training.py &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--user_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{user_data_path}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--transaction_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{transaction_data_path}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--store_data_path&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{transaction_data_path}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--start_date&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{yyyymmdd}&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+     &lt;span class=&quot;nt&quot;&gt;--end_date&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;{yyyymmdd}&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 26 Mar 2024 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2024/03/26/gmv-forecasting-via-xdeepfm.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2024/03/26/gmv-forecasting-via-xdeepfm.html</guid>
+        
+        <category>Machine Learning</category>
+        
+        <category>Deep Learning</category>
+        
+        
+      </item>
     
       <item>
         <title>Decoding LoRA: A Comprehensive Summary on Low-Rank Adaptation</title>
@@ -1393,45 +1717,6 @@ where $\epsilon_{ij}$ represents white noise with mean zero and covariance $\sig
         <category>R</category>
         
         <category>Spatial Statistics</category>
-        
-        <category>Statistics</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Three Fundamental Aspects of Statistical Models</title>
-        <description>&lt;p&gt;Recently, I delved into a classic Annals article, &lt;a href=&quot;http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf&quot;&gt;Additive Regression and Other Nonparametric Models&lt;/a&gt;” by Stones (1985). The insights gleaned from this piece revolve around three fundamental aspects of statistical models:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Flexibility&lt;/strong&gt;: This pertains to the accuracy of the fitted model across a wide variety of situations, often associated with bias in estimation.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Dimensionality&lt;/strong&gt;: The amount of data required to avoid unacceptably large variance increases rapidly with rising dimensionality, reflecting the variance in estimation.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Interpretability&lt;/strong&gt;: The essence of interpretability lies in the potential for shedding light on the underlying structure of the data.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Trade off (flexibility, dimensionality) = Trade off(bias, variance)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The trade-off between flexibility and dimensionality is akin to the trade-off between bias and variance. As practitioners, we often rely on experiences or rules of thumb to explore, manipulate, and model data, ultimately transforming insights into solutions or explanations for real-world problems. In the current era of massive data, these three enduring aspects remain crucial considerations.&lt;/p&gt;
-
-&lt;p&gt;Stones also shared insightful words from Box et al. (1978):&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;While blind faith in a particular model is foolhardy, refusal to associate data with any model is to eschew a powerful tool. As implied earlier, a middle course may be followed. On the other hand, inadequacies in proposed models should be looked for; on the other hand, if a model appears reasonably appropriate, advantage should be take of the greater simplicity and clarity of interpretation that it provides.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;These wise words serve as a reminder that a useful statistical model cannot be built without considering these fundamental aspects, even with the plethora of fashionable analytic tools available. The underlying principle remains: simplicity often leads to better outcomes.&lt;/p&gt;
-
-&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Stones (1985), &lt;a href=&quot;http://digitalassets.lib.berkeley.edu/sdtr/ucb/text/33.pdf&quot;&gt;Additive regression and other nonparametric models&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Box et al. (1978), &lt;a href=&quot;http://onlinelibrary.wiley.com/doi/10.1002/aic.690250233/abstract&quot;&gt;Statistics for Experimenters&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 19 May 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/19/Three-fundamental-aspects-of-statisitcal-models.html</guid>
         
         <category>Statistics</category>
         
