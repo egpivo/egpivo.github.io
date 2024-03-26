@@ -6,13 +6,13 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 26 Mar 2024 21:46:11 +0800</pubDate>
-    <lastBuildDate>Tue, 26 Mar 2024 21:46:11 +0800</lastBuildDate>
+    <pubDate>Tue, 26 Mar 2024 21:48:36 +0800</pubDate>
+    <lastBuildDate>Tue, 26 Mar 2024 21:48:36 +0800</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
-        <title>GMV Forecasting via XDeepFM</title>
-        <description>&lt;p&gt;In this post, I aim to share how I conducted a proof of concept (PoC) to solve a real-world problem using deep learning techniques with clean code structure.&lt;/p&gt;
+        <title>GMV Forecasting via xDeepFM</title>
+        <description>&lt;p&gt;In this post, I aim to share how I conducted a proof of concept (PoC) to solve a real-world problem using deep learning techniques, emphasizing a clean code structure.&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -321,6 +321,7 @@
 &lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.&lt;/li&gt;
+  &lt;li&gt;https://github.com/egpivo/gmv-forecaster/tree/main&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 26 Mar 2024 00:00:00 +0800</pubDate>

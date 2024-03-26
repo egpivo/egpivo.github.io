@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GMV Forecasting via XDeepFM"
+title: "GMV Forecasting via xDeepFM"
 tags:  [Machine Learning, Deep Learning]
 ---
 In this post, I aim to share how I conducted a proof of concept (PoC) to solve a real-world problem using deep learning techniques, emphasizing a clean code structure.
@@ -237,3 +237,4 @@ To replicate the forecasting results, adhere to the following procedure:
 
 ### Reference
    - J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.
+   - https://github.com/egpivo/gmv-forecaster/tree/main
