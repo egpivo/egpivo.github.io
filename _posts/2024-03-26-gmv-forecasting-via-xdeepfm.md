@@ -39,7 +39,7 @@ We will share the findings and feature engineering derived from three primary da
 
 4. Context Feature Exploration: The RMF (Recency, Frequency, Monetary) analysis method has been utilized to pinpoint key context features that are significant.
 <div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_4.png" width="800" height="300" alt="recent-purchase">
+  <img src="{{ site.url }}/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_4.png" width="800" height="200" alt="recent-purchase">
   <figcaption>Fig. 4: Transaction Distributions of Recency </figcaption>
 </div>
 <div style="text-align:center;">
@@ -156,7 +156,7 @@ The xDeepFM model's sophisticated capabilities enable it to grasp the nuanced dy
 
 For visual representation, please include the rolling window figure in the final documentation as referenced.
 <div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_8.png" width="800" height="400" alt="rolling-window">
+  <img src="{{ site.url }}/assets/2024-03-26-gmv-forecasting-via-xdeepfm/img_8.png" width="800" height="300" alt="rolling-window">
   <figcaption>Fig. 8: Rolling Window </figcaption>
 </div>
 
