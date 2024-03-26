@@ -1,5 +1,5 @@
 ---
 layout: posts_by_tag
 tag: LLM
-permalink: /tags/LLM/
+permalink: /tags/llm/
 ---
