@@ -177,19 +177,24 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Paulo Coelho </div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/the-mountain-is-you.png" alt="Book 11">
+            <img class="book-image" src="{{ site.url }}/assets/books/the-mountain-is-you.png" alt="Book 12 - 2024/01">
             <div class="book-title">The Mountain Is You</div>
             <div class="book-author">Brianna Wiest</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/12-week-year.png" alt="Book 11">
+            <img class="book-image" src="{{ site.url }}/assets/books/12-week-year.png" alt="Book 13 - 2024/02">
             <div class="book-title">The 12 Week Year: Get More Done in 12 Weeks than Others Do in 12 Months</div>
             <div class="book-author">Brian Morgan & Michael Lennington</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/psychology-of-money.png" alt="Book 11">
+            <img class="book-image" src="{{ site.url }}/assets/books/psychology-of-money.png" alt="Book - 2024/03">
             <div class="book-title">The Psychology of Money: Timeless lessons on wealth, greed, and happiness</div>
             <div class="book-author">Morgan Housel</div>
+        </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/outliers.jpeg" alt="Book 15 - 2024/04">
+            <div class="book-title">Outliers: The Story of Success</div>
+            <div class="book-author">Malcolm Gladwell</div>
         </div>
     </div>
 </div>
