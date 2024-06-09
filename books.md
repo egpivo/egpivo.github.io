@@ -196,6 +196,10 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-title">Outliers: The Story of Success</div>
             <div class="book-author">Malcolm Gladwell</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/untethered-soul.jpg" alt="Book 15 - 2024/06">
+            <div class="book-title">The Untethered Soul: The Journey Beyond Yourself</div>
+            <div class="book-author">Michael Alan Singer</div>
+        </div>
     </div>
 </div>
-
