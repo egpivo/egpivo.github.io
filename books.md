@@ -201,5 +201,10 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-title">The Untethered Soul: The Journey Beyond Yourself</div>
             <div class="book-author">Michael Alan Singer</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/tuesday-with-morrie.jpg" alt="Book 15 - 2024/06">
+            <div class="book-title">Tuesdays with Morrie </div>
+            <div class="book-author">Mitch Albom</div>
+        </div>
     </div>
 </div>
