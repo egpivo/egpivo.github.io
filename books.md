@@ -40,17 +40,19 @@ permalink: /books/
     .book-author {
       color: #888;
     }
-      </style>
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDL912WM98"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+  </style>
 
-          gtag('config', 'G-SDL912WM98');
-        </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDL912WM98"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SDL912WM98');
+  </script>
 </head>
-<body>
+
+
 
 Over the last 7 years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
 These readings symbolize my dual commitment to tech excellence and personal growth. Each book has been a stepping stone in shaping both my professional and personal trajectory.
@@ -113,7 +115,7 @@ These readings symbolize my dual commitment to tech excellence and personal grow
 </div>
 
 <!-- Non-Tech Section -->
-<div class="category">
+<body class="category">
     <h4>Non-Tech</h4>
     <div class="book-container">
         <div class="book">
@@ -187,7 +189,7 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Brian Morgan & Michael Lennington</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/psychology-of-money.png" alt="Book - 2024/03">
+            <img class="book-image" src="{{ site.url }}/assets/books/psychology-of-money.png" alt="Book 14- 2024/03">
             <div class="book-title">The Psychology of Money: Timeless lessons on wealth, greed, and happiness</div>
             <div class="book-author">Morgan Housel</div>
         </div>
@@ -197,14 +199,15 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Malcolm Gladwell</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/untethered-soul.jpg" alt="Book 15 - 2024/06">
+            <img class="book-image" src="{{ site.url }}/assets/books/untethered-soul.jpg" alt="Book 16 - 2024/06">
             <div class="book-title">The Untethered Soul: The Journey Beyond Yourself</div>
             <div class="book-author">Michael Alan Singer</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/tuesday-with-morrie.jpg" alt="Book 15 - 2024/06">
+            <img class="book-image" src="{{ site.url }}/assets/books/tuesdays-with-morrie.jpg" alt="Book 17 - 2024/08">
             <div class="book-title">Tuesdays with Morrie </div>
             <div class="book-author">Mitch Albom</div>
         </div>
     </div>
 </div>
+</body>
