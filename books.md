@@ -204,10 +204,9 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Michael Alan Singer</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/tuesdays-with-morrie.jpg" alt="Book 17 - 2024/08">
+            <img class="book-image" src="{{ site.url }}/assets/books/tuesdays-with-morrie.png" alt="Book 17 - 2024/08">
             <div class="book-title">Tuesdays with Morrie </div>
             <div class="book-author">Mitch Albom</div>
         </div>
     </div>
-</div>
 </body>
