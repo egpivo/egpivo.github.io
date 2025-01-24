@@ -208,5 +208,10 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-title">Tuesdays with Morrie </div>
             <div class="book-author">Mitch Albom</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/10x-is-easier-than-2x.jpg" alt="Book 18 - 2025/01">
+            <div class="book-title">10x Is Easier Than 2x: How World-Class Entrepreneurs Achieve More by Doing Less </div>
+            <div class="book-author">Dan Sullivan & Benjamin Hardy Jr.</div>
+        </div>
     </div>
 </body>
