@@ -4,47 +4,83 @@ title: About
 menu: main
 permalink: /about/
 ---
-<h4> Greetings! </h4>
 
-Welcome to my corner of the digital world! I am a seasoned **Machine Learning Engineer** with an extensive **7 years** of hands-on experience crafting cutting-edge machine learning models, developing data-driven products, and fostering collaboration within cross-functional teams. Holding a Ph.D. in Statistics, my academic journey spans **5 years**, where I immersed myself in the intricate world of statistical methodologies, particularly exploring the nuances of complex spatio-temporal datasets.
+<style>
+.about {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: 0 16px 40px !important;
+}
 
-<h4>Filed of Interests</h4>
-My passion and expertise lie in several domains, including:
-- *Natural Language Processing (NLP)*
-- *Recommendation Systems*
-- *Deep Learning*
-- *Machine Learning*
-- *Bayesian Statistics*
-- *Spatial Statistics*
+.about h4 {
+  margin: 32px 0 12px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+}
 
-I possess proficiency in a diverse range of programming languages tailored for specific tasks, including:
+.about p { 
+  line-height: 1.75 !important; 
+}
 
-- General-purpose programming: Python, C++
-- Data processing and analytics: PySpark, R, SQL
-- Machine learning and deep learning frameworks: PyTorch, TensorFlow
+.about .card {
+  background: #ffffff !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  margin-bottom: 14px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+}
 
-<h4>Publications</h4>
-Explore some of my noteworthy publications:
+.about .card h5 {
+  margin: 0 0 6px 0 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #2563eb !important;
+}
 
-<div class="list-group-item">
-  <h4 class="list-group-item-heading">Regularized Spatial Maximum Covariance Analysis</h4>
-  <div>Wen-Ting Wang and Hsin-Cheng Huang, 2018. <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/env.2481"> Environmetrics, 29(2)</a></div>
-  <div>
-    <ul class="list-inline">
-      <li><a href="https://arxiv.org/pdf/1705.02716.pdf"><span class="label label-success">Paper</span></a></li>
-      <li><a href="https://www.slideshare.net/WenTingWang5/regularized-estimation-of-spatial-patterns"><span class="label label-success">Slide</span></a></li>
-    </ul>
-  </div>
+.about .pill {
+  background: #f8f9fa !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 12px 14px !important;
+  margin-bottom: 10px !important;
+}
+</style>
+
+<div class="about">
+
+<h4>About Me</h4>
+
+<p class="intro-text">
+I'm Wen-Ting (Joseph) Wang, a machine learning engineer with about a decade in production ML and a Ph.D. in Statistics. I build end2end systems, from modeling to data and infra, and make them run in production. Lately I've been working on agentic workflows, RAG, and geospatial/spatiotemporal deep learning. In academic projects, I'm exploring conditional diffusion models and spatiotemporal deep learning methods.
+</p>
+
+<h4>Experience</h4>
+
+<div class="card">
+  <h5>AI Product Engineering</h5>
+  <p>Built and scaled an entity extraction service from ~2k to ~400k articles/day, powering chat/analytics assistants and a news-reporting SaaS; delivered a RAG-based assistant for an energy client in the UAE.</p>
 </div>
 
-<div class="list-group-item">
-  <h4 class="list-group-item-heading">Regularized Principal Component Analysis for Spatial Data</h4>
-  <div>Wen-Ting Wang and Hsin-Cheng Huang, 2017. <a href="http://www.tandfonline.com/doi/full/10.1080/10618600.2016.1157483">Journal of Computational and Graphical Statistics, 26(1)</a></div>
-  <div>
-    <ul class="list-inline">
-      <li><a href="https://arxiv.org/pdf/1501.03221v3.pdf"><span class="label label-success">Paper</span></a></li>
-      <li><a href="https://www.slideshare.net/WenTingWang5/spatpca3"><span class="label label-success">Slide</span></a></li>
-    </ul>
-  </div>
+<div class="card">
+  <h5>E-commerce</h5>
+  <p>Built large-scale recommendation systems from scratch.</p>
 </div>
-  Note that you can find my publications on [Google Scholar](https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=GAKosCMAAAAJ&gmla=AH70aAVcwHyv3-ZWxaxaJN7yvp78XhpETV1GpwVWTllSCkVFwaH1_qwKrG1oxM9ex1K28vMvkI3LWVymAXgBGShrmaZzgU84AEAbWaONqJg).
+
+<div class="card">
+  <h5>Earlier</h5>
+  <p>Data science/ML roles focused on NLP and time-series modeling.</p>
+</div>
+
+<h4>In Progress</h4>
+
+<div class="pill">
+  <p>Interpretable low-rank geospatial modeling</p>
+</div>
+
+<div class="pill">
+  <p>Working on improving diffusion models with Bayesian techniques</p>
+</div>
+
+</div>
+

@@ -5,54 +5,50 @@ menu: main
 permalink: /books/
 ---
 
-<head>
-  <style>
-    .category {
-      margin-top: 20px;
-    }
+<style>
+  .category {
+    margin-top: 0;
+  }
 
-    .book-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-    }
+  .book-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
 
-    .book {
-      background-color: #f5f5f5;
-      padding: 15px;
-      border-radius: 5px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: calc(25% - 20px);
-    }
+  .book {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(25% - 20px);
+  }
 
-    .book-image {
-      max-width: 100%;
-      border-radius: 5px;
-    }
+  .book-image {
+    max-width: 100%;
+    border-radius: 5px;
+  }
 
-    .book-title {
-      font-weight: bold;
-      margin-top: 10px;
-    }
+  .book-title {
+    font-weight: bold;
+    margin-top: 10px;
+  }
 
-    .book-author {
-      color: #888;
-    }
-  </style>
+  .book-author {
+    color: #888;
+  }
+</style>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SDL912WM98"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDL912WM98"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'G-SDL912WM98');
-  </script>
-</head>
-
-
+  gtag('config', 'G-SDL912WM98');
+</script>
 
 Over the last 7 years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
 These readings symbolize my dual commitment to tech excellence and personal growth. Each book has been a stepping stone in shaping both my professional and personal trajectory.
