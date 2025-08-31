@@ -102,15 +102,20 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author"> Benjamin Bengfort & Jenny Kim</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/designing-data-intensive-applications.png" alt="TBook 8">
+            <img class="book-image" src="{{ site.url }}/assets/books/designing-data-intensive-applications.png" alt="TBook 7">
             <div class="book-title">Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems</div>
             <div class="book-author">Martin Kleppmannn</div>
         </div>
         <div class="book">
-            <img class="book-image" src="{{ site.url }}/assets/books/redis-in-action.png" alt="TBook 7">
+            <img class="book-image" src="{{ site.url }}/assets/books/redis-in-action.png" alt="TBook 8">
             <div class="book-title">Redis in Action</div>
             <div class="book-author">Josiah Carlson</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/ai-engineering.png" alt="TBook 9" />
+            <div class="book-title"> AI Engineering: Building Applications with Foundation Models </div>
+            <div class="book-author">Chip Huyen</div>
+        </div>  
     </div>
 </div>
 
@@ -213,5 +218,10 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-title">10x Is Easier Than 2x: How World-Class Entrepreneurs Achieve More by Doing Less </div>
             <div class="book-author">Dan Sullivan & Benjamin Hardy Jr.</div>
         </div>
+        <div class="book">
+            <img class="book-image" src="{{ site.url }}/assets/books/the-pathless-path.jpg" alt="Book 18 - 2025/06">
+            <div class="book-title">The Pathless Path </div>
+            <div class="book-author">Paul Millerd</div>
+        </div>        
     </div>
 </body>

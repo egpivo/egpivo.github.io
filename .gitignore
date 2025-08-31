@@ -1,4 +1,50 @@
+# R-specific files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Jekyll build files
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Sass cache
+.sass-cache/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+
+# Node modules (if using any Node.js tools)
+node_modules/
+
+# Ruby gems (if using bundler)
+vendor/
+.bundle/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.bak
+*.backup
