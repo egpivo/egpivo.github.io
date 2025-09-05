@@ -5,8 +5,6 @@ tags: [Machine Learning, Deep Learning, RL, NLP]
 math: true
 ---
 
-## Introduction
-
 Hangman is a great example of a reinforcement learning problem: you only see part of the word, make sequential guesses, and choose from a small set of actions (the 26 letters). Deep Q-Networks (DQN) fit naturally here because they handle discrete actions well and can learn to avoid invalid guesses through action masking.
 
 ## RL Setups
@@ -74,5 +72,32 @@ class CharTransformer(nn.Module):
 ### Model Design & Training Nuances
 
 We combine token, position, length, and guessed-letter embeddings, then pool them into a fixed state. The training happens in two steps: first supervised pretraining, then DQN fine-tuning with replay and action masking. To keep learning stable, we freeze parts of the model early, use Huber loss, apply different learning rates, and optionally guide exploration with the policy head.
+
+## Training Setup
+
+We trained on a large dictionary of ~227k English words, filtered by maximum length for curriculum stages. To make learning smoother:
+
+- **Curriculum:** Start with short words (2–3 letters), then gradually include 4-letter, 5-letter, and mixed-length words. This helps the agent build strategies step by step.
+- **Supervised pretraining:** For each word, generate partial masks and train the model to predict presence and next-letter targets. This creates millions of supervised samples cheaply.
+- **Q-learning fine-tuning:** Run episodic Hangman games against the dictionary. Each episode contributes transitions $(s_t, a_t, r_t, s_{t+1}, done)$ stored in replay memory, sampled in batches for Double DQN updates.
+- **Evaluation:** After each stage, test on a held-out set of words to track solved rate, average reward, and number of guesses.
+
+This staged approach ensures stable optimization and avoids the agent collapsing into random guessing when faced with long words early on.
+
+### Training Dynamics: Progress Curves and Convergence
+
+The following plots show the learning progress across curriculum stages, comparing two different reward schemes:
+
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/avg_reward.png" width="800" height="400" alt="Average reward across curriculum">
+  <figcaption>Fig. 1: Average reward across curriculum (aligned episodes)</figcaption>
+</div>
+
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/solved_rate.png" width="800" height="400" alt="Solved rate across curriculum">
+  <figcaption>Fig. 2: Solved rate across curriculum (aligned episodes)</figcaption>
+</div>
+
+
 
 ---
