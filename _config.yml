@@ -8,9 +8,11 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 github_username:  egpivo
 
 markdown: kramdown
-highlighter:  rouge
+highlighter: rouge
 kramdown:
-    input: GFM
+  input: GFM
+  math_engine: mathjax
+  math_engine_opts: {}
 timezone: Asia/Taipei
 exclude: ['*.Rmd']
 

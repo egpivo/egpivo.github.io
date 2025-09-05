@@ -59,7 +59,7 @@ I'm Wen-Ting (Joseph) Wang, a machine learning engineer with about a decade in p
 
 <div class="card">
   <h5>AI Product Engineering</h5>
-  <p>Built and scaled an entity extraction service from ~2k to ~400k articles/day, powering chat/analytics assistants and a news reporting SaaS; delivered a RAG-based assistant for an energy client in the UAE.</p>
+  <p>Built and scaled an entity extraction service from ~2k to ~400k articles per day, powering chat/analytics assistants and a news reporting SaaS; delivered a RAG-based assistant for an energy client in the UAE.</p>
 </div>
 
 <div class="card">
