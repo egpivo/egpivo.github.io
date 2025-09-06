@@ -5,7 +5,7 @@ tags: [Machine Learning, Deep Learning, RL, NLP]
 math: true
 ---
 
-**TL;DR.** We train a small **bidirectional Transformer + Double DQN** to play Hangman, restricted to words **≤5 characters** for a clean demo.  
+**TL;DR.** We train a small **bidirectional Transformer + Double DQN** to play Hangman, restricted to words **≤5 characters** (training and inference) to keep the demo clear and controlled.  
 - **Two-stage**: masked‑LM style pretraining (letter presence + next‑letter) → **Q-learning** with replay, target network, and **Huber loss**.  
 - **Action masking** guarantees we never re‑guess letters; optional **dictionary-aware pruning** further narrows choices.  
 - **Guided exploration** samples from the pretrained policy (temperature‑scaled) instead of uniform random; a small **information‑gain reward** encourages guesses that shrink the candidate set.  
@@ -51,6 +51,64 @@ $$
 
 where the maximization only considers unguessed letters. Training minimizes the Huber loss between these targets and predictions. For faster convergence, the Q-head can be initialized from supervised pretraining or simple heuristics.
 
+#### Why Double DQN here?
+
+Plain DQN uses the same network to select and evaluate the next action, which tends to overestimate noisy Q-values:
+$$
+y_t^{\text{DQN}} = r_t + \gamma \max_{a' \in A_{t+1}} Q_\theta(s_{t+1}, a').
+$$
+
+In Hangman, that bias is amplified because:
+- The action set is tiny (26 letters), so a single overestimated wrong letter can easily win the max.
+- Many actions are effectively low-value (or invalid after masking), and a few bad picks end the episode quickly.
+- Rewards are sparse and spiky (big win/loss bonuses), which makes target noise matter more.
+
+Double DQN splits selection and evaluation to mitigate that bias:
+
+$$
+y_t^{\text{Double}} = r_t + \gamma \; Q_{\bar{\theta}}\!\big(s_{t+1}, \arg\max_{a' \in A_{t+1}} Q_\theta(s_{t+1}, a')\big).
+$$
+
+Here, $\theta$ are the online parameters (updated every step) and $\bar{\theta}$ are the target parameters (updated slowly); details appear in the Training section.
+
+### From probabilities to Q-values
+
+We may use two sources of “how likely is this letter?” information: 
+- (1) **static** frequency/co‑occurrence from the dictionary and 
+- (2) **contextual** probabilities from the Transformer, $P_{\text{ctx}}(a\mid s)$, which change with the revealed pattern.
+
+These give a quick estimate of immediate gain, e.g., the expected number of positions a letter will reveal. While probabilities capture the likelihood of letters, Hangman's rewards are delayed and shaped by wins/losses. Q-values combine these probabilities with future reward expectations. The Q‑head then turns these signals into **expected discounted return**
+
+$$
+Q_\theta(s,a) \approx \mathbb{E}\!\left[\sum_{k\ge0}\gamma^k r_{t+k}\,\middle|\,s_t=s, a_t=a\right],
+$$
+
+balancing short‑term reveals, time penalties, win/loss bonuses, and information‑gain terms. In practice we warm‑start the Q‑head from the pretrained “next‑letter” logits or from a simple heuristic like
+
+$$
+Q_0(s,a) \propto \alpha\,\mathbb{E}[\#\text{reveals}\mid s,a] - \beta\,\mathbf{1}\{\text{wrong}\},
+$$
+
+then let RL fine‑tune it with replay + target network.
+
+### Policy (what we actually execute)
+
+The policy is derived from Q—not from raw probabilities. We act with a **masked $\varepsilon$-greedy** rule over the set of valid, untried letters $A_t$:
+
+$$
+\pi_\varepsilon(a\mid s) =
+\begin{cases}
+\text{Uniform}(A_t), & \text{with prob. } \varepsilon,\\
+\mathbf{1}\{a=\arg\max_{a'\in A_t} Q_\theta(s,a')\}, & \text{otherwise}.
+\end{cases}
+$$
+
+Thus, π is not a softmax over probabilities but a greedy selection with exploration noise.
+
+- **Masking:** once a letter is guessed, it’s removed from $A_t$. We optionally add **dictionary‑aware** masks to prune letters that are inconsistent with any remaining candidates.  
+- **Guided exploration:** when we explore, we can sample from the pretrained next‑letter head (temperature‑scaled) instead of uniform, which keeps exploration sensible without being greedy.
+
+
 
 ### Transformer Encoder
 We encode the game state with a small **bidirectional Transformer**. 
@@ -59,7 +117,12 @@ We encode the game state with a small **bidirectional Transformer**.
 2. **Bidirectional self-attention** processes the entire sequence to estimate which characters fit each position, using context from both sides of each blank. 
 3. Mean‑pool the non‑pad tokens into a fixed vector and reuse it for two heads: **supervised heads** for presence/next‑letter during pretraining, and a **Q‑head** for RL. 
 
+
 In practice, the encoder turns contextual letter likelihoods into **sharp action values**, which makes Double DQN targets less noisy and learning more stable.
+
+Both online and target Q-heads share the same Transformer encoder, so the contextual representation is identical; only the Q-head parameters differ ($\theta$ vs. $\bar{\theta}$).
+
+
 
 <div style="text-align:center;">
   <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/attn_heads_letters.png" style="max-width: 100%; height: auto;" alt="Example of attention head specialization">
@@ -131,7 +194,7 @@ The plots below summarize how the agent improves over training and how explorati
 
 <div style="text-align:center;">
   <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/evaluation_exploration_analysis.png" style="max-width: 100%; height: auto;" alt="Exploration analysis and performance metrics">
-  <figcaption>Fig. 3 — Exploration vs exploitation. Left: $\epsilon$ decay with curriculum stages. Right: learned action distribution, where vowels and common consonants dominate.
+  <figcaption>Fig. 3 — Exploration vs. exploitation. Left: $\epsilon$ decay with curriculum stages. Right: learned action distribution, where vowels and common consonants dominate.
   </figcaption>
 </div>
 
@@ -143,7 +206,7 @@ The plots below summarize how the agent improves over training and how explorati
 
 ### Inference: Agent Playthroughs
 
-To better understand how the trained agent makes decisions, we visualize its behavior on specific words. Below are two examples (house and light), showing how Q-values, attention signals, and action choices interact in the game by
+To better understand how the trained agent makes decisions, we visualize its behavior on specific words. Below are two examples (house and light), showing how Q-values, attention signals, and action choices interact over the course of a game:
 
 - Q-values: The bar chart shows the Q-value assigned to each letter. Already-tried letters are masked (red), and the chosen action is marked in green.
 - Top letters: The model highlights the highest-value letters, with the chosen one (i) among them.
