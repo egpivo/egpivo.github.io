@@ -69,7 +69,7 @@ $$
 y_t^{\text{Double}} = r_t + \gamma \; Q_{\bar{\theta}}\!\big(s_{t+1}, \arg\max_{a' \in A_{t+1}} Q_\theta(s_{t+1}, a')\big).
 $$
 
-Here, $\theta$ are the online parameters (updated every step) and $\bar{\theta}$ are the target parameters (updated slowly via periodic copies; see Training).”
+Here, $\theta$ are the online parameters (updated every step) and $\bar{\theta}$ are the target parameters (updated slowly via periodic copies; see Training).
 
 ### From Probabilities to Q-values
 
@@ -126,7 +126,9 @@ The online and target networks share the same architecture (Transformer encoder 
 
 
 <div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/attn_heads_letters.png" style="max-width: 100%; height: auto;" alt="Example of attention head specialization">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/attn_heads_letters.png" 
+       style="max-width: 100%; height: auto;" 
+       alt="Example of attention head specialization">
   <figcaption>Fig. 1: Example showing how different attention heads learn to focus on specific letter patterns</figcaption>
 </div>
 
@@ -148,6 +150,34 @@ This mechanism is what makes the setup model-free and off-policy:
 
 
 For example, guessing **z** in `_ a _` leads to a penalty, so the model learns to assign low Q for "z" in contexts like that, but not globally, since in `pi_za` the same "z" could be high-value. This is what makes the contextual Transformer embedding crucial: it lets the agent learn that the *value* of a letter is conditional on the current pattern, not fixed.
+
+
+### Experience Replay and Minibatch Training
+
+To keep learning stable, we **don’t** update from sequential transitions directly. Instead we maintain a fixed‑capacity (FIFO) **replay buffer** that stores transitions of the form
+
+$$
+(s_t, a_t, r_t, s_{t+1}, \text{done}).
+$$
+
+As the agent plays Hangman, each transition is appended **on the fly** (not pre‑generated). During training we draw i.i.d. minibatches ${B}$ by **uniform random sampling** from the buffer. This:
+
+- **Breaks correlation** between consecutive guesses, improving stability,
+- **Reuses data** for better sample‑efficiency, and
+- **Supports off‑policy** updates (we can learn a greedy target policy from exploratory behavior).
+
+Given a minibatch ${B}$, we compute the **Double DQN target** as defined above (with action masking in the next state), and minimize the Huber loss:
+
+$$
+{L}(\theta) = \frac{1}{|{B}|} \sum_{(s_i,a_i,r_i,s'_i,\mathrm{done}_i)\in {B}} \mathrm{Huber}\Big( Q_{\theta}(s_i,a_i) - y_i \Big).
+$$
+
+In practice we also wait for a small **warm‑up** (e.g., a few thousand transitions) before starting gradient updates, so early noisy experiences don’t dominate training.
+
+- **Breaks correlation**: Sampling out of order avoids the instability of updating on consecutive, highly correlated moves.  
+- **Improves data efficiency**: Each past experience can be reused multiple times in different minibatches.  
+
+These minibatches are then used to compute Double DQN targets and update the Q-head. In practice, this means the Transformer encoder and Q-head learn from a diverse set of examples in each update, smoothing learning curves and reducing variance.  
 
 ### Implementation
 
