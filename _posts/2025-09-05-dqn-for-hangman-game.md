@@ -1,20 +1,28 @@
 ---
 layout: post
-title: "(Draft) Hangman Game by Deep Q Learning with Transformer"
+title: "Hangman with DQN and Transformers"
 tags: [Machine Learning, Deep Learning, RL, NLP]
 math: true
 ---
 
-Hangman is a great example of a reinforcement learning problem: you only see part of the word, make sequential guesses, and choose from a small set of actions (the 26 letters). Deep Q-Networks (DQN) fit naturally here because they handle discrete actions well and can learn to avoid invalid guesses through action masking.
+**TL;DR.** We train a small **bidirectional Transformer + Double DQN** to play Hangman, restricted to words **≤5 characters** for a clean demo.  
+- **Two-stage**: masked‑LM style pretraining (letter presence + next‑letter) → **Q-learning** with replay, target network, and **Huber loss**.  
+- **Action masking** guarantees we never re‑guess letters; optional **dictionary-aware pruning** further narrows choices.  
+- **Guided exploration** samples from the pretrained policy (temperature‑scaled) instead of uniform random; a small **information‑gain reward** encourages guesses that shrink the candidate set.  
+- **Curriculum** (2–3 → 4 → 5 → mixed ≤5) stabilizes learning.
+
+---
+
+Hangman is a great example of a reinforcement learning problem: we only see part of the word, make sequential guesses, and choose from a small set of actions (the 26 letters). Deep Q-Networks (DQN) fit naturally here because they handle discrete actions well and can learn to avoid invalid guesses through action masking.
 
 ## RL Setups
 
-In our RL setup, we model Hangman as an MDP \( M = (S, A, P, r, \gamma) \):
+In our RL setup, we model Hangman as an MDP $ M = (S, A, P, r, \gamma) $:
 
 - **Actions:** The 26 letters of the alphabet, excluding those already guessed.
 - **State:** Includes the current revealed word, guessed letters, remaining attempts, word length, and optionally a category.
 - **Transitions:** Picking a letter reveals matching positions, updates the state, and reduces attempts if the guess was wrong.
-- **Rewards:** You get positive rewards for revealing letters, $+10$ for winning, and $-5$ for losing.
+- **Rewards:** We get positive rewards for revealing letters, $+10$ for winning, and $-5$ for losing.
 - **Goal:** Maximize the expected sum of discounted rewards over time.
 
 **Example.**  
@@ -26,28 +34,43 @@ Suppose the hidden word is `cat` with 6 attempts:
 4. Guess `c`: correct → `c a _`, attempts = 5.  
 5. Guess `t`: correct → `c a t`, win with bonus reward.  
 
-This illustrates how actions, states, transitions, and rewards are applied in practice.
+This illustrates how actions, states, transitions, and rewards are applied in practice. 
 
-## Q-Learning with Transformer
+**Strategy at a glance.** We play with a masked ε-greedy policy (only unguessed letters are considered), learn Q-values with Double DQN + Huber loss, and use a small curriculum (short → longer words). The Transformer encoder is pretrained to “fill the blanks,” then warm-starts the Q-head for RL.
 
-- **Q-function:** Estimates value for each letter given the current state.
-- **Action selection:** Choose randomly among valid letters with probability `epsilon`, otherwise pick the letter with the highest Q-value.
-- **Target calculation (Double DQN):** Use the target network to stabilize learning by selecting the best next action according to the online network.
 
-    **Bellman target (Double DQN).**
+## RL Architecture: DQN with Transformer
 
-    $$
-    y_t \;=\; r_t \;+\; \gamma \,(1-\text{done}_{t+1})\,
-    Q_{\bar{\theta}}\!\big(s_{t+1},\, \arg\max_{a' \in {A}_{t+1}} Q_{\theta}(s_{t+1}, a')\big)
-    $$
+### Q-Learning Basics
+Our agent learns a Q-function that scores each possible letter given the current game state. Action selection mixes exploration and exploitation: with probability ε it picks a random valid letter, otherwise it chooses the letter with the highest Q-value. To stabilize learning we use a target network and Double DQN updates. The target is:
 
-*Masking:* the argmax and \(Q\) are computed only over valid, unguessed letters ${A}_{t+1}$. For vanilla DQN, replace the inner term with $$\max_{a' \in {A}_{t+1}} Q_{\bar{\theta}}(s_{t+1}, a')$$.
+$$
+y_t = r_t + \gamma (1 - \text{done}_{t+1})
+\, Q_{\bar{\theta}}\!\big(s_{t+1}, \arg\max_{a' \in A_{t+1}} Q_\theta(s_{t+1}, a')\big)
+$$
 
-- **Loss:** Huber loss between predicted Q-values and targets.
-- **Initialization:** Start with pretrained weights or seed Q-values based on letter presence probabilities.
+where the maximization only considers unguessed letters. Training minimizes the Huber loss between these targets and predictions. For faster convergence, the Q-head can be initialized from supervised pretraining or simple heuristics.
 
-### Core Transformer Model
-The Transformer encoder processes the partially revealed word together with guessed letters, using bidirectional attention to capture both left and right context. This allows the model to treat blanks as “masked tokens” and learn which letters are most probable given surrounding evidence. The pooled state representation provides a rich feature vector that supports both supervised pretraining (letter presence and next-letter prediction) and reinforcement learning. In the Double DQN phase, this representation helps the Q-head assign sharper Q-values, effectively turning contextual probabilities into action values for stable decision-making.
+
+### Transformer Encoder
+We encode the game state with a small **bidirectional Transformer**. 
+
+1. Inputs are (1) the partially revealed word and (2) a 26‑dim mask indicating already‑tried letters.
+2. **Bidirectional self-attention** processes the entire sequence to estimate which characters fit each position, using context from both sides of each blank. 
+3. Mean‑pool the non‑pad tokens into a fixed vector and reuse it for two heads: **supervised heads** for presence/next‑letter during pretraining, and a **Q‑head** for RL. 
+
+In practice, the encoder turns contextual letter likelihoods into **sharp action values**, which makes Double DQN targets less noisy and learning more stable.
+
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/attn_heads_letters.png" style="max-width: 100%; height: auto;" alt="Example of attention head specialization">
+  <figcaption>Fig. 1: Example showing how different attention heads learn to focus on specific letter patterns</figcaption>
+</div>
+
+This specialization allows the model to develop different strategies for different types of letters, making it more effective at the sequential decision-making required in Hangman.
+
+### Implementation
+
+The core architecture combines character embeddings with positional and length information:
 
 ```python
 class CharTransformer(nn.Module):
@@ -69,35 +92,82 @@ class CharTransformer(nn.Module):
         self.q_head = DuelingQHead(self.d_model)
 ```
 
-### Model Design & Training Nuances
 
-We combine token, position, length, and guessed-letter embeddings, then pool them into a fixed state. The training happens in two steps: first supervised pretraining, then DQN fine-tuning with replay and action masking. To keep learning stable, we freeze parts of the model early, use Huber loss, apply different learning rates, and optionally guide exploration with the policy head.
+## Training
 
-## Training Setup
 
-We trained on a large dictionary of ~227k English words, filtered by maximum length for curriculum stages. To make learning smoother:
+We trained on a dictionary of ~227k English words, filtered by length to create a curriculum of stages. The idea was to let the agent tackle easier cases first (short words) before moving to harder ones.
 
-- **Curriculum:** Start with short words (2–3 letters), then gradually include 4-letter, 5-letter, and mixed-length words. This helps the agent build strategies step by step.
-- **Supervised pretraining:** For each word, generate partial masks and train the model to predict presence and next-letter targets. This creates millions of supervised samples cheaply.
-- **Q-learning fine-tuning:** Run episodic Hangman games against the dictionary. Each episode contributes transitions $(s_t, a_t, r_t, s_{t+1}, done)$ stored in replay memory, sampled in batches for Double DQN updates.
-- **Evaluation:** After each stage, test on a held-out set of words to track solved rate, average reward, and number of guesses.
+For demonstration purposes, we restricted both training and inference to words of length ≤5.
 
-This staged approach ensures stable optimization and avoids the agent collapsing into random guessing when faced with long words early on.
+**Two-stage learning**:
+1.	Supervised pretraining. The Transformer is warmed up with “fill-the-blank” objectives: predicting which letters are present and which one comes next, given partially masked words. This produces millions of cheap training samples and gives the model a strong starting point.
 
-### Training Dynamics: Progress Curves and Convergence
+2.	Q-learning fine-tuning. The Q-head is added and trained with Double DQN, replay memory, Huber loss, and a target network.
 
-The following plots show the learning progress across curriculum stages, comparing two different reward schemes:
+**Action selection** uses a masked $\varepsilon$-greedy policy: with probability $\varepsilon$ the agent samples a random valid letter, otherwise it chooses the letter with the highest Q-value. Already guessed letters are always excluded.
+
+**Stability tricks** 
+
+-	Freeze the encoder for early RL, then unfreeze.
+-	Lower LR for the encoder, higher for the Q-head.
+-	Gradient clipping (1.0) and periodic target updates.
+-	Optional dictionary-aware masking to prune impossible guesses.
+
+
+**Curriculum learning** moves from 2–3 letter words → 4 letters → ... → N letters → mixed up to N. 
+
+This keeps training stable and prevents the agent from collapsing into random guessing when faced with long words too soon. At the end of each stage, we test on held-out words, reporting solved rate, average reward, and number of guesses.
+
+
+## Results & Analysis
+The plots below summarize how the agent improves over training and how exploration balances against exploitation.
 
 <div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/avg_reward.png" width="800" height="400" alt="Average reward across curriculum">
-  <figcaption>Fig. 1: Average reward across curriculum (aligned episodes)</figcaption>
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/evaluation_training_curves.png" style="max-width: 100%; height: auto;" alt="Training curves showing solved rate and average reward">
+  <figcaption>Fig. 2 — Training progress across curriculum stages. Success rate, reward, and Q-values steadily improve as the agent moves from short to longer words, while ε decays.
+</figcaption>
 </div>
 
 <div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/solved_rate.png" width="800" height="400" alt="Solved rate across curriculum">
-  <figcaption>Fig. 2: Solved rate across curriculum (aligned episodes)</figcaption>
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/evaluation_exploration_analysis.png" style="max-width: 100%; height: auto;" alt="Exploration analysis and performance metrics">
+  <figcaption>Fig. 3 — Exploration vs exploitation. Left: $\epsilon$ decay with curriculum stages. Right: learned action distribution, where vowels and common consonants dominate.
+  </figcaption>
+</div>
+
+**Key findings:**
+- **Curriculum learning** enables stable progression from short to longer words, preventing random guessing collapse
+- **Reward shaping** accelerates learning and stabilizes Q-value estimates through proper scaling
+- **Exploration balance** with ε-greedy decay provides early exploration while converging to strong exploitation
+- **Attention specialization** reveals heads focusing on different character groups (vowels, consonants, suffixes)
+
+### Inference: Agent Playthroughs
+
+To better understand how the trained agent makes decisions, we visualize its behavior on specific words. Below are two examples (house and light), showing how Q-values, attention signals, and action choices interact in the game by
+
+- Q-values: The bar chart shows the Q-value assigned to each letter. Already-tried letters are masked (red), and the chosen action is marked in green.
+- Top letters: The model highlights the highest-value letters, with the chosen one (i) among them.
+- Attention scores: Attention heads assign high scores to vowels like u and i, reflecting strong prior knowledge of English word structure.
+- Decision rationale: The correlation plot shows how Q-values align with attention-based likelihoods. The agent selected i with a modest Q-value but reasonable attention support.
+
+
+#### Example 1: Word = house
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/decision_process_house.gif" style="max-width: 90%; height: auto;" alt="Decision process for word house">
+</div>
+
+#### Example 2: Word = light
+<div style="text-align:center;">
+  <img src="{{ site.url }}/assets/2025-09-05-dqn-for-hangman-game/decision_process_light.gif" style="max-width: 90%; height: auto;" alt="Decision process for word light">
 </div>
 
 
+Takeaway: Even if the top attention signal does not correspond directly to the selected letter, the Q-function steers the policy toward actions that maximize long-term reward.
 
----
+
+
+## Conclusion
+- The Transformer encoder supplies strong contextual priors via attention, often highlighting vowels and frequent consonants as promising candidates.
+- The Q-head integrates these priors with reinforcement signals and enforces **explicit action masking**, ensuring that once a letter has been tried or ruled out by dictionary constraints, its probability is zeroed in subsequent steps.
+- This design allows the agent to update conditional likelihoods dynamically as the game evolves, rather than reusing failed guesses, leading to more reliable strategies than simple frequency heuristics.
+
