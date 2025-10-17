@@ -758,7 +758,7 @@
   flex: 1 1 32%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-xs);
   align-items: flex-start;
 }
 
@@ -778,7 +778,7 @@
 .list-group-item .list-inline {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -797,7 +797,7 @@
 .build-deployment strong,
 .tech-stack strong {
   display: block;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 0.2rem;
   font-size: var(--font-size-sm);
   letter-spacing: 0.08em;
   color: var(--text-muted);
