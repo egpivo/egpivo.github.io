@@ -5,82 +5,490 @@ menu: main
 permalink: /about/
 ---
 
+<div class="about-page">
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="hero-content">
+      <div class="profile-section">
+        <div class="profile-info">
+          <h1 class="profile-name">Wen-Ting (Joseph) Wang</h1>
+          <p class="profile-title">Machine Learning Engineer & Researcher</p>
+          <p class="profile-subtitle">Ph.D. in Statistics • 10+ Years in Production ML</p>
+          <div class="profile-highlights">
+            <span class="highlight-tag">AI Product Engineering</span>
+            <span class="highlight-tag">Research & Development</span>
+            <span class="highlight-tag">End-to-End ML Systems</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="about-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-user-circle"></i>
+        About Me
+      </h2>
+    </div>
+    <div class="content-card">
+      <div class="intro-text">
+        <p class="intro-paragraph">
+I’m a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I’ve been working on <span class="kw">agentic workflows</span>, <span class="kw">RAG systems</span>, and <span class="kw">spatiotemporal modeling</span>, blending practical engineering with research. My current focus includes <span class="kw">conditional diffusion models</span> and <span class="kw">spatiotemporal learning methods</span>, aiming to make complex models both more useful and more interpretable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="about-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-briefcase"></i>
+        Professional Experience
+      </h2>
+    </div>
+    
+    <div class="experience-grid">
+      <div class="experience-card featured">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="card-title">
+            <h3>AI Product Engineering</h3>
+            <span class="card-period">Recent</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Built an entity linking system for news analytics and assistants, and delivered a RAG + MCP Q&amp;A system for an energy client to support domain-specific search.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">RAG</span>
+            <span class="tech-tag">NLP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="card-title">
+            <h3>E-commerce</h3>
+            <span class="card-period">Previous</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Built large-scale recommendation systems from scratch, handling millions of users and products.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Recommendation Systems</span>
+            <span class="tech-tag">Large Scale</span>
+            <span class="tech-tag">ML Engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="card-title">
+            <h3>Data Science & ML</h3>
+            <span class="card-period">Earlier</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Data science/ML roles focused on NLP and time-series modeling across various industries.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Time Series</span>
+            <span class="tech-tag">Data Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <div class="card-title">
+            <h3>Bayesian</h3>
+            <span class="card-period">Ongoing</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Work on Bayesian diffusion models and interpretable geospatial modeling, integrating statistical methods with modern deep learning.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Bayesian</span>
+            <span class="tech-tag">Geospatial</span>
+            <span class="tech-tag">Diffusion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="about-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-tools"></i>
+        Technical Expertise
+      </h2>
+    </div>
+    
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>Machine Learning</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Deep Learning</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">Time Series</span>
+          <span class="skill-tag">Recommendation Systems</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Technologies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Research Areas</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Diffusion Models</span>
+          <span class="skill-tag">RAG Systems</span>
+          <span class="skill-tag">Geospatial ML</span>
+          <span class="skill-tag">Bayesian Methods</span>
+          <span class="skill-tag">Agentic Workflows</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <style>
-.about {
-  max-width: 720px !important;
-  margin: 0 auto !important;
-  padding: 0 16px 40px !important;
+.about-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
-.about h4 {
-  margin: 32px 0 12px !important;
-  font-weight: 600 !important;
-  color: #333 !important;
+/* Hide the layout's default page title on this page (fixes low-contrast "About" in dark mode) */
+h1.page-title:has(+ .about-page),
+h1.post-title:has(+ .about-page) {
+  display: none;
+}
+/* Fallback for browsers without :has() — scope to this page only by reducing space and dimming */
+@supports not (selector(:has(*))) {
+  h1.page-title, h1.post-title {
+    color: var(--text-secondary);
+    opacity: .6;
+  }
 }
 
-.about p { 
-  line-height: 1.75 !important; 
+/* Hero Section */
+.about-hero {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-3xl);
+  margin-bottom: var(--spacing-3xl);
+  text-align: center;
 }
 
-.about .card {
-  background: #ffffff !important;
-  border: 2px solid #e5e7eb !important;
-  border-radius: 10px !important;
-  padding: 16px 18px !important;
-  margin-bottom: 14px !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.about .card h5 {
-  margin: 0 0 6px 0 !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  color: #2563eb !important;
+.profile-info {
+  text-align: center;
+  max-width: 800px;
 }
 
-.about .pill {
-  background: #f8f9fa !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 8px !important;
-  padding: 12px 14px !important;
-  margin-bottom: 10px !important;
+.profile-name {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.2;
+}
+
+.profile-title {
+  font-size: var(--font-size-xl);
+  color: var(--accent-primary);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.profile-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.profile-highlights {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.highlight-tag {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: all var(--transition-fast);
+}
+
+.highlight-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Section Styles */
+.about-section {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.section-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.section-title i {
+  color: var(--accent-primary);
+  font-size: var(--font-size-2xl);
+}
+
+/* Content Card */
+.content-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow);
+}
+
+.intro-text {
+  font-size: var(--font-size-xl);
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 400;
+}
+
+.intro-paragraph {
+  margin: 0 0 var(--spacing-lg) 0;
+  font-size: var(--font-size-xl);
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.intro-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Inline keyword accent (avoid .highlight to not clash with Jekyll/Rouge) */
+.kw {
+  font-weight: 600;
+  color: color-mix(in oklab, var(--text-primary) 88%, var(--accent-primary) 12%);
+}
+@supports not (color-mix(in oklab, black 10%, white)) {
+  .kw {
+    color: var(--accent-primary);
+    opacity: .9;
+  }
+}
+
+/* Experience Grid */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.experience-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-primary);
+}
+
+.experience-card.featured {
+  border-color: var(--accent-primary);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(13, 110, 253, 0.02) 100%);
+}
+
+.experience-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.card-title h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.card-period {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+}
+
+.card-content p {
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tech-tag {
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+/* Skills Container */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.skill-category h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.skill-tag {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
+.skill-tag:hover {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .experience-grid,
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-name {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-2xl);
+  }
 }
 </style>
-
-<div class="about">
-
-<h4>About Me</h4>
-
-<p class="intro-text">
-I'm Wen-Ting (Joseph) Wang, a machine learning engineer with about a decade in production ML and a Ph.D. in Statistics. I build end2end systems, from modeling to data and infra, and make them run in production. Lately I've been working on agentic workflows, RAG, and geospatial/spatiotemporal deep learning. In academic projects, I'm exploring conditional diffusion models and spatiotemporal deep learning methods.
-</p>
-
-<h4>Experience</h4>
-
-<div class="card">
-  <h5>AI Product Engineering</h5>
-  <p>Built and scaled an entity extraction service from ~2k to ~400k articles per day, powering chat/analytics assistants and a news reporting SaaS; delivered a RAG-based assistant for an energy client in the UAE.</p>
-</div>
-
-<div class="card">
-  <h5>E-commerce</h5>
-  <p>Built large-scale recommendation systems from scratch.</p>
-</div>
-
-<div class="card">
-  <h5>Earlier</h5>
-  <p>Data science/ML roles focused on NLP and time-series modeling.</p>
-</div>
-
-<h4>In Progress</h4>
-
-<div class="pill">
-  <p>Interpretable low-rank geospatial modeling</p>
-</div>
-
-<div class="pill">
-  <p>Working on improving diffusion models with Bayesian techniques</p>
-</div>
-
-</div>
-

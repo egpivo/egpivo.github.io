@@ -14,7 +14,8 @@ kramdown:
   math_engine: mathjax
   math_engine_opts: {}
 timezone: Asia/Taipei
-exclude: ['*.Rmd']
+encoding: "utf-8"
+exclude: ['*.Rmd', '_site']
 
 # Google services
 google_analytics: UA-16805442-1

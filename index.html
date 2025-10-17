@@ -3,37 +3,98 @@ layout: default
 ---
 
 <div class="home">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to My Digital Space</h1>
+            <p class="hero-subtitle">{{ site.description }}</p>
+            <div class="hero-actions">
+                <a href="{{ site.baseurl }}/about/" class="btn btn-primary">Learn More</a>
+                <a href="{{ site.baseurl }}/posts/" class="btn btn-secondary">Read Posts</a>
+            </div>
+        </div>
+    </section>
 
-    <h1 class="page-heading">Posts</h1>
+    <!-- Featured Posts Section -->
+    <section class="featured-posts">
+        <div class="section-header">
+            <h2 class="section-title">Latest Posts</h2>
+            <p class="section-subtitle">Thoughts on data science, machine learning, and research</p>
+        </div>
 
-    <ul class="post-list">
-        {% for post in site.posts %}
-        {% if post.tags.size > 0 %}
-        {% capture tags_content %}{% if post.tags.size == 1 %}<i class="fa fa-tag"></i>{% else %}<i
-            class="fa fa-tags"></i>{% endif %}: {% endcapture %}
-        {% for post_tag in post.tags %}
-        {% assign tag = site.data.tags[post_tag] %}
-        {% if tag %}
-        {% capture tags_content_temp %}{{ tags_content }}<a href="/tags/{{ tag.slug }}/">{{ tag.name }}</a>{% if
-        forloop.last == false %}, {% endif %}{% endcapture %}
-        {% assign tags_content = tags_content_temp %}
-        {% endif %}
-        {% endfor %}
-        {% else %}
-        {% assign tags_content = '' %}
-        {% endif %}
-        <li>
-            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <div class="posts-grid">
+            {% for post in site.posts limit:6 %}
+            {% if post.tags.size > 0 %}
+            {% capture tags_content %}{% if post.tags.size == 1 %}<i class="fa fa-tag"></i>{% else %}<i class="fa fa-tags"></i>{% endif %}: {% endcapture %}
+            {% for post_tag in post.tags %}
+            {% assign tag = site.data.tags[post_tag] %}
+            {% if tag %}
+            {% capture tags_content_temp %}{{ tags_content }}<a href="/tags/{{ tag.slug }}/">{{ tag.name }}</a>{% if forloop.last == false %}, {% endif %}{% endcapture %}
+            {% assign tags_content = tags_content_temp %}
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            {% assign tags_content = '' %}
+            {% endif %}
+            
+            <article class="post-card">
+                <div class="post-meta">
+                    <time class="post-date">{{ post.date | date: "%b %-d, %Y" }}</time>
+                    {% if tags_content != '' %}
+                    <div class="post-tags">{{ tags_content }}</div>
+                    {% endif %}
+                </div>
+                
+                <h3 class="post-title">
+                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                </h3>
+                
+                <div class="post-excerpt">
+                    {{ post.excerpt | strip_html | truncate: 150 }}
+                </div>
+                
+                <a href="{{ post.url | prepend: site.baseurl }}" class="read-more">
+                    Read More <i class="fas fa-arrow-right"></i>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
 
-            <h2>
-                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h2>
-            <p id="post-meta">{{ tags_content }}</p>
-            {{ post.excerpt }}
-        </li>
-        {% endfor %}
-    </ul>
+        <div class="section-footer">
+            <a href="{{ site.baseurl }}/posts/" class="btn btn-outline">View All Posts</a>
+        </div>
+    </section>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="section-header">
+            <h2 class="section-title">Explore</h2>
+        </div>
+        
+        <div class="links-grid">
+            <a href="{{ site.baseurl }}/about/" class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>About Me</h3>
+                <p>Learn about my background and interests</p>
+            </a>
+            
+            <a href="{{ site.baseurl }}/software/" class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Software</h3>
+                <p>Check out my projects and contributions</p>
+            </a>
+            
+            <a href="{{ site.baseurl }}/books/" class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Books</h3>
+                <p>Browse my book collection and reviews</p>
+            </a>
+        </div>
+    </section>
 </div>

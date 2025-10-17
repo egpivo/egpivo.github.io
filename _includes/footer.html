@@ -1,37 +1,56 @@
 
-
 <footer class="site-footer">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-...." crossorigin="anonymous"/>
-    <div class="wrapper">
-
-        <div class="footer-col  footer-col-1">
-            <ul class="social-media-list">
-                <li>
-                    <i class="fab fa fa-envelope"></i>
-                    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-                </li>
-                {% if site.github_username %}
-                <li>
-                    <i class="fab fa-github fa-lg"></i>
-                    <a href="https://github.com/{{ site.github_username }}"><span class="username">{{ site.github_username }}</span></a>
-                </li>
-                {% endif %}
-                <li>
-                    <i class="fab fa-linkedin fa-lg"></i>
-                    <a href="https://www.linkedin.com/in/wtwang/"><span class="username">wtwang</span></a>
-                </li>
-                <li>
-                    <i class="fas fa-graduation-cap fa-lg"></i>
-                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=GAKosCMAAAAJ&gmla=AH70aAVcwHyv3-ZWxaxaJN7yvp78XhpETV1GpwVWTllSCkVFwaH1_qwKrG1oxM9ex1K28vMvkI3LWVymAXgBGShrmaZzgU84AEAbWaONqJg"><span class="username">Google Scholar</span></a>
-                </li>
-            </ul>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">{{ site.title }}</h3>
+                <p class="footer-description">{{ site.description }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-subtitle">Connect</h4>
+                <div class="social-links">
+                    <a href="mailto:{{ site.email }}" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    {% if site.github_username %}
+                    <a href="https://github.com/{{ site.github_username }}" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    {% endif %}
+                    <a href="https://www.linkedin.com/in/wtwang/" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=GAKosCMAAAAJ" class="social-link" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Scholar</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-subtitle">Navigation</h4>
+                <nav class="footer-nav">
+                    <a href="{{ site.baseurl }}/about/" class="footer-link">About</a>
+                    <a href="{{ site.baseurl }}/posts/" class="footer-link">Posts</a>
+                    <a href="{{ site.baseurl }}/software/" class="footer-link">Software</a>
+                    <a href="{{ site.baseurl }}/books/" class="footer-link">Books</a>
+                </nav>
+            </div>
         </div>
-
-        <div class="footer-col  footer-col-23">
-            <p class="text">{{ site.description }}</p>
+        
+        <div class="footer-bottom">
+            <p class="copyright">
+                © {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.
+            </p>
+            <p class="rss-subscribe">
+                <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
+                    <i class="fas fa-rss"></i> RSS Feed
+                </a>
+            </p>
         </div>
     </div>
-    </div>
-
 </footer>

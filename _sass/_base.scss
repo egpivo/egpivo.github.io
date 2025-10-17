@@ -1,204 +1,228 @@
 /**
- * Reset some basic elements
+ * Modern base styles with CSS custom properties
  */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
-    margin: 0;
-    padding: 0;
+
+// Reset and normalize
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
 
-
-/**
- * Basic styling
- */
 body {
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 300;
-    color: $text-color;
-    background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-ul, ol, dl, figure,
-%vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
 }
 
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
 
-
-/**
- * Images
- */
-img {
-    max-width: 100%;
-    vertical-align: middle;
+p {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--text-primary);
 }
 
-
-
-/**
- * Figures
- */
-figure > img {
-    display: block;
+// Links
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  
+  &:hover {
+    color: var(--accent-secondary);
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
 }
 
-figcaption {
-    font-size: $small-font-size;
-}
-
-
-
-/**
- * Lists
- */
+// Lists
 ul, ol {
-    margin-left: $spacing-unit;
+  margin: 0 0 var(--spacing-md) 0;
+  padding-left: var(--spacing-lg);
 }
 
 li {
-    > ul,
-    > ol {
-         margin-bottom: 0;
-    }
+  margin-bottom: var(--spacing-xs);
+  
+  > ul,
+  > ol {
+    margin-bottom: 0;
+  }
 }
 
-
-
-/**
- * Headings
- */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-radius: var(--border-radius);
 }
 
-
-
-/**
- * Links
- */
-a {
-    color: $brand-color;
-    text-decoration: none;
-
-    &:visited {
-        color: $brand-color;
-    }
-
-    &:hover {
-        color: $text-color;
-        text-decoration: underline;
-    }
+// Figures
+figure {
+  margin: 0 0 var(--spacing-lg) 0;
+  
+  > img {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
+figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
 
-
-/**
- * Blockquotes
- */
+// Blockquotes
 blockquote {
-    color: $grey-color;
-    border-left: 4px solid $grey-color-light;
-    padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-left: 4px solid var(--accent-primary);
+  background-color: var(--bg-secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  
+  > :last-child {
+    margin-bottom: 0;
+  }
+  
+  p {
+    margin-bottom: var(--spacing-sm);
+  }
 }
 
-
-
-/**
- * Code formatting
- */
-pre,
+// Code
 code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
-}
-
-code {
-    padding: 1px 5px;
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  padding: 0.125em 0.25em;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  color: var(--accent-primary);
 }
 
 pre {
-    padding: 8px 12px;
-    overflow-x: scroll;
-
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  
+  code {
+    background: none;
+    padding: 0;
+    color: var(--text-primary);
+  }
 }
 
-
-
-/**
- * Wrapper
- */
-.wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-    @extend %clearfix;
-
-    @include media-query($on-laptop) {
-        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
-        padding-right: $spacing-unit / 2;
-        padding-left: $spacing-unit / 2;
-    }
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background-color: var(--bg-primary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
 
-
-
-/**
- * Clearfix
- */
-%clearfix {
-
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+th, td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
 }
 
+th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
 
+tr:hover {
+  background-color: var(--bg-secondary);
+}
 
-/**
- * Icons
- */
-.icon {
+// Horizontal rule
+hr {
+  margin: var(--spacing-2xl) 0;
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+}
 
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
+// Form elements
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
 
-        path {
-            fill: $grey-color;
-        }
-    }
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+// Utility classes
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+// Clearfix
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
 }
