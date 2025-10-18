@@ -28,32 +28,38 @@ permalink: /software/
       <div class="software-ref">
         <strong>Software References:</strong>
         <ul class="list-inline compact-badges">
-          <i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatPCA">GitHub</a>
-          <i class="fas fa-eye fa-lg"></i> <a href="https://egpivo.github.io/SpatPCA/articles">Demo</a>
-          <a href="https://doi.org/10.1080/10618600.2016.1157483"><img
-            src="https://img.shields.io/badge/JCGS-10.18637%2F10618600.2016.1157483-brightgreen"/></a>
+          <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/SpatPCA">GitHub</a></li>
+          <li><i class="fas fa-eye fa-lg"></i> <a href="https://egpivo.github.io/SpatPCA/articles">Demo</a></li>
+          <li><a href="https://doi.org/10.1080/10618600.2016.1157483"><img
+            src="https://img.shields.io/badge/JCGS-10.18637%2F10618600.2016.1157483-brightgreen"/></a></li>
         </ul>
       </div>
       <div class="build-deployment">
         <strong>Build and Deployment:</strong>
         <ul class="list-inline compact-badges">
-          <a href="https://github.com/egpivo/SpatPCA/actions"><img
-            src="https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg"/></a> <a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
-            src="http://www.r-pkg.org/badges/version/SpatPCA"/></a> <a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
-            src="http://cranlogs.r-pkg.org/badges/SpatPCA"/></a>
-          <a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
-            src="https://cranlogs.r-pkg.org/badges/grand-total/SpatPCA"/></a> <a href="https://codecov.io/github/egpivo/SpatpCA?branch=master"><img
-            src="https://img.shields.io/codecov/c/github/egpivo/SpatPCA/master.svg"/></a>
+          <li><a href="https://github.com/egpivo/SpatPCA/actions"><img
+            src="https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg"/></a></li>
+          <li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
+            src="http://www.r-pkg.org/badges/version/SpatPCA"/></a></li>
+          <li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
+            src="http://cranlogs.r-pkg.org/badges/SpatPCA"/></a></li>
+          <li><a href="https://cran.rstudio.com/web/packages/SpatPCA"><img
+            src="https://cranlogs.r-pkg.org/badges/grand-total/SpatPCA"/></a></li>
+          <li><a href="https://codecov.io/github/egpivo/SpatpCA?branch=master"><img
+            src="https://img.shields.io/codecov/c/github/egpivo/SpatPCA/master.svg"/></a></li>
         </ul>
       </div>
       <div class="tech-stack">
         <strong>Tech Stack:</strong>
-          <a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/r-black?style=flat-square&logo=r"/></a> <a href="https://www.rcpp.org/"><img
-            src="https://img.shields.io/badge/Rcpp-black?style=flat-square&logo=rcpp"/></a>
-          <a href="https://arma.sourceforge.net/"><img
-            src="https://img.shields.io/badge/Armadillo-black?style=flat-square&logo=armadillo"/></a>
-          <a href="https://rcppcore.github.io/RcppParallel/"><img
-            src="https://img.shields.io/badge/RcppParallel-black?style=flat-square&logo=rcppparallel"/></a>
+        <ul class="list-inline compact-badges">
+          <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/r-black?style=flat-square&logo=r"/></a></li>
+          <li><a href="https://www.rcpp.org/"><img
+            src="https://img.shields.io/badge/Rcpp-black?style=flat-square&logo=rcpp"/></a></li>
+          <li><a href="https://arma.sourceforge.net/"><img
+            src="https://img.shields.io/badge/Armadillo-black?style=flat-square&logo=armadillo"/></a></li>
+          <li><a href="https://rcppcore.github.io/RcppParallel/"><img
+            src="https://img.shields.io/badge/RcppParallel-black?style=flat-square&logo=rcppparallel"/></a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -264,7 +270,7 @@ permalink: /software/
       </div>
       <div class="build-deployment">
         <strong>Build and Deployment:</strong>
-        <ul class="list-inline">
+        <ul class="list-inline compact-badges">
           <li><a href="https://github.com/egpivo/llmchatbot/actions"><img src="https://github.com/egpivo/llmchatbot/workflows/CI/badge.svg"/></a></li>
           <li><a href="https://codecov.io/gh/egpivo/llmchatbot"><img src="https://codecov.io/gh/egpivo/llmchatbot/branch/main/graph/badge.svg"/></a></li>
           <li><a href="https://hub.docker.com/r/egpivo/llmchatbot/tags"><img src="https://img.shields.io/docker/pulls/egpivo/chatbot"/></a></li>
@@ -275,7 +281,7 @@ permalink: /software/
       </div>
       <div class="tech-stack">
         <strong>Tech Stack:</strong>
-        <ul class="list-inline">
+        <ul class="list-inline compact-badges">
           <li><a href="https://openai.com/"><img src="https://img.shields.io/badge/openai-black?style=flat-square&logo=openai"/></a></li>
           <li><a href="https://huggingface.co/"><img src="https://img.shields.io/badge/Hugging_Face-black?style=flat-square&logo=hugging%20face"/></a></li>
           <li><a href="https://www.langchain.com/"><img src="https://img.shields.io/badge/LangChain-007ACC?style=flat-square&logo=langchain&logoColor=black"/></a></li>
@@ -300,18 +306,21 @@ permalink: /software/
     <div class="col-md-6">
       <div class="software-ref">
         <strong>Software References:</strong>
-        <ul class="list-inline">
+        <ul class="list-inline compact-badges">
           <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/athlete-number">GitHub</a></li>
         </ul>
       </div>
       <div class="tech-stack">
         <strong>Tech Stack:</strong>
-        <ul class="list-inline">
+        <ul class="list-inline compact-badges">
           <li><a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-black?style=flat-square&logo=python"/></a></li>
           <li><a href="https://pjreddie.com/darknet/yolo/"><img src="https://img.shields.io/badge/YOLO-black?style=flat-square"/></a></li>
           <li><a href="https://www.jaided.ai/easyocr"><img src="https://img.shields.io/badge/EasyOCR-black?style=flat-square&logo=easyocr"/></a></li>
           <li><a href="https://streamlit.io/"><img src="https://img.shields.io/badge/Streamlit-black?style=flat-square&logo=streamlit"/></a></li>
           <li><a href="https://opencv.org/"><img src="https://img.shields.io/badge/OpenCV-black?style=flat-square&logo=opencv"/></a></li>
+          <li><a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-black?style=flat-square&logo=fastapi"/></a></li>
+          <li><a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-black?style=flat-square&logo=docker"/></a></li>
+          <li><a href="https://aws.amazon.com/"><img src="https://img.shields.io/badge/AWS-black?style=flat-square&logo=amazon"/></a></li>
         </ul>
       </div>
     </div>
