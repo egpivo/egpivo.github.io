@@ -19,3 +19,7 @@ exclude: ['*.Rmd', '_site']
 
 # Google services
 google_analytics: UA-16805442-1
+
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
