@@ -5,7 +5,7 @@ tags: [Software, NLP, LLM]
 math: false
 ---
 
-This post outlines the high-level design for a Knowledge Base (KB) Assistant exposed through an MCP server with optional reflection, content boosting, and reranking.
+This post outlines the high-level design for a Knowledge Base (KB) Assistant exposed through an MCP server that communicates with the Dify KB backend, with optional reflection, content boosting, and reranking.
 
 ## Sequence Diagram
 
@@ -27,7 +27,7 @@ sequenceDiagram
     participant MCP as MCP Server
     participant Auth as Auth Middleware
     participant KB as KB Assistant Service
-    participant Dify as Dify API
+    participant DifyKB as Dify KB Backend
     participant LLM as LLM API
     participant Rerank as Rerank API
 
@@ -45,12 +45,12 @@ sequenceDiagram
     LLM-->>KB: Keywords generated
 
     Note over KB: Naive search approach
-    KB->>Dify: Search documents (naive method)
-    Dify-->>KB: Naive search results
+    KB->>DifyKB: Search documents (naive method)
+    DifyKB-->>KB: Naive search results
 
     Note over KB: Advanced search approach
-    KB->>Dify: Search documents (advanced method)
-    Dify-->>KB: Advanced search results
+    KB->>DifyKB: Search documents (advanced method)
+    DifyKB-->>KB: Advanced search results
 
     Note over KB: Content boosting (if enabled)
     alt use_content_booster = true
@@ -87,7 +87,7 @@ sequenceDiagram
 - **MCP Server**: Exposes `kb_assistant` tool, performs auth via decorator, forwards to service.
 - **Auth Middleware**: Validates headers, short-circuits unauthorized requests.
 - **KB Assistant Service**: Orchestrates parsing `dataset_info`, intention extraction, searches, merging, reranking, and final answer generation.
-- **Dify API**: Provides document search for naive/advanced strategies.
+- **Dify KB Backend**: Provides document search for naive/advanced strategies.
 - **LLM API**: Used for keyword generation, answer drafting, and optional reflection.
 - **Rerank API**: Optional reranking when available and useful.
 
