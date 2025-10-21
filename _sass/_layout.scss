@@ -4,26 +4,25 @@
 
 // Header
 .site-header {
-  background-color: #2c3e50;
+  background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  transition: all var(--transition-base);
+  transition: color var(--transition-base), background-color var(--transition-base);
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) 0;
-  min-height: 70px;
+  padding: var(--spacing-sm) 0;
+  min-height: 56px;
 }
 
 .site-title {
   text-decoration: none;
-  color: white;
+  color: var(--text-primary);
   transition: color var(--transition-fast);
   
   &:hover {
@@ -33,10 +32,10 @@
   
   .title-text {
     display: block;
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
+    font-size: calc(var(--font-size-2xl));
+    font-weight: 600; // slightly lighter to match Monochrome header feel
     line-height: 1.2;
-    color: white;
+    color: var(--text-primary);
   }
 }
 
@@ -45,93 +44,39 @@
   position: relative;
 }
 
-.menu-toggle {
-        display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 30px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  
-  .hamburger {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-primary);
-    border-radius: 2px;
-    transition: all var(--transition-fast);
-  }
-  
-  &.active {
-    .hamburger:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    
-    .hamburger:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .hamburger:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-  }
-}
+// remove hamburger styles (no mobile toggle)
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
-  
-  &.active {
-    display: flex;
-  }
+  gap: var(--spacing-md); // tighter spacing like demo
 }
 
 .nav-link {
-  color: white;
+  color: var(--text-secondary); // lighter grey by default
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: calc(var(--font-size-sm)); // visibly larger nav links
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
-  transition: all var(--transition-fast);
+  border-radius: 0;
+  transition: color var(--transition-fast);
   
   &:hover {
-    color: var(--accent-primary);
-    background-color: rgba(255, 255, 255, 0.1);
-    text-decoration: none;
+    color: var(--text-primary);
+    text-decoration: underline;
   }
 }
 
 // Mobile navigation
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-  
   .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-lg);
-    flex-direction: column;
-    padding: var(--spacing-md);
-    display: none;
-    
-    &.active {
-      display: flex;
-    }
+    position: static;
+    box-shadow: none;
+    flex-direction: row;
+    padding: 0;
   }
-  
   .nav-link {
-    width: 100%;
-    text-align: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 }
 
@@ -259,24 +204,24 @@
 // Posts grid
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--spacing-xl);
+  grid-template-columns: 1fr; // single column like Monochrome
+  gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-3xl);
 }
 
 .post-card {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
+  border-radius: 0;
   padding: var(--spacing-xl);
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+  box-shadow: none;
   
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--accent-primary);
-    }
+    transform: none;
+    box-shadow: none;
+    border-color: #000;
+  }
 }
 
 .post-meta {
@@ -304,15 +249,17 @@
 }
 
 .post-title {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   
   a {
     color: var(--text-primary);
     text-decoration: none;
+    border-bottom: 1px solid transparent;
     
     &:hover {
       color: var(--accent-primary);
       text-decoration: none;
+      border-bottom-color: var(--accent-primary);
     }
   }
 }
@@ -324,25 +271,17 @@
 }
 
 .read-more {
-  color: var(--accent-primary);
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
   
   &:hover {
-    color: var(--accent-secondary);
-    text-decoration: none;
-    
-    i {
-      transform: translateX(4px);
-    }
-  }
-  
-  i {
-    transition: transform var(--transition-fast);
+    color: var(--accent-primary);
+    text-decoration: underline;
   }
 }
 
@@ -485,7 +424,7 @@
   margin-bottom: var(--spacing-2xl);
 }
 
-.nav-link {
+.post-navigation .nav-link {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -525,10 +464,10 @@
 
 // Footer
 .site-footer {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   margin-top: var(--spacing-3xl);
-  padding: var(--spacing-3xl) 0 var(--spacing-xl) 0;
+  padding: var(--spacing-2xl) 0;
 }
 
 .footer-content {
@@ -577,14 +516,13 @@
   gap: var(--spacing-sm);
   color: var(--text-primary);
   text-decoration: none;
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius);
-  transition: all var(--transition-fast);
+  padding: var(--spacing-xs) 0;
+  border-radius: 0;
+  transition: color var(--transition-fast);
   
   &:hover {
-    background-color: var(--bg-tertiary);
     color: var(--accent-primary);
-    text-decoration: none;
+    text-decoration: underline;
   }
   
   i {

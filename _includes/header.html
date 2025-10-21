@@ -6,13 +6,7 @@
             </a>
 
             <nav class="site-nav">
-                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                </button>
-
-                <div class="nav-menu" id="nav-menu">
+                <div class="nav-menu">
                     <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
                     <a class="nav-link" href="{{ site.baseurl }}/about/">About</a>
                     <a class="nav-link" href="{{ site.baseurl }}/posts/">Posts</a>
@@ -23,26 +17,3 @@
         </div>
     </div>
 </header>
-
-<script>
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
-        if (menuToggle && navMenu) {
-            menuToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
-            
-            // Close menu when clicking on a link
-            navMenu.addEventListener('click', function(e) {
-                if (e.target.classList.contains('nav-link')) {
-                    navMenu.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        }
-    });
-</script>

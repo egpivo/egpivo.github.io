@@ -116,7 +116,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
             <i class="fas fa-flask"></i>
           </div>
           <div class="card-title">
-            <h3>Bayesian</h3>
+            <h3>Research</h3>
             <span class="card-period">Ongoing</span>
           </div>
         </div>
@@ -203,7 +203,7 @@ h1.post-title:has(+ .about-page) {
 .about-hero {
   background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
   border-radius: var(--border-radius-xl);
-  padding: var(--spacing-3xl);
+  padding: var(--spacing-1xl);
   margin-bottom: var(--spacing-3xl);
   text-align: center;
 }
@@ -221,7 +221,7 @@ h1.post-title:has(+ .about-page) {
 }
 
 .profile-name {
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-1xl);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 var(--spacing-sm) 0;
@@ -229,14 +229,14 @@ h1.post-title:has(+ .about-page) {
 }
 
 .profile-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   color: var(--accent-primary);
   font-weight: 600;
   margin: 0 0 var(--spacing-xs) 0;
 }
 
 .profile-subtitle {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   color: var(--text-secondary);
   margin: 0 0 var(--spacing-lg) 0;
 }
@@ -250,19 +250,16 @@ h1.post-title:has(+ .about-page) {
 }
 
 .highlight-tag {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--border-radius-xl);
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  border-radius: 0;
   font-size: var(--font-size-sm);
-  font-weight: 600;
-  box-shadow: var(--shadow);
-  transition: all var(--transition-fast);
+  font-weight: 400;
 }
 
 .highlight-tag:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  text-decoration: underline;
 }
 
 /* Section Styles */
@@ -275,7 +272,7 @@ h1.post-title:has(+ .about-page) {
 }
 
 .section-title {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -286,7 +283,7 @@ h1.post-title:has(+ .about-page) {
 
 .section-title i {
   color: var(--accent-primary);
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-lg);
 }
 
 /* Content Card */
@@ -299,8 +296,8 @@ h1.post-title:has(+ .about-page) {
 }
 
 .intro-text {
-  font-size: var(--font-size-xl);
-  line-height: 1.8;
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
   color: var(--text-primary);
   margin: 0;
   font-weight: 400;
@@ -308,8 +305,8 @@ h1.post-title:has(+ .about-page) {
 
 .intro-paragraph {
   margin: 0 0 var(--spacing-lg) 0;
-  font-size: var(--font-size-xl);
-  line-height: 1.8;
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
   color: var(--text-primary);
 }
 
@@ -389,7 +386,7 @@ h1.post-title:has(+ .about-page) {
 }
 
 .card-title h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 var(--spacing-xs) 0;
@@ -406,6 +403,7 @@ h1.post-title:has(+ .about-page) {
 
 .card-content p {
   color: var(--text-primary);
+  font-size: var(--font-size-sm);
   line-height: 1.6;
   margin: 0 0 var(--spacing-md) 0;
 }
@@ -417,13 +415,13 @@ h1.post-title:has(+ .about-page) {
 }
 
 .tech-tag {
-  background: var(--bg-secondary);
-  color: var(--accent-primary);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  border-radius: 0;
   font-size: var(--font-size-sm);
-  font-weight: 500;
-  border: 1px solid var(--border-color);
+  font-weight: 400;
+  border: none;
 }
 
 /* Skills Container */
@@ -447,20 +445,17 @@ h1.post-title:has(+ .about-page) {
 }
 
 .skill-tag {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0;
+  border-radius: 0;
   font-size: var(--font-size-sm);
-  font-weight: 500;
-  border: 1px solid var(--border-color);
-  transition: all var(--transition-fast);
+  font-weight: 400;
+  border: none;
 }
 
 .skill-tag:hover {
-  background: var(--accent-primary);
-  color: white;
-  border-color: var(--accent-primary);
+  text-decoration: underline;
 }
 
 /* Responsive Design */
