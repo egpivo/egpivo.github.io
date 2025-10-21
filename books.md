@@ -1,9 +1,11 @@
 ---
 layout: page
-title: Books Collection
+title: Reading List
 menu: main
 permalink: /books/
 ---
+
+<p style="color:#666;margin-top:0">Note: This is a personal reading list of books I recommend or have read. All books are authored by their respective writers — not by me.</p>
 
 <style>
   .category {
