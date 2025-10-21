@@ -169,10 +169,8 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         <h3>Research Areas</h3>
         <div class="skill-tags">
           <span class="skill-tag">Diffusion Models</span>
-          <span class="skill-tag">RAG Systems</span>
           <span class="skill-tag">Geospatial ML</span>
           <span class="skill-tag">Bayesian Methods</span>
-          <span class="skill-tag">Agentic Workflows</span>
         </div>
       </div>
     </div>
