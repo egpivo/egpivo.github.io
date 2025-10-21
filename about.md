@@ -147,7 +147,6 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         <div class="skill-tags">
           <span class="skill-tag">Deep Learning</span>
           <span class="skill-tag">NLP</span>
-          <span class="skill-tag">Computer Vision</span>
           <span class="skill-tag">Time Series</span>
           <span class="skill-tag">Recommendation Systems</span>
         </div>
@@ -157,6 +156,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         <h3>Technologies</h3>
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
+          <span class="skill-tag">PySpark</span>
           <span class="skill-tag">PyTorch</span>
           <span class="skill-tag">TensorFlow</span>
           <span class="skill-tag">AWS</span>
