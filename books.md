@@ -24,6 +24,7 @@ permalink: /books/
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: calc(25% - 20px);
+    font-size: 0.9rem; /* slightly smaller base for book blocks */
   }
 
   .book-image {
@@ -34,10 +35,12 @@ permalink: /books/
   .book-title {
     font-weight: bold;
     margin-top: 10px;
+    font-size: 1rem; /* reduce title size */
   }
 
   .book-author {
     color: #888;
+    font-size: 0.85rem; /* smaller author text */
   }
 </style>
 
