@@ -3,12 +3,7 @@
         <div class="header-content">
             <a class="site-title" href="{{ site.baseurl }}/">
                 {% assign name_parts = site.title | split: ' ' %}
-                <span class="title-text">
-                    <span class="title-light">{{ name_parts[0] }}</span>
-                    {% if name_parts.size > 1 %}
-                    <span class="title-strong">{% for p in name_parts offset:1 %}{% if forloop.first %} {% endif %}{{ p }}{% if forloop.last %}{% else %} {% endif %}{% endfor %}</span>
-                    {% endif %}
-                </span>
+                <span class="title-text"><span class="title-light">{{ name_parts[0] }}</span>{% if name_parts.size > 1 %}<span class="title-strong">{% for p in name_parts offset:1 %}{{ p }}{% endfor %}</span>{% endif %}</span>
             </a>
 
             <nav class="site-nav">
