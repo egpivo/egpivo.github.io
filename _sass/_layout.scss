@@ -37,8 +37,8 @@
     line-height: 1.2;
     color: var(--text-primary);
   }
-  .title-light { font-weight: 400; }
-  .title-strong { font-weight: 700; }
+  .title-light { font-weight: 400; font-style: normal; letter-spacing: 0.3px; color: var(--text-secondary); }
+  .title-strong { font-weight: 600; }
 }
 
 // Navigation
