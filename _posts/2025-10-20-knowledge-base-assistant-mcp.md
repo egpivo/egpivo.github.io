@@ -42,7 +42,7 @@ The content booster is a separate LLM-based tool. It generates domain-specific k
 ### Chunk Aggregation
 How we aggregate chunks depends on the user’s intent from the file search step.
 
-1. Single-file or small file set (clause lookup)
+1.  Single-file or small file set (clause lookup):
 When the user’s query targets specific clauses or paragraphs in just a few files, we treat the task more like a ranking problem where we can leverage the relevance socre per file from the file search step.
 	-	We first rank the files based on the aggregated relevance of their chunks.
 	-	If the query is about a legal clause, we preserve the original wording as much as possible.
@@ -54,7 +54,7 @@ When the user wants to compare multiple files, we treat the task like a linking 
 	-	We identify and align key entities across files.
 	-	Then we aggregate and summarize the results by comparison, applying a defined set of measures or dimensions (e.g., clause differences, obligations, dates, or entities).
 
-This step can be modularized, allowing additional engineering actions or post-processing layers (e.g., entity alignment modules, structured reporting, or visualization components).
+This step can be modularized, allowing additional engineering actions or post-processing layers (e.g., entity alignment).
 
 
 ### Reflection
@@ -71,3 +71,9 @@ Nothing fancy here — in this stage, we simply run two reflection passes to imp
 One important thing to consider in this stage is how to define or find a baseline reference if we want the system to provide a fact-based answer, not just a well-phrased one.
 
 ### MCP Implementation
+
+<div style="text-align:center; margin: 1rem 0;">
+  <img src="{{ site.baseurl }}/assets/images/mcp_arch.png" alt="MCP Architecture" style="max-width:100%; height:auto;" />
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">MCP server layout: transport, middleware, tool router, main tool, subtasks, service layer, and external systems.</div>
+</div>
+
