@@ -7,83 +7,59 @@ math: false
 
 This post outlines a high-level design for a Knowledge Base (KB) Assistant exposed via an MCP server that integrates with the Dify KB backend, with optional reflection, context boosting, and reranking. It's designed to plug easily into other orchestration pipelines (including RAG).
 
-First thing first, how can we retrieve menaingfule and important files under many files?  Here we introduce standard search strategy:
-Query rewriting -> query understanding -> funnel retrieval: keyword retrieval on larger files -> semantic retrieval on smaller files -> reranking
-
-## Sequence Diagram
-
-To render the following Mermaid diagram on this site, we include a minimal script block to initialize Mermaid when the page loads.
-
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({ startOnLoad: true, theme: 'default' });
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    if (window.mermaid) { mermaid.init(); }
-  });
-</script>
+## Flowchart Overview
 
 ```mermaid
-sequenceDiagram
-    participant Client
-    participant MCP as MCP Server
-    participant Auth as Auth Middleware
-    participant KB as KB Assistant Service
-    participant DifyKB as Dify KB Backend
-    participant LLM as LLM API
-    participant Rerank as Rerank API
+flowchart LR
+  Q[User Query]
 
-    Client->>MCP: kb_assistant(dataset_info, query, verbose, use_content_booster, enable_reflection)
-    MCP->>Auth: require_auth decorator
-    Auth->>Auth: Validate credentials from headers
-    Auth-->>MCP: Credentials validated
-    MCP->>KB: kb_assistant_service()
+  subgraph P1[1. File Search]
+    QR[Query Rewriting]
+    QU[Query Understanding]
+    KR[Keyword Retrieval - larger files]
+    SR[Semantic Retrieval - smaller files]
+    RR[Reranking]
+    QR --> QU --> KR --> SR --> RR
+  end
 
-    Note over KB: Parse dataset_info JSON
-    KB->>KB: Extract dataset_id and source_path
+  subgraph P2[2. Parallel Chunk Search]
+    NA[Naive]
+    AD[Advanced Content Booster]
+    CAND[Candidate Chunks]
+    NA --> CAND
+    AD --> CAND
+  end
 
-    Note over KB: Extract user intention
-    KB->>LLM: Generate keywords from query
-    LLM-->>KB: Keywords generated
+  subgraph P3[3. Information Aggregation]
+    AGG[Aggregate and Compose]
+  end
 
-    Note over KB: Naive search approach
-    KB->>DifyKB: Search documents (naive method)
-    DifyKB-->>KB: Naive search results
+  subgraph P4[4. Reflection]
+    R1[Search Coverage Reflection]
+    R2[Answer Quality Reflection]
+  end
 
-    Note over KB: Advanced search approach
-    KB->>DifyKB: Search documents (advanced method)
-    DifyKB-->>KB: Advanced search results
-
-    Note over KB: Content boosting (if enabled)
-    alt use_content_booster = true
-        KB->>KB: Apply content boosting
-        KB->>KB: Merge and deduplicate results
-    end
-
-    Note over KB: Reranking (optional)
-    alt rerank available and threshold met
-        KB->>Rerank: Rerank combined results
-        Rerank-->>KB: Reranked results
-    end
-
-    Note over KB: Extract final answer
-    KB->>LLM: Generate comprehensive answer
-    LLM-->>KB: Final answer with sources
-
-    Note over KB: Reflection (optional)
-    alt enable_reflection = true
-        KB->>LLM: Reflect on answer quality
-        LLM-->>KB: Quality assessment & refinements
-        alt quality below threshold
-            KB->>LLM: Generate refined answer
-            LLM-->>KB: Improved answer
-        end
-    end
-
-    KB-->>MCP: Complete results with profiling and reflection metadata
-    MCP-->>Client: JSON response with answer and metadata
+  Q --> QR
+  RR --> NA
+  RR --> AD
+  RR --> R1
+  CAND --> AGG
+  AGG --> R2
+  R1 -->|Plan: expand or relax| QR
+  R2 -->|Refine| AGG
+  R2 -->|Pass| A[Final Answer]
 ```
+
+#### File search
+
+First thing first, how can we retrieve menaingfule and important files under many files?  Here we introduce standard search strategy:
+> Query understanding  -> Query rewriting -> funnel retrieval: keyword retrieval on larger files -> semantic retrieval on smaller files -> reranking
+
+
+- Query rewriter controlled by llm for asking keep the entites (person/organization) first and based
+on the understanding like domain specific check to boost up the import content
+- and then go standard multi-stage information retrieval 
+- we will get the (file name, score) by reranking based on the original user query
 
 ## Key Components
 
