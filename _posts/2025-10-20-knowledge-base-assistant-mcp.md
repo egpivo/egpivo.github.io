@@ -5,7 +5,10 @@ tags: [Software, NLP, LLM]
 math: false
 ---
 
-This post outlines a high-level design for a Knowledge Base (KB) Assistant exposed via an MCP server that integrates with the Dify KB backend, with optional reflection, content boosting, and reranking. It's designed to plug easily into other orchestration pipelines (including RAG).
+This post outlines a high-level design for a Knowledge Base (KB) Assistant exposed via an MCP server that integrates with the Dify KB backend, with optional reflection, context boosting, and reranking. It's designed to plug easily into other orchestration pipelines (including RAG).
+
+First thing first, how can we retrieve menaingfule and important files under many files?  Here we introduce standard search strategy:
+Query rewriting -> query understanding -> funnel retrieval: keyword retrieval on larger files -> semantic retrieval on smaller files -> reranking
 
 ## Sequence Diagram
 
