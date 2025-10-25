@@ -7,48 +7,13 @@ math: false
 
 This post outlines a high-level design for a Knowledge Base (KB) Assistant exposed via an MCP server that integrates with the Dify KB backend, with optional reflection, context boosting, and reranking. It's designed to plug easily into other orchestration pipelines (including RAG).
 
-## Flowchart Overview
+## Overview
+Our high-level design is depicted below.
 
-```mermaid
-flowchart LR
-  Q[User Query]
+<div style="text-align:center; margin: 1rem 0;">
+  <img src="{{ site.baseurl }}/assets/images/kb_flow.svg" alt="KB Assistant Flow" style="max-width:100%; height:auto;" />
+</div>
 
-  subgraph P1[1. File Search]
-    QR[Query Rewriting]
-    QU[Query Understanding]
-    KR[Keyword Retrieval - larger files]
-    SR[Semantic Retrieval - smaller files]
-    RR[Reranking]
-    QR --> QU --> KR --> SR --> RR
-  end
-
-  subgraph P2[2. Parallel Chunk Search]
-    NA[Naive]
-    AD[Advanced Content Booster]
-    CAND[Candidate Chunks]
-    NA --> CAND
-    AD --> CAND
-  end
-
-  subgraph P3[3. Information Aggregation]
-    AGG[Aggregate and Compose]
-  end
-
-  subgraph P4[4. Reflection]
-    R1[Search Coverage Reflection]
-    R2[Answer Quality Reflection]
-  end
-
-  Q --> QR
-  RR --> NA
-  RR --> AD
-  RR --> R1
-  CAND --> AGG
-  AGG --> R2
-  R1 -->|Plan: expand or relax| QR
-  R2 -->|Refine| AGG
-  R2 -->|Pass| A[Final Answer]
-```
 
 ### File search
 
@@ -93,19 +58,16 @@ This step can be modularized, allowing additional engineering actions or post-pr
 
 
 ### Reflection
-We run two lightweight reflection passes to improve reliability. Both are LLM-prompted with structured outputs and can be toggled/configured.
+There are a few research papers discussing how to build a stage to validate the results (e.g., Renze and Guven 2024).
+Nothing fancy here — in this stage, we simply run two reflection passes to improve reliability. We instruct the LLM to handle two types of checks:
+1.	Search coverage reflection
+- Signals: few or no high-score chunks, missing query entities in the retrieved text, or low source diversity.
+- Action: generate a plan to expand or relax the query terms, then re-run file/chunk search with a revised query (e.g., broaden entities, add synonyms, adjust time ranges).
 
-- Search coverage reflection
-  - Signals: few/no high-score chunks, missing query entities in retrieved text, low source diversity.
-  - Action: produce a plan to expand or relax terms, then re-run file/chunk search with a revised query (broaden entities, synonyms/time ranges). Bounded to max rounds (default: 1).
+2.	Answer quality reflection
+- Criteria: grounding (citations are present and relevant), completeness (answers the intent), internal consistency, and specificity.
+- Action: if the score is below min_quality_score (default 0.7), re-compose the answer using the top chunks; otherwise, pass it through as-is.
 
-- Answer quality reflection
-  - Rubric: grounding (citations present and relevant), completeness (addresses intent), internal consistency, and specificity.
-  - Action: if score < min_quality_score (default: 0.7), re-compose the answer from top chunks; otherwise pass.
+One important thing to consider in this stage is how to define or find a baseline reference if we want the system to provide a fact-based answer, not just a well-phrased one.
 
-Implementation notes
-- Controls: `enable_reflection` (bool), `max_reflection_rounds` (int), `min_quality_score` (float).
-- Outputs: the MCP response includes `reflection.plan`, `revised_query` (if any), and per-criterion scores to aid debugging.
-s
-
-### MCP Implementa
+### MCP Implementation
