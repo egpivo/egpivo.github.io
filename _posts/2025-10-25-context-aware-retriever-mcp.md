@@ -3,6 +3,9 @@ layout: post
 title: "MCP Context-Aware Retriever - Introduction"
 tags: [Software, NLP, LLM, AI]
 math: false
+redirect_from:
+  - /2025/10/20/knowledge-base-assistant-mcp.html
+  - /2025/10/20/knowledge-base-assistant-mcp/
 ---
 
 In this post, I’ll share how I built a context-aware retriever for knowledge base question answering. It runs on top of an MCP server and can easily plug into RAG or orchestration pipelines like [`Dify`](https://docs.dify.ai/en/guides/knowledge-base/readme) or [`n8n`](https://docs.n8n.io/advanced-ai/rag-in-n8n/). The retriever includes optional steps for reflection, context expansion, and reranking to make results more robust. I’m not covering document chunking here, that is, I’ll assume that’s already handled so the focus is on making query performance smarter and more reliable.
