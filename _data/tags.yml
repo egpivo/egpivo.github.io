@@ -28,3 +28,6 @@ NLP:
 LLM:
     slug: LLM
     name: LLM
+AI:
+    slug: AI
+    name: AI
