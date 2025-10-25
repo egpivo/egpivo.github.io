@@ -848,6 +848,18 @@ li {
   list-style: none !important;
 }
 
+/* Restore lists inside post content (override global reset above) */
+.post-content ul {
+  list-style: disc !important;
+  margin: 0 0 var(--spacing-lg) var(--spacing-lg) !important;
+  padding-left: var(--spacing-lg) !important;
+}
+.post-content ol {
+  list-style: decimal !important;
+  margin: 0 0 var(--spacing-lg) var(--spacing-lg) !important;
+  padding-left: var(--spacing-lg) !important;
+}
+
 .list-inline.compact-badges li img {
   display: inline-block;
   margin: 0;
