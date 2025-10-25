@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Knowledge Base Assistant via MCP: Architecture and Flow"
+title: "Dify Knowledge Base Assistant via MCP"
 tags: [Software, NLP, LLM]
 math: false
 ---
 
-This post outlines the high-level design for a Knowledge Base (KB) Assistant exposed through an MCP server that communicates with the Dify KB backend, with optional reflection, content boosting, and reranking.
+This post outlines a high-level design for a Knowledge Base (KB) Assistant exposed via an MCP server that integrates with the Dify KB backend, with optional reflection, content boosting, and reranking. It's designed to plug easily into other orchestration pipelines (including RAG).
 
 ## Sequence Diagram
 
