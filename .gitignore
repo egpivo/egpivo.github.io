@@ -48,3 +48,5 @@ vendor/
 # Backup files
 *.bak
 *.backup
+
+kb-assistant-develop/
