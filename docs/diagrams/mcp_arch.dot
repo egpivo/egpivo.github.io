@@ -1,0 +1,68 @@
+digraph G {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=10, labelloc="t"];
+  node  [shape=box, style="rounded,filled", color="#333333", fontcolor="#222222", fontname="Helvetica"];
+  edge  [color="#6B7280", penwidth=1.4, arrowsize=0.8, fontname="Helvetica"];
+
+  Client [label="Client
+IDE / Agent", fillcolor="#DBEAFE", color="#2563EB", fontcolor="#0F172A"];
+
+  subgraph cluster_server {
+    label="MCP Server (FastMCP)";
+    style="rounded,filled"; color="#94A3B8"; fillcolor="#F8FAFC";
+    Transport [label="Transport
+streamable-http • /mcp", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#052E16"];
+    Middleware [label="Middleware
+Auth • Config", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+    Router [label="Tool Router", fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+    qa_hub [label="qa_hub (Main Tool)", fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+    subgraph cluster_subtools {
+      label="Internal Subtools";
+      style="rounded,filled"; color="#E5E7EB"; fillcolor="#F9FAFB";
+      FS  [label="file_discoverer", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+      KG  [label="query_expander", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+      RET [label="chunk_retriever", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+      FL  [label="file_indexer", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+      FC  [label="file_counter", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+    }
+    Resources [label="Resources
+prompts • logs", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#052E16"];
+    Middleware -> Router;
+    Router -> qa_hub;
+    Router -> Resources;
+    qa_hub -> FS [style=dashed, color="#9CA3AF"];
+    qa_hub -> KG [style=dashed, color="#9CA3AF"];
+    qa_hub -> RET [style=dashed, color="#9CA3AF"];
+    qa_hub -> FL [style=dashed, color="#9CA3AF"];
+    qa_hub -> FC [style=dashed, color="#9CA3AF"];
+  }
+
+  subgraph cluster_core {
+    label="Core + Services";
+    style="rounded,filled"; color="#94A3B8"; fillcolor="#F8FAFC";
+    Service [label="Service Layer", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#052E16"];
+    Core [label="Core Modules", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  }
+
+  subgraph cluster_ext {
+    label="External Systems";
+    style="rounded,filled"; color="#94A3B8"; fillcolor="#F8FAFC";
+    KB [label="Dify KB / Datasets", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+    LLM [label="LLM API", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+    Rerank [label="Reranker API", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  }
+
+  Client -> Middleware [label="tool call + headers"];
+  qa_hub -> Service -> Core -> KB;
+  FS -> Service;
+  KG -> Service;
+  RET -> Service;
+  FL -> Service;
+  FC -> Service;
+  Core -> LLM;
+  Core -> Rerank;
+  KB -> Service;
+  LLM -> Service;
+  Rerank -> Service;
+  Service -> qa_hub;
+  qa_hub -> Client;
+}

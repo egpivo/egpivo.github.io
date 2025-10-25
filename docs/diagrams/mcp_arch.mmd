@@ -1,0 +1,75 @@
+flowchart LR
+  %% Styles
+  classDef edge color:#6B7280;
+  classDef cool fill:#E6F4FF,stroke:#2563EB,color:#0F172A;
+  classDef warm fill:#FFF6D5,stroke:#A16207,color:#3F2D1C;
+  classDef accent fill:#F3E8FF,stroke:#7C3AED,color:#2E1065;
+  classDef out fill:#DCFCE7,stroke:#16A34A,color:#052E16;
+  classDef start fill:#DBEAFE,stroke:#2563EB,color:#0F172A;
+
+  Client[Client
+IDE / Agent]
+
+  subgraph Server[MCP Server (FastMCP)]
+    direction TB
+    Transport[Transport
+streamable-http • /mcp]
+    Middleware[Middleware
+Auth • Config]
+    Router[Tool Router]
+    MT[qa_hub (Main Tool)]
+    subgraph ST[Internal Subtools]
+      FS[file_discoverer]
+      KG[query_expander]
+      RET[chunk_retriever]
+      FL[file_indexer]
+      FC[file_counter]
+    end
+    Resources[Resources
+prompts • logs]
+    Middleware --> Router
+    Router --> MT
+    Router --> Resources
+    MT -.-> FS
+    MT -.-> KG
+    MT -.-> RET
+    MT -.-> FL
+    MT -.-> FC
+  end
+
+  subgraph CoreServices[Core + Services]
+    Service[Service Layer]
+    Core[Core Modules]
+  end
+
+  subgraph External[External Systems]
+    KB[Dify KB / Datasets]
+    LLM[LLM API]
+    Rerank[Reranker API]
+  end
+
+  Client -->|tool call + headers| Middleware
+  MT --> Service --> Core --> KB
+  FS --> Service
+  KG --> Service
+  RET --> Service
+  FL --> Service
+  FC --> Service
+  Core --> LLM
+  Core --> Rerank
+  KB --> Service
+  LLM --> Service
+  Rerank --> Service
+  Service --> Tools
+  Tools --> Client
+
+  %% Classes
+  class Client start;
+  class Transport out;
+  class Middleware warm;
+  class Router,Resources accent;
+  class MT accent;
+  class FS,KG,RET,FL,FC warm;
+  class Service out;
+  class Core cool;
+  class KB,LLM,Rerank cool;

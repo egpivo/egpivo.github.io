@@ -1,0 +1,87 @@
+digraph G {
+  graph [
+    rankdir=LR,
+    bgcolor=white,
+    fontname="Helvetica",
+    fontsize=12,
+    labelloc="t"
+  ];
+  node [
+      shape=box,
+      style="rounded,filled",
+      color="#333333",
+      fontcolor="#222222",
+      fontname="Helvetica",
+      fontsize=20
+  ];
+
+  edge [
+      color="#6B7280",
+      penwidth=1.4,
+      arrowsize=0.8,
+      fontname="Helvetica",
+      fontsize=16
+  ];
+
+  Q [label="User Query", fontsize=22, fillcolor="#DBEAFE", color="#2563EB", fontcolor="#0F172A"];
+
+  subgraph cluster_p1 {
+    label=<<font point-size="20">1. File Discovery</font>>;
+    labelloc="t";
+    style="rounded,filled";
+    color="#94A3B8";
+    fillcolor="#F8FAFC";
+    INT [label="Query Intent Detector\n(extract entities, domain)", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+    QR  [label="LLM Query Rewriting\n(preserve entities, domain hint)", fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+    KR  [label="Keyword Retrieval\n(larger files)", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+    SR  [label="Semantic Retrieval\n(smaller files)", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+    RR  [label="Reranking by original query", fillcolor="#E0F2FE", color="#0EA5E9", fontcolor="#0C4A6E"];
+    INT -> QR -> KR -> SR -> RR;
+  }
+
+  subgraph cluster_p2 {
+    label=<<font point-size="20">2. Parallel Chunk Retrieval</font>>;
+    labelloc="t";
+    style="rounded,filled";
+    color="#94A3B8";
+    fillcolor="#F8FAFC";
+    NA [label="Direct Search", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+    AD [label="Query Expander", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+    CAND [label="Candidate Chunks", fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+    NA -> CAND;
+    AD -> CAND;
+  }
+
+  subgraph cluster_p3 {
+    label=<<font point-size="20">3. Information Aggregation</font>>;
+    labelloc="t";
+    style="rounded,filled";
+    color="#94A3B8";
+    fillcolor="#F8FAFC";
+    AGG [label="Aggregate and Compose", fillcolor="#E0F2FE", color="#0EA5E9", fontcolor="#0C4A6E"];
+  }
+
+  subgraph cluster_p4 {
+    label=<<font point-size="20">4. Reflection</font>>;
+    labelloc="t";
+    style="rounded,filled";
+    color="#F59E0B";
+    fillcolor="#FFFBEB";
+    R1 [label="Search Coverage Reflection", fillcolor="#FEF3C7", color="#CA8A04", fontcolor="#4A2C0A"];
+    R2 [label="Answer Quality Reflection", fillcolor="#FEF3C7", color="#CA8A04", fontcolor="#4A2C0A"];
+  }
+
+  Q -> INT;
+  RR -> NA;
+  RR -> AD;
+  RR -> R1;
+  R1 -> QR [label="expand or relax", style=dashed, color="#F59E0B", fontcolor="#92400E"];
+  CAND -> AGG;
+  AGG -> R2;
+  R2 -> AGG [label="refine", style=dashed, color="#F59E0B", fontcolor="#92400E"];
+  A [label="Final Answer", shape=doublecircle, fillcolor="#DBEAFE", color="#2563EB", fontcolor="#0F172A"];
+  R2 -> A [label="pass"];
+
+  OUT [label="Ranked files: (file, score)", shape=oval, fillcolor="#DCFCE7", color="#16A34A", fontcolor="#052E16"];
+  RR -> OUT;
+}

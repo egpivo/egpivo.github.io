@@ -1,0 +1,77 @@
+%%{init: {
+  "themeVariables": { "fontSize": "18px", "fontFamily": "Helvetica" },
+  "themeCSS": ".subgraph .label > tspan, .clusterLabel, .cluster .label > tspan { font-size: 20px !important; }
+.edgeLabel tspan { font-size: 16px !important; }"
+}}%%
+flowchart LR
+  %% Theme classes
+  classDef start fill:#DBEAFE,stroke:#2563EB,color:#0F172A,stroke-width:1px;
+  classDef warm fill:#FFF6D5,stroke:#A16207,color:#3F2D1C;
+  classDef cool fill:#E6F4FF,stroke:#2563EB,color:#0F172A;
+  classDef accent fill:#F3E8FF,stroke:#7C3AED,color:#2E1065;
+  classDef aggregate fill:#E0F2FE,stroke:#0EA5E9,color:#0C4A6E;
+  classDef reflect fill:#FEF3C7,stroke:#CA8A04,color:#4A2C0A;
+  classDef out fill:#DCFCE7,stroke:#16A34A,color:#052E16;
+
+  Q[User Query]
+
+  subgraph P1[1. File Discovery]
+    INT[Query Intent Detector\n(extract entities, domain)]
+    QR[LLM Query Rewriting\n(preserve entities, domain hint)]
+    KR[Keyword Retrieval - larger files]
+    SR[Semantic Retrieval - smaller files]
+    RR[Reranking by original query]
+    INT --> QR --> KR --> SR --> RR
+  end
+
+  subgraph P2[2. Parallel Chunk Retrieval]
+    NA[Direct Search]
+    AD[Query Expander]
+    CAND[Candidate Chunks]
+    NA --> CAND
+    AD --> CAND
+  end
+
+  subgraph P3[3. Information Aggregation]
+    AGG[Aggregate and Compose]
+  end
+
+  subgraph P4[4. Reflection]
+    R1[Search Coverage Reflection]
+    R2[Answer Quality Reflection]
+  end
+
+  Q --> INT
+  RR --> NA
+  RR --> AD
+  RR --> R1
+  CAND --> AGG
+  AGG --> R2
+  R1 -.->|expand or relax| QR
+  R2 -.->|refine| AGG
+  R2 -->|pass| A[Final Answer]
+
+  OUT[(Ranked files: (file, score))]
+  RR --> OUT
+
+  %% Subgraph styling
+  style P1 fill:#FAFAFA,stroke:#94A3B8,stroke-dasharray:4 3
+  style P2 fill:#FAFAFA,stroke:#94A3B8,stroke-dasharray:4 3
+  style P3 fill:#FAFAFA,stroke:#94A3B8,stroke-dasharray:4 3
+  style P4 fill:#FFFBEB,stroke:#F59E0B,stroke-dasharray:4 3
+
+  %% Node classes
+  class Q start;
+  class INT warm;
+  class QR accent;
+  class KR cool;
+  class SR cool;
+  class RR accent;
+  class NA cool;
+  class AD warm;
+  class CAND accent;
+  class AGG aggregate;
+  class R1 reflect;
+  class R2 reflect;
+  class OUT out;
+  class A start;

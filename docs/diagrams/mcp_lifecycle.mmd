@@ -1,0 +1,17 @@
+flowchart LR
+  classDef step fill:#E6F4FF,stroke:#2563EB,color:#0F172A;
+  classDef done fill:#DCFCE7,stroke:#16A34A,color:#052E16;
+  classDef loop fill:#FFF6D5,stroke:#A16207,color:#3F2D1C;
+
+  Plan[Design APIs + Tools]
+  Impl[Implement Server + Middleware + Resources]
+  Test[Unit + Integration + E2E]
+  Package[Versioning + pyproject + lock]
+  Deploy[Run FastMCP (uvicorn)]
+  Monitor[Logs + Metrics + QA]
+  Iterate[Refine prompts + tools + configs]
+
+  Plan --> Impl --> Test --> Package --> Deploy --> Monitor --> Iterate --> Plan
+
+  class Plan,Impl,Test,Package,Deploy,Monitor step;
+  class Iterate loop;

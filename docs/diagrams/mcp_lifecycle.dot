@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=10, labelloc="t"];
+  node  [shape=box, style="rounded,filled", color="#333333", fontcolor="#222222", fontname="Helvetica"];
+  edge  [color="#6B7280", penwidth=1.4, arrowsize=0.8, fontname="Helvetica"];
+
+  Plan    [label="Design APIs + Tools", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Impl    [label="Implement Server + Middleware + Resources", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Test    [label="Unit + Integration + E2E", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Package [label="Versioning + pyproject + lock", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Deploy  [label="Run FastMCP (uvicorn)", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Monitor [label="Logs + Metrics + QA", fillcolor="#E6F4FF", color="#2563EB", fontcolor="#0F172A"];
+  Iterate [label="Refine prompts + tools + configs", fillcolor="#FFF6D5", color="#A16207", fontcolor="#3F2D1C"];
+
+  Plan -> Impl -> Test -> Package -> Deploy -> Monitor -> Iterate -> Plan;
+}
