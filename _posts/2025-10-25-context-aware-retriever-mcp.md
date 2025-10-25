@@ -75,7 +75,7 @@ One important thing to consider in this stage is how to define or find a baselin
 ### MCP Implementation
 Our implementation leverages the[FastMCP](https://gofastmcp.com/getting-started/welcome) framework, and the overall structure is shown as follows.
 <div style="text-align:center; margin: 1rem 0;">
-  <img src="{{ site.baseurl }}/assets/images/mcp_arch.png" alt="MCP Architecture" style="max-width:100%; height:auto;" />
+  <img src="{{ site.baseurl }}/assets/images/mcp_arch.svg" alt="MCP Architecture" style="max-width:100%; height:auto;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">MCP server layout.</div>
 </div>
 
