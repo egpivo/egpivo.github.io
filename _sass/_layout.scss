@@ -859,6 +859,10 @@ li {
   margin: 0 0 var(--spacing-lg) var(--spacing-lg) !important;
   padding-left: var(--spacing-lg) !important;
 }
+.post-content li {
+  list-style: inherit !important;
+  margin-left: 0 !important;
+}
 
 .list-inline.compact-badges li img {
   display: inline-block;
