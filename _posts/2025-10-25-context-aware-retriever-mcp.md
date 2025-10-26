@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MCP Context-Aware Retriever - Introduction"
+title: "How I’m Building a Context-Aware Retriever to Boost RAG Quality (Part 1: Introduction)"
 tags: [Software, NLP, LLM, AI]
 math: false
 ---
