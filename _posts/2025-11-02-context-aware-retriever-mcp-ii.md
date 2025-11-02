@@ -24,12 +24,67 @@ The system is built on [FastMCP](https://gofastmcp.com/getting-started/welcome) 
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">MCP server layout.</div>
 </div>
 
+### MCP server setup
+The entry point is straightforward. The `assistant` tool coordinates the entire pipeline:
+
+```python
+from fastmcp import FastMCP
+
+mcp = FastMCP("kb-mcp-server")
+
+@mcp.tool()
+async def assistant(
+    query: str,
+    dataset_info: str,
+    custom_instructions: str = None,
+    document_name: str = None,
+    enable_query_rewriting: bool = False
+) -> Dict[str, Any]:
+    """
+    Context-aware retrieval for knowledge base questions.
+    
+    Orchestrates: intent detection → file discovery → 
+    chunk search with boosting → answer extraction → reflection
+    """
+    # Initialize services with credentials from headers
+    services = await initialize_services()
+    
+    # Stage 1: Understand query intent and discover files
+    discovery = await services.discovery.find_files(
+        query=query,
+        dataset_info=dataset_info,
+        enable_rewriting=enable_query_rewriting
+    )
+    
+    # Stage 2: Search chunks with boosted queries
+    chunks = await services.search.find_chunks(
+        query=query,
+        files=discovery["files"],
+        domain=discovery["domain"],
+        custom_instructions=custom_instructions
+    )
+    
+    # Stage 3: Extract and format answer
+    answer = await services.aggregator.build_answer(
+        chunks=chunks,
+        intent=discovery["intent"],
+        query=query
+    )
+    
+    # Stage 4 (optional): Reflect on answer quality
+    if services.reflection_enabled:
+        answer = await services.reflector.validate(answer, query)
+    
+    return answer
+```
+
 Key moving parts:
 - **Header-based auth**: credentials for retrieval, LLM, and reranking services are passed via HTTP headers (`X-RETRIEVAL-ENDPOINT`, `X-RETRIEVAL-API-KEY`, `X-LLM-API-URL`, `X-LLM-MODEL`, etc.), so you can swap backends without touching code.
-- **DSPy modules**: handle intent detection, query rewriting, keyword generation (content booster), answer extraction, and quality checks. Each module is a composable service that can be toggled or configured independently.
+- **Service initialization**: each stage (discovery, search, aggregation, reflection) is a separate service that can be configured independently.
 - **Async design**: everything runs asynchronously to maximize parallelism across files and query variants.
 
-Here's a quick look at how DSPy signatures are used for intent detection and content boosting:
+### DSPy for structured prompting
+Each service uses DSPy signatures to define its inputs and outputs. Here's how intent detection and content boosting work:
 
 ```python
 import dspy
@@ -41,15 +96,79 @@ class QueryIntentSignature(dspy.Signature):
     domain = dspy.OutputField(desc="Domain: legal, healthcare, business, etc.")
     key_entities = dspy.OutputField(desc="List of key entities to search for")
 
+class FileDiscoveryService:
+    def __init__(self):
+        self.intent_detector = dspy.ChainOfThought(QueryIntentSignature)
+    
+    async def find_files(self, query: str, dataset_info: str):
+        # Use DSPy to understand intent
+        intent = self.intent_detector(query=query)
+        
+        # Run semantic search + optional reranking
+        files = await self._search_files(query, intent.key_entities)
+        
+        return {
+            "files": files,
+            "intent": intent.intent_type,
+            "domain": intent.domain
+        }
+```
+
+For content boosting, we generate domain-specific keywords per file:
+
+```python
 class ContentBoostSignature(dspy.Signature):
     """Generate complementary keywords for content boosting."""
     query = dspy.InputField(desc="User's search query")
     document_name = dspy.InputField(desc="Target document being searched")
     custom_instructions = dspy.InputField(desc="Domain-specific guidance")
     keyword_sets = dspy.OutputField(desc="Array of keyword arrays for boosting")
+
+class ChunkSearchService:
+    def __init__(self):
+        self.content_booster = dspy.ChainOfThought(ContentBoostSignature)
+    
+    async def find_chunks(self, query: str, files: List[str], domain: str):
+        tasks = [self._search_with_query(query, files)]  # Original query
+        
+        # Generate boosted queries per file
+        for file in files[:3]:
+            boost = self.content_booster(
+                query=query,
+                document_name=file,
+                custom_instructions=f"Focus on {domain} domain"
+            )
+            for keywords in boost.keyword_sets:
+                boosted_query = " ".join(keywords)
+                tasks.append(self._search_with_query(boosted_query, [file]))
+        
+        # Run all searches in parallel
+        results = await asyncio.gather(*tasks)
+        return self._merge_and_deduplicate(results)
 ```
 
-The `assistant` tool orchestrates these modules end-to-end, from understanding the query to returning a formatted answer with citations.
+The aggregation service uses different DSPy signatures depending on the intent:
+
+```python
+class ClauseLookupSignature(dspy.Signature):
+    """Extract specific clauses preserving exact wording."""
+    context = dspy.InputField(desc="Document chunks")
+    user_query = dspy.InputField(desc="User's question")
+    answer = dspy.OutputField(desc="Extracted clauses with verbatim quotes")
+    citations = dspy.OutputField(desc="Source documents and sections")
+
+class AggregationService:
+    def __init__(self):
+        self.clause_extractor = dspy.ChainOfThought(ClauseLookupSignature)
+    
+    async def build_answer(self, chunks: List[Chunk], intent: str, query: str):
+        if intent == "clause_lookup":
+            return self.clause_extractor(
+                context=self._chunks_to_context(chunks),
+                user_query=query
+            )
+        # ... other intent types
+```
 
 
 ## Example on ContractNLI
