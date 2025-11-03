@@ -204,6 +204,12 @@
 }
 
 // Posts grid
+.featured-posts {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
 .posts-grid {
   display: grid;
   grid-template-columns: 1fr; // single column like Monochrome
