@@ -159,7 +159,8 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
           <span class="skill-tag">PySpark</span>
           <span class="skill-tag">PyTorch</span>
           <span class="skill-tag">TensorFlow</span>
-          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">AWS/Azure</span>
+          <span class="skill-tag">FastAPI/FastMCP</span>
           <span class="skill-tag">Docker</span>
           <span class="skill-tag">Kubernetes</span>
         </div>
