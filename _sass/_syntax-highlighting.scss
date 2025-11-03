@@ -1,71 +1,126 @@
 /**
- * Modern syntax highlighting styles
+ * Modern syntax highlighting styles - GitHub-inspired
  */
 .highlight {
-    background: var(--bg-tertiary);
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
     overflow-x: auto;
     font-family: var(--font-family-mono);
-    font-size: var(--font-size-sm);
-    line-height: 1.5;
+    font-size: 0.9em;
+    line-height: 1.6;
 
-    // Comments
+    // Base text
+    color: #24292e;
+
+    // Comments - muted gray
     .c, .cm, .c1, .cs { 
-        color: var(--text-muted); 
+        color: #6a737d; 
         font-style: italic; 
     }
     
-    // Keywords
-    .k, .kc, .kd, .kp, .kr, .kt, .o, .ow { 
-        font-weight: bold; 
-        color: var(--accent-primary); 
+    // Keywords (class, def, async, await, for, in, if, return) - purple/magenta
+    .k, .kc, .kd, .kn, .kp, .kr, .kt { 
+        color: #d73a49; 
+        font-weight: 600; 
     }
     
-    // Strings
-    .s, .sb, .sc, .sd, .s1, .s2, .se, .sh, .si, .sx { 
-        color: var(--accent-success); 
+    // Operators (=, +, -, etc.)
+    .o, .ow { 
+        color: #d73a49; 
+        font-weight: normal;
     }
     
-    // Numbers
-    .m, .mf, .mh, .mi, .mo, .il { 
-        color: var(--accent-warning); 
+    // Strings - blue
+    .s, .sb, .sc, .sd, .s1, .s2, .se, .sh, .si, .sx, .sr, .ss { 
+        color: #032f62; 
     }
     
-    // Names
-    .na, .nb, .nc, .no, .ne, .nf, .nn, .nt, .nv, .bp, .vc, .vg, .vi { 
-        color: var(--accent-secondary); 
+    // Numbers - teal
+    .m, .mf, .mh, .mi, .mo, .il, .mb { 
+        color: #005cc5; 
     }
     
-    // Special
-    .ni { color: #800080; }
-    .sr { color: var(--accent-success); }
-    .ss { color: #990073; }
+    // Function names - purple
+    .nf, .fm { 
+        color: #6f42c1; 
+        font-weight: 600;
+    }
+    
+    // Class names - bold teal
+    .nc, .nn { 
+        color: #005cc5; 
+        font-weight: 600;
+    }
+    
+    // Built-in functions (self, str, List, etc.) - teal
+    .nb, .bp { 
+        color: #005cc5; 
+    }
+    
+    // Variables and attributes
+    .na, .nv, .vc, .vg, .vi { 
+        color: #24292e; 
+    }
+    
+    // Decorators (@) - gray
+    .nd { 
+        color: #6f42c1; 
+        font-weight: 600;
+    }
+    
+    // Special names (__init__, etc.)
+    .ne, .no { 
+        color: #005cc5; 
+        font-weight: 600;
+    }
+    
+    // Type hints
+    .nt { 
+        color: #22863a; 
+    }
+    
+    // Punctuation
+    .p { 
+        color: #24292e; 
+    }
     
     // Error handling
     .err { 
-        color: var(--accent-danger); 
-        background-color: rgba(220, 53, 69, 0.1); 
+        color: #cb2431; 
+        background-color: rgba(203, 36, 49, 0.05); 
     }
     
     // Generic
     .gd { 
-        color: var(--accent-danger); 
-        background-color: rgba(220, 53, 69, 0.1); 
+        color: #cb2431; 
+        background-color: rgba(203, 36, 49, 0.05); 
     }
     .gi { 
-        color: var(--accent-success); 
-        background-color: rgba(25, 135, 84, 0.1); 
+        color: #22863a; 
+        background-color: rgba(34, 134, 58, 0.05); 
     }
-    .go { color: var(--text-muted); }
-    .gp { color: var(--text-secondary); }
-    .gs { font-weight: bold; }
-    .gu { color: var(--text-muted); }
-    .gt { color: var(--accent-danger); }
-    .gr { color: var(--accent-danger); }
-    .gh { color: var(--text-muted); }
+    .go { color: #6a737d; }
+    .gp { color: #586069; }
+    .gs { font-weight: 600; }
+    .gu { color: #6a737d; }
+    .gt { color: #cb2431; }
+    .gr { color: #cb2431; }
+    .gh { color: #005cc5; font-weight: 600; }
     
     // Whitespace
     .w { color: transparent; }
+}
+
+// Inline code
+code.highlighter-rouge {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 3px;
+    padding: 0.2em 0.4em;
+    font-family: var(--font-family-mono);
+    font-size: 0.9em;
+    color: #24292e;
 }
