@@ -251,6 +251,42 @@ permalink: /software/
 <h3>Python Implementations</h3>
 <p>Explore the following Python applications showcasing a range of technologies and frameworks.</p>
 
+  <div class="list-group-item row">
+    <div class="col-md-6">
+      <h4 class="list-group-item-heading">
+        <a href="https://pypi.org/project/kbbridge/">KB Bridge</a>
+      </h4>
+      <p class="list-group-item-text">
+        A Model Context Protocol (MCP) server for intelligent knowledge base search and retrieval. Features context-aware retrieval with DSPy-powered query understanding, multi-stage search pipeline with content boosting, and automatic answer quality reflection inspired by Agentic Context Engineering.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="software-ref">
+        <strong>Software References:</strong>
+        <ul class="list-inline compact-badges">
+          <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/kb-bridge">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="build-deployment">
+        <strong>Build and Deployment:</strong>
+        <ul class="list-inline compact-badges">
+          <li><a href="https://github.com/egpivo/kb-bridge/actions"><img src="https://github.com/egpivo/kb-bridge/workflows/Test/badge.svg"/></a></li>
+          <li><a href="https://app.codecov.io/github/egpivo/kb-bridge?branch=main"><img src="https://img.shields.io/codecov/c/github/egpivo/kb-bridge/main.svg"/></a></li>
+          <li><a href="https://pypi.org/project/kbbridge/"><img src="https://img.shields.io/pypi/v/kbbridge.svg?logo=pypi&label=PyPI&logoColor=silver"/></a></li>
+        </ul>
+      </div>
+      <div class="tech-stack">
+        <strong>Tech Stack:</strong>
+        <ul class="list-inline compact-badges">
+          <li><a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-black?style=flat-square&logo=python"/></a></li>
+          <li><a href="https://github.com/jlowin/fastmcp"><img src="https://img.shields.io/badge/FastMCP-black?style=flat-square"/></a></li>
+          <li><a href="https://dspy-docs.vercel.app/"><img src="https://img.shields.io/badge/DSPy-black?style=flat-square"/></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
 <div class="list-group">
   <div class="list-group-item row">
     <div class="col-md-6">
