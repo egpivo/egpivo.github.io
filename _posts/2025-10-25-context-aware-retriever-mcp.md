@@ -13,9 +13,7 @@ The main goal is to make retrieval more reliable and context-aware, especially i
 Our high-level design is depicted below.
 
 <div style="text-align:center; margin: 1rem 0;">
-  <a href="{{ site.baseurl }}/assets/2025-10-25-context-aware-retriever-mcp/retriever_flow.svg" target="_blank" rel="noopener" style="display:inline-block;">
-    <img src="{{ site.baseurl }}/assets/2025-10-25-context-aware-retriever-mcp/retriever_flow.svg" alt="Context-Aware Retriever Flow" style="max-width:100%; height:auto; cursor: zoom-in;" />
-  </a>
+  <img src="{{ site.baseurl }}/assets/images/retriever_flow.svg" alt="Context-Aware Retriever Flow" style="max-width:100%; height:auto;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Context-aware retriever pipeline.</div>
 </div>
 
@@ -72,9 +70,7 @@ Currently, we implement answer quality reflection: the LLM evaluates grounding, 
 ## MCP Implementation
 Our implementation leverages the [FastMCP](https://gofastmcp.com/getting-started/welcome) framework, and the overall structure is shown as follows.
 <div style="text-align:center; margin: 1rem 0;">
-  <a href="{{ site.baseurl }}/assets/2025-10-25-context-aware-retriever-mcp/mcp_arch.svg" target="_blank" rel="noopener" style="display:inline-block;">
-    <img src="{{ site.baseurl }}/assets/2025-10-25-context-aware-retriever-mcp/mcp_arch.svg" alt="MCP Architecture" style="max-width:100%; height:auto; cursor: zoom-in;" />
-  </a>
+  <img src="{{ site.baseurl }}/assets/images/mcp_arch.svg" alt="MCP Architecture" style="max-width:100%; height:auto;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">MCP server layout.</div>
 </div>
 

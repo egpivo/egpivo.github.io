@@ -1,0 +1,43 @@
+digraph G {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=14, labelloc="t"];
+  node  [shape=box, style="rounded,filled", color="#333333", fontcolor="#222222", fontname="Helvetica", fontsize=24, penwidth=1.4, margin="0.25,0.18"];
+  edge  [color="#6B7280", penwidth=1.6, arrowsize=1.0, fontname="Helvetica", fontsize=16];
+
+  EX [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="2" align="left">
+        <tr><td align="left"><font point-size="28"><b>Extraction</b></font></td></tr>
+        <tr><td align="left">DSPy + GPT-4o (T=0)</td></tr>
+        <tr><td align="left">JSON by type</td></tr>
+      </table>
+    >,
+    fillcolor="#E0F2FE", color="#0EA5E9", fontcolor="#0C4A6E"
+  ];
+
+  MT [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="2" align="left">
+        <tr><td align="left"><font point-size="28"><b>Matching</b></font></td></tr>
+        <tr><td align="left">• Exact</td></tr>
+        <tr><td align="left">• Substring</td></tr>
+        <tr><td align="left">• Fuzzy ≥ 0.85</td></tr>
+        <tr><td align="left"><font point-size="18">Normalize + deduplicate</font></td></tr>
+      </table>
+    >,
+    fillcolor="#FFFBEB", color="#F59E0B", fontcolor="#4A2C0A"
+  ];
+
+  SC [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="2" align="left">
+        <tr><td align="left"><font point-size="28"><b>Scoring</b></font></td></tr>
+        <tr><td align="left">Precision = matches/extracted</td></tr>
+        <tr><td align="left">Recall = matches/ground truth</td></tr>
+        <tr><td align="left">F1 = 2·Precision·Recall/(Precision+Recall)</td></tr>
+      </table>
+    >,
+    fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"
+  ];
+
+  EX -> MT -> SC;
+}

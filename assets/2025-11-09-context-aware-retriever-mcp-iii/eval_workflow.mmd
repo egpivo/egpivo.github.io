@@ -1,0 +1,27 @@
+%%{init: {
+  "themeVariables": { "fontSize": "22px", "fontFamily": "Helvetica" },
+  "themeCSS": ".subgraph .label > tspan, .clusterLabel, .cluster .label > tspan { font-size: 24px !important; }
+.edgeLabel tspan { font-size: 18px !important; }"
+}}%%
+flowchart LR
+  %% Classes
+  classDef data fill:#FEF3C7,stroke:#F59E0B,color:#4A2C0A;
+  classDef svc fill:#E0F2FE,stroke:#0EA5E9,color:#0C4A6E;
+  classDef dspy fill:#F3E8FF,stroke:#7C3AED,color:#2E1065;
+  classDef metric fill:#DCFCE7,stroke:#16A34A,color:#14532D;
+
+  subgraph DSET[Dataset]
+    KB["KB: ContractNLI (full)"]:::data
+  end
+
+  subgraph RETR[Retrieval Candidates]
+    STD["Standard Dify"]:::svc
+    CAA["Context‑aware"]:::svc
+  end
+
+  subgraph EVAL[Evaluation]
+    TOOL["Entity extraction"]:::dspy
+    MET["NER metrics"]:::metric
+  end
+
+  %% No arrows between blocks

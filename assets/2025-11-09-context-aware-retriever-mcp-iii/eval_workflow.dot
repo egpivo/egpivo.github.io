@@ -1,0 +1,30 @@
+digraph G {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=14, labelloc="t"];
+  node  [shape=box, style="rounded,filled", color="#333333", fontcolor="#222222", fontname="Helvetica", fontsize=24];
+  edge  [style=invis];
+
+  DSET [label=<
+    <table border="0" cellborder="0" cellspacing="0" cellpadding="2">
+      <tr><td><font point-size="26"><b>Dataset</b></font></td></tr>
+      <tr><td>KB: ContractNLI (full)</td></tr>
+    </table>
+  >, fillcolor="#FFFBEB", color="#F59E0B", fontcolor="#4A2C0A"];
+
+  RETR [label=<
+    <table border="0" cellborder="0" cellspacing="0" cellpadding="2">
+      <tr><td><font point-size="26"><b>Retrieval Candidates</b></font></td></tr>
+      <tr><td>• Standard Dify</td></tr>
+      <tr><td>• Context‑aware</td></tr>
+    </table>
+  >, fillcolor="#E0F2FE", color="#0EA5E9", fontcolor="#0C4A6E"];
+
+  EVAL [label=<
+    <table border="0" cellborder="0" cellspacing="0" cellpadding="2">
+      <tr><td><font point-size="26"><b>Evaluation</b></font></td></tr>
+      <tr><td>• Entity extraction</td></tr>
+      <tr><td>• NER metrics</td></tr>
+    </table>
+  >, fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+
+  DSET -> RETR -> EVAL;
+}
