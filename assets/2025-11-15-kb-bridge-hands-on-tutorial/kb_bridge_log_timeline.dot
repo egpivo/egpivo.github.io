@@ -1,0 +1,12 @@
+digraph KBBridgeLogTimeline {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=14, labelloc="t", label="`kb-bridge` Execution Timeline (from notebook logs)"];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=18, margin="0.25,0.2"];
+  edge  [color="#444444", penwidth=2, arrowsize=0.8];
+
+  kw [label=< <b>1️⃣ Keyword Generation</b><br/><font point-size="15">"Executing keyword_generator..."<br/>✅ Generated 3 keyword sets</font> >, fillcolor="#C6F6D5", color="#2F855A"];
+  fd [label=< <b>2️⃣ File Discovery</b><br/><font point-size="15">"Executing file_discover..."<br/>✅ Found 10 files</font> >, fillcolor="#BEE3F8", color="#2B6CB0"];
+  cb [label=< <b>3️⃣ Assistant + Content Booster</b><br/><font point-size="15">"Content Booster: ENABLED (max_boost_keywords=1)"<br/>19 candidates (18 advanced, 1 direct)</font> >, fillcolor="#FEEBC8", color="#DD6B20"];
+  rf [label=< <b>4️⃣ Reflection</b><br/><font point-size="15">Score 0.51 ≥ threshold 0.5<br/>"Returning verbose results"</font> >, fillcolor="#E9D8FD", color="#805AD5"];
+
+  kw -> fd -> cb -> rf;
+}

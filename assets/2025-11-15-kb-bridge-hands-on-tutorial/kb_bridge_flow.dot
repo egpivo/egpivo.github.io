@@ -1,0 +1,140 @@
+digraph KBBridgeFlow {
+  graph [
+    rankdir=TB,
+    bgcolor=white,
+    fontname="Helvetica",
+    fontsize=14,
+    labelloc="t",
+    label="KB-Bridge Information Flow",
+    compound=true,
+    nodesep=0.5,
+    ranksep=0.8
+  ];
+  
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Helvetica",
+    fontsize=20,
+    margin="0.3,0.2",
+    height=0.6
+  ];
+  
+  edge [
+    color="#333333",
+    penwidth=2,
+    arrowsize=0.8
+  ];
+
+  // 1. User Query
+  query [
+    label="User Query",
+    fillcolor="#4A90E2",
+    fontcolor=white,
+    fontsize=22,
+    style="rounded,filled,bold"
+  ];
+
+  // 2. Keyword Generation
+  keywords [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+        <tr><td><font point-size="20"><b>Keyword Generation</b></font></td></tr>
+        <tr><td><font point-size="18">(3 sets)</font></td></tr>
+      </table>
+    >,
+    fillcolor="#7ED321",
+    color="#5FA619"
+  ];
+
+  // 3. File Discovery
+  files [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+        <tr><td><font point-size="20"><b>File Discovery</b></font></td></tr>
+        <tr><td><font point-size="18">(10 files found)</font></td></tr>
+      </table>
+    >,
+    fillcolor="#7ED321",
+    color="#5FA619"
+  ];
+
+  // 4. Parallel Search with Content Booster
+  subgraph cluster_search {
+    label="";
+    style=invis;
+    
+    direct [
+      label=<
+        <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+          <tr><td><font point-size="20"><b>Direct Search</b></font></td></tr>
+          <tr><td><font point-size="18" color="#0C4A6E">[OK] 1 source</font></td></tr>
+        </table>
+      >,
+      fillcolor="#50E3C2",
+      color="#22D3BC"
+    ];
+    
+    advanced [
+      label=<
+        <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+          <tr><td><font point-size="20"><b>Advanced Search</b></font></td></tr>
+          <tr><td><font point-size="16">+ Content Booster (max=1)</font></td></tr>
+          <tr><td><font point-size="18" color="#0C4A6E">[OK] 7 sources</font></td></tr>
+        </table>
+      >,
+      fillcolor="#50E3C2",
+      color="#22D3BC"
+    ];
+    
+    {rank=same; direct; advanced}
+  }
+
+  // 5. Answer Extraction
+  extract [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+        <tr><td><font point-size="20"><b>Answer Extraction &amp; Synthesis</b></font></td></tr>
+        <tr><td><font point-size="18">(1 + 7 = 8 sources)</font></td></tr>
+      </table>
+    >,
+    fillcolor="#F5A623",
+    color="#E09615"
+  ];
+
+  // 6. Reflection
+  reflection [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+        <tr><td><font point-size="20"><b>[PASS] Reflection &amp; Quality Check</b></font></td></tr>
+        <tr><td><font point-size="18">(Score: 0.51)</font></td></tr>
+      </table>
+    >,
+    fillcolor="#50E3C2",
+    color="#22D3BC"
+  ];
+
+  // 7. Final Answer
+  answer [
+    label=<
+      <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+        <tr><td><font point-size="20"><b>Final Answer</b></font></td></tr>
+        <tr><td><font point-size="16">"The obligations that remain in effect..."</font></td></tr>
+      </table>
+    >,
+    fillcolor="#9013FE",
+    fontcolor=white,
+    color="#7A0FD8",
+    style="rounded,filled,bold"
+  ];
+
+  // Edges with labels showing source counts
+  query -> keywords;
+  keywords -> files;
+  query -> direct [style=dashed, label=" all files ", fontsize=14, color="#999999"];
+  files -> advanced [label=" 10 files ", fontsize=14];
+  direct -> extract [label=" 1 ", fontsize=16];
+  advanced -> extract [label=" 7 ", fontsize=16];
+  extract -> reflection;
+  reflection -> answer;
+}
