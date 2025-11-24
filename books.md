@@ -238,6 +238,11 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <img class="book-image" src="{{ site.url }}/assets/books/the-pathless-path.jpg" alt="Book 18 - 2025/06">
             <div class="book-title">The Pathless Path </div>
             <div class="book-author">Paul Millerd</div>
+        </div>
+        <div class="book" data-pub="2025-01-15">
+            <img class="book-image" src="{{ site.url }}/assets/books/when-breath-becomes-air.png" alt="Book 19 - 2025/11">
+            <div class="book-title">When Breath Becomes Air</div>
+            <div class="book-author">Paul Kalanithi</div>
         </div>        
     </div>
 </body>
