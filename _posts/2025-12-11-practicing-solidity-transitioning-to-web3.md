@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Practicing Solidity: Learning Notes from Building a Pay-as-You-Go Service"
+title: "Building a Simple Pay-as-You-Go Service in Solidity"
 tags: [Solidity, Blockchain]
 ---
 
@@ -17,16 +17,18 @@ Before getting into the code, here's the basic idea: users pay per use instead o
 
 Here's how it flows:
 
-<div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/payg_concept.dot.svg" width="800" alt="PAYG Concept Flow">
-  <figcaption>Fig. 1: PAYG Service Concept: High-Level Flow</figcaption>
+<div style="text-align:center; margin: 1rem 0;">
+  <a href="{{ site.baseurl }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/payg_concept.dot.svg" target="_blank">
+    <img src="{{ site.baseurl }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/payg_concept.dot.svg" alt="PAYG Service Concept: High-Level Flow" style="max-width:100%; height:auto; cursor: pointer;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Figure 1. PAYG Service Concept: High-Level Flow</div>
 </div>
 
 Pretty straightforward: users pay, providers get credited, and access gets unlocked. 
 
 ### A Quick Note on Addresses
 
-Contracts need to know who's calling functions. Solidity has `msg.sender`—a global variable that automatically contains the address of whoever called the function. In this PAYG system:
+Contracts need to know who's calling functions. Solidity has `msg.sender`, a global variable that automatically contains the address of whoever called the function. In this PAYG system:
 
 - When a user calls `useService()`, `msg.sender` is the user's address
 - When a provider calls `withdraw()`, `msg.sender` is the provider's address
@@ -35,13 +37,15 @@ So the contract knows who's doing what without needing explicit address paramete
 
 ## Contract Design: Base Contract with Inheritance
 
-I learned about inheritance in the course, so I designed the PAYG system with a base contract that handles the core payment stuff. Then different service types can extend it.
+We designed the PAYG system with a base contract that handles the core payment stuff. Then different service types can extend it.
 
 Here's how the inheritance works:
 
-<div style="text-align:center;">
-  <img src="{{ site.url }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/contract_architecture.dot.svg" width="800" alt="Contract Architecture">
-  <figcaption>Fig. 2: Contract Architecture: Inheritance Pattern</figcaption>
+<div style="text-align:center; margin: 1rem 0;">
+  <a href="{{ site.baseurl }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/contract_architecture.dot.svg" target="_blank">
+    <img src="{{ site.baseurl }}/assets/2025-12-11-practicing-solidity-transitioning-to-web3/contract_architecture.dot.svg" alt="Contract Architecture: Inheritance Pattern" style="max-width:100%; height:auto; cursor: pointer;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Figure 2. Contract Architecture: Inheritance Pattern</div>
 </div>
 
 ### PayAsYouGoBase: The Foundation
@@ -69,7 +73,7 @@ The key state variables are:
 - `earnings`: how much ETH each provider has earned but not yet withdrawn
 - `serviceIds`: a simple way to enumerate registered services (mainly for debugging and demos)
 
-Almost every action in the contract—registering a service, paying for usage, or withdrawing earnings—comes down to reading from or updating these variables. Thinking in terms of state transitions helped me reason about correctness and payment safety early on.
+Almost every action in the contract, registering a service, paying for usage, or withdrawing earnings—comes down to reading from or updating these variables. Thinking in terms of state transitions helped me reason about correctness and payment safety early on.
 
 ```solidity
 mapping(uint => Service) public services;
@@ -99,7 +103,7 @@ Here's how providers register a service:
     }
 ```
 
-I use `msg.sender` here so providers don't need to pass their own address—the contract already knows who's calling.
+We use `msg.sender` here so providers don't need to pass their own address, where the contract already knows who's calling.
 
 #### Using a Service
 
@@ -123,7 +127,7 @@ When users want to use a service, they call this:
     }
 ```
 
-I credit earnings using `service.price` instead of `msg.value` to handle cases where users overpay. The excess gets refunded immediately.
+We credit earnings using `service.price` instead of `msg.value` to handle cases where users overpay. The excess gets refunded immediately.
 
 #### Withdrawing Earnings
 
@@ -139,14 +143,13 @@ Providers can withdraw what they've earned:
         
         emit Withdrawn(msg.sender, amount);
     }
-}
 ```
 
-I reset earnings to 0 before the transfer (CEI pattern). This way, if something goes wrong with the transfer, the state is already updated and can't be exploited.
+We reset earnings to 0 before the transfer (CEI pattern). This way, if something goes wrong with the transfer, the state is already updated and can't be exploited.
 
 ### Extending for Different Service Types
 
-I built an example implementation for article subscriptions. One thing I find interesting about this design: readers pay writers directly—no platform taking a cut in the middle. The payment goes straight from reader to writer through the contract.
+We built an example implementation for article subscriptions. One thing We find interesting about this design: readers pay writers directly, no platform taking a cut in the middle. The payment goes straight from reader to writer through the contract.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -196,13 +199,14 @@ contract ArticleSubscription is PayAsYouGoBase {
 }
 ```
 
-This design lets us reuse the core payment logic while each service type adds what's specific to it (just like tracking which articles users have read). We can super easily create new service types (e.g., `VideoStreaming`, `APIAccess`) by inheriting from the base. It's a pattern I see a lot in production Solidity code.
+This design lets us reuse the core payment logic while each service type adds what's specific to it (just like tracking which articles users have read). We can super easily create new service types (e.g., `VideoStreaming`, `APIAccess`) by inheriting from the base. 
+
 
 ## Other ideas
 
 ### Design by Contract with `require`
 
-I use `require()` throughout the contract to validate inputs and state. Reading other contracts online, I see this pattern frequently, enforcing preconditions before executing logic. I later found out this pattern is often called "design by contract," and it seems like a standard practice in Solidity, so I adopted it.
+We use `require()` throughout the contract to validate inputs and state. Reading other contracts online, I see this pattern frequently, enforcing preconditions before executing logic. We later found out this pattern is often called "design by contract," and it seems like a standard practice in Solidity, so We adopted it.
 
 ```solidity
 require(_price > 0, "Price must be greater than 0");
