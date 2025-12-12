@@ -1,0 +1,21 @@
+digraph G {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=14];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge  [style=solid, color="#333333", arrowhead=normal];
+
+  USER [label="User
+Wants to use service", fillcolor="#E0F2FE", color="#0EA5E9", fontcolor="#0C4A6E", fontsize=18];
+  CONTRACT [label="PAYG Contract
+Handles payment
+& access control", fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065", fontsize=18];
+  PROVIDER [label="Service Provider
+Earns from usage", fillcolor="#DCFCE7", color="#16A34A", fontcolor="#14532D", fontsize=18];
+  SERVICE [label="Service
+Article / Video / API
+etc.", fillcolor="#FEF3C7", color="#F59E0B", fontcolor="#4A2C0A", fontsize=18];
+
+  USER -> CONTRACT [label="1. pays per use", fontsize=16, fontcolor="#333333"];
+  CONTRACT -> PROVIDER [label="2. credits earnings", fontsize=16, fontcolor="#333333"];
+  CONTRACT -> SERVICE [label="3. unlocks access", fontsize=16, fontcolor="#333333"];
+  USER -> SERVICE [label="4. accesses", style=dashed, fontsize=16, fontcolor="#666666"];
+}

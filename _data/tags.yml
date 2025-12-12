@@ -20,7 +20,7 @@ Deep Learning:
     slug: deep-learning
     name: Deep Learning
 Software:
-    slug: Software
+    slug: software
     name: Software
 NLP:
     slug: NLP
@@ -31,3 +31,18 @@ LLM:
 AI:
     slug: AI
     name: AI
+Web3:
+    slug: web3
+    name: Web3
+Solidity:
+    slug: solidity
+    name: Solidity
+Blockchain:
+    slug: blockchain
+    name: Blockchain
+Smart Contracts:
+    slug: smart-contracts
+    name: Smart Contracts
+Learning:
+    slug: learning
+    name: Learning

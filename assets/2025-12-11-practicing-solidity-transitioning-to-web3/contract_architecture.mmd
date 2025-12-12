@@ -1,0 +1,23 @@
+%%{init: {
+  "themeVariables": { "fontSize": "20px", "fontFamily": "Helvetica" },
+  "themeCSS": ".subgraph .label > tspan, .clusterLabel, .cluster .label > tspan { font-size: 22px !important; }
+.edgeLabel tspan { font-size: 16px !important; }"
+}}%%
+flowchart TB
+  %% Classes
+  classDef blueprint fill:#E0F2FE,stroke:#0EA5E9,stroke-width:3px,color:#0C4A6E;
+  classDef derived fill:#F3E8FF,stroke:#7C3AED,color:#2E1065;
+  classDef future fill:#FEF3C7,stroke:#F59E0B,stroke-dasharray: 5 5,color:#4A2C0A;
+
+  BASE["<b>PayAsYouGoBase</b><br/><i>Blueprint / Template</i><br/><br/>Provides core PAYG functionality:<br/>• Service registration<br/>• Payment handling<br/>• Earnings withdrawal"]:::blueprint
+
+  ARTICLE["<b>ArticleSubscription</b><br/><i>Extends Base</i><br/><br/>Adds article-specific features:<br/>• Article publishing<br/>• Read tracking<br/>• Content verification"]:::derived
+
+  FUTURE1["<b>VideoStreaming</b><br/><i>Future Service</i>"]:::future
+  FUTURE2["<b>APIAccess</b><br/><i>Future Service</i>"]:::future
+  FUTURE3["<b>DataSubscription</b><br/><i>Future Service</i>"]:::future
+
+  BASE -->|"inherits<br/>(blueprint)"| ARTICLE
+  BASE -.->|"can extend"| FUTURE1
+  BASE -.->|"can extend"| FUTURE2
+  BASE -.->|"can extend"| FUTURE3

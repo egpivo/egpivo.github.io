@@ -1,0 +1,55 @@
+digraph G {
+  graph [rankdir=TB, bgcolor=white, fontname="Helvetica", fontsize=14];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica"];
+  edge  [style=solid, color="#333333", arrowhead=normal];
+
+  BASE [label=<
+    <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+      <tr><td><font point-size="26"><b>PayAsYouGoBase</b></font></td></tr>
+      <tr><td><font point-size="20" color="#666666"><i>Blueprint / Template</i></font></td></tr>
+      <tr><td><font point-size="12"> </font></td></tr>
+      <tr><td align="left"><font point-size="18" color="#0C4A6E"><b>Core PAYG Functionality:</b></font></td></tr>
+      <tr><td align="left"><font point-size="12"> </font></td></tr>
+      <tr><td align="left"><font point-size="16"><b>State:</b></font></td></tr>
+      <tr><td align="left">• Service struct (id, price, provider, usageCount)</td></tr>
+      <tr><td align="left">• services mapping</td></tr>
+      <tr><td align="left">• earnings mapping</td></tr>
+      <tr><td align="left">• serviceIds array</td></tr>
+      <tr><td><font point-size="12"> </font></td></tr>
+      <tr><td align="left"><font point-size="16"><b>Functions:</b></font></td></tr>
+      <tr><td align="left">• registerService() - virtual</td></tr>
+      <tr><td align="left">• useService() - virtual, payable</td></tr>
+      <tr><td align="left">• withdraw() - virtual (CEI pattern)</td></tr>
+      <tr><td align="left">• getService() - view</td></tr>
+      <tr><td align="left">• getServiceCount() - view</td></tr>
+    </table>
+  >, fillcolor="#E0F2FE", color="#0EA5E9", penwidth=3, fontcolor="#0C4A6E"];
+
+  ARTICLE [label=<
+    <table border="0" cellborder="0" cellspacing="0" cellpadding="4">
+      <tr><td><font point-size="24"><b>ArticleSubscription</b></font></td></tr>
+      <tr><td><font point-size="18" color="#666666"><i>Extends Blueprint</i></font></td></tr>
+      <tr><td><font point-size="12"> </font></td></tr>
+      <tr><td align="left"><font point-size="16"><b>Inherits:</b> All base functionality</font></td></tr>
+      <tr><td><font point-size="12"> </font></td></tr>
+      <tr><td align="left"><font point-size="16"><b>Adds Article-Specific:</b></font></td></tr>
+      <tr><td align="left">• Article struct (title, contentHash, publishDate)</td></tr>
+      <tr><td align="left">• articles mapping</td></tr>
+      <tr><td align="left">• hasRead tracking</td></tr>
+      <tr><td align="left">• publishArticle(), readArticle()</td></tr>
+    </table>
+  >, fillcolor="#F3E8FF", color="#7C3AED", fontcolor="#2E1065"];
+
+  FUTURE1 [label="VideoStreaming
+<i>Future Service</i>", fillcolor="#FEF3C7", color="#F59E0B", style="rounded,filled,dashed", fontcolor="#4A2C0A"];
+  FUTURE2 [label="APIAccess
+<i>Future Service</i>", fillcolor="#FEF3C7", color="#F59E0B", style="rounded,filled,dashed", fontcolor="#4A2C0A"];
+  FUTURE3 [label="DataSubscription
+<i>Future Service</i>", fillcolor="#FEF3C7", color="#F59E0B", style="rounded,filled,dashed", fontcolor="#4A2C0A"];
+
+  BASE -> ARTICLE [label="inherits
+(blueprint)", fontsize=16, fontcolor="#0C4A6E", penwidth=2];
+  BASE -> FUTURE1 [style=dashed, label="can extend", fontsize=14, fontcolor="#666666"];
+  BASE -> FUTURE2 [style=dashed, label="can extend", fontsize=14, fontcolor="#666666"];
+  BASE -> FUTURE3 [style=dashed, label="can extend", fontsize=14, fontcolor="#666666"];
+}

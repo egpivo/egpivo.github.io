@@ -1,0 +1,20 @@
+%%{init: {
+  "themeVariables": { "fontSize": "20px", "fontFamily": "Helvetica" },
+  "themeCSS": ".edgeLabel tspan { font-size: 18px !important; }"
+}}%%
+flowchart LR
+  %% Classes
+  classDef user fill:#E0F2FE,stroke:#0EA5E9,color:#0C4A6E;
+  classDef contract fill:#F3E8FF,stroke:#7C3AED,color:#2E1065;
+  classDef provider fill:#DCFCE7,stroke:#16A34A,color:#14532D;
+  classDef service fill:#FEF3C7,stroke:#F59E0B,color:#4A2C0A;
+
+  USER["<b>User</b><br/>Wants to use service"]:::user
+  CONTRACT["<b>PAYG Contract</b><br/>Handles payment<br/>& access control"]:::contract
+  PROVIDER["<b>Service Provider</b><br/>Earns from usage"]:::provider
+  SERVICE["<b>Service</b><br/>Article / Video / API<br/>etc."]:::service
+
+  USER -->|"1. pays per use"| CONTRACT
+  CONTRACT -->|"2. credits earnings"| PROVIDER
+  CONTRACT -->|"3. unlocks access"| SERVICE
+  USER -.->|"4. accesses"| SERVICE
