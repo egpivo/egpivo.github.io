@@ -1,0 +1,30 @@
+digraph PaygArticleModes {
+  graph [rankdir=LR, bgcolor=white, fontname="Helvetica", fontsize=12, labelloc="t",
+         label="PAYG article contracts (Solidity)\nshared payment core + expiry helper"];
+  node  [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.3,0.2"];
+  edge  [color="#4B5563", penwidth=1.4, arrowsize=0.8, fontname="Helvetica", fontsize=10];
+
+  // Core
+  Base      [label="PayAsYouGoBase\npayment core", fillcolor="#E0F2FE", color="#0EA5E9"];
+  AccessLib [label="AccessLib\ncomputeExpiry / isValid", fillcolor="#F3E8FF", color="#7C3AED"];
+
+  // Models
+  PPR [label="ArticlePayPerRead\npay-per-read (no per-user storage)", fillcolor="#C7D2FE", color="#4338CA"];
+  SUB [label="ArticleSubscription\npurchase once, read many", fillcolor="#BBF7D0", color="#16A34A"];
+  BND [label="ArticleBundle\nbundle purchase, equal split", fillcolor="#FDE68A", color="#D97706"];
+
+  // Registry
+  Registry [label="IArticleRegistry\nexistence + provider lookup", fillcolor="#FEF3C7", color="#F59E0B"];
+
+  // Relationships
+  PPR -> Base [label="uses"];
+  SUB -> Base [label="uses"];
+  BND -> Base [label="uses"];
+
+  SUB -> AccessLib [style=dashed, color="#7C3AED", label="expiry/renewal"];
+  BND -> AccessLib [style=dashed, color="#7C3AED", label="bundle expiry"];
+
+  BND -> Registry [style=dashed, color="#F59E0B", label="provider lookup"];
+  PPR -> Registry [style=dotted, color="#9CA3AF", label="implements"];
+  SUB -> Registry [style=dotted, color="#9CA3AF", label="implements"];
+}

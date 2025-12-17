@@ -1,0 +1,70 @@
+digraph PaygFig2 {
+  graph [
+    rankdir=LR,
+    splines=ortho,
+    nodesep=0.65,
+    ranksep=0.9,
+    bgcolor=white,
+    fontname="Helvetica",
+    fontsize=12,
+    labelloc="t",
+    label="How the contracts compose (and where to extend)"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Helvetica",
+    fontsize=12,
+    margin="0.3,0.2"
+  ];
+
+  edge [
+    color="#4B5563",
+    penwidth=1.4,
+    arrowsize=0.8,
+    fontname="Helvetica",
+    fontsize=10
+  ];
+
+  // Core components (right column)
+  Base      [label="PayAsYouGoBase\n(payment core)", fillcolor="#E0F2FE", color="#0EA5E9"];
+  AccessLib [label="AccessLib\n(expiry helpers)",     fillcolor="#F3E8FF", color="#7C3AED"];
+  Registry  [label="IArticleRegistry\n(provider lookup)", fillcolor="#FEF3C7", color="#F59E0B"];
+
+  // Payment models (left column)
+  SUB [label="ArticleSubscription", fillcolor="#BBF7D0", color="#16A34A"];
+  PPR [label="ArticlePayPerRead",   fillcolor="#C7D2FE", color="#4338CA"];
+  BND [label="ArticleBundle",       fillcolor="#FDE68A", color="#D97706"];
+
+  // Extension note (keep short)
+  Ext [
+    label="Extension point:\nnew service types call PayAsYouGoBase\n(+ optional helpers)",
+    shape=note,
+    fillcolor="#FFF7ED",
+    color="#F97316",
+    fontcolor="#9A3412",
+    fontsize=11
+  ];
+
+  // Column alignment
+  { rank=same; SUB; PPR; BND; Ext; }
+  { rank=same; Base; AccessLib; Registry; }
+
+  // Enforce vertical ordering within columns (invisible edges)
+  SUB -> PPR [style=invis];
+  PPR -> BND [style=invis];
+  Base -> AccessLib [style=invis];
+  AccessLib -> Registry [style=invis];
+
+  // Essential relationships only
+  SUB -> Base;
+  PPR -> Base;
+  BND -> Base;
+
+  SUB -> AccessLib [style=dashed, color="#7C3AED", label="expiry/renewal", constraint=false];
+  BND -> AccessLib [style=dashed, color="#7C3AED", label="bundle expiry",  constraint=false];
+  BND -> Registry  [style=dashed, color="#F59E0B", label="providers",      constraint=false];
+
+  Ext -> Base [style=dotted, color="#F97316", arrowsize=0.7, constraint=false];
+}
