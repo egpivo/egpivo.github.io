@@ -1,0 +1,77 @@
+digraph RentalSequence {
+  graph [
+    rankdir=TB,
+    bgcolor=white,
+    fontname="Helvetica",
+    fontsize=12,
+    labelloc="t",
+    label="Rental Flow: User to Provider"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Helvetica",
+    fontsize=11,
+    margin="0.3,0.2"
+  ];
+
+  edge [
+    color="#4B5563",
+    penwidth=2,
+    arrowsize=0.9,
+    fontname="Helvetica",
+    fontsize=10
+  ];
+
+  // Actors
+  User [label="User / UI", fillcolor="#E5E7EB", color="#9CA3AF", width=2];
+  SpacePPU [label="SpacePayPerUse", fillcolor="#FDE68A", color="#D97706", width=2];
+  RentalBase [label="RentalBase", fillcolor="#FEF3C7", color="#F59E0B", width=2];
+  PAYG [label="PayAsYouGoBase", fillcolor="#E0F2FE", color="#0EA5E9", width=2];
+  Provider [label="Provider", fillcolor="#DCFCE7", color="#16A34A", width=2];
+
+  // Sequence flow
+  User -> SpacePPU [
+    label="rent()",
+    color="#D97706",
+    penwidth=2.5
+  ];
+
+  SpacePPU -> RentalBase [
+    label="check availability\nexclusivity",
+    color="#F59E0B",
+    penwidth=2.5
+  ];
+
+  RentalBase -> PAYG [
+    label="settle payment",
+    color="#0EA5E9",
+    penwidth=2.5
+  ];
+
+  PAYG -> Provider [
+    label="credit earnings",
+    color="#16A34A",
+    penwidth=2.5
+  ];
+
+  // Notes
+  Note1 [
+    label="❌ no off-chain booking\n❌ no calendar\n✅ atomic rent + payment + exclusivity",
+    shape=note,
+    fillcolor="#FFF7ED",
+    color="#F97316",
+    fontcolor="#9A3412",
+    fontsize=10,
+    style=filled
+  ];
+
+  // Layout: vertical sequence
+  { rank=same; User; }
+  { rank=same; SpacePPU; }
+  { rank=same; RentalBase; }
+  { rank=same; PAYG; }
+  { rank=same; Provider; }
+  { rank=same; Note1; }
+}

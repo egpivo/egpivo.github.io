@@ -1,0 +1,65 @@
+digraph PaygRentalArch {
+  graph [
+    rankdir=TB,
+    bgcolor=white,
+    fontname="Helvetica",
+    fontsize=12,
+    labelloc="t",
+    label="Rental Services: Domain layer on top of PAYG payment core"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Helvetica",
+    fontsize=11,
+    margin="0.3,0.2"
+  ];
+
+  edge [
+    color="#4B5563",
+    penwidth=1.4,
+    arrowsize=0.8,
+    fontname="Helvetica",
+    fontsize=10
+  ];
+
+  // Users and Providers
+  User      [label="User / DApp UI", fillcolor="#E5E7EB", color="#9CA3AF"];
+  Provider  [label="Service Provider", fillcolor="#E5E7EB", color="#9CA3AF"];
+
+  // Core Layer
+  subgraph cluster_core {
+    label="Core Layer (Protocol)";
+    color="#0EA5E9";
+    style="rounded";
+
+    PAYG     [label="PayAsYouGoBase\n- pricing\n- payment\n- earnings\n- withdraw", fillcolor="#E0F2FE", color="#0EA5E9"];
+  }
+
+  // Rental Module
+  subgraph cluster_rentals {
+    label="Rental Module (Domain)";
+    color="#F59E0B";
+    style="rounded";
+
+    RentalBase  [label="RentalBase\n- availability\n- exclusivity", fillcolor="#FEF3C7", color="#F59E0B"];
+    SpacePPU    [label="SpacePayPerUse\n(example)", fillcolor="#FDE68A", color="#D97706"];
+  }
+
+  // User interactions (simplified - show one example)
+  User -> SpacePPU    [label="rent", color="#D97706"];
+
+  // Provider interactions
+  Provider -> PAYG [label="list service", color="#0EA5E9"];
+  Provider -> PAYG [label="withdraw", color="#0EA5E9"];
+
+  // Inheritance relationships (main line)
+  RentalBase -> PAYG;
+  SpacePPU -> RentalBase;
+
+  // Layout hints
+  { rank=same; User; Provider; }
+  { rank=same; RentalBase; }
+  { rank=same; SpacePPU; }
+}
