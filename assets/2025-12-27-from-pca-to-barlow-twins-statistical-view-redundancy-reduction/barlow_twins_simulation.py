@@ -10,6 +10,11 @@ Includes additional statistical diagnostics and plots:
 - off-diagonal correlation histograms (redundancy proxy)
 - bootstrap variability/error bars for empirical cross-correlation
 - lambda trade-off plots (with error bars)
+- likelihood-based view (Gaussian NLL under isotropic/diagonal/full covariance)
+- whitening as MLE-friendly reparameterization (diagonal-Gaussian)
+- conceptual analogy plot ("rotate camera" vs "mold clay")
+- Matérn kernel visualization (why "smooth" redundancy)
+- ellipse-fitting analogy for likelihood (full vs diagonal covariance)
 """
 
 import numpy as np
@@ -98,6 +103,245 @@ def save_heatmap(mat: np.ndarray, title: str, path: Path, vmin: float = -1.2, vm
     plt.savefig(path, dpi=150, bbox_inches='tight')
     plt.close(fig)
 
+# -----------------------------
+# Additional helper plots for statistical diagnostics and conceptual analogies
+# -----------------------------
+from matplotlib.patches import Ellipse
+
+def save_matern_kernel_plot(K: np.ndarray, path: Path, title: str = "Matérn covariance across feature dimensions"):
+    fig, ax = plt.subplots(figsize=(5.0, 4.2))
+    im = ax.imshow(K, cmap='viridis')
+    ax.set_title(title)
+    ax.set_xlabel('Feature index')
+    ax.set_ylabel('Feature index')
+    cbar = plt.colorbar(im, ax=ax)
+    cbar.set_label('Covariance', rotation=90)
+    plt.tight_layout()
+    plt.savefig(path, dpi=150, bbox_inches='tight')
+    plt.close(fig)
+
+def save_adjacent_corr_curve(corr: np.ndarray, path: Path, title: str = "Local correlation decay (adjacent features)"):
+    """Plot Corr(z_i, z_{i+k}) vs k to show 'smoothness' in feature space."""
+    d = corr.shape[0]
+    ks = np.arange(0, d)
+    # average correlation at lag k
+    vals = []
+    for k in ks:
+        if k == 0:
+            vals.append(1.0)
+            continue
+        pairs = [corr[i, i + k] for i in range(d - k)]
+        vals.append(float(np.mean(pairs)))
+    fig, ax = plt.subplots(figsize=(6.2, 4.0))
+    ax.plot(ks, vals, marker='o', linewidth=2)
+    ax.set_xlabel('Lag k')
+    ax.set_ylabel('Mean Corr(z_i, z_{i+k})')
+    ax.set_title(title)
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(path, dpi=150, bbox_inches='tight')
+    plt.close(fig)
+
+def _cov_ellipse_params(cov: np.ndarray, n_std: float = 2.0):
+    """Return (width, height, angle_degrees) for an ellipse from a 2x2 covariance."""
+    eigvals, eigvecs = np.linalg.eigh(cov)
+    order = np.argsort(eigvals)[::-1]
+    eigvals = eigvals[order]
+    eigvecs = eigvecs[:, order]
+    width, height = 2 * n_std * np.sqrt(np.maximum(eigvals, 1e-12))
+    angle = np.degrees(np.arctan2(eigvecs[1, 0], eigvecs[0, 0]))
+    return float(width), float(height), float(angle)
+
+def save_likelihood_ellipse_analogy(path: Path, seed: int = 0):
+    """Visual analogy for likelihood section.
+
+    Full covariance = tilted ellipse can fit correlated data.
+    Diagonal covariance = axis-aligned ellipse; fit is bad if data is tilted.
+    PCA rotation makes the data axis-aligned, making diagonal fit reasonable.
+    """
+    rng = np.random.default_rng(seed)
+
+    # Correlated 2D Gaussian (tilted cloud)
+    rho = 0.85
+    S = np.array([[1.0, rho], [rho, 1.0]])
+    L = np.linalg.cholesky(S)
+    X = rng.standard_normal((1200, 2)) @ L.T
+
+    # PCA rotation (diagonalizes sample covariance)
+    cov = np.cov(X, rowvar=False)
+    _, Q = np.linalg.eigh(cov)
+    X_pca = X @ Q
+
+    # Covariances for ellipse fits
+    cov_full = np.cov(X, rowvar=False)
+    cov_diag = np.diag(np.diag(cov_full))
+
+    cov_full_pca = np.cov(X_pca, rowvar=False)
+    cov_diag_pca = np.diag(np.diag(cov_full_pca))
+
+    fig, axes = plt.subplots(1, 2, figsize=(12.5, 5.0))
+
+    # Panel 1: original tilted data
+    ax = axes[0]
+    ax.scatter(X[:, 0], X[:, 1], s=8, alpha=0.25, label='Samples')
+    w, h, ang = _cov_ellipse_params(cov_full, n_std=2.0)
+    e1 = Ellipse((0, 0), width=w, height=h, angle=ang, fill=False, linewidth=2, label='Full-cov fit')
+    ax.add_patch(e1)
+
+    w2, h2, ang2 = _cov_ellipse_params(cov_diag, n_std=2.0)
+    e2 = Ellipse((0, 0), width=w2, height=h2, angle=0.0, fill=False, linewidth=2, linestyle='--', label='Diag fit (axis-aligned)')
+    ax.add_patch(e2)
+
+    ax.set_title('Correlated data: diagonal Gaussian is mis-specified')
+    ax.set_xlabel('z1')
+    ax.set_ylabel('z2')
+    ax.axhline(0, color='gray', alpha=0.25)
+    ax.axvline(0, color='gray', alpha=0.25)
+    ax.legend(loc='best', fontsize=9)
+    ax.set_aspect('equal', adjustable='box')
+
+    # Panel 2: PCA-rotated data
+    ax = axes[1]
+    ax.scatter(X_pca[:, 0], X_pca[:, 1], s=8, alpha=0.25, label='Rotated samples')
+
+    w, h, ang = _cov_ellipse_params(cov_full_pca, n_std=2.0)
+    e1 = Ellipse((0, 0), width=w, height=h, angle=ang, fill=False, linewidth=2, label='Full-cov fit')
+    ax.add_patch(e1)
+
+    w2, h2, ang2 = _cov_ellipse_params(cov_diag_pca, n_std=2.0)
+    e2 = Ellipse((0, 0), width=w2, height=h2, angle=0.0, fill=False, linewidth=2, linestyle='--', label='Diag fit (now reasonable)')
+    ax.add_patch(e2)
+
+    ax.set_title('After PCA rotation: diagonal Gaussian becomes plausible')
+    ax.set_xlabel('PC1')
+    ax.set_ylabel('PC2')
+    ax.axhline(0, color='gray', alpha=0.25)
+    ax.axvline(0, color='gray', alpha=0.25)
+    ax.legend(loc='best', fontsize=9)
+    ax.set_aspect('equal', adjustable='box')
+
+    plt.tight_layout()
+    plt.savefig(path, dpi=150, bbox_inches='tight')
+    plt.close(fig)
+
+def save_rotation_vs_constraint_schematic(path: Path):
+    """Simple conceptual diagram: 'rotate camera' (PCA) vs 'mold clay' (BT).
+
+    This is deliberately minimal and meant to support narrative, not be mathematically exact.
+    """
+    rng = np.random.default_rng(0)
+
+    # Make a tilted 2D cloud
+    rho = 0.75
+    S = np.array([[1.0, rho], [rho, 0.6]])
+    L = np.linalg.cholesky(S)
+    X = rng.standard_normal((900, 2)) @ L.T
+
+    # PCA rotation
+    cov = np.cov(X, rowvar=False)
+    _, Q = np.linalg.eigh(cov)
+    X_rot = X @ Q
+
+    # "BT-like" molding: whiten (axis-aligned, ~identity) to visualize 'constraint'
+    X_wh = pca_whiten(X)
+
+    fig, axes = plt.subplots(1, 3, figsize=(14.5, 4.6))
+
+    axes[0].scatter(X[:, 0], X[:, 1], s=8, alpha=0.25)
+    axes[0].set_title('Start: tilted cloud')
+    axes[0].set_xlabel('z1')
+    axes[0].set_ylabel('z2')
+    axes[0].axhline(0, color='gray', alpha=0.25)
+    axes[0].axvline(0, color='gray', alpha=0.25)
+    axes[0].set_aspect('equal', adjustable='box')
+
+    axes[1].scatter(X_rot[:, 0], X_rot[:, 1], s=8, alpha=0.25)
+    axes[1].set_title('PCA: rotate axes (camera)')
+    axes[1].set_xlabel('PC1')
+    axes[1].set_ylabel('PC2')
+    axes[1].axhline(0, color='gray', alpha=0.25)
+    axes[1].axvline(0, color='gray', alpha=0.25)
+    axes[1].set_aspect('equal', adjustable='box')
+
+    axes[2].scatter(X_wh[:, 0], X_wh[:, 1], s=8, alpha=0.25)
+    axes[2].set_title('Constraint: mold representation')
+    axes[2].set_xlabel('feature 1')
+    axes[2].set_ylabel('feature 2')
+    axes[2].axhline(0, color='gray', alpha=0.25)
+    axes[2].axvline(0, color='gray', alpha=0.25)
+    axes[2].set_aspect('equal', adjustable='box')
+
+    plt.tight_layout()
+    plt.savefig(path, dpi=150, bbox_inches='tight')
+    plt.close(fig)
+
+# -----------------------------
+# Likelihood utilities (Gaussian view)
+# -----------------------------
+
+def gaussian_nll_per_sample(X: np.ndarray, cov_type: str = "full", eps: float = 1e-8) -> float:
+    """Average negative log-likelihood under a Gaussian model.
+
+    This is a *likelihood-based* lens that contrasts with correlation matching.
+
+    cov_type:
+      - "full": full covariance MLE (rotation-invariant)
+      - "diag": diagonal covariance MLE (basis-dependent)
+      - "iso":  isotropic covariance MLE (basis-dependent)
+
+    Returns the average NLL in nats per sample.
+    """
+    X = np.asarray(X)
+    n, d = X.shape
+    mu = X.mean(axis=0, keepdims=True)
+    Xc = X - mu
+
+    if cov_type == "full":
+        S = (Xc.T @ Xc) / n
+        S = S + eps * np.eye(d)
+        sign, logdet = np.linalg.slogdet(S)
+        if sign <= 0:
+            # Fall back to adding more jitter if needed
+            S = S + 1e-4 * np.eye(d)
+            sign, logdet = np.linalg.slogdet(S)
+        quad = np.sum(Xc * (np.linalg.solve(S, Xc.T).T)) / n
+        nll = 0.5 * (d * np.log(2 * np.pi) + logdet + quad)
+        return float(nll)
+
+    elif cov_type == "diag":
+        var = (Xc ** 2).mean(axis=0) + eps
+        logdet = np.sum(np.log(var))
+        quad = np.sum((Xc ** 2) / var) / n
+        nll = 0.5 * (d * np.log(2 * np.pi) + logdet + quad)
+        return float(nll)
+
+    elif cov_type == "iso":
+        # single variance parameter
+        var = float((Xc ** 2).mean() + eps)
+        logdet = d * np.log(var)
+        quad = np.sum(Xc ** 2) / (n * var)
+        nll = 0.5 * (d * np.log(2 * np.pi) + logdet + quad)
+        return float(nll)
+
+    else:
+        raise ValueError(f"Unknown cov_type={cov_type}")
+
+
+def pca_whiten(Z: np.ndarray, eps: float = 1e-8) -> np.ndarray:
+    """PCA whitening: makes covariance approximately identity.
+
+    This is the MLE-friendly reparameterization if you model features with an
+    isotropic Gaussian (or if you want diagonal-Gaussian likelihood to be high).
+    """
+    Z = np.asarray(Z)
+    mu = Z.mean(axis=0, keepdims=True)
+    Zc = Z - mu
+    cov = (Zc.T @ Zc) / Zc.shape[0]
+    eigvals, eigvecs = np.linalg.eigh(cov)
+    eigvals = np.maximum(eigvals, eps)
+    W = eigvecs @ np.diag(1.0 / np.sqrt(eigvals)) @ eigvecs.T
+    return Zc @ W
+
 # --- Basis/subspace diagnostics ---
 def orthonormal_basis(M: np.ndarray, eps: float = 1e-12) -> np.ndarray:
     """Return an orthonormal basis for the column space of M via QR."""
@@ -159,11 +403,14 @@ def matern_kernel_1d(dims: int, lengthscale: float = 1.0, nu: float = 1.5, sigma
 
 # 1. Setup: deliberately redundant representation
 n = 10_000  # samples
-d = 5       # dimensions
+d = 10       # dimensions
 
 # Matérn-correlated representation across feature dimensions.
 # Think of the feature index as a 1D "coordinate" and impose smooth correlation.
 K = matern_kernel_1d(dims=d, lengthscale=1.0, nu=1.5, sigma2=1.0)
+
+# Visual aids for the article: why Matérn implies "smooth" redundancy across features
+save_matern_kernel_plot(K, out_dir / 'matern_kernel_heatmap.png')
 
 # Sample Z ~ N(0, K) for each of n samples.
 # Use Cholesky for stability (add tiny jitter).
@@ -181,6 +428,9 @@ print(np.round(cov_Z, 2))
 # Correlation diagnostics
 corr_Z = corr_np(Z)
 print_summary("Original Corr(Z)", corr_Z)
+
+# Show local correlation decay (adjacent features)
+save_adjacent_corr_curve(corr_Z, out_dir / 'matern_corr_decay.png')
 
 # 3. PCA: post-hoc decorrelation
 eigvals, eigvecs = np.linalg.eigh(cov_Z)
@@ -241,8 +491,47 @@ print_summary("BT-style Corr(Z_bt)", corr_Z_bt)
 # Cross-correlation across views after learning
 Z1_bt = (Z1_t @ W).detach().numpy()
 Z2_bt = (Z2_t @ W).detach().numpy()
+
 C_bt = cross_corr_np(Z1_bt, Z2_bt)
 print_summary("BT-style CrossCorr(Z1_bt, Z2_bt)", C_bt)
+
+# -----------------------------
+# Likelihood-based view (Gaussian NLL)
+# -----------------------------
+
+# Likelihood depends on the distributional assumptions. Full-cov Gaussian is
+# rotation-invariant; diagonal/iso Gaussians are basis-dependent.
+Z_whiten = pca_whiten(Z)
+
+methods = {
+    "Original": Z,
+    "PCA (rotate)": Z_pca,
+    "BT-style (learned)": Z_bt,
+    "PCA whiten": Z_whiten,
+}
+
+nll_table = {"full": {}, "diag": {}, "iso": {}}
+for name, X in methods.items():
+    for ct in nll_table.keys():
+        nll_table[ct][name] = gaussian_nll_per_sample(X, cov_type=ct)
+
+print("\n" + "=" * 60)
+print("Gaussian negative log-likelihood (nats per sample)")
+print("Lower is better; 'full' is rotation-invariant, 'diag/iso' are basis-dependent")
+print("=" * 60)
+for ct in ["full", "diag", "iso"]:
+    row = ", ".join([f"{k}={nll_table[ct][k]:.3f}" for k in methods.keys()])
+    print(f"{ct:>4}: {row}")
+
+# Small markdown snippet for the article
+print("\n```markdown")
+print("**Likelihood view (Gaussian NLL, nats/sample; lower is better).**")
+print("- Full-cov Gaussian is rotation-invariant: PCA rotation shouldn’t change it much.")
+print("- Diagonal/iso Gaussians are basis-dependent: whitening tends to help the most.")
+for ct in ["full", "diag", "iso"]:
+    best = min(nll_table[ct].items(), key=lambda kv: kv[1])
+    print(f"- Best under `{ct}` covariance: **{best[0]}** (NLL={best[1]:.3f}).")
+print("```")
 
 # -----------------------------
 # Basis / representation comparison
@@ -393,6 +682,7 @@ plt.close(fig)
 print(f"Plot saved to: {out_dir / 'basis_alignment_heatmap.png'}")
 
 # Principal angles plot
+
 fig, ax = plt.subplots(figsize=(6, 4))
 if angles.size > 0:
     ax.plot(np.arange(1, angles.size + 1), np.degrees(angles), marker='o', linewidth=2)
@@ -405,6 +695,29 @@ plt.tight_layout()
 plt.savefig(out_dir / 'principal_angles.png', dpi=150, bbox_inches='tight')
 plt.close(fig)
 print(f"Plot saved to: {out_dir / 'principal_angles.png'}")
+
+# Likelihood comparison plot
+fig, axes = plt.subplots(1, 3, figsize=(14.5, 4.2))
+cts = ["full", "diag", "iso"]
+for ax, ct in zip(axes, cts):
+    names = list(methods.keys())
+    vals = [nll_table[ct][nm] for nm in names]
+    ax.bar(names, vals)
+    ax.set_title(f"Gaussian NLL ({ct} covariance)")
+    ax.set_ylabel("NLL (nats/sample)")
+    ax.tick_params(axis='x', rotation=18)
+    ax.grid(True, axis='y', alpha=0.25)
+
+plt.tight_layout()
+plt.savefig(out_dir / 'likelihood_nll_comparison.png', dpi=150, bbox_inches='tight')
+plt.close(fig)
+print(f"Plot saved to: {out_dir / 'likelihood_nll_comparison.png'}")
+
+# Visual analogies to bridge the narrative (linear algebra -> likelihood)
+save_likelihood_ellipse_analogy(out_dir / 'likelihood_ellipse_analogy.png')
+save_rotation_vs_constraint_schematic(out_dir / 'rotation_vs_constraint.png')
+print(f"Plot saved to: {out_dir / 'likelihood_ellipse_analogy.png'}")
+print(f"Plot saved to: {out_dir / 'rotation_vs_constraint.png'}")
 
 # 6. Explore lambda effect
 def corr_matrix(Za, Zb):
@@ -640,12 +953,19 @@ plt.savefig(out_dir / 'pareto_lambda_tradeoff.png', dpi=150, bbox_inches='tight'
 plt.close(fig)
 print(f"Pareto plot saved to: {out_dir / 'pareto_lambda_tradeoff.png'}")
 
+
+
 print("\nAdditional plots generated:")
 print(f"- {out_dir / 'cov_and_corr_comparison.png'}")
 print(f"- {out_dir / 'pca_eigenspectrum.png'}")
 print(f"- {out_dir / 'offdiag_corr_hist.png'}")
 print(f"- {out_dir / 'basis_alignment_heatmap.png'}")
 print(f"- {out_dir / 'principal_angles.png'}")
+print(f"- {out_dir / 'likelihood_nll_comparison.png'}")
 print(f"- {out_dir / 'lambda_exploration.png'}")
 print(f"- {out_dir / 'pareto_lambda_tradeoff.png'}")
+print(f"- {out_dir / 'matern_kernel_heatmap.png'}")
+print(f"- {out_dir / 'matern_corr_decay.png'}")
+print(f"- {out_dir / 'likelihood_ellipse_analogy.png'}")
+print(f"- {out_dir / 'rotation_vs_constraint.png'}")
 
