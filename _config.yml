@@ -15,7 +15,23 @@ kramdown:
   math_engine_opts: {}
 timezone: Asia/Taipei
 encoding: "utf-8"
-exclude: ['*.Rmd', '_site']
+exclude:
+  - "*.Rmd"
+  - "_site"
+  - "node_modules"
+  - "vendor"
+  - "tmp"
+  - "coverage"
+  - "lcov.info"
+  - "payg-service-contracts"
+  - "qa-hub"
+  - "tmp_repo"
+  - cache
+  - README.md
+  - package-lock.json
+  - package.json
+  - Gemfile
+  - Gemfile.lock
 
 # Google services
 google_analytics: UA-16805442-1
@@ -28,3 +44,7 @@ plugins:
 # Pagination settings
 paginate: 5
 paginate_path: "/page:num/"
+
+# Sass settings
+sass:
+  quiet_deps: true
