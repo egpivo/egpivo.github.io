@@ -50,3 +50,6 @@ vendor/
 *.backup
 
 kb-assistant-develop/
+
+# Temporary repository files
+tmp_repo/
