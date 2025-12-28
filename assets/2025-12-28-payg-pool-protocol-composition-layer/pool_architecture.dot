@@ -1,0 +1,77 @@
+digraph PoolArchitecture {
+  graph [
+    rankdir=TB,
+    bgcolor=white,
+    fontname="Monaco, monospace",
+    fontsize=12,
+    nodesep=0.5,
+    ranksep=0.8,
+    margin=0.3
+  ];
+  
+  node [
+    shape=box,
+    style="rounded",
+    fontname="Monaco, monospace",
+    fontsize=12,
+    margin="0.2,0.1"
+  ];
+  
+  edge [
+    color=black,
+    penwidth=1.5,
+    arrowsize=0.7
+  ];
+
+  // Pool Protocol as a cluster with three internal components
+  subgraph cluster_pool {
+    label="Pool Protocol";
+    style="rounded";
+    fontname="Monaco, monospace";
+    fontsize=14;
+    margin=15;
+    
+    purchase [
+      label="Purchase",
+      style="rounded"
+    ];
+    
+    split [
+      label="Split",
+      style="rounded"
+    ];
+    
+    entitlement [
+      label="Entitlement",
+      style="rounded"
+    ];
+    
+    {rank=same; purchase; split; entitlement}
+  }
+
+  // Module boxes (bottom level)
+  article [
+    label="Article module
+(domain rules)",
+    style="rounded"
+  ];
+  
+  rental [
+    label="Rental module
+(domain rules)",
+    style="rounded"
+  ];
+  
+  future [
+    label="Future module
+(domain rules)",
+    style="rounded"
+  ];
+  
+  {rank=same; article; rental; future}
+
+  // Edges from Pool Protocol cluster to modules
+  purchase -> article [ltail=cluster_pool, constraint=false];
+  purchase -> rental [ltail=cluster_pool, constraint=false];
+  purchase -> future [ltail=cluster_pool, constraint=false];
+}
