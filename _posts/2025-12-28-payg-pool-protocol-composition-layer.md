@@ -1,37 +1,66 @@
 ---
 layout: post
-title: "Pay-As-You-Go Protocol: From Services to Composable Pools"
+title: "From Services to Products: Composing Multi-Provider Checkout On-Chain"
 tags: [Solidity, Blockchain, Web3]
 ---
 
-Today, pay‑as‑you‑go services are everywhere.
+Imagine a mobile library. Readers don’t pay per book. They pay to enter the library for a period of time. Inside the library:
 
-Writers sell subscriptions. Venues sell access. Equipment providers rent assets. APIs sell usage.
+- books come from different authors  
+- authors join and leave over time  
+- revenue needs to be split across contributors
 
-In all these cases, users aren’t buying a single provider — they’re buying **one product delivered by many providers**.
+On-chain, each book would be a separate service. But the product people buy is the library itself.
 
 <div style="text-align:center; margin: 2rem 0;">
-  <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/hero_image.png?v=1" target="_blank">
-    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/hero_image.png?v=1" alt="One product, multiple providers" style="max-width:100%; height:auto; cursor: pointer;" />
+  <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/miroslav-denkov-KVS95WFbe5U-unsplash.jpg?v=1" target="_blank">
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/miroslav-denkov-KVS95WFbe5U-unsplash.jpg?v=1" alt="One product, multiple providers" style="max-width:500px; width:100%; height:auto; cursor: pointer;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">One product. One payment. Many payees.</div>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
+    Photo by
+    <a href="https://unsplash.com/@mdenkov?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+       target="_blank" rel="noopener noreferrer">
+       Miroslav Denkov
+    </a>
+    on
+    <a href="https://unsplash.com/photos/a-yellow-truck-parked-next-to-a-bookshelf-filled-with-books-KVS95WFbe5U?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+       target="_blank" rel="noopener noreferrer">
+       Unsplash
+    </a>
+  </div>
 </div>
 
-On-chain, this breaks down fast:
+In this post, the "books" are articles, the mobile vehicle is rental services, and the "library pass" is a Pool that sells access and settles revenue.
 
-- each provider registers a service
-- each service charges independently
-- but the user wants **a single checkout**
+On-chain, this breaks down fast.
+
+- **Creator platform:** readers want one 30‑day membership across multiple writers. If each writer is a separate contract, the user ends up with multiple transactions and mismatched expiry windows.
+- **Co‑working + gear:** a customer wants “room + projector” as one booking. Without composition, they pay (and manage terms) separately.
+
+**Pools make multi-provider products purchasable in one atomic transaction.**
+
+> Providers are modeled as services.
+> The pool turns many services into one checkout.
 
 That’s not a pricing problem. It’s a **composition** problem.
 
-## Pool as a protocol primitive
+## Pool: turning services into a product
+
+<div style="text-align:center; margin: 2rem 0;">
+  <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/hero_image.png?v=1" target="_blank">
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/hero_image.png?v=1" alt="Pool Architecture" style="max-width:90%; height:auto; cursor: pointer;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
+    Pool as a protocol primitive: composition without domain coupling.
+  </div>
+</div>
 
 A **Pool** is a purchasable unit that does exactly three things:
 
-- **Access:** grants time‑based (or permanent) entitlement
-- **Settlement:** splits revenue deterministically across providers
-- **Membership:** defines the supply‑side alliance and its weights
+1. **Access:** grants time‑based (or permanent) entitlement
+2. **Settlement:** splits revenue deterministically
+3. **Membership:** defines members + weights
 
 > **One payment, multiple providers, deterministic settlement.**
 
@@ -55,23 +84,31 @@ interface IPoolAccess {
 
 Pool queries services via `IServiceRegistry`. Modules can gate usage via `IPoolAccess`. No domain logic crosses these boundaries.
 
+## Design constraints
+
+Three constraints shaped these interfaces:
+
+- **Atomicity:** Purchase, settlement, and access updates happen in one transaction  
+- **Deterministic splits:** Shares define weights; remainder goes to the first member
+- **Minimal coupling:** Pool never imports domain logic; modules query Pool via interface  
+
 ## Membership is directional
 
 In this article, **pool members** always mean providers/services (supply side). Users can buy access, but they are never members.
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/membership_direction.png?v=1" target="_blank">
-    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/membership_direction.png?v=1" alt="Membership Direction Diagram" style="max-width:100%; height:auto; cursor: pointer;" />
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/membership_direction.png?v=1" alt="Membership Direction Diagram" style="max-width:90%; height:auto; cursor: pointer;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Membership is directional: payers buy access; payees are members who share revenue.</div>
 </div>
 
 ## A compact, real example (articles + rentals)
 
-Assume we already have two modules, each exposing the same registry interface:
+Assume two registries already exist (same interface, different domains):
 
-- `ArticleRegistry` (writers)
-- `RentalRegistry` (equipment)
+- `ArticleRegistry` (writers)  
+- `RentalRegistry` (equipment)  
 
 ### 1) Providers register services (unchanged modules)
 
@@ -101,7 +138,7 @@ regs[0] = address(articleRegistry);
 regs[1] = address(rentalRegistry);
 
 uint256[] memory shares = new uint256[](2);
-shares[0] = 2;
+shares[0] = 2;  // weights, not percentages (remainder handled deterministically)
 shares[1] = 1;
 
 pool.createPool(
@@ -117,7 +154,7 @@ pool.createPool(
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/composition_layer.png?v=1" target="_blank">
-    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/composition_layer.png?v=1" alt="Pool as Composition Layer" style="max-width:100%; height:auto; cursor: pointer;" />
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/composition_layer.png?v=1" alt="Pool as Composition Layer" style="max-width:90%; height:auto; cursor: pointer;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Pool composes services via IServiceRegistry without coupling modules.</div>
 </div>
@@ -128,21 +165,21 @@ pool.createPool(
 pool.purchasePool{value: 1 ether}(42, address(0));
 ```
 
-Settlement is **ledger credits**, not inline transfers:
+Settlement is **ledger credits** (providers withdraw later):
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/money_flow.png?v=1" target="_blank">
-    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/money_flow.png?v=1" alt="Money Flow + Settlement Diagram" style="max-width:100%; height:auto; cursor: pointer;" />
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/money_flow.png?v=1" alt="Money Flow + Settlement Diagram" style="max-width:90%; height:auto; cursor: pointer;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">One payment → operator fee + provider earnings, computed on-chain.</div>
 </div>
 
 For intuition (not exact wei math):
 
-- price = 1 ETH
-- fee = 2% → 0.02 ETH
-- net = 0.98 ETH
-- shares = [2, 1]
+- price = 1 ETH  
+- fee = 2% → 0.02 ETH  
+- net = 0.98 ETH  
+- shares = [2, 1]  
 
 So the article side gets ~0.653 ETH and the rental side gets ~0.327 ETH (remainder handled deterministically).
 
@@ -159,16 +196,26 @@ function useWithPoolAccess(uint256 rentalServiceId, address pool, uint256 poolId
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/state_transition.png?v=1" target="_blank">
-    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/state_transition.png?v=1" alt="State Transition Diagram" style="max-width:100%; height:auto; cursor: pointer;" />
+    <img src="{{ site.baseurl }}/assets/2025-12-28-payg-pool-protocol-composition-layer/state_transition.png?v=1" alt="State Transition Diagram" style="max-width:90%; height:auto; cursor: pointer;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">A single purchase updates access + earnings atomically; usage stays module-owned.</div>
 </div>
 
 ## Why this layout works
 
-- **Pool handles purchase + settlement + access.**
-- **Modules handle domain rules.** (availability, usage semantics, lifecycle)
+- **Pool:** purchase + settlement + access
+- **Modules:** availability + usage semantics + lifecycle
 
-That boundary is what keeps Pool a protocol primitive instead of “yet another bundle contract”.
+## Failure modes
+
+A few edge cases are handled explicitly:
+
+- **Member removed:** future purchases no longer credit that member
+- **Bad registry / missing service:** pool creation rejects it (`exists == false`)
+- **Expired access:** modules simply gate usage via `hasPoolAccess`
+
+---
 
 **Code:** https://github.com/egpivo/payg-service-contracts
+
+Pools aren’t built for “articles” or “rentals”. They’re a composition primitive: **one checkout, many payees**. Next: governance and dynamic membership updates.
