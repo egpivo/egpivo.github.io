@@ -256,8 +256,9 @@
   }
 }
 
-.post-title {
+.posts-grid .post-title {
   margin-bottom: var(--spacing-sm);
+  font-size: calc(var(--font-size-2xl) * 0.9);
   
   a {
     color: var(--text-primary);
