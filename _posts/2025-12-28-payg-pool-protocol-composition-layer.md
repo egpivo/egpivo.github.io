@@ -103,7 +103,7 @@ In this article, **pool members** always mean providers/services (supply side). 
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Membership is directional: payers buy access; payees are members who share revenue.</div>
 </div>
 
-## A compact, real example (articles + rentals)
+## A compact example: articles + rentals
 
 Assume two registries already exist (same interface, different domains):
 
@@ -218,4 +218,4 @@ A few edge cases are handled explicitly:
 
 **Code:** https://github.com/egpivo/payg-service-contracts
 
-Pools aren’t built for “articles” or “rentals”. They’re a composition primitive: **one checkout, many payees**. Next: governance and dynamic membership updates.
+Pools aren’t built for “articles” or “rentals”. They’re a composition primitive: **one checkout, many payees**.
