@@ -10,13 +10,13 @@ After weeks of diving into article registries and rental modules, I finally reac
 
 This post is the grand finale of my series on building a Pay-As-You-Go (PAYG) ecosystem. If you're joining just now, here's how we got here:
 
-- [Transitioning to Web3](https://egpivo.github.io/2025/12/11/practicing-solidity-transitioning-to-web3.html) — My initial shift from traditional development to Solidity.
+- [Transitioning to Web3](https://egpivo.github.io/2025/12/11/practicing-solidity-transitioning-to-web3.html): My initial shift from traditional development to Solidity.
 
-- [Article Registries](https://egpivo.github.io/2025/12/16/payg-service-contracts-article-contracts.html) — Building the foundation for on-chain content services.
+- [Article Registries](https://egpivo.github.io/2025/12/16/payg-service-contracts-article-contracts.html): Building the foundation for on-chain content services.
 
-- [Rental Services](https://egpivo.github.io/2025/12/21/payg-rental-services.html) — Extending the protocol to handle time-based infrastructure.
+- [Rental Services](https://egpivo.github.io/2025/12/21/payg-rental-services.html): Extending the protocol to handle time-based infrastructure.
 
-- [The Composition Layer](https://egpivo.github.io/2025/12/28/payg-pool-protocol-composition-layer.html) — Creating the Pool Protocol to bundle multiple services together.
+- [The Composition Layer](https://egpivo.github.io/2025/12/28/payg-pool-protocol-composition-layer.html): Creating the Pool Protocol to bundle multiple services together.
 
 Today, I'm excited to share a [live demo](https://egpivo.github.io/payg-service-contracts/) that ties everything together. I chose a Private Gallery as the use case because it perfectly illustrates the messiness of real-world collaboration: you have content (art), a venue (hotel), and security. Normally, that's three separate contracts and a lot of trust. With the Pool Protocol, it's just one transaction.
 
@@ -77,19 +77,11 @@ The 1 ETH splits into 0.02 ETH for the operator (2%) and 0.98 ETH net revenue. T
 
 The demo UI shows this breakdown visually. I added this because transparency matters—users and providers should see exactly where the money goes. No hidden fees. No surprises.
 
-## What I Learned Building This
-
-Building this demo forced me to make some hard decisions. I originally wanted to show more complex scenarios—dynamic membership, usage gating, renewal behavior. But I realized that for a demo to be effective, it needs to be simple enough to understand in one sitting.
-
-I also had to decide between showing the "perfect" implementation and showing something that actually works. I chose the latter. The demo currently supports two modes: local (with a real Anvil node) and mock (for GitHub Pages). The mock mode doesn't connect to a blockchain, but it shows the UI flow and makes the concept accessible to anyone.
-
-This limitation is actually a feature. It shows that the protocol works conceptually, and the UI demonstrates the user experience. For production, you'd deploy to a real network, but for understanding the concept, the mock mode is perfect.
-
 ## Try It Yourself
 
-The [Service Marketplace demo](https://egpivo.github.io/payg-service-contracts/) is live and interactive. You can select the Private Gallery Access package, see how services compose, and watch the revenue split happen.
+The [Service Marketplace demo](https://egpivo.github.io/payg-service-contracts/) is available on GitHub Pages in mock mode. You can see the UI flow and how services compose, but for full on-chain interaction, you'll need to run it locally.
 
-If you want to run it locally, the setup is straightforward:
+If you want to run it locally with your wallet (e.g., MetaMask) for full interaction, the setup is straightforward:
 
 ```bash
 make demo
@@ -104,26 +96,20 @@ Here's what the local setup looks like in action—running on Anvil with real sm
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Local demo running on Anvil: wallet connection → contract deployment → pool creation → purchase → revenue settlement</div>
 </div>
 
-This GIF shows the complete flow in a local environment. The contracts are deployed to Anvil, transactions are real (even if on a local chain), and you can see exactly how the protocol handles multi-provider settlement atomically.
+This animation shows the complete flow in a local environment. The contracts are deployed to Anvil, transactions are real (even if on a local chain), and you can see exactly how the protocol handles multi-provider settlement atomically.
 
-## Why This Matters
+## Beyond the Demo
 
-After building article registries, rental services, and now the composition layer, I've come to see that Web3 payment protocols don't have to be complicated. They just need to solve real problems.
+Moving from raw registries to a composed "Gallery Access" package taught me one thing: Web3 doesn't need to be complicated to be useful. The goal was to prove that we can take a messy real-world event and turn it into a single, purchasable transaction. No more managing three separate contracts or manual splitting—just one checkout.
 
-The core value of this framework lies in turning a "physical event" into a "purchasable combination of decentralized services." Whether it's for an individual enthusiast, a small group, or a premium client, the protocol allows them to access a complete, multi-provider experience through a simple PAYG model.
-
-This isn't just about technology—it's about making on-chain services usable. When users can buy a "gallery access package" instead of managing three separate contracts, we're moving in the right direction.
-
-The demo is live, the code is open source, and the concept is proven. Now it's time to see what people build with it.
+The code is open-source, the demo is live, and the protocol is ready. Check out the [Service Marketplace](https://egpivo.github.io/payg-service-contracts/) and let me know what you think.
 
 ---
 
-**Previous Posts in This Series:**
-- [Practicing Solidity: Transitioning to Web3]({{ site.baseurl }}/2025/12/11/practicing-solidity-transitioning-to-web3.html)
-- [PAYG Service Contracts: Article Contracts]({{ site.baseurl }}/2025/12/16/payg-service-contracts-article-contracts.html)
-- [PAYG Rental Services]({{ site.baseurl }}/2025/12/21/payg-rental-services.html)
-- [From Services to Products: Composing Multi-Provider Checkout On-Chain]({{ site.baseurl }}/2025/12/28/payg-pool-protocol-composition-layer.html)
+**Explore the Project:**
 
-**Code:** https://github.com/egpivo/payg-service-contracts  
-**Live Demo (Mock Wallet):** [Service Marketplace](https://egpivo.github.io/payg-service-contracts/)  
-**Demo Source:** [Web UI Demo](https://github.com/egpivo/payg-service-contracts/tree/main/demo/web)
+- **Live Demo:** [Service Marketplace](https://egpivo.github.io/payg-service-contracts/) (Mock Mode available)
+- **Smart Contracts:** [GitHub Repository](https://github.com/egpivo/payg-service-contracts)
+- **Web UI Source:** [Demo Implementation](https://github.com/egpivo/payg-service-contracts/tree/main/demo/web)
+
+This is the final part of my PAYG series. You can find the full progression from [initial Solidity experiments]({{ site.baseurl }}/2025/12/11/practicing-solidity-transitioning-to-web3.html) to the [composition layer]({{ site.baseurl }}/2025/12/28/payg-pool-protocol-composition-layer.html) in my blog archives.
