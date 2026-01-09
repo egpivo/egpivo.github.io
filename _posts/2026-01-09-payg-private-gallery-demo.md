@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wrapping Up PAYG with a Web UI Demo"
+title: "Pay‑As‑You‑Go Demo: The Private Gallery in Web3"
 tags: [Solidity, Blockchain, Web3, Demo]
 ---
 
@@ -10,13 +10,13 @@ After weeks of diving into article registries and rental modules, I finally reac
 
 This post is the grand finale of my series on building a Pay-As-You-Go (PAYG) ecosystem. If you're joining just now, here's how we got here:
 
-[Transitioning to Web3](https://egpivo.github.io/2025/12/11/practicing-solidity-transitioning-to-web3.html) — My initial shift from traditional development to Solidity.
+- [Transitioning to Web3](https://egpivo.github.io/2025/12/11/practicing-solidity-transitioning-to-web3.html) — My initial shift from traditional development to Solidity.
 
-[Article Registries](https://egpivo.github.io/2025/12/16/payg-service-contracts-article-contracts.html) — Building the foundation for on-chain content services.
+- [Article Registries](https://egpivo.github.io/2025/12/16/payg-service-contracts-article-contracts.html) — Building the foundation for on-chain content services.
 
-[Rental Services](https://egpivo.github.io/2025/12/21/payg-rental-services.html) — Extending the protocol to handle time-based infrastructure.
+- [Rental Services](https://egpivo.github.io/2025/12/21/payg-rental-services.html) — Extending the protocol to handle time-based infrastructure.
 
-[The Composition Layer](https://egpivo.github.io/2025/12/28/payg-pool-protocol-composition-layer.html) — Creating the Pool Protocol to bundle multiple services together.
+- [The Composition Layer](https://egpivo.github.io/2025/12/28/payg-pool-protocol-composition-layer.html) — Creating the Pool Protocol to bundle multiple services together.
 
 Today, I'm excited to share a [live demo](https://egpivo.github.io/payg-service-contracts/) that ties everything together. I chose a Private Gallery as the use case because it perfectly illustrates the messiness of real-world collaboration: you have content (art), a venue (hotel), and security. Normally, that's three separate contracts and a lot of trust. With the Pool Protocol, it's just one transaction.
 
