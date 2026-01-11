@@ -163,6 +163,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
           <span class="skill-tag">FastAPI/FastMCP</span>
           <span class="skill-tag">Docker</span>
           <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Solidity</span>
         </div>
       </div>
       

@@ -363,4 +363,37 @@ permalink: /software/
   </div>
 </div>
 
+<h3>Smart Contracts</h3>
+<p>Blockchain-based protocols and smart contract implementations for decentralized services.</p>
+
+<div class="list-group">
+  <div class="list-group-item row">
+    <div class="col-md-6">
+      <h4 class="list-group-item-heading">
+        <a href="https://github.com/egpivo/payg-service-contracts">Pay-As-You-Go Service Contracts</a>
+      </h4>
+      <p class="list-group-item-text">
+        A pay-as-you-go protocol with composable Pool primitives for Web3 services. Supports article registries and rental modules with automatic revenue sharing. Includes a Web UI demo.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="software-ref">
+        <strong>Software References:</strong>
+        <ul class="list-inline compact-badges">
+          <li><i class="fab fa-github fa-lg"></i> <a href="https://github.com/egpivo/payg-service-contracts">GitHub</a></li>
+          <li><i class="fas fa-eye fa-lg"></i> <a href="https://egpivo.github.io/payg-service-contracts/">Demo</a></li>
+        </ul>
+      </div>
+      <div class="tech-stack">
+        <strong>Tech Stack:</strong>
+        <ul class="list-inline compact-badges">
+          <li><a href="https://soliditylang.org/"><img src="https://img.shields.io/badge/Solidity-black?style=flat-square"/></a></li>
+          <li><a href="https://github.com/foundry-rs/foundry"><img src="https://img.shields.io/badge/Foundry-black?style=flat-square"/></a></li>
+          <li><a href="https://www.openzeppelin.com/"><img src="https://img.shields.io/badge/OpenZeppelin-black?style=flat-square"/></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
