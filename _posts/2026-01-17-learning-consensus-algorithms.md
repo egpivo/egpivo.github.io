@@ -4,7 +4,7 @@ title: "Learning Consensus Algorithms: A Hands-On Comparison with Rust"
 tags: [Rust, Blockchain, Consensus]
 ---
 
-I implemented five consensus algorithms in Rust to compare PBFT, Gossip, Eventual Consistency, Quorum-less, and Flexible Paxos. The project is [rust-market-ledger](https://github.com/egpivo/rust-market-ledger). Everything runs on a single machine with simulated consensus logic and SQLite storage. Some scaling solutions like sharding require real distributed systems, which I don't have here.
+I conceptually implemented five consensus algorithms in Rust to compare PBFT, Gossip, Eventual Consistency, Quorum-less, and Flexible Paxos. The project is [rust-market-ledger](https://github.com/egpivo/rust-market-ledger). Everything runs on a single machine with simulated consensus logic and SQLite storage. Some scaling solutions like sharding require real distributed systems, which I don't have here.
 
 For metrics, I used [Aliyu et al. (2025)](https://arxiv.org/pdf/2505.03768) because they break down scalability into measurable constructs like throughput and latency. Some metrics (geographic diversity, hash power distribution) don't apply to a simulated environment, so I skipped those.
 
