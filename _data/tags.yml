@@ -46,3 +46,12 @@ Smart Contracts:
 Learning:
     slug: learning
     name: Learning
+Rust:
+    slug: rust
+    name: Rust
+Distributed Systems:
+    slug: distributed-systems
+    name: Distributed Systems
+Consensus:
+    slug: consensus
+    name: Consensus
