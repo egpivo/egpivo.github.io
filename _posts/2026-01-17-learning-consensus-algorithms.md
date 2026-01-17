@@ -29,7 +29,7 @@ The core tension: **decentralization requires more nodes, but more nodes mean sl
 
 ## The Blockchain Trilemma
 
-I initially found the trilemma concept abstract, but after implementing these algorithms, the trade-offs became concrete. The blockchain trilemma says three desirable properties—decentralization, security, and scalability—are difficult to maintain simultaneously. As a network evolves, one trait usually dominates, and enhancing the others may weaken the dominant one.
+I initially found the trilemma concept abstract, but after implementing these algorithms, the trade-offs became concrete. The blockchain trilemma says three desirable properties: decentralization, security, and scalability, are difficult to maintain simultaneously. As a network evolves, one trait usually dominates, and enhancing the others may weaken the dominant one.
 
 More nodes increase decentralization but reduce scalability: every node must process transactions and participate in consensus, which slows down the network. Security also becomes more challenging with more participants (more attack surface).
 
@@ -51,7 +51,7 @@ According to Aliyu et al., measuring Decentralization (DoD) is notoriously diffi
 I focused on metrics I could actually implement:
 
 - **DoD (Decentralization)**: Nakamoto coefficient, Gini coefficient. The challenge: lacks social factors (node ownership, collusion risks), which are hard to simulate
-- **Scalability**: Throughput (blocks/sec), confirmation latency. This is the most mature area—I could directly measure these in my Rust benchmarks. In this simulation, each block represents a transaction batch, so blocks/sec approximates TPS
+- **Scalability**: Throughput (blocks/sec), confirmation latency. This is the most mature area (i.e., I could directly measure these in my Rust benchmarks). In this simulation, each block represents a transaction batch, so blocks/sec approximates TPS
 - **Security**: Cost of attack, fault tolerance, stale block rate. No single metric captures all aspects, so I combined multiple indicators
 
 <div style="text-align:center; margin: 2rem 0;">
@@ -78,13 +78,13 @@ Addressing scalability involves choosing between Layer-1 (protocol-level) and La
 - **Sidechains**: Separate blockchains with faster rules, assets flow between main chain and sidechain
 - **Rollups**: Execute transactions off-chain, store compressed proofs on-chain (Optimistic rollups like Arbitrum, ZK rollups like PLONK)
 
-Each solution makes different trade-offs. Consensus algorithm choice is a fundamental Layer-1 decision that affects all scalability efforts. Our comparison focuses on consensus algorithms—the foundation that determines baseline performance before Layer-2 optimizations.
+Each solution makes different trade-offs. Consensus algorithm choice is a fundamental Layer-1 decision that affects all scalability efforts. Our comparison focuses on consensus algorithms: the foundation that determines baseline performance before Layer-2 optimizations.
 
 ## Implementation Examples
 
-We implement five consensus algorithms for comparison. Brief overviews:
+For simplicity, we conceptually implement five consensus algorithms for comparison. Brief overviews:
 
-- **PBFT (Practical Byzantine Fault Tolerance)**: Classic Byzantine fault-tolerant consensus for distributed systems. Requires 3f+1 nodes to tolerate f Byzantine faults. Reference: [Castro & Liskov (1999)](https://css.csail.mit.edu/6.824/2014/papers/castro-practicalbft.pdf).
+- **PBFT (Practical Byzantine Fault Tolerance)**: Classic Byzantine fault-tolerant consensus for distributed systems. Requires $3n+1$ nodes to tolerate $n$ Byzantine faults. Reference: [Castro & Liskov (1999)](https://css.csail.mit.edu/6.824/2014/papers/castro-practicalbft.pdf).
 
 - **Gossip Protocol**: Decentralized communication protocol based on epidemic propagation model. Nodes spread messages to random peers without voting. Reference: [Demers et al. (1987)](http://disi.unitn.it/~montreso/ds/papers/montresor17.pdf).
 
@@ -98,7 +98,7 @@ See references for detailed algorithms and correctness proofs. We show implement
 
 ### PBFT: Three-Phase Byzantine Fault Tolerance
 
-PBFT requires 3f+1 nodes to tolerate f Byzantine faults. Implementing PBFT's three phases in Rust was tricky. Handling the state transitions required wrapping the consensus state in an `Arc<RwLock>`, which heavily impacted the code structure compared to the simplistic Gossip implementation. Every block goes through three phases:
+PBFT requires $3f+1$ nodes to tolerate $f$ Byzantine faults. Implementing PBFT's three phases in Rust was tricky. Handling the state transitions required wrapping the consensus state in an `Arc<RwLock>`, which heavily impacted the code structure compared to the simplistic Gossip implementation. Every block goes through three phases:
 
 ```rust
 async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>> {
@@ -137,11 +137,11 @@ async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>
 }
 ```
 
-In this simulation, PBFT averages 1500ms ± 50ms because it requires three sequential phases, each waiting for 2f+1 votes. The 500ms delays between phases are my simulation's network round-trip estimates—in reality, these would depend on actual network latency. This ensures safety with Byzantine faults but costs latency.
+In this simulation, PBFT averages `1500ms ± 50ms` because it requires three sequential phases, each waiting for $2f+1$ votes. The 500ms delays between phases are my simulation's network round-trip estimates—in reality, these would depend on actual network latency. This ensures safety with Byzantine faults but costs latency.
 
 ### Gossip: Epidemic Propagation
 
-Gossip doesn't require voting—nodes spread messages to random peers (fanout=2). I realized this makes the Rust implementation much simpler: no `Arc<RwLock>` hell, just a `HashMap` tracking which nodes have seen each block. Consensus emerges when enough nodes have seen the block:
+Gossip doesn't require voting, i.e., nodes spread messages to random peers (`fanout=2`). I realized this makes the Rust implementation much simpler: no `Arc<RwLock>` hell, just a `HashMap` tracking which nodes have seen each block. Consensus emerges when enough nodes have seen the block:
 
 ```rust
 async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>> {
@@ -181,7 +181,7 @@ async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>
 }
 ```
 
-Notice there's no voting logic here. This makes the propose function incredibly fast—just updating a HashMap and firing network requests. In this simulation, Gossip is 5x faster than PBFT (300ms vs 1500ms) because there's no voting or quorum requirement. However, it sacrifices Byzantine fault tolerance: no mechanism to verify message authenticity, so nodes have no idea if the peer they're talking to is lying.
+Notice that there's no voting logic here. This makes the propose function incredibly fast—just updating a HashMap and firing network requests. In this simulation, Gossip is 5x faster than PBFT (300ms vs 1500ms) because there's no voting or quorum requirement. However, it sacrifices Byzantine fault tolerance: no mechanism to verify message authenticity, so nodes have no idea if the peer they're talking to is lying.
 
 ## Simulation
 
@@ -191,10 +191,10 @@ With the trilemma framework in mind, here's how I set up the simulation to measu
 - **Network model**: Fixed latency delays between phases. PBFT uses 500ms per phase (simulating network round-trips), Gossip uses 100ms per round
 - **Block generation**: 100 test blocks with simulated BTC price data. All algorithms process the same blocks for fair comparison
 - **Trials**: 5 rounds per algorithm. Reported latency and throughput are means with standard deviation (±)
-- **Trilemma scores (1-5)**: These are qualitative assessments based on algorithm characteristics. PBFT gets 5.0/5.0 for security because it tolerates Byzantine faults; Gossip gets 5.0/5.0 for scalability because it doesn't require voting. They're not derived from metrics—they reflect the algorithm design trade-offs
+- **Trilemma scores (1-5)**: These are qualitative assessments based on algorithm characteristics. PBFT gets 5.0/5.0 for security because it tolerates Byzantine faults; Gossip gets 5.0/5.0 for scalability because it doesn't require voting. They're not derived from metrics, but they reflect the algorithm design trade-offs
 - **Throughput**: Measured as blocks per second. In this simulation, each block represents a single transaction batch, so blocks/sec ≈ TPS
 - **Latency**: Includes algorithmic delays (phases, rounds) and simulated network communication. The artificial sleeps (500ms for PBFT, 100ms for Gossip) model network round-trips
-- **Storage**: SQLite database on a single machine. No actual distributed network—consensus logic is simulated
+- **Storage**: SQLite database on a single machine. No actual distributed network, but consensus logic is simulated
 
 ### Result
 
@@ -272,11 +272,11 @@ I generated 100 test blocks with simulated BTC price data and ran each algorithm
 </tbody>
 </table>
 
-*Highlighted: <span style="background-color: #d4edda; padding: 2px 4px;">green = best</span>, <span style="background-color: #f8d7da; padding: 2px 4px;">red = worst</span>. For full interactive comparison, see the [live demo](https://egpivo.github.io/rust-market-ledger/).*
+*Highlighted: <span style="background-color: #d4edda; padding: 2px 4px;">green = best</span>, <span style="background-color: #f8d7da; padding: 2px 4px;">red = worst</span>. For full interactive comparison, see the [ demo](https://egpivo.github.io/rust-market-ledger/) page.*
 
 **Detailed Metrics:**
 
-**Scalability - 3 Metrics:**
+** 3 Scalability Metrics:**
 
 <table style="width:100%; border-collapse: collapse;">
 <thead>
@@ -321,7 +321,7 @@ I generated 100 test blocks with simulated BTC price data and ran each algorithm
 </tbody>
 </table>
 
-**Security - 4 Metrics:**
+** 4 Security Metrics:**
 
 <table style="width:100%; border-collapse: collapse;">
 <thead>
@@ -391,7 +391,7 @@ cargo run --example trilemma_comparison
 - **Demo Page:** [Consensus Algorithm Comparison](https://egpivo.github.io/rust-market-ledger/)
 - **GitHub Repository:** [rust-market-ledger](https://github.com/egpivo/rust-market-ledger)
 
-**References:**
+### References
 
 - Aliyu et al. (2025). "[From Concept to Measurement: A Survey of How the Blockchain Trilemma Is Analyzed](https://arxiv.org/pdf/2505.03768)"
 - Sharma (2024). *Rust for Blockchain Application Development*. Packt Publishing.
