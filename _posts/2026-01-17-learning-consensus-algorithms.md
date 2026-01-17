@@ -183,7 +183,7 @@ async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>
 
 Notice there's no voting logic here. This makes the propose function incredibly fast—just updating a HashMap and firing network requests. In this simulation, Gossip is 5x faster than PBFT (300ms vs 1500ms) because there's no voting or quorum requirement. However, it sacrifices Byzantine fault tolerance: no mechanism to verify message authenticity, so nodes have no idea if the peer they're talking to is lying.
 
-## Methodology
+## Simulation
 
 With the trilemma framework in mind, here's how I set up the simulation to measure consensus algorithms:
 
@@ -196,7 +196,7 @@ With the trilemma framework in mind, here's how I set up the simulation to measu
 - **Latency**: Includes algorithmic delays (phases, rounds) and simulated network communication. The artificial sleeps (500ms for PBFT, 100ms for Gossip) model network round-trips
 - **Storage**: SQLite database on a single machine. No actual distributed network—consensus logic is simulated
 
-## Simulation Results
+### Result
 
 I generated 100 test blocks with simulated BTC price data and ran each algorithm on the same blocks. Results averaged over 5 rounds (mean ± standard deviation):
 
@@ -388,7 +388,7 @@ cargo run --example trilemma_comparison
 
 **Explore the Project:**
 
-- **Live Demo:** [Consensus Algorithm Comparison](https://egpivo.github.io/rust-market-ledger/)
+- **Demo Page:** [Consensus Algorithm Comparison](https://egpivo.github.io/rust-market-ledger/)
 - **GitHub Repository:** [rust-market-ledger](https://github.com/egpivo/rust-market-ledger)
 
 **References:**
