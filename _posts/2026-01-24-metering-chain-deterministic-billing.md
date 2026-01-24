@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Metering Chain: Deterministic Billing"
-tags: [Rust, Blockchain, DePIN, billing, metering]
+tags: [Rust, Blockchain, DePIN]
 ---
 
 I started working on Metering Chain after yet another “we have the logs, but the bill still feels wrong” incident in a usage-based system.
@@ -15,7 +15,7 @@ That’s the itch this project is trying to scratch.
        alt="Row of analog electricity meters"
        style="max-width:90%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
-    Real-world metering: deterministic, auditable, and independent of who is paying whom.
+    Real-world metering: deterministic, auditable, and independent of who is paying whom (https://solarnrg.ph/blog/how-does-net-metering-work/).
   </div>
 </div>
 
@@ -28,7 +28,7 @@ The concept of metering is as old as utility services themselves. Whether it’s
 <div style="text-align:center; margin: 2rem 0;">
   <img src="{{ site.baseurl }}/assets/2026-01-24-metering-chain/DePIN_infra.png"
        alt="DePIN architecture flow with Metering Chain as the billing layer"
-       style="max-width:90%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+       style="max-width:70%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
     Where Metering Chain sits in a typical DePIN stack: between physical services and L1/L2 settlement, turning usage into a deterministic bill.
   </div>
@@ -38,11 +38,11 @@ The concept of metering is as old as utility services themselves. Whether it’s
 
 ## What Metering Chain actually is
 
-I ended up thinking about Metering Chain as a kind of **billing kernel** — not a service, not a platform, but something you embed when you need billing to be boring and correct.
+I ended up thinking about Metering Chain as a kind of **billing kernel**, i.e., not a service, not a platform, but something you embed when you need billing to be boring and correct.
 
 Under the hood it’s a small Rust state machine.
 You feed it signed transactions like `Mint`, `OpenMeter`, `Consume`, and `CloseMeter`; it walks through them in order and you get back accounts, meters, and reports.
-There is no hidden clock, no background job, no extra data source — the whole point is that anyone who replays the same history lands on the same balances.
+There is no hidden clock, no background job, no extra data source, the whole point is that anyone who replays the same history lands on the same balances.
 
 ---
 
@@ -86,13 +86,13 @@ Replaying those 74 transfers as `Consume` events against a single `dimo-rewards`
   </div>
 </div>
 
-If you want to see every command that produced that result, they’re all in `examples/depin/` — the point of the blog post is just to show that the whole thing reduces to “indexer output in, reproducible bill out.”
+If you want to see every command that produced that result, they’re all in `examples/depin/`: the point of the blog post is just to show that the whole thing reduces to “indexer output in, reproducible bill out.”
 
 ---
 
 ## If you want to dig into the repo
 
-To reproduce anything in this post, you don’t need more documentation – you just need the repo.
+To reproduce anything in this post, you don’t need more documentation. You just need the repo.
 The minimal “Alice uses storage” story lives in `examples/tx/`, the DIMO / SIM Dune demo lives in `examples/depin/`, and the copy I drafted against while writing this article was checked out under GitHub repo [`egpivo/metering-chain`](https://github.com/egpivo/metering-chain).
 
 Under the hood, the design is deliberately small: pure data types and pure transactions (`Mint`, `OpenMeter`, `Consume`, `CloseMeter`) on one side, and a thin storage/CLI layer on the other.
@@ -109,4 +109,4 @@ That’s what makes the DIMO demo work: all the SIM / Dune / plotting code lives
 </div>
 
 The end-to-end tests in `tests/basic_flow.rs` are basically “does replay really give me the same bill?” scenarios: snapshot part-way through, append more txs, restart, and assert the reconstructed `State` matches.
-As long as you keep `tx.log` and one snapshot (or genesis), you can always recompute balances, meters, and receipts — which is exactly the property you want for DePIN and other usage-based systems.
+As long as you keep `tx.log` and one snapshot (or genesis), you can always recompute balances, meters, and receipts, which is exactly the property you want for DePIN and other usage-based systems.
