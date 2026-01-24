@@ -1,0 +1,14 @@
+ReportListOutput {
+    reports: [
+        ReportOutput {
+            account: "0x0000000000000000000000000000000000000A11",
+            service_id: "dimo-rewards",
+            total_units: 20648615899,
+            total_spent: 20648615899,
+            active: true,
+            effective_unit_price: Some(
+                1.0,
+            ),
+        },
+    ],
+}

@@ -33,6 +33,11 @@ I initially found the trilemma concept abstract, but after implementing these al
 
 More nodes increase decentralization but reduce scalability: every node must process transactions and participate in consensus, which slows down the network. Security also becomes more challenging with more participants (more attack surface).
 
+<div style="text-align:center; margin: 2rem 0;">
+  <img src="{{ site.baseurl }}/assets/2026-01-17-learning-consensus-algorithms/blockchain_trillmema.png" alt="Blockchain Trilemma" style="max-width:90%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">Blockchain trilemma: trade-offs between decentralization, security, and scalability</div>
+</div>
+
 Following [Aliyu et al. (2025)](https://arxiv.org/pdf/2505.03768), a blockchain system consists of:
 
 - **Transaction Originators** (m nodes): External entities that submit transactions
@@ -65,7 +70,7 @@ I focused on metrics I could actually implement:
 - **DoD vs. Security**: Geographic distribution reduces collusion but increases latency (weakens security assumptions)
 - **Scalability vs. Security**: Fewer nodes → better performance but concentrates attack surface
 
-### Scaling Solutions: Layer-1 vs Layer-2
+### Scaling Solutions: Layer-1 vs. Layer-2
 
 Addressing scalability involves choosing between Layer-1 (protocol-level) and Layer-2 (off-chain) solutions:
 
@@ -82,7 +87,9 @@ Each solution makes different trade-offs. Consensus algorithm choice is a fundam
 
 ## Implementation Examples
 
-For simplicity, we conceptually implement five consensus algorithms for comparison. Brief overviews:
+For simplicity, we conceptually implement five consensus algorithms for comparison. While this project runs on a single machine for benchmarking purposes, it utilizes Discrete Event Simulation to model the behavior of a distributed system. Each consensus node is an independent logic entity, and network latency is injected to simulate real-world asynchronous communication. This allows us to isolate the algorithmic efficiency from unpredictable hardware noise.
+
+Brief overviews:
 
 - **PBFT (Practical Byzantine Fault Tolerance)**: Classic Byzantine fault-tolerant consensus for distributed systems. Requires $3n+1$ nodes to tolerate $n$ Byzantine faults. Reference: [Castro & Liskov (1999)](https://css.csail.mit.edu/6.824/2014/papers/castro-practicalbft.pdf).
 
@@ -98,7 +105,9 @@ See references for detailed algorithms and correctness proofs. We show implement
 
 ### PBFT: Three-Phase Byzantine Fault Tolerance
 
-PBFT requires $3f+1$ nodes to tolerate $f$ Byzantine faults. Implementing PBFT's three phases in Rust was tricky. Handling the state transitions required wrapping the consensus state in an `Arc<RwLock>`, which heavily impacted the code structure compared to the simplistic Gossip implementation. Every block goes through three phases:
+PBFT requires $3f+1$ nodes to tolerate $f$ Byzantine faults. The implementation of PBFT demonstrates the complexity of State Machine Replication (SMR). Even in a simulation, ensuring that all nodes transition through Pre-Prepare, Prepare, and Commit phases requires rigorous state locking—a core challenge in distributed computing.
+
+Implementing PBFT's three phases in Rust was tricky. Handling the state transitions required wrapping the consensus state in an `Arc<RwLock>`, which heavily impacted the code structure compared to the simplistic Gossip implementation. This `Arc<RwLock>` is essentially the single-machine embodiment of State Machine Replication (SMR) in distributed systems. Every block goes through three phases:
 
 ```rust
 async fn propose(&self, block: &Block) -> Result<ConsensusResult, Box<dyn Error>> {

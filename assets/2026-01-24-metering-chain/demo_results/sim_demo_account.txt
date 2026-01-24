@@ -1,0 +1,5 @@
+AccountOutput {
+    address: "0x0000000000000000000000000000000000000A11",
+    balance: 1000,
+    nonce: 75,
+}
