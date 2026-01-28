@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ethereum Account State: A Minimal Token with Reconstructible State"
-tags: [TypeScript, Ethereum, Solidity, Web3]
+tags: [Smart Contracts, Blockchain, Ethereum, Solidity, Web3]
 ---
 
 I built this project to answer a simple question: can you reconstruct a token's entire state just from events, without ever reading storage?
@@ -62,7 +62,7 @@ The TypeScript domain layer (`domain/`) mirrors the on-chain state machine so th
 2. Validate the transition (`StateTransition.validate*()`).
 3. Encode and send the transaction via `ethers.Interface`.
 
-If validation passes off-chain but reverts on-chain, it's likely a domain bug or stale/off-chain state (e.g. a new block, reorg, missing events, or mempool race between reconstruction and execution).
+If validation passes off-chain but reverts on-chain, it's likely a domain bug or stale/off-chain state (e.g., a new block, reorg, missing events, or mempool race between reconstruction and execution).
 
 ---
 
@@ -190,7 +190,7 @@ If you want to run the full demo locally:
    ```
 
 5. **Add Anvil network and account in MetaMask** (required for the demo):
-   - In MetaMask, add a new network: **Network name** e.g. "Anvil Local", **RPC URL** `http://127.0.0.1:8545`, **Chain ID** `31337`. (MetaMask may warn that the name doesn't match the chain ID; that's fine for local use.)
+   - In MetaMask, add a new network: **Network name** e.g., "Anvil Local", **RPC URL** `http://127.0.0.1:8545`, **Chain ID** `31337`. (MetaMask may warn that the name doesn't match the chain ID; that's fine for local use.)
    - Use one of Anvil's default accounts: when you run `anvil`, it prints private keys and addresses. Import one of those into MetaMask so you have test ETH and can receive tokens on the local chain.
 
 <div style="display:flex; justify-content:center; gap:1.5rem; margin: 1.5rem 0; flex-wrap:wrap;">
