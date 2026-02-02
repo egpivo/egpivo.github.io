@@ -1,0 +1,15 @@
+=== REPORT ===
+ReportListOutput {
+    reports: [
+        ReportOutput {
+            account: "0x2a9370d82cd8880988e8941d0ac786f294bae4daabb3ffe74de0c97f94c08cf2",
+            service_id: "helium-rewards",
+            total_units: 24340376045887,
+            total_spent: 24340376045887,
+            active: true,
+            effective_unit_price: Some(
+                1.0,
+            ),
+        },
+    ],
+}

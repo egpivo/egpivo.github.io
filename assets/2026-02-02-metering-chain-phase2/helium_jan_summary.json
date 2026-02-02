@@ -1,0 +1,64 @@
+{
+  "rows": 500,
+  "distinct_operators": 94,
+  "total_units": 24340376045887.0,
+  "top10_share": 0.8975111433843875,
+  "hhi": 0.15073833295229352,
+  "gini": 0.9071750876162954,
+  "time_window": {
+    "start": "2026-01-13",
+    "end": "2026-01-14"
+  },
+  "top_operators": [
+    {
+      "to_owner": "DHZ3cAV2waJLeES21ywYDtTdkyBJqxA13Pm6RVRNHJfY",
+      "short": "DHZ3cA\u2026",
+      "units": 6161130403935.0
+    },
+    {
+      "to_owner": "DhxxtwTwyufb5sD9UUZZe5eLVceNScWcKmsM93ufGsdq",
+      "short": "Dhxxtw\u2026",
+      "units": 5038540532283.0
+    },
+    {
+      "to_owner": "2zPGrFix5yJeQR2Rwp58RaygMDA9iLiAa91ZTqmiUV1t",
+      "short": "2zPGrF\u2026",
+      "units": 4294945474642.0
+    },
+    {
+      "to_owner": "ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn",
+      "short": "ARu4n5\u2026",
+      "units": 1631774616715.0
+    },
+    {
+      "to_owner": "9aJQs2WaiFxDBtfjQDRt9poS1quQhnatNwD6ARsyUf9o",
+      "short": "9aJQs2\u2026",
+      "units": 1252872961889.0
+    },
+    {
+      "to_owner": "Cx6WqD4ViGZArdA3nPcneNBJxECftm36CZbtdb7jw9gP",
+      "short": "Cx6WqD\u2026",
+      "units": 1182899282805.0
+    },
+    {
+      "to_owner": "gtagyESa99t49VmUqnnfsuowYnigSNKuYXdXWyXWNdd",
+      "short": "gtagyE\u2026",
+      "units": 955300652446.0
+    },
+    {
+      "to_owner": "DpNp8FoPTpayN6RxqvFuEA8MFctvuBsZq9tcpb8T8PvA",
+      "short": "DpNp8F\u2026",
+      "units": 515072260248.0
+    },
+    {
+      "to_owner": "HxjwdF326ZunmUwC1iXhfgL3ku78YsksN6n7Rfxzwr6b",
+      "short": "HxjwdF\u2026",
+      "units": 448212561588.0
+    },
+    {
+      "to_owner": "5e3tWFUDCUnj9UWAxsUpYHD8igAVybQ3r2hdnq7Yjxwy",
+      "short": "5e3tWF\u2026",
+      "units": 365009988799.0
+    }
+  ]
+}
