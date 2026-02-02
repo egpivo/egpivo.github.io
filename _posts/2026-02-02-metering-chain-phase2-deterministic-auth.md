@@ -130,7 +130,7 @@ This isn't just a pretty plot. If the top 10 operators control most rewards, aut
   </div>
 </div>
 
-The Lorenz curve (blue) is cumulative operators vs cumulative units earned; the diagonal would be perfect equality. Gini, HHI, and Top-10 share are different angles on the same skew. That’s why Phase 2 focuses on who signs — not just how much.
+The Lorenz curve (blue) is cumulative operators vs. cumulative units earned; the diagonal would be perfect equality. Gini, HHI, and Top-10 share are different angles on the same skew. That’s why Phase 2 focuses on who signs, not just how much.
 
 ---
 
