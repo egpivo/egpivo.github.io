@@ -55,3 +55,6 @@ Distributed Systems:
 Consensus:
     slug: consensus
     name: Consensus
+DePIN:
+    slug: depin
+    name: DePIN
