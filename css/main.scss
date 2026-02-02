@@ -94,7 +94,7 @@ body {
   min-height: calc(100vh - 200px);
 }
 
-// Import partials
+// Import partials (Sass @import deprecated; migration would require @use at file top)
 @import "base", "layout", "syntax-highlighting";
 
 // Utility classes

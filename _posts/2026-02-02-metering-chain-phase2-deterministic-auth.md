@@ -30,9 +30,9 @@ Phase 2 makes every transaction signed and verified before it hits domain logic.
 
 Changes under the hood, in plain terms:
 
-- `SignedTx` now carries an Ed25519 signature over a canonical payload.
+- `SignedTx` now carries an [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed225519) signature over a canonical payload.
 - `apply` verifies signatures before it validates domain rules.
-- Unsigned tx are rejected by default; legacy replay can use `--allow-unsigned` if you really need it.
+- Unsigned tx are rejected by default; legacy replay can use a flag `--allow-unsigned` if you really need it.
 
 Flow: `wallet create` → build kind-only JSON → `wallet sign --address <signer> --file kind.json` → pipe to `apply`. Signing uses the current nonce from state, so tx must be applied in order.
 
@@ -68,7 +68,8 @@ pub fn sign_transaction(&self, nonce: u64, kind: Transaction) -> Result<SignedTx
 }
 ```
 
-[src/wallet.rs](https://github.com/egpivo/metering-chain/blob/main/src/wallet.rs)
+Note: source from [src/wallet.rs](https://github.com/egpivo/metering-chain/blob/main/src/wallet.rs)
+
 
 ### Data format & replay
 
