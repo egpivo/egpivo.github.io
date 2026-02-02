@@ -68,7 +68,7 @@ pub fn sign_transaction(&self, nonce: u64, kind: Transaction) -> Result<SignedTx
 }
 ```
 
-Note: source from [src/wallet.rs](https://github.com/egpivo/metering-chain/blob/main/src/wallet.rs)
+Note: code snippet from [src/wallet.rs](https://github.com/egpivo/metering-chain/blob/main/src/wallet.rs)
 
 
 ### Data format & replay
@@ -83,7 +83,7 @@ pub fn message_to_sign(&self) -> Result<Vec<u8>> {
 }
 ```
 
-[src/tx/transaction.rs](https://github.com/egpivo/metering-chain/blob/main/src/tx/transaction.rs)
+Note: code snippet from [src/tx/transaction.rs](https://github.com/egpivo/metering-chain/blob/main/src/tx/transaction.rs)
 
 ---
 
@@ -100,10 +100,10 @@ DePIN is inherently multi-operator, so I wanted a dataset that is public, messy,
 | Total units | 659,978,351,356,954 |
 
 Pipeline (4 steps):
-1) Fetch Helium IOT transfers from Dune → `helium_rewards.csv`
-2) Analyze with `analyze_rewards.py` → charts + `helium_jan_summary.json`
-3) Convert CSV to Consume NDJSON with `helium_rewards_to_consume.py` → `consume.ndjson`
-4) Signed apply — init, Mint, OpenMeter, then sign-and-apply each line
+1. Fetch Helium IOT transfers from Dune → `helium_rewards.csv`
+2. Analyze with `analyze_rewards.py` → charts + `helium_jan_summary.json`
+3. Convert CSV to Consume NDJSON with `helium_rewards_to_consume.py` → `consume.ndjson`
+4. Signed apply — init, Mint, OpenMeter, then sign-and-apply each line
 
 Full scripts live in [examples/multi_operator](https://github.com/egpivo/metering-chain/tree/main/examples/multi_operator).
 
@@ -119,7 +119,7 @@ The Helium Jan dataset is highly concentrated. A small set of operators has outs
 | HHI | 0.116 |
 | Gini | 0.958 |
 
-This isn't just a pretty plot. If the top 10 operators control most rewards, authorization isn't optional — it's the only way to keep the ledger honest.
+This isn't just a pretty plot. If the top 10 operators control most rewards, authorization isn't optional:  it's the only way to keep the ledger honest.
 
 <div style="text-align:center; margin: 1.5rem 0;">
   <img src="{{ site.baseurl }}/assets/2026-02-02-metering-chain-phase2/helium_jan_analysis.png"
@@ -129,6 +129,8 @@ This isn't just a pretty plot. If the top 10 operators control most rewards, aut
     Helium IOT analysis: Lorenz curve (Gini), concentration metrics (HHI, Top-10 share). Full Jan dataset: 17,820 rows, 1,561 operators.
   </div>
 </div>
+
+The Lorenz curve (blue) is cumulative operators vs cumulative units earned; the diagonal would be perfect equality. Gini, HHI, and Top-10 share are different angles on the same skew. That’s why Phase 2 focuses on who signs — not just how much.
 
 ---
 
