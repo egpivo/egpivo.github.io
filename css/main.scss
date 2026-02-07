@@ -95,7 +95,7 @@ body {
 }
 
 // Import partials (Sass @import deprecated; migration would require @use at file top)
-@import "base", "layout", "syntax-highlighting";
+@import "base", "layout", "software", "syntax-highlighting";
 
 // Utility classes
 .floatright {

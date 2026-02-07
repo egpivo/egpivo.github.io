@@ -5,7 +5,7 @@
 
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description"
-          content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+          content="{% if page.description %}{{ page.description | escape }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}">
 
     <link rel="icon" type="image/png" href="{{ "
     /assets/images/favicons/android-chrome-192x192.png" | prepend: site.baseurl }}" sizes="192x192">
@@ -28,6 +28,7 @@
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "
     /feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 
+    {% if page.math %}
     <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } });
     </script>
     <script type="text/x-mathjax-config">
@@ -47,6 +48,7 @@
     /js/jq_mathjax_parse.js" | prepend: site.baseurl }}"></script>
     <script type="text/javascript" src="{{ "
     /js/jquery.toc.min.js" | prepend: site.baseurl }}"></script>
+    {% endif %}
 
     {% if jekyll.environment == 'production' %}
     {% include analytics.html %}

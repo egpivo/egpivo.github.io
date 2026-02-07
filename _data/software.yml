@@ -1,0 +1,164 @@
+r_packages:
+  title: R Packages
+  desc: R packages for spatial data processing, high-dimensional modeling, and binary classification diagnostics.
+  items:
+    - name: SpatPCA
+      url: https://egpivo.github.io/SpatPCA/
+      desc: Regularized principal component analysis for spatial data—identifies smooth, localized eigenfunctions and supports Kriging for new locations. Uses ADMM algorithm.
+      github: https://github.com/egpivo/SpatPCA
+      demo: https://egpivo.github.io/SpatPCA/articles
+      paper: https://doi.org/10.1080/10618600.2016.1157483
+      paper_label: JCGS
+      badges:
+        - href: https://github.com/egpivo/SpatPCA/actions
+          src: https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg
+          alt: R-CMD-check
+        - href: https://cran.r-project.org/package=SpatPCA
+          src: https://www.r-pkg.org/badges/version/SpatPCA
+          alt: CRAN
+        - href: https://cran.r-project.org/package=SpatPCA
+          src: https://cranlogs.r-pkg.org/badges/grand-total/SpatPCA
+          alt: Downloads
+      tech: R · Rcpp · Armadillo · RcppParallel
+
+    - name: SpatMCA
+      url: https://egpivo.github.io/SpatMCA/
+      desc: Regularized maximum covariance analysis for spatial processes. Identifies smooth, localized patterns showing influence between processes. ADMM-based.
+      github: https://github.com/egpivo/SpatMCA
+      demo: https://egpivo.github.io/SpatMCA/reference/spatmca.html
+      paper: https://doi.org/10.1002/env.2481
+      paper_label: Environmetrics
+      badges:
+        - href: https://github.com/egpivo/SpatMCA/actions
+          src: https://github.com/egpivo/SpatMCA/workflows/R-CMD-check/badge.svg
+          alt: R-CMD-check
+        - href: https://cran.r-project.org/package=SpatMCA
+          src: https://www.r-pkg.org/badges/version/SpatMCA
+          alt: CRAN
+        - href: https://cran.r-project.org/package=SpatMCA
+          src: https://cranlogs.r-pkg.org/badges/grand-total/SpatMCA
+          alt: Downloads
+      tech: R · Rcpp · Armadillo · RcppParallel
+
+    - name: autoFRK
+      url: https://egpivo.github.io/autoFRK/
+      desc: Thin-plate splines for basis function selection and nonstationary spatial covariance. Closed-form MLE, automatic selection via AIC. Handles large irregular datasets.
+      github: https://github.com/egpivo/autoFRK
+      demo: https://egpivo.github.io/autoFRK/reference/autoFRK.html
+      paper: https://doi.org/10.1080/00401706.2017.1345701
+      paper_label: Technometrics
+      badges:
+        - href: https://github.com/egpivo/autoFRK/actions
+          src: https://github.com/egpivo/autoFRK/workflows/R-CMD-check/badge.svg
+          alt: R-CMD-check
+        - href: https://cran.r-project.org/package=autoFRK
+          src: https://www.r-pkg.org/badges/version/autoFRK
+          alt: CRAN
+        - href: https://cran.r-project.org/package=autoFRK
+          src: https://cranlogs.r-pkg.org/badges/grand-total/autoFRK
+          alt: Downloads
+      tech: R · Rcpp · Eigen
+
+    - name: QuantRegGLasso
+      url: https://egpivo.github.io/QuantRegGLasso/
+      desc: Adaptively weighted group Lasso for quantile regression. Variable selection and structure identification for varying-coefficient and additive models. Handles ultra-high dimensional covariates.
+      github: https://github.com/egpivo/QuantRegGLasso
+      demo: https://egpivo.github.io/QuantRegGLasso/reference/qrglasso.html
+      paper: https://doi.org/10.3150/18-BEJ1091
+      paper_label: Bernoulli
+      badges:
+        - href: https://github.com/egpivo/QuantRegGLasso/actions
+          src: https://github.com/egpivo/QuantRegGLasso/workflows/R-CMD-check/badge.svg
+          alt: R-CMD-check
+        - href: https://cran.r-project.org/package=QuantRegGLasso
+          src: https://www.r-pkg.org/badges/version/QuantRegGLasso
+          alt: CRAN
+        - href: https://cran.r-project.org/package=QuantRegGLasso
+          src: https://cranlogs.r-pkg.org/badges/grand-total/QuantRegGLasso
+          alt: Downloads
+      tech: R · Rcpp · Armadillo
+
+    - name: influenceAUC
+      url: https://boshiangke.github.io/InfluenceAUC/
+      desc: Binary classification diagnostics—identifies influential observations and provides visualization tools for model performance and diagnostic insights.
+      github: https://github.com/BoShiangKe/influenceAUC
+      demo: https://boshiangke.github.io/InfluenceAUC/reference/IAUC.html
+      paper: https://doi.org/10.1080/10543406.2017.1377728
+      paper_label: JBS
+      badges:
+        - href: https://github.com/BoShiangKe/influenceAUC/actions
+          src: https://github.com/BoShiangKe/influenceAUC/workflows/R-CMD-check/badge.svg
+          alt: R-CMD-check
+        - href: https://cran.r-project.org/package=influenceAUC
+          src: https://www.r-pkg.org/badges/version/influenceAUC
+          alt: CRAN
+        - href: https://cran.r-project.org/package=influenceAUC
+          src: https://cranlogs.r-pkg.org/badges/grand-total/influenceAUC
+          alt: Downloads
+      tech: R
+
+python:
+  title: Python
+  desc: Python applications for MCP, conversational AI, and computer vision.
+  items:
+    - name: KB Bridge
+      url: https://pypi.org/project/kbbridge/
+      desc: MCP server for intelligent knowledge base search. Context-aware retrieval with DSPy-powered query understanding, multi-stage search with content boosting, and answer quality reflection.
+      github: https://github.com/egpivo/kb-bridge
+      badges:
+        - href: https://github.com/egpivo/kb-bridge/actions
+          src: https://github.com/egpivo/kb-bridge/workflows/Test/badge.svg
+          alt: Test
+        - href: https://pypi.org/project/kbbridge/
+          src: https://img.shields.io/pypi/v/kbbridge.svg?logo=pypi&label=PyPI
+          alt: PyPI
+        - href: https://pepy.tech/project/kbbridge
+          src: https://img.shields.io/pepy/dt/kbbridge
+          alt: Downloads
+      tech: Python · FastMCP · DSPy
+
+    - name: LLM Chatbot
+      url: https://pypi.org/project/llmchatbot/
+      desc: Conversational AI framework with LangChain Agent. Integrates text-to-speech and speech-to-text from Hugging Face. Build chatbots with voice translation.
+      github: https://github.com/egpivo/llmchatbot
+      badges:
+        - href: https://github.com/egpivo/llmchatbot/actions
+          src: https://github.com/egpivo/llmchatbot/workflows/CI/badge.svg
+          alt: CI
+        - href: https://pypi.org/project/llmchatbot/
+          src: https://img.shields.io/pypi/v/llmchatbot.svg?logo=pypi&label=PyPI
+          alt: PyPI
+        - href: https://pepy.tech/project/llmchatbot
+          src: https://img.shields.io/pepy/dt/llmchatbot
+          alt: Downloads
+      tech: LangChain · Hugging Face · PyTorch · FastAPI · BentoML · Gradio
+
+    - name: Athlete Number
+      url: https://github.com/egpivo/athlete-number
+      desc: Bib-number detection for race photos using YOLO + OCR. Batch pipeline with Streamlit UI for review.
+      github: https://github.com/egpivo/athlete-number
+      tech: Python · YOLO · EasyOCR · Streamlit · OpenCV
+
+blockchain:
+  title: Blockchain & Web3
+  desc: Smart contracts, deterministic ledgers, and protocol implementations.
+  items:
+    - name: Ethereum Account State
+      url: https://github.com/egpivo/ethereum-account-state
+      desc: Minimal Ethereum token with explicit state transitions and invariants. TypeScript domain model mirrors the on-chain state machine; React frontend demonstrates event-based reconstruction.
+      github: https://github.com/egpivo/ethereum-account-state
+      demo: https://egpivo.github.io/ethereum-account-state/
+      tech: Solidity · TypeScript · React · Foundry
+
+    - name: Metering Chain
+      url: https://github.com/egpivo/metering-chain
+      desc: Deterministic ledger for usage-based billing and accounting. Supports signed Consume flows, multi-operator DePIN scenarios, and delegation. Demos run against real Helium IOT data.
+      github: https://github.com/egpivo/metering-chain
+      tech: Rust
+
+    - name: Pay-As-You-Go Service Contracts
+      url: https://github.com/egpivo/payg-service-contracts
+      desc: Pay-as-you-go protocol with composable Pool primitives. Article registries and rental modules with automatic revenue sharing. Web UI demo included.
+      github: https://github.com/egpivo/payg-service-contracts
+      demo: https://egpivo.github.io/payg-service-contracts/
+      tech: Solidity · Foundry · OpenZeppelin

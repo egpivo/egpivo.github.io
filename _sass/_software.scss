@@ -1,0 +1,147 @@
+/**
+ * Software page styles
+ */
+
+.software {
+  .software-section {
+    margin-bottom: var(--spacing-3xl);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .software-section-header {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .software-section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-primary);
+  }
+
+  .software-section-desc {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .software-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .software-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: var(--spacing-xl);
+    transition: border-color var(--transition-fast);
+
+    &:hover {
+      border-color: var(--text-primary);
+    }
+  }
+
+  .software-card-body {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .software-card-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-sm) 0;
+    line-height: 1.3;
+
+    a {
+      color: var(--text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+
+      &:hover {
+        color: var(--accent-primary);
+        border-bottom-color: var(--accent-primary);
+      }
+    }
+  }
+
+  .software-card-desc {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .software-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+  }
+
+  .software-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    i {
+      margin-right: 2px;
+      opacity: 0.8;
+    }
+  }
+
+  .software-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    a {
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    img {
+      height: 20px;
+      width: auto;
+      display: block;
+      vertical-align: middle;
+    }
+  }
+
+  .software-tech {
+    font-size: 0.9em;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .software-card {
+      padding: var(--spacing-lg);
+    }
+
+    .software-card-title {
+      font-size: var(--font-size-lg);
+    }
+  }
+}

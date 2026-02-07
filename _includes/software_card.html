@@ -1,0 +1,31 @@
+{% comment %}
+  Renders a software project card. Pass item from software.yml.
+  Usage: {% include software_card.html item=section_item %}
+{% endcomment %}
+<article class="software-card">
+  <div class="software-card-body">
+    <h3 class="software-card-title"><a href="{{ include.item.url }}">{{ include.item.name }}</a></h3>
+    <p class="software-card-desc">{{ include.item.desc }}</p>
+  </div>
+  <footer class="software-card-footer">
+    <span class="software-links">
+      <i class="fab fa-github" aria-hidden="true"></i>
+      <a href="{{ include.item.github }}">GitHub</a>
+      {% if include.item.demo %}
+      · <i class="fas fa-eye" aria-hidden="true"></i>
+      <a href="{{ include.item.demo }}">Demo</a>
+      {% endif %}
+      {% if include.item.paper %}
+      · <a href="{{ include.item.paper }}">{{ include.item.paper_label }}</a>
+      {% endif %}
+    </span>
+    {% if include.item.badges %}
+    <span class="software-badges">
+      {% for badge in include.item.badges %}
+      <a href="{{ badge.href }}"><img src="{{ badge.src }}" alt="{{ badge.alt }}" height="20" loading="lazy"/></a>
+      {% endfor %}
+    </span>
+    {% endif %}
+    <span class="software-tech">{{ include.item.tech }}</span>
+  </footer>
+</article>
