@@ -49,8 +49,8 @@ r_packages:
       paper_label: Technometrics
       badges:
         - href: https://github.com/egpivo/autoFRK/actions
-          src: https://github.com/egpivo/autoFRK/workflows/R-CMD-check/badge.svg
-          alt: R-CMD-check
+          src: https://github.com/egpivo/autoFRK/workflows/R-hub/badge.svg
+          alt: R build status
         - href: https://cran.r-project.org/package=autoFRK
           src: https://www.r-pkg.org/badges/version/autoFRK
           alt: CRAN
@@ -123,8 +123,8 @@ python:
       github: https://github.com/egpivo/llmchatbot
       badges:
         - href: https://github.com/egpivo/llmchatbot/actions
-          src: https://github.com/egpivo/llmchatbot/workflows/CI/badge.svg
-          alt: CI
+          src: https://github.com/egpivo/llmchatbot/workflows/Test/badge.svg
+          alt: Test
         - href: https://pypi.org/project/llmchatbot/
           src: https://img.shields.io/pypi/v/llmchatbot.svg?logo=pypi&label=PyPI
           alt: PyPI
