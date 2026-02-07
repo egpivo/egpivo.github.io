@@ -148,12 +148,20 @@ blockchain:
       desc: Minimal Ethereum token with explicit state transitions and invariants. TypeScript domain model mirrors the on-chain state machine; React frontend demonstrates event-based reconstruction.
       github: https://github.com/egpivo/ethereum-account-state
       demo: https://egpivo.github.io/ethereum-account-state/
+      badges:
+        - href: https://github.com/egpivo/ethereum-account-state/actions
+          src: https://github.com/egpivo/ethereum-account-state/workflows/CI/badge.svg
+          alt: CI
       tech: Solidity · TypeScript · React · Foundry
 
     - name: Metering Chain
       url: https://github.com/egpivo/metering-chain
       desc: Deterministic ledger for usage-based billing and accounting. Supports signed Consume flows, multi-operator DePIN scenarios, and delegation. Demos run against real Helium IOT data.
       github: https://github.com/egpivo/metering-chain
+      badges:
+        - href: https://github.com/egpivo/metering-chain/actions
+          src: https://github.com/egpivo/metering-chain/workflows/CI/badge.svg
+          alt: CI
       tech: Rust
 
     - name: Pay-As-You-Go Service Contracts
@@ -161,4 +169,11 @@ blockchain:
       desc: Pay-as-you-go protocol with composable Pool primitives. Article registries and rental modules with automatic revenue sharing. Web UI demo included.
       github: https://github.com/egpivo/payg-service-contracts
       demo: https://egpivo.github.io/payg-service-contracts/
+      badges:
+        - href: https://github.com/egpivo/payg-service-contracts/actions/workflows/ci.yml
+          src: https://github.com/egpivo/payg-service-contracts/actions/workflows/ci.yml/badge.svg
+          alt: CI
+        - href: https://codecov.io/gh/egpivo/payg-service-contracts
+          src: https://codecov.io/gh/egpivo/payg-service-contracts/graph/badge.svg?token=Svpf1dEEyh
+          alt: codecov
       tech: Solidity · Foundry · OpenZeppelin
