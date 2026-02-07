@@ -1,0 +1,13 @@
+MetersOutput {
+    address: "0x8e2c6bc712af09b0856208fdf5da7176ba54cec4c8eec877d1cefee858851de0",
+    meters: [
+        MeterOutput {
+            owner: "0x8e2c6bc712af09b0856208fdf5da7176ba54cec4c8eec877d1cefee858851de0",
+            service_id: "helium-rewards",
+            total_units: 2212523580987,
+            total_spent: 2212523580987,
+            active: true,
+            locked_deposit: 1000,
+        },
+    ],
+}

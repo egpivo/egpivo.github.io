@@ -1,0 +1,48 @@
+=== Phase 3 demo: Who can act on behalf of another? ===
+
+Authority: 0xdde6ebefd4e19a5250c59f9009d19f823e887c807dc5c5634746254c4fd6f478
+Owner (account): 0x73d9e3da80b7753441addec7422907ca31c5fe69ac86bedc05352c734df4950e
+Delegate (e.g. hotspot): 0xf3def28234683e973f5e95be6171a46dfc9eea73e3b065c75f37494939c20998
+
+--- Setup: Mint and OpenMeter (owner) ---
+✓ Transaction applied successfully
+✓ Transaction applied successfully
+
+--- Scene 1 & 2: Delegate signs Consume without delegation proof (expected reject) ---
+(signer = delegate != owner, no proof; validation must reject)
+Error: Delegated Consume requires payload_version=2
+Expected: rejected.
+
+--- Scene 3: Owner issues delegation proof, delegate signs same Consume (expected accept) ---
+Created signed delegation proof: 254 bytes
+Proof written to proof.bin
+✓ Transaction applied successfully
+  Cost: 20
+Expected: accepted.
+AccountOutput {
+    address: "0x73d9e3da80b7753441addec7422907ca31c5fe69ac86bedc05352c734df4950e",
+    balance: 880,
+    nonce: 2,
+}
+MetersOutput {
+    address: "0x73d9e3da80b7753441addec7422907ca31c5fe69ac86bedc05352c734df4950e",
+    meters: [
+        MeterOutput {
+            owner: "0x73d9e3da80b7753441addec7422907ca31c5fe69ac86bedc05352c734df4950e",
+            service_id: "storage",
+            total_units: 10,
+            total_spent: 20,
+            active: true,
+            locked_deposit: 100,
+        },
+    ],
+}
+
+--- Scene 4: Owner revokes capability, delegate sends Consume again with same proof (expected DelegationRevoked) ---
+Wrote signed RevokeDelegation to revoke.json
+✓ Transaction applied successfully
+RevokeDelegation applied.
+Error: Delegation revoked
+Expected: DelegationRevoked.
+
+=== Phase 3 demo scenes complete ===
