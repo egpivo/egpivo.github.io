@@ -161,7 +161,7 @@ This isn't Helium-only logic. Same authorization and accounting flow works for D
 | [2](/2026/02/02/metering-chain-phase2-deterministic-auth.html) | Who can submit transactions? |
 | 3 | Who can **act on behalf of another**? |
 
-Phase 3 v1 ships as a deterministic delegation layer — UCAN-style capability verification in a protocol-grade state machine. We scoped it intentionally: validation and replay first, oracle and attestation later. Trust in actors gets replaced by verifiable constraints on actions.
+Phase 3 v1 ships as a deterministic delegation layer: UCAN-style capability verification in a protocol-grade state machine. We scoped it intentionally: validation and replay first, oracle and attestation later. Trust in actors gets replaced by verifiable constraints on actions.
 
 Repo: [egpivo/metering-chain](https://github.com/egpivo/metering-chain). Run demos from repo root: [examples/phase3_demo/](https://github.com/egpivo/metering-chain/tree/main/examples/phase3_demo) (toy), [examples/phase3_dune_demo/](https://github.com/egpivo/metering-chain/tree/main/examples/phase3_dune_demo) (real Helium IOT).
 
