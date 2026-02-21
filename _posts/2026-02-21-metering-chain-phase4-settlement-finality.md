@@ -10,7 +10,7 @@ Phase 4 is where money movement finally stops being "we think this is right" and
 <div style="text-align:center; margin: 2rem 0;">
   <img src="{{ site.baseurl }}/assets/2026-02-21-metering-chain-phase4-settlement-finality/ezekiel-see-GnBjJyh0cz4-unsplash.jpg"
        alt="Digital multimeter: metering starts with measurement"
-       style="max-width:90%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+       style="max-width:55%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
     Metering starts with measurement, but Phase 4 is about proving payout decisions with replayable evidence.
   </div>
