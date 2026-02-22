@@ -156,7 +156,7 @@ blockchain:
 
     - name: Metering Chain
       url: https://github.com/egpivo/metering-chain
-      desc: Deterministic ledger for usage-based billing and accounting. Supports signed Consume flows, multi-operator DePIN scenarios, and delegation. Demos run against real Helium IOT data.
+      desc: Deterministic Rust engine for usage-based billing and accounting. Supports signed transactions, delegation, and multi-operator DePIN workflows. Demos use real Helium IoT data.
       github: https://github.com/egpivo/metering-chain
       demo: https://egpivo.github.io/metering-chain
       badges:
