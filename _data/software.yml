@@ -163,7 +163,7 @@ blockchain:
         - href: https://github.com/egpivo/metering-chain/actions
           src: https://github.com/egpivo/metering-chain/workflows/CI/badge.svg
           alt: CI
-      tech: Rust
+      tech: Rust · TypeScript · React · Vite
 
     - name: Pay-As-You-Go Service Contracts
       url: https://github.com/egpivo/payg-service-contracts
