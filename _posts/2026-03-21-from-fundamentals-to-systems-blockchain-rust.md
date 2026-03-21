@@ -125,8 +125,9 @@ The layered mental model from Chapter I also helped me:
 application -> execution -> semantic rules -> propagation -> consensus.
 Following that stack made protocol reading easier for me than treating "blockchain" as one giant black box.
 
+{% assign protocol_stack_svg = "/assets/2026-03-21-beyond-the-boss-rust-blockchain-trust/protocol-stack-flow.svg" | relative_url %}
 <figure class="post-figure" style="text-align:center;">
-  <img src="{{ '/assets/2026-03-21-beyond-the-boss-rust-blockchain-trust/protocol-stack-flow.svg' | relative_url }}" alt="Diagram: Application, Execution, Semantic rules, Propagation, Consensus in a left-to-right pipeline" width="920" height="118" style="max-width:100%; height:auto;" />
+  <img src="{{ protocol_stack_svg }}" alt="Diagram: Application, Execution, Semantic rules, Propagation, Consensus in a left-to-right pipeline" width="920" height="118" style="max-width:100%; height:auto;" />
   <figcaption><em>Conceptual pipeline from app logic to network agreement (after <cite>Beginning Blockchain</cite>, Chapter I framing).</em></figcaption>
 </figure>
 
