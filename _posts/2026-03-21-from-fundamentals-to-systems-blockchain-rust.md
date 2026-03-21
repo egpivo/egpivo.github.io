@@ -33,7 +33,7 @@ I am also learning Rust in parallel because secure protocol ideas are useless if
 ## 0) What Clicked First: Transaction vs. Settlement
 
 A point from Chapter I changed how I read the rest:
-in blockchain systems, transaction execution and settlement are more tightly coupled on-chain, though practical finality still depends on the consensus model.
+> In blockchain systems, transaction execution and settlement are more tightly coupled on-chain, though practical finality still depends on the consensus model.
 
 In conventional finance, trade execution and final settlement are separate steps, with intermediaries and reconciliation in between.
 In blockchain, state transition and settlement happen as one committed event on a shared ledger.
@@ -124,6 +124,11 @@ But they cannot enforce full UTXO set validity like full nodes do.
 The layered mental model from Chapter I also helped me:
 application -> execution -> semantic rules -> propagation -> consensus.
 Following that stack made protocol reading easier for me than treating "blockchain" as one giant black box.
+
+<figure class="post-figure" style="text-align:center;">
+  <img src="{{ '/assets/2026-03-21-beyond-the-boss-rust-blockchain-trust/protocol-stack-flow.svg' | relative_url }}" alt="Diagram: Application, Execution, Semantic rules, Propagation, Consensus in a left-to-right pipeline" width="920" height="118" style="max-width:100%; height:auto;" />
+  <figcaption><em>Conceptual pipeline from app logic to network agreement (after <cite>Beginning Blockchain</cite>, Chapter I framing).</em></figcaption>
+</figure>
 
 <figure style="text-align:center;">
   <img src="/assets/2026-03-21-beyond-the-boss-rust-blockchain-trust/colored_block2.jpg" alt="Triangular block hierarchy illustrating a Merkle-tree-like structure" style="max-width:90%; height:auto; border-radius:8px;" />
