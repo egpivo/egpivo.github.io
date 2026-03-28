@@ -112,7 +112,7 @@ The usual test buckets still matter. They just come after this mapping, not befo
 
 ### Guarantee -> Failure -> Test Mapping
 
-Sources: `docs/invariant_test_matrix.md`, `docs/version_compatibility_matrix.md`
+Sources: [invariant_test_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/invariant_test_matrix.md), [version_compatibility_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/version_compatibility_matrix.md)
 Each guarantee below protects a business expectation, not just a technical property.
 
 | Guarantee | Failure to prevent | Test/contract surface |
@@ -159,7 +159,7 @@ When failures affect payout, delegated action, and dispute handling, fail-closed
 Compatibility here is not best-effort parsing. It is explicit acceptance or explicit deterministic rejection.
 
 > **Compatibility / Fail-Closed Policy (condensed)**  
-> Source: `docs/version_compatibility_matrix.md`  
+> Source: [version_compatibility_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/version_compatibility_matrix.md)  
 > - No silent reinterpretation of persisted artifacts.  
 > - Explicit accept or explicit deterministic reject (no "best-effort" parse).  
 > - Schema/version mismatches must return stable machine-readable errors (for example: `UNSUPPORTED_SCHEMA_VERSION`, `REPLAY_PROTOCOL_MISMATCH`, `STATE_ERROR`).  
@@ -225,7 +225,7 @@ Performance coverage also expanded beyond the backend. Frontend snapshot mode no
 
 ### Perf baseline snapshot (first pass)
 
-Source: `docs/benchmark_baseline.md`
+Source: [benchmark_baseline.md](https://github.com/egpivo/metering-chain/blob/main/docs/benchmark_baseline.md)
 
 | Dataset | Replay ms (median) | Recompute ms (median) | Gate mode |
 |---|---:|---:|---|
@@ -237,7 +237,7 @@ Source: `docs/benchmark_baseline.md`
   <a href="/assets/2026-03-27-metering-chain-qa-business-logic/perf_latency.svg" target="_blank" rel="noopener noreferrer">
     <img src="/assets/2026-03-27-metering-chain-qa-business-logic/perf_latency.svg" alt="Perf latency medians chart comparing replay and recompute across small, medium, and large datasets" style="max-width:100%; height:auto;" />
   </a>
-  <figcaption><em>Replay and recompute latency medians from the first-pass variance review.</em> <strong>Source:</strong> `docs/benchmark_baseline.md`.</figcaption>
+  <figcaption><em>Replay and recompute latency medians from the first-pass variance review.</em> <strong>Source:</strong> <a href="https://github.com/egpivo/metering-chain/blob/main/docs/benchmark_baseline.md">benchmark_baseline.md</a>.</figcaption>
 </figure>
 
 ## 8) Closing
@@ -251,10 +251,10 @@ That is why Metering Chain treats replay safety, fail-closed compatibility, and 
 ## References
 
 - Metering Chain source repository: [github.com/egpivo/metering-chain](https://github.com/egpivo/metering-chain)
-- Phase 1 (Deterministic Billing): `/2026/01/24/metering-chain-deterministic-billing/`
-- Phase 2 (Deterministic Auth): `/2026/02/02/metering-chain-phase2-deterministic-auth/`
-- Phase 3 (Delegation): `/2026/02/07/metering-chain-phase3-delegation/`
-- Phase 4 (Settlement Finality): `/2026/02/21/metering-chain-phase4-settlement-finality/`
+- [Phase 1 (Deterministic Billing)]({{ site.baseurl }}/2026/01/24/metering-chain-deterministic-billing.html)
+- [Phase 2 (Deterministic Auth)]({{ site.baseurl }}/2026/02/02/metering-chain-phase2-deterministic-auth.html)
+- [Phase 3 (Delegation)]({{ site.baseurl }}/2026/02/07/metering-chain-phase3-delegation.html)
+- [Phase 4 (Settlement Finality)]({{ site.baseurl }}/2026/02/21/metering-chain-phase4-settlement-finality.html)
 - QA matrices: [invariant_test_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/invariant_test_matrix.md), [version_compatibility_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/version_compatibility_matrix.md)
 - Perf baseline: [benchmark_baseline.md](https://github.com/egpivo/metering-chain/blob/main/docs/benchmark_baseline.md)
 - Hivemapper context: [PANews coverage](https://www.panewslab.com/en/articles/5kc6zhxq)
