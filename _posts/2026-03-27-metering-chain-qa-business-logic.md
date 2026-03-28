@@ -250,10 +250,11 @@ That is why Metering Chain treats replay safety, fail-closed compatibility, and 
 
 ## References
 
+- Metering Chain source repository: [github.com/egpivo/metering-chain](https://github.com/egpivo/metering-chain)
 - Phase 1 (Deterministic Billing): `/2026/01/24/metering-chain-deterministic-billing/`
 - Phase 2 (Deterministic Auth): `/2026/02/02/metering-chain-phase2-deterministic-auth/`
 - Phase 3 (Delegation): `/2026/02/07/metering-chain-phase3-delegation/`
 - Phase 4 (Settlement Finality): `/2026/02/21/metering-chain-phase4-settlement-finality/`
-- Metering Chain QA matrices: `tmp_repo/metering-chain/docs/invariant_test_matrix.md`, `tmp_repo/metering-chain/docs/version_compatibility_matrix.md`
-- Metering Chain perf baseline: `tmp_repo/metering-chain/docs/benchmark_baseline.md`
+- QA matrices: [invariant_test_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/invariant_test_matrix.md), [version_compatibility_matrix.md](https://github.com/egpivo/metering-chain/blob/main/docs/version_compatibility_matrix.md)
+- Perf baseline: [benchmark_baseline.md](https://github.com/egpivo/metering-chain/blob/main/docs/benchmark_baseline.md)
 - Hivemapper context: [PANews coverage](https://www.panewslab.com/en/articles/5kc6zhxq)
