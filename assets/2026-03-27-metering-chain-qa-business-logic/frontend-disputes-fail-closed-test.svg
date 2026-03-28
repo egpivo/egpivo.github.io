@@ -1,0 +1,108 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1480" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8ED"/>
+      <stop offset="1" stop-color="#F3F7FB"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg)"/>
+
+  <text x="120" y="110" fill="#162033" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700">
+    Frontend Test Surface: DisputesPage Fail-Closed UI
+  </text>
+  <text x="120" y="150" fill="#52607A" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22">
+    A detail-fetch failure should not collapse into an innocent-looking empty state.
+  </text>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="205" width="650" height="645" rx="28" fill="#FFFDF9"/>
+    <rect x="840" y="205" width="650" height="645" rx="28" fill="#FDFEFF"/>
+  </g>
+
+  <text x="145" y="255" fill="#B42318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700">
+    Before: misleading fallback
+  </text>
+  <text x="875" y="255" fill="#0A6C54" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700">
+    After: deterministic error surface
+  </text>
+
+  <rect x="145" y="285" width="580" height="515" rx="22" fill="#FFFFFF" stroke="#E6D8C7" stroke-width="2"/>
+  <rect x="875" y="285" width="580" height="515" rx="22" fill="#FFFFFF" stroke="#D7E3EF" stroke-width="2"/>
+
+  <circle cx="175" cy="316" r="7" fill="#F97066"/>
+  <circle cx="198" cy="316" r="7" fill="#F79009"/>
+  <circle cx="221" cy="316" r="7" fill="#12B76A"/>
+  <circle cx="905" cy="316" r="7" fill="#F97066"/>
+  <circle cx="928" cy="316" r="7" fill="#F79009"/>
+  <circle cx="951" cy="316" r="7" fill="#12B76A"/>
+
+  <text x="255" y="323" fill="#6B7280" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16">
+    /disputes
+  </text>
+  <text x="985" y="323" fill="#6B7280" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16">
+    /disputes
+  </text>
+
+  <text x="180" y="385" fill="#162033" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="700">
+    Disputes
+  </text>
+  <text x="910" y="385" fill="#162033" font-family="'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="700">
+    Disputes
+  </text>
+
+  <rect x="182" y="428" width="505" height="86" rx="18" fill="#FFF4ED" stroke="#F04438" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="205" y="462" fill="#B42318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700">
+    detail fetch failed
+  </text>
+  <text x="205" y="490" fill="#7A271A" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17">
+    Promise rejected, but UI falls through to empty-state rendering.
+  </text>
+
+  <rect x="912" y="428" width="505" height="96" rx="18" fill="#FEF3F2" stroke="#F04438" stroke-width="2"/>
+  <text x="935" y="463" fill="#B42318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="700">
+    DISPUTE_LOOKUP_FAILED
+  </text>
+  <text x="935" y="493" fill="#7A271A" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17">
+    detail query failed
+  </text>
+  <text x="935" y="518" fill="#7A271A" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15">
+    Suggested action: retry dispute query
+  </text>
+
+  <rect x="182" y="560" width="505" height="184" rx="18" fill="#F8FAFC" stroke="#D0D5DD" stroke-width="2"/>
+  <text x="205" y="608" fill="#475467" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="700">
+    No open disputes
+  </text>
+  <text x="205" y="646" fill="#667085" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18">
+    Looks harmless, but it hides a real lookup failure.
+  </text>
+  <text x="205" y="690" fill="#98A2B3" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16">
+    Product risk: operator sees "empty" instead of "error".
+  </text>
+
+  <rect x="912" y="560" width="505" height="184" rx="18" fill="#F8FAFC" stroke="#D0D5DD" stroke-width="2"/>
+  <text x="935" y="608" fill="#475467" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="700">
+    Deterministic failure shown in UI
+  </text>
+  <text x="935" y="646" fill="#667085" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18">
+    The page no longer pretends the dispute list is empty.
+  </text>
+  <text x="935" y="690" fill="#98A2B3" font-family="'Helvetica Neue', Arial, sans-serif" font-size="16">
+    Product win: stable operator-facing signal, no silent fallback.
+  </text>
+
+  <path d="M720 470C785 470 792 470 850 470" stroke="#F04438" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <path d="M820 451L852 470L820 489" stroke="#F04438" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="716" y="438" fill="#B42318" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700">
+    Fix the failure contract
+  </text>
+
+  <rect x="110" y="875" width="1380" height="58" rx="16" fill="#162033"/>
+  <text x="145" y="912" fill="#F8FAFC" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20">
+    Test intent: when dispute detail fetch fails, render a stable ErrorBanner instead of collapsing into a misleading empty state.
+  </text>
+</svg>

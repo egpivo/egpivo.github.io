@@ -117,11 +117,11 @@ Each guarantee below protects a business expectation, not just a technical prope
 
 | Guarantee | Failure to prevent | Test/contract surface |
 |---|---|---|
-| Authorization + delegation correctness | Wrong actor can submit/claim | `tests/security_abuse.rs`, `tests/cli_smoke.rs` |
-| Replay/nonce discipline | Duplicate economic events counted twice | `tests/property_invariants.rs` |
-| Deterministic accounting/replay | Same history yields different payout meaning | `tests/property_invariants.rs`, `tests/replay_recovery.rs` |
-| Settlement/dispute semantics | Invalid settlement appears final | Recovery/compatibility + interface flow tests |
-| Version/interface compatibility | Upgrades silently reinterpret artifacts | `tests/compatibility.rs`, interface contract tests |
+| Authorization + delegation correctness | Wrong actor can submit/claim | [`tests/security_abuse.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/security_abuse.rs), [`tests/cli_smoke.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/cli_smoke.rs) |
+| Replay/nonce discipline | Duplicate economic events counted twice | [`tests/property_invariants.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/property_invariants.rs) |
+| Deterministic accounting/replay | Same history yields different payout meaning | [`tests/property_invariants.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/property_invariants.rs), [`tests/replay_recovery.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/replay_recovery.rs) |
+| Settlement/dispute semantics | Invalid settlement appears final | [`tests/replay_recovery.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/replay_recovery.rs), [`tests/compatibility.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/compatibility.rs), [frontend page tests](https://github.com/egpivo/metering-chain/tree/main/frontend/src/pages) |
+| Version/interface compatibility | Upgrades silently reinterpret artifacts | [`tests/compatibility.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/compatibility.rs), [adapter contract tests](https://github.com/egpivo/metering-chain/tree/main/frontend/src/adapters) |
 
 ## 5) What We Tested First
 
@@ -140,15 +140,17 @@ Implemented test layers (current):
 
 | Layer | Business risk protected | Representative coverage |
 |---|---|---|
-| Security / abuse | Forged or misbound actor actions | `security_abuse.rs`, `cli_smoke.rs` |
-| Property / invariants | Drift in balances, meter totals, fee semantics | `property_invariants.rs` |
-| Recovery + compatibility | Corrupted artifacts or version mismatch accepted | `replay_recovery.rs`, `compatibility.rs` |
-| Interface contracts | CLI/frontend behavior silently diverges from engine guarantees | `frontend/src/pages/*.test.tsx`, adapters, `cli_smoke.rs` |
-| Perf visibility | Regressions that erode operator confidence over time | `perf_smoke.rs`, adapter perf tests |
+| Security / abuse | Forged or misbound actor actions | [`tests/security_abuse.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/security_abuse.rs), [`tests/cli_smoke.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/cli_smoke.rs) |
+| Property / invariants | Drift in balances, meter totals, fee semantics | [`tests/property_invariants.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/property_invariants.rs) |
+| Recovery + compatibility | Corrupted artifacts or version mismatch accepted | [`tests/replay_recovery.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/replay_recovery.rs), [`tests/compatibility.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/compatibility.rs) |
+| Interface contracts | CLI/frontend behavior silently diverges from engine guarantees | [page tests](https://github.com/egpivo/metering-chain/tree/main/frontend/src/pages), [adapters](https://github.com/egpivo/metering-chain/tree/main/frontend/src/adapters), [`tests/cli_smoke.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/cli_smoke.rs) |
+| Perf visibility | Regressions that erode operator confidence over time | [`tests/perf_smoke.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/perf_smoke.rs), [`snapshot-frontend-adapter.perf.test.ts`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/adapters/snapshot-frontend-adapter.perf.test.ts) |
 
 So the first wave of QA focused on payout correctness, replay trust, and operator-facing stability: stopping duplicate claims, preserving replay meaning, and making version boundaries visible before they turned into payout bugs.
 
-The work also moved below the page layer. Snapshot adapters now have explicit contract tests for non-200 responses, malformed payloads, and anomaly mapping such as `disputed` and `replay_gap`.
+The work also moved below the page layer. Snapshot adapters now have explicit contract tests for non-200 responses, malformed payloads, and anomaly mapping such as `disputed` and `replay_gap` ([`metering-snapshot-adapter.contract.test.ts`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/adapters/metering-snapshot-adapter.contract.test.ts)).
+
+An operator-facing demo of the same flows: [egpivo.github.io/metering-chain](https://egpivo.github.io/metering-chain).
 
 ## 6) Why Fail-Closed Matters in DePIN
 
@@ -175,15 +177,15 @@ Concrete fail-closed examples from current tests:
 | Snapshot cursor > tx log tip | `STATE_ERROR` | Inconsistent replay basis for payout rejected |
 | Stale nonce | `Invalid transaction: Nonce mismatch` | Duplicate/reordered economic action blocked |
 
-Evidence:
-- `security_abuse.rs` -> `test_security_abuse_tampered_signed_payload_rejected`
-- `security_abuse.rs` -> `test_security_abuse_wrong_signer_audience_binding_rejected`
-- `replay_recovery.rs` -> `test_recovery_mismatched_snapshot_cursor_vs_log_returns_state_error`
-- `cli_smoke.rs` -> `test_cli_smoke_failure_stale_nonce_rejected`
+Evidence (open file, search for the test name):
+- [`tests/security_abuse.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/security_abuse.rs) — `test_security_abuse_tampered_signed_payload_rejected`
+- [`tests/security_abuse.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/security_abuse.rs) — `test_security_abuse_wrong_signer_audience_binding_rejected`
+- [`tests/replay_recovery.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/replay_recovery.rs) — `test_recovery_mismatched_snapshot_cursor_vs_log_returns_state_error`
+- [`tests/cli_smoke.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/cli_smoke.rs) — `test_cli_smoke_failure_stale_nonce_rejected`
 
 Across all four cases, the contract is the same: explicit deterministic reject, stable operator-facing signal, and no silent payout drift.
 
-Sample test code (trimmed) showing compatibility boundary behavior:
+Sample test code (trimmed) showing compatibility boundary behavior ([full file: `tests/compatibility.rs`](https://github.com/egpivo/metering-chain/blob/main/tests/compatibility.rs)):
 Legacy fixtures are still accepted within explicit compatibility boundaries; the critical guard is that unsupported schema versions must reject deterministically with stable error codes.
 
 ```rust
@@ -199,8 +201,8 @@ fn test_compat_unsupported_schema_error_code_stable() {
 
 Recent product-facing frontend defects fixed in this cycle:
 
-- `DisputesPage` detail-fetch failure path previously degraded into `No open disputes` plus unhandled rejection; now it resolves to deterministic `ErrorBanner` behavior.
-- `SettlementDetailPage` evidence error-object path now degrades safely: no crash, no invalid "Evidence & Replay" rendering, while integrity status remains consistent.
+- [`DisputesPage.tsx`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/pages/DisputesPage.tsx) / [`DisputesPage.test.tsx`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/pages/DisputesPage.test.tsx): detail-fetch failure previously degraded into `No open disputes` plus unhandled rejection; now it resolves to deterministic `ErrorBanner` behavior.
+- [`SettlementDetailPage.tsx`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/pages/SettlementDetailPage.tsx) / [`SettlementDetailPage.test.tsx`](https://github.com/egpivo/metering-chain/blob/main/frontend/src/pages/SettlementDetailPage.test.tsx): evidence error-object path now degrades safely (no crash, no invalid "Evidence & Replay" rendering; integrity status stays consistent).
 
 One useful outcome of this cycle was that the `DisputesPage` tests found a real product bug rather than just adding coverage. A detail-fetch failure could collapse into a misleading `No open disputes` state plus an unhandled rejection. The fix turned that path into a deterministic error surface.
 
@@ -209,6 +211,22 @@ The same pattern showed up in `SettlementDetailPage`: not-found and evidence err
 In a dispute-heavy system, that is not cosmetic. It changes how operators interpret whether money is blocked, payable, or contested.
 
 Frontend contract tests also assert deterministic UI degradation paths (for example, dispute detail fetch failure must surface a stable error banner instead of collapsing into misleading fallback state).
+
+Code-wise: while `error` is set, the disputes table and empty-state copy stay off-screen; `ScreenshotDisputesDetailErrorAdapter` plus `/demo/screenshot/disputes-detail-error` mirror the test setup for stable screenshots.
+
+<figure class="post-figure" style="text-align:center;">
+  <a href="/assets/2026-03-27-metering-chain-qa-business-logic/frontend-disputes-fail-closed-test.svg" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/2026-03-27-metering-chain-qa-business-logic/frontend-disputes-fail-closed-test.svg" alt="Before and after diagram: DisputesPage misleading empty state versus deterministic error surface" style="max-width:100%; height:auto;" />
+  </a>
+  <figcaption><em>DisputesPage fail-closed contract: before, a detail-fetch failure could read like an innocent empty state; after, the UI commits to a deterministic error surface.</em> <strong>Source:</strong> Author diagram.</figcaption>
+</figure>
+
+<figure class="post-figure" style="text-align:center;">
+  <a href="/assets/2026-03-27-metering-chain-qa-business-logic/frontend-disputes-fail-closed-ui.png" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/2026-03-27-metering-chain-qa-business-logic/frontend-disputes-fail-closed-ui.png" alt="Metering Chain Disputes page showing DISPUTE_LOOKUP_FAILED error banner with no table or No open disputes below" style="max-width:100%; height:auto;" />
+  </a>
+  <figcaption><em>Screenshot route <code>/demo/screenshot/disputes-detail-error</code>: only the error banner (<code>DISPUTE_LOOKUP_FAILED</code>)—no table, no misleading empty copy.</em> <strong>Source:</strong> Author capture from the demo app.</figcaption>
+</figure>
 
 ## 7) What Still Remains
 
@@ -251,6 +269,7 @@ That is why Metering Chain treats replay safety, fail-closed compatibility, and 
 ## References
 
 - Metering Chain source repository: [github.com/egpivo/metering-chain](https://github.com/egpivo/metering-chain)
+- Operator demo (browser UI): [egpivo.github.io/metering-chain](https://egpivo.github.io/metering-chain)
 - [Phase 1 (Deterministic Billing)]({{ site.baseurl }}/2026/01/24/metering-chain-deterministic-billing.html)
 - [Phase 2 (Deterministic Auth)]({{ site.baseurl }}/2026/02/02/metering-chain-phase2-deterministic-auth.html)
 - [Phase 3 (Delegation)]({{ site.baseurl }}/2026/02/07/metering-chain-phase3-delegation.html)

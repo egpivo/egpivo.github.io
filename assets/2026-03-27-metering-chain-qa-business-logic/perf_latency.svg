@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="240" viewBox="0 0 520 240">
-<style>text{font-family:monospace;font-size:12px;fill:#222}.label{font-size:11px}.title{font-size:14px;font-weight:bold}</style>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="260" viewBox="0 0 520 260">
+<style>
+  text{font-family:sans-serif;font-size:12px;fill:#222}
+  .label{font-size:11px}
+  .title{font-size:14px;font-weight:bold}
+</style>
 <text class="title" x="20" y="18">Perf latency medians (ms)</text>
 <line x1="60" y1="20" x2="60" y2="210" stroke="#999"/>
 <line x1="60" y1="210" x2="500" y2="210" stroke="#999"/>
+<!-- Bars generated from baseline medians (pixel heights for layout) -->
 <rect x="107.3" y="210.0" width="24" height="0.0" fill="#2F6BFF"/>
 <rect x="135.3" y="194.2" width="24" height="15.8" fill="#F26B38"/>
 <text class="label" x="123.3" y="230" text-anchor="middle">Small</text>
@@ -12,8 +17,11 @@
 <rect x="400.7" y="130.8" width="24" height="79.2" fill="#2F6BFF"/>
 <rect x="428.7" y="20.0" width="24" height="190.0" fill="#F26B38"/>
 <text class="label" x="416.7" y="230" text-anchor="middle">Large</text>
-<rect x="350" y="28" width="12" height="12" fill="#2F6BFF"/>
-<text x="370" y="38">replay_ms</text>
-<rect x="430" y="28" width="12" height="12" fill="#F26B38"/>
-<text x="450" y="38">recompute_ms</text>
+<!-- Legend: vertical stack so labels never overlap -->
+<g transform="translate(312, 6)">
+  <rect x="0" y="0" width="12" height="12" fill="#2F6BFF"/>
+  <text x="18" y="11">replay_ms</text>
+  <rect x="0" y="20" width="12" height="12" fill="#F26B38"/>
+  <text x="18" y="31">recompute_ms</text>
+</g>
 </svg>
