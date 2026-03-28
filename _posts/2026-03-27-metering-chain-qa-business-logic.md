@@ -9,7 +9,7 @@ This article is about testing the failure modes that can quietly break those gua
 
 In DePIN, those failures are not abstract correctness issues. They change payout, delegated action, dispute cost, and operator trust.
 
-A useful reference point is a product like Hivemapper: contributors submit road data, downstream systems turn it into reward-relevant outputs, and payout depends on how that contribution is interpreted, deduplicated, and preserved across product versions ([PANews coverage](https://www.panewslab.com/en/articles/5kc6zhxq)). In that kind of system, QA is not only about whether a code path runs. It is about making sure the same contribution is not counted twice, mislabeled, or reinterpreted after an upgrade.
+A useful reference point is a product like [Hivemapper](https://hivemapper.com/): contributors submit road data, downstream systems turn it into reward-relevant outputs, and payout depends on how that contribution is interpreted, deduplicated, and preserved across product versions ([PANews coverage](https://www.panewslab.com/en/articles/5kc6zhxq)). In that kind of system, QA is not only about whether a code path runs. It is about making sure the same contribution is not counted twice, mislabeled, or reinterpreted after an upgrade.
 
 That pattern is broader than Hivemapper. The same problem shows up in DePIN systems for wireless coverage, map data, and compute supply.
 
