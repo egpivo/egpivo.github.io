@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .bg { fill: #070d1f; }
+      .title { fill: #f4f8ff; font: 700 46px sans-serif; }
+      .subtitle { fill: #c4d2eb; font: 500 25px sans-serif; }
+      .box { fill: #101a36; stroke: #3d5286; stroke-width: 2.5; rx: 16; }
+      .step { fill: #aecdff; font: 700 24px sans-serif; }
+      .risk { fill: #ffb3b3; font: 600 18px sans-serif; }
+      .guard { fill: #b6f0c4; font: 600 18px sans-serif; }
+      .arrow { stroke: #6f8fd1; stroke-width: 4; fill: none; marker-end: url(#m); }
+      .footer { fill: #b2c0da; font: 500 19px sans-serif; }
+    </style>
+    <marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f8fd1" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="980" />
+  <text class="title" x="56" y="72">DePIN Contribution-to-Payout Risk Map</text>
+  <text class="subtitle" x="56" y="112">From contribution logs to payout: failure modes and guarantees that keep economic meaning stable.</text>
+
+  <rect class="box" x="32" y="160" width="288" height="300" />
+  <text class="step" x="50" y="198">1) Contribution Log</text>
+  <text class="risk" x="50" y="242">Risk: malformed or replayed</text>
+  <text class="risk" x="50" y="268">usage treated as new</text>
+  <text class="guard" x="50" y="322">Guarantee: deterministic replay</text>
+  <text class="guard" x="50" y="348">same history, same meaning</text>
+  <text class="guard" x="50" y="404">Outcome: no payout drift</text>
+
+  <rect class="box" x="336" y="160" width="288" height="300" />
+  <text class="step" x="354" y="198">2) Auth / Delegation</text>
+  <text class="risk" x="354" y="242">Risk: wrong actor claims</text>
+  <text class="risk" x="354" y="268">or scope is misbound</text>
+  <text class="guard" x="354" y="322">Guarantee: signer + delegation</text>
+  <text class="guard" x="354" y="348">binding and replay discipline</text>
+  <text class="guard" x="354" y="404">Outcome: only valid claimants act</text>
+
+  <rect class="box" x="640" y="160" width="288" height="300" />
+  <text class="step" x="658" y="198">3) Replay / Dedup</text>
+  <text class="risk" x="658" y="242">Risk: duplicate contribution</text>
+  <text class="risk" x="658" y="268">counted twice</text>
+  <text class="guard" x="658" y="322">Guarantee: nonce monotonicity</text>
+  <text class="guard" x="658" y="348">and duplicate rejection</text>
+  <text class="guard" x="658" y="404">Outcome: no double charge/payout</text>
+
+  <rect class="box" x="944" y="160" width="288" height="300" />
+  <text class="step" x="962" y="198">4) Accounting</text>
+  <text class="risk" x="962" y="242">Risk: silent balance/fee drift</text>
+  <text class="risk" x="962" y="268">behind successful status</text>
+  <text class="guard" x="962" y="322">Guarantee: invariants for</text>
+  <text class="guard" x="962" y="348">value conservation</text>
+  <text class="guard" x="962" y="404">Outcome: stable economic semantics</text>
+
+  <rect class="box" x="1248" y="160" width="320" height="300" />
+  <text class="step" x="1266" y="198">5) Settlement / Dispute</text>
+  <text class="risk" x="1266" y="242">Risk: invalid settlement</text>
+  <text class="risk" x="1266" y="268">appears final</text>
+  <text class="guard" x="1266" y="322">Guarantee: settlement uniqueness,</text>
+  <text class="guard" x="1266" y="348">dispute gates, fail-closed checks</text>
+  <text class="guard" x="1266" y="404">Outcome: payout trust preserved</text>
+
+  <line class="arrow" x1="320" y1="305" x2="336" y2="305" />
+  <line class="arrow" x1="624" y1="305" x2="640" y2="305" />
+  <line class="arrow" x1="928" y1="305" x2="944" y2="305" />
+  <line class="arrow" x1="1232" y1="305" x2="1248" y2="305" />
+
+  <rect class="box" x="32" y="510" width="1536" height="350" />
+  <text class="step" x="56" y="552">6) Version Handoff and Artifact Compatibility</text>
+  <text class="risk" x="56" y="604">Risk: old artifacts are quietly reinterpreted after upgrades, creating conflicting payout stories across operators.</text>
+  <text class="guard" x="56" y="658">Guarantee: explicit compatibility boundary. Either accepted under known schema/protocol, or deterministically rejected with stable error codes.</text>
+  <text class="guard" x="56" y="712">Fail-closed principle: compatibility is not best-effort parsing; it is explicit acceptance or explicit deterministic rejection.</text>
+  <text class="footer" x="56" y="790">Pattern applies across DePIN classes (map data, wireless coverage, compute resources), not only one product.</text>
+</svg>

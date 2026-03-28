@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="220" viewBox="0 0 520 220">
+<style>text{font-family:monospace;font-size:12px;fill:#222}.label{font-size:11px}.title{font-size:14px;font-weight:bold}</style>
+<text class="title" x="20" y="18">Replay throughput medians (tx/s)</text>
+<line x1="60" y1="20" x2="60" y2="190" stroke="#999"/>
+<line x1="60" y1="190" x2="500" y2="190" stroke="#999"/>
+<rect x="114.3" y="57.3" width="38" height="132.7" fill="#1E9E63"/>
+<text class="label" x="133.3" y="210" text-anchor="middle">Small</text>
+<rect x="261.0" y="23.7" width="38" height="166.3" fill="#1E9E63"/>
+<text class="label" x="280.0" y="210" text-anchor="middle">Medium</text>
+<rect x="407.7" y="20.0" width="38" height="170.0" fill="#1E9E63"/>
+<text class="label" x="426.7" y="210" text-anchor="middle">Large</text>
+</svg>

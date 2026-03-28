@@ -58,3 +58,9 @@ Consensus:
 DePIN:
     slug: depin
     name: DePIN
+QA:
+    slug: qa
+    name: QA
+Protocol Design:
+    slug: protocol-design
+    name: Protocol Design
