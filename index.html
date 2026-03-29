@@ -116,6 +116,16 @@ layout: default
                 <h3>Books</h3>
                 <p>Browse my book collection and reviews</p>
             </a>
+
+            {% if site.medium_url %}
+            <a href="{{ site.medium_url }}" class="link-card" target="_blank" rel="noopener noreferrer">
+                <div class="link-icon">
+                    <i class="fab fa-medium"></i>
+                </div>
+                <h3>Medium</h3>
+                <p>Cross-posts and publication versions (e.g. Coinmonks, CoinsBench)</p>
+            </a>
+            {% endif %}
         </div>
     </section>
 </div>

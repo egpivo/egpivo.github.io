@@ -35,6 +35,13 @@ layout: default
             {{ tags_content }}
         </div>
         {% endif %}
+
+        {% if page.medium_url %}
+        <p class="post-crosspost">
+            <i class="fab fa-medium" aria-hidden="true"></i>
+            <a href="{{ page.medium_url }}" rel="noopener noreferrer" target="_blank">Also on Medium</a>{% if page.medium_publication %}<span class="post-crosspost-pub"> — {{ page.medium_publication }}</span>{% endif %}
+        </p>
+        {% endif %}
     </header>
 
     <div class="post-content">

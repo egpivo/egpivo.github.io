@@ -41,6 +41,26 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
     </div>
   </section>
 
+  <!-- Writing (Medium) -->
+  {% if site.medium_url %}
+  <section class="about-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fab fa-medium"></i>
+        Writing
+      </h2>
+    </div>
+    <div class="content-card">
+      <p class="intro-paragraph">
+        Long-form posts live on this site first. I also publish on
+        <a href="{{ site.medium_url }}" rel="noopener noreferrer" target="_blank">Medium</a>
+        for reach and editorial distribution. Recent blockchain and protocol writing has appeared in publications such as
+        <em>Coinmonks</em> and <em>CoinsBench</em>.
+      </p>
+    </div>
+  </section>
+  {% endif %}
+
   <!-- Experience Section -->
   <section class="about-section">
     <div class="section-header">
