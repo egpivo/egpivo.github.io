@@ -54,8 +54,10 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
       <p class="intro-paragraph">
         Long-form posts live on this site first. I also publish on
         <a href="{{ site.medium_url }}" rel="noopener noreferrer" target="_blank">Medium</a>
-        for reach and editorial distribution. Recent blockchain and protocol writing has appeared in publications such as
-        <em>Coinmonks</em> and <em>CoinsBench</em>.
+        for reach and editorial distribution. Recent blockchain and protocol writing has mostly run through
+        <a href="https://blog.blockmagnates.com/" rel="noopener noreferrer" target="_blank">Block Magnates</a>
+        and
+        <a href="https://coinsbench.com/" rel="noopener noreferrer" target="_blank">CoinsBench</a>.
       </p>
     </div>
   </section>
