@@ -15,6 +15,9 @@
       · <i class="fas fa-eye" aria-hidden="true"></i>
       <a href="{{ include.item.demo }}">Demo</a>
       {% endif %}
+      {% if include.item.article %}
+      · <a href="{{ include.item.article | relative_url }}">{{ include.item.article_label | default: "Article" }}</a>
+      {% endif %}
       {% if include.item.paper %}
       · <a href="{{ include.item.paper }}">{{ include.item.paper_label }}</a>
       {% endif %}

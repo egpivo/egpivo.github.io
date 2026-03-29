@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Software
-description: "R packages (SpatPCA, SpatMCA, autoFRK), Python apps (KB Bridge, LLM Chatbot), and blockchain projects (Ethereum Account State, Metering Chain, Pay-As-You-Go)."
+description: "R packages (SpatPCA, SpatMCA, autoFRK), Python apps (KB Bridge, LLM Chatbot), and blockchain projects (Metering Chain, Ethereum Account State, Pay-As-You-Go)."
 menu: main
 permalink: /software/
 ---

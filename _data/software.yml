@@ -141,8 +141,24 @@ python:
 
 blockchain:
   title: Blockchain & Web3
-  desc: Smart contracts, deterministic ledgers, and protocol implementations.
+  desc: Smart contracts, deterministic ledgers, and protocol implementations—with recent Metering Chain QA coverage on test matrices and fail-closed operator UX.
   items:
+    - name: Metering Chain
+      url: https://github.com/egpivo/metering-chain
+      desc: Deterministic Rust engine for usage-based billing, settlement, and replay/evidence gates—signed transactions, delegation, and multi-operator DePIN workflows. Demos use real Helium IoT data; actively extended with contract tests and compatibility matrices.
+      github: https://github.com/egpivo/metering-chain
+      demo: https://egpivo.github.io/metering-chain
+      article: /2026/03/27/metering-chain-qa-business-logic.html
+      article_label: QA article
+      badges:
+        - href: https://github.com/egpivo/metering-chain/actions
+          src: https://github.com/egpivo/metering-chain/workflows/CI/badge.svg
+          alt: CI
+        - href: https://codecov.io/gh/egpivo/metering-chain
+          src: https://img.shields.io/codecov/c/github/egpivo/metering-chain?label=coverage
+          alt: Codecov coverage
+      tech: Rust · TypeScript · React · Vite
+
     - name: Ethereum Account State
       url: https://github.com/egpivo/ethereum-account-state
       desc: Minimal Ethereum token with explicit state transitions and invariants. TypeScript domain model mirrors the on-chain state machine; React frontend demonstrates event-based reconstruction.
@@ -153,17 +169,6 @@ blockchain:
           src: https://github.com/egpivo/ethereum-account-state/workflows/CI/badge.svg
           alt: CI
       tech: Solidity · TypeScript · React · Foundry
-
-    - name: Metering Chain
-      url: https://github.com/egpivo/metering-chain
-      desc: Deterministic Rust engine for usage-based billing and accounting. Supports signed transactions, delegation, and multi-operator DePIN workflows. Demos use real Helium IoT data.
-      github: https://github.com/egpivo/metering-chain
-      demo: https://egpivo.github.io/metering-chain
-      badges:
-        - href: https://github.com/egpivo/metering-chain/actions
-          src: https://github.com/egpivo/metering-chain/workflows/CI/badge.svg
-          alt: CI
-      tech: Rust · TypeScript · React · Vite
 
     - name: Pay-As-You-Go Service Contracts
       url: https://github.com/egpivo/payg-service-contracts
