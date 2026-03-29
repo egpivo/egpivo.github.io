@@ -534,12 +534,14 @@
   }
 }
 
-// Footer
+// Footer (slightly smaller than page body: body uses --font-size-base ~19px; footer uses sm ~16px)
 .site-footer {
   background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   margin-top: var(--spacing-3xl);
   padding: var(--spacing-2xl) 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.55;
 }
 
 .footer-content {
@@ -554,19 +556,23 @@
     margin-bottom: var(--spacing-md);
     color: var(--text-primary);
   }
-  
+
   h3 {
-    font-size: var(--font-size-xl);
-  }
-  
-  h4 {
     font-size: var(--font-size-lg);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+  }
+
+  h4 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
     color: var(--text-secondary);
+    line-height: var(--line-height-tight);
   }
 }
 
 .footer-title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 700;
   margin-bottom: var(--spacing-sm);
 }
@@ -574,6 +580,7 @@
 .footer-description {
   color: var(--text-secondary);
   margin: 0;
+  font-size: var(--font-size-sm);
 }
 
 .social-links {
@@ -586,20 +593,22 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   text-decoration: none;
+  font-size: var(--font-size-sm);
   padding: var(--spacing-xs) 0;
   border-radius: 0;
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: var(--accent-primary);
     text-decoration: underline;
   }
-  
+
   i {
     width: 20px;
     text-align: center;
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -612,8 +621,9 @@
 .footer-link {
   color: var(--text-secondary);
   text-decoration: none;
+  font-size: var(--font-size-sm);
   transition: color var(--transition-fast);
-  
+
   &:hover {
     color: var(--accent-primary);
     text-decoration: none;
@@ -631,9 +641,9 @@
 }
 
 .copyright {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin: 0;
-  font-size: var(--font-size-sm);
+  font-size: 0.875rem;
 }
 
 .rss-subscribe {
