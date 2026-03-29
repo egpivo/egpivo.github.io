@@ -77,6 +77,11 @@ These readings symbolize my dual commitment to tech excellence and personal grow
 <div class="category">
     <h4>Tech</h4>
     <div class="book-container">
+        <div class="book" data-pub="2018-03-30">
+            <img class="book-image" src="{{ site.url }}/assets/books/beginning-blockchain-a-beginners-buide-to-building-blockchain-solutions.png" alt="Beginning Blockchain: A Beginner's Guide to Building Blockchain Solutions">
+            <div class="book-title">Beginning Blockchain: A Beginner's Guide to Building Blockchain Solutions</div>
+            <div class="book-author">Bikramaditya Singhal, Gautam Dhameja & Priyansu Sekhar Panda</div>
+        </div>
         <div class="book" data-pub="2016-11-18">
             <img class="book-image" src="{{ site.url }}/assets/books/deep-learning.png" alt="TBook 1">
             <div class="book-title">Deep Learning</div>
