@@ -141,11 +141,11 @@ python:
 
 blockchain:
   title: Blockchain & Web3
-  desc: Smart contracts, deterministic ledgers, and protocol implementations—with recent Metering Chain QA coverage on test matrices and fail-closed operator UX.
+  desc: Smart contracts, deterministic ledgers, and protocol implementations.
   items:
     - name: Metering Chain
       url: https://github.com/egpivo/metering-chain
-      desc: Deterministic Rust engine for usage-based billing, settlement, and replay/evidence gates—signed transactions, delegation, and multi-operator DePIN workflows. Demos use real Helium IoT data; actively extended with contract tests and compatibility matrices.
+      desc: Deterministic Rust engine for usage-based billing and settlement. Signed transactions, delegation, and DePIN-style workflows; demo uses real Helium IoT data.
       github: https://github.com/egpivo/metering-chain
       demo: https://egpivo.github.io/metering-chain
       article: /2026/03/27/metering-chain-qa-business-logic.html
