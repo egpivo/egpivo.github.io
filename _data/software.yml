@@ -99,7 +99,7 @@ r_packages:
 
 python:
   title: Python
-  desc: Python applications for MCP, conversational AI, computer vision, and spatial statistics.
+  desc: Python applications for MCP, conversational AI, computer vision, and deep learning.
   items:
     - name: Spherical DeepKriging
       url: https://pypi.org/project/spherical-deepkriging/
