@@ -99,8 +99,27 @@ r_packages:
 
 python:
   title: Python
-  desc: Python applications for MCP, conversational AI, and computer vision.
+  desc: Python applications for MCP, conversational AI, computer vision, and spatial statistics.
   items:
+    - name: Spherical DeepKriging
+      url: https://pypi.org/project/spherical-deepkriging/
+      desc: Spherical spatial prediction with DeepKriging—MRTS-sphere / Wendland bases and universal kriging. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
+      github: https://github.com/STLABTW/spherical-deepkriging
+      demo: https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb
+      paper: https://arxiv.org/abs/2604.01689
+      paper_label: arXiv
+      badges:
+        - href: https://github.com/STLABTW/spherical-deepkriging/actions
+          src: https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg
+          alt: Test
+        - href: https://pypi.org/project/spherical-deepkriging/
+          src: https://img.shields.io/pypi/v/spherical-deepkriging.svg?logo=pypi&label=PyPI
+          alt: PyPI
+        - href: https://codecov.io/gh/STLABTW/spherical-deepkriging
+          src: https://img.shields.io/codecov/c/github/STLABTW/spherical-deepkriging?label=coverage
+          alt: Codecov
+      tech: Python · PyTorch · C++ (MRTS-sphere)
+
     - name: KB Bridge
       url: https://pypi.org/project/kbbridge/
       desc: MCP server for intelligent knowledge base search. Context-aware retrieval with DSPy-powered query understanding, multi-stage search with content boosting, and answer quality reflection.
