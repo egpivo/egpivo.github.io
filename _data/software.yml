@@ -118,7 +118,7 @@ python:
         - href: https://codecov.io/gh/STLABTW/spherical-deepkriging
           src: https://img.shields.io/codecov/c/github/STLABTW/spherical-deepkriging?label=coverage
           alt: Codecov
-      tech: Python · PyTorch · C++ (MRTS-sphere)
+      tech: Python · PyTorch · C++ · Spectra
 
     - name: KB Bridge
       url: https://pypi.org/project/kbbridge/
