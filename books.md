@@ -70,7 +70,7 @@ redirect_from:
   
 </script>
 
-Over the last 7 years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
+Over the last 10+ years in the tech industry, I've immersed myself in a diverse range of books, from technical gems to personal development classics like "High Performance Habits."
 These readings symbolize my dual commitment to tech excellence and personal growth. Each book has been a stepping stone in shaping both my professional and personal trajectory.
 
 <!-- Tech Section -->
