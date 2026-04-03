@@ -103,7 +103,7 @@ python:
   items:
     - name: Spherical DeepKriging
       url: https://pypi.org/project/spherical-deepkriging/
-      desc: Spherical spatial prediction with DeepKriging and MRTS-sphere basis functions. Other basis families are included for benchmarking only. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
+      desc: Spherical spatial prediction with DeepKriging and MRTS-sphere basis functions. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
       github: https://github.com/STLABTW/spherical-deepkriging
       demo: https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb
       paper: https://arxiv.org/abs/2604.01689
