@@ -8,7 +8,7 @@ r_packages:
       github: https://github.com/egpivo/SpatPCA
       demo: https://egpivo.github.io/SpatPCA/articles
       paper: https://doi.org/10.1080/10618600.2016.1157483
-      paper_label: JCGS
+      paper_label: Paper (JCGS)
       badges:
         - href: https://github.com/egpivo/SpatPCA/actions
           src: https://github.com/egpivo/SpatPCA/workflows/R-CMD-check/badge.svg
@@ -27,7 +27,7 @@ r_packages:
       github: https://github.com/egpivo/SpatMCA
       demo: https://egpivo.github.io/SpatMCA/reference/spatmca.html
       paper: https://doi.org/10.1002/env.2481
-      paper_label: Environmetrics
+      paper_label: Paper (Environmetrics)
       badges:
         - href: https://github.com/egpivo/SpatMCA/actions
           src: https://github.com/egpivo/SpatMCA/workflows/R-CMD-check/badge.svg
@@ -46,7 +46,7 @@ r_packages:
       github: https://github.com/egpivo/autoFRK
       demo: https://egpivo.github.io/autoFRK/reference/autoFRK.html
       paper: https://doi.org/10.1080/00401706.2017.1345701
-      paper_label: Technometrics
+      paper_label: Paper (Technometrics)
       badges:
         - href: https://github.com/egpivo/autoFRK/actions
           src: https://github.com/egpivo/autoFRK/workflows/R-hub/badge.svg
@@ -65,7 +65,7 @@ r_packages:
       github: https://github.com/egpivo/QuantRegGLasso
       demo: https://egpivo.github.io/QuantRegGLasso/reference/qrglasso.html
       paper: https://doi.org/10.3150/18-BEJ1091
-      paper_label: Bernoulli
+      paper_label: Paper (Bernoulli)
       badges:
         - href: https://github.com/egpivo/QuantRegGLasso/actions
           src: https://github.com/egpivo/QuantRegGLasso/workflows/R-CMD-check/badge.svg
@@ -84,7 +84,7 @@ r_packages:
       github: https://github.com/BoShiangKe/influenceAUC
       demo: https://boshiangke.github.io/InfluenceAUC/reference/IAUC.html
       paper: https://doi.org/10.1080/10543406.2017.1377728
-      paper_label: JBS
+      paper_label: Paper (JBS)
       badges:
         - href: https://github.com/BoShiangKe/influenceAUC/actions
           src: https://github.com/BoShiangKe/influenceAUC/workflows/R-CMD-check/badge.svg
@@ -107,7 +107,7 @@ python:
       github: https://github.com/STLABTW/spherical-deepkriging
       demo: https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb
       paper: https://arxiv.org/abs/2604.01689
-      paper_label: arXiv
+      paper_label: Preprint (arXiv)
       badges:
         - href: https://github.com/STLABTW/spherical-deepkriging/actions
           src: https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg
@@ -167,8 +167,17 @@ blockchain:
       desc: Deterministic Rust engine for usage-based billing and settlement. Signed transactions, delegation, and DePIN-style workflows; demo uses real Helium IoT data.
       github: https://github.com/egpivo/metering-chain
       demo: https://egpivo.github.io/metering-chain
-      article: /2026/03/27/metering-chain-qa-business-logic.html
-      article_label: QA article
+      articles:
+        - href: /2026/01/24/metering-chain-deterministic-billing.html
+          label: Phase 1
+        - href: /2026/02/02/metering-chain-phase2-deterministic-auth.html
+          label: Phase 2
+        - href: /2026/02/07/metering-chain-phase3-delegation.html
+          label: Phase 3
+        - href: /2026/02/21/metering-chain-phase4-settlement-finality.html
+          label: Phase 4
+        - href: /2026/03/27/metering-chain-qa-business-logic.html
+          label: QA article
       badges:
         - href: https://github.com/egpivo/metering-chain/actions
           src: https://github.com/egpivo/metering-chain/workflows/CI/badge.svg
@@ -183,6 +192,11 @@ blockchain:
       desc: Minimal Ethereum token with explicit state transitions and invariants. TypeScript domain model mirrors the on-chain state machine; React frontend demonstrates event-based reconstruction.
       github: https://github.com/egpivo/ethereum-account-state
       demo: https://egpivo.github.io/ethereum-account-state/
+      articles:
+        - href: /2026/01/28/ethereum-account-state.html
+          label: Build article
+        - href: /2026/04/08/ethereum-account-state-qa.html
+          label: QA article
       badges:
         - href: https://github.com/egpivo/ethereum-account-state/actions
           src: https://github.com/egpivo/ethereum-account-state/workflows/CI/badge.svg
@@ -194,6 +208,17 @@ blockchain:
       desc: Pay-as-you-go protocol with composable Pool primitives. Article registries and rental modules with automatic revenue sharing. Web UI demo included.
       github: https://github.com/egpivo/payg-service-contracts
       demo: https://egpivo.github.io/payg-service-contracts/
+      articles:
+        - href: /2025/12/11/practicing-solidity-transitioning-to-web3.html
+          label: Build 1
+        - href: /2025/12/16/payg-service-contracts-article-contracts.html
+          label: Build 2
+        - href: /2025/12/21/payg-rental-services.html
+          label: Build 3
+        - href: /2025/12/28/payg-pool-protocol-composition-layer.html
+          label: Build 4
+        - href: /2026/01/09/payg-private-gallery-demo.html
+          label: Demo article
       badges:
         - href: https://github.com/egpivo/payg-service-contracts/actions/workflows/ci.yml
           src: https://github.com/egpivo/payg-service-contracts/actions/workflows/ci.yml/badge.svg
