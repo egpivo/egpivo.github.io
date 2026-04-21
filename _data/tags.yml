@@ -64,3 +64,6 @@ QA:
 Protocol Design:
     slug: protocol-design
     name: Protocol Design
+Go:
+    slug: go
+    name: Go
