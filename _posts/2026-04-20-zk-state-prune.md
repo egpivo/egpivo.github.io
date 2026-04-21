@@ -155,7 +155,7 @@ Calibration behavior also diverges. On synthetic data, isotonic slightly worsens
 Heavy-tail diagnostics also diverge in magnitude: synthetic IAT Hill α = 1.26, while Scroll smoke gives frequency α = 1.10 and IAT α = 0.64, still indicating a heavier observed tail in the real-trace sample.
 
 ![Scroll EDA heavy-tail]({{ site.baseurl }}/assets/2026-04-20-zk-state-prune/3b_eda_scroll.png)
-*Figure 3b. Scroll EDA diagnostics: even in a short real slice, access remains strongly skewed with heavy-tail signatures.*
+*Scroll EDA (real smoke slice): access-frequency and inter-access distributions remain strongly skewed, with clear heavy-tail signatures.*
 
 KM stratification on Scroll must be read with data-coverage limits: this run is ERC20-only (318 slots, 2,405 intervals), with no meaningful DEX/governance/bridge coverage. That directly motivates a Phase 4 state-diff extractor.
 
