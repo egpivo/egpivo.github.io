@@ -227,3 +227,16 @@ blockchain:
           src: https://codecov.io/gh/egpivo/payg-service-contracts/graph/badge.svg?token=Svpf1dEEyh
           alt: codecov
       tech: Solidity · Foundry · OpenZeppelin
+
+    - name: zk-state-prune
+      url: https://github.com/egpivo/zk-state-prune/tree/main
+      desc: Statistical tiering framework for ZK rollup state. Uses survival modeling and calibration to estimate slot reuse and derive cost-aware hot/cold placement policies.
+      github: https://github.com/egpivo/zk-state-prune
+      articles:
+        - href: /2026/04/20/zk-state-prune.html
+          label: Build article
+      badges:
+        - href: https://github.com/egpivo/zk-state-prune/actions
+          src: https://github.com/egpivo/zk-state-prune/workflows/CI/badge.svg
+          alt: CI
+      tech: Go · SQLite · Survival Analysis · ZK Rollup
