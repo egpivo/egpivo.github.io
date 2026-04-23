@@ -48,13 +48,7 @@ redirect_from:
   }
 </style>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDL912WM98"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  gtag('js', new Date());
-  gtag('config', 'G-SDL912WM98');
-  
   // Sort books in each container by data-pub (descending)
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.book-container').forEach(function(container) {
@@ -141,7 +135,7 @@ These readings symbolize my dual commitment to tech excellence and personal grow
 </div>
 
 <!-- Non-Tech Section -->
-<body class="category">
+<div class="category">
     <h4>Non-Tech</h4>
     <div class="book-container">
         <div class="book" data-pub="2017-09-19">
@@ -250,4 +244,4 @@ These readings symbolize my dual commitment to tech excellence and personal grow
             <div class="book-author">Paul Kalanithi</div>
         </div>        
     </div>
-</body>
+</div>

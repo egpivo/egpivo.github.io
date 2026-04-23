@@ -12,6 +12,17 @@ _site/
 # Sass cache
 .sass-cache/
 
+# Python bytecode and test caches (scripts/ has .py files)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# R / knitr cache directories (from rendering _rmd/*.Rmd)
+# NOTE: intentionally do NOT ignore *_files/ — assets/note1_basics_files/ is tracked content
+*_cache/
+
 # IDE and editor files
 .idea/
 .vscode/
