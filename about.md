@@ -35,7 +35,7 @@ permalink: /about/
     <div class="content-card">
       <div class="intro-text">
         <p class="intro-paragraph">
-I’m a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I’ve been working on <span class="kw">agentic workflows</span>, <span class="kw">RAG systems</span>, and <span class="kw">spatiotemporal modeling</span>, blending practical engineering with research. My current focus includes <span class="kw">conditional diffusion models</span> and <span class="kw">spatiotemporal learning methods</span>, aiming to make complex models both more useful and more interpretable.
+I’m a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I’ve been working on <span class="kw">agentic workflows</span>, <span class="kw">RAG systems</span>, and <span class="kw">spatiotemporal modeling</span>, blending practical engineering with research. My current focus is on building statistical boosters around pretrained models — things like <span class="kw">conformal prediction</span> and <span class="kw">low-rank adapters</span> — so that complex systems become both more trustworthy and easier to reason about.
         </p>
       </div>
     </div>
@@ -55,9 +55,9 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         Long-form posts live on this site first. I also publish on
         <a href="{{ site.medium_url }}" rel="noopener noreferrer" target="_blank">Medium</a>
         for reach and editorial distribution. Recent blockchain and protocol writing has mostly run through
-        <a href="https://blog.blockmagnates.com/" rel="noopener noreferrer" target="_blank">Block Magnates</a>
-        and
-        <a href="https://coinsbench.com/" rel="noopener noreferrer" target="_blank">CoinsBench</a>.
+        <a href="https://blog.blockmagnates.com/" rel="noopener noreferrer" target="_blank">Block Magnates</a>,
+        <a href="https://coinsbench.com/" rel="noopener noreferrer" target="_blank">CoinsBench</a>, and
+        <a href="https://medium.com/coinmonks" rel="noopener noreferrer" target="_blank">Coinmonks</a>.
       </p>
     </div>
   </section>
