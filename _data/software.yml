@@ -235,6 +235,8 @@ blockchain:
       articles:
         - href: /2026/04/20/zk-state-prune.html
           label: Build article
+        - href: /2026/04/27/zk-state-prune-guardrails.html
+          label: Guardrails article
       badges:
         - href: https://github.com/egpivo/zk-state-prune/actions
           src: https://github.com/egpivo/zk-state-prune/workflows/CI/badge.svg
