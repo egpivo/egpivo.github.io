@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 360" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#555"/>
+    </marker>
+    <marker id="arrTime" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#999"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="470" y="22" text-anchor="middle" font-size="15" font-weight="600" fill="#222">
+    A slot's lifetime through the pipeline
+  </text>
+
+  <!-- Time axis -->
+  <text x="40" y="52" font-size="11" fill="#888">time</text>
+  <line x1="68" y1="48" x2="900" y2="48" stroke="#bbb" stroke-width="1" marker-end="url(#arrTime)"/>
+
+  <!-- Past window background -->
+  <rect x="180" y="76" width="320" height="118" fill="#eef4fa" rx="6"/>
+  <text x="190" y="94" font-size="11" font-weight="500" fill="#446">past window — observed (partial / censored)</text>
+
+  <!-- Future window background -->
+  <rect x="640" y="76" width="280" height="118" fill="#ecf5ec" rx="6"/>
+  <text x="650" y="94" font-size="11" font-weight="500" fill="#465">future window — actual accesses</text>
+
+  <!-- Box: Extractor -->
+  <rect x="40" y="108" width="120" height="76" fill="#fff" stroke="#5b8db9" stroke-width="1.5" rx="4"/>
+  <text x="100" y="132" text-anchor="middle" font-weight="600" fill="#234">Extractor</text>
+  <text x="100" y="150" text-anchor="middle" font-size="11" fill="#456">rpc / statediff</text>
+  <text x="100" y="166" text-anchor="middle" font-size="11" fill="#456">/ synthetic</text>
+
+  <!-- Box: Slot history -->
+  <rect x="200" y="108" width="130" height="76" fill="#fff" stroke="#5b8db9" stroke-width="1.5" rx="4"/>
+  <text x="265" y="132" text-anchor="middle" font-weight="600" fill="#234">Slot history</text>
+  <text x="265" y="150" text-anchor="middle" font-size="11" fill="#456">access events</text>
+  <text x="265" y="166" text-anchor="middle" font-size="11" fill="#456">(train)</text>
+
+  <!-- Box: Fit + predict -->
+  <rect x="360" y="108" width="130" height="76" fill="#fff" stroke="#5b8db9" stroke-width="1.5" rx="4"/>
+  <text x="425" y="132" text-anchor="middle" font-weight="600" fill="#234">Fit + predict</text>
+  <text x="425" y="150" text-anchor="middle" font-size="11" fill="#456">p_i(τ) = reuse</text>
+  <text x="425" y="166" text-anchor="middle" font-size="11" fill="#456">probability</text>
+
+  <!-- Box: Decision -->
+  <rect x="525" y="108" width="100" height="76" fill="#fffadf" stroke="#c9a13a" stroke-width="1.5" rx="4"/>
+  <text x="575" y="132" text-anchor="middle" font-weight="600" fill="#574">Decision</text>
+  <text x="575" y="152" text-anchor="middle" font-size="11" fill="#675">keep / demote</text>
+  <text x="575" y="168" text-anchor="middle" font-size="11" fill="#675">(tiering)</text>
+
+  <!-- Box: Slot future -->
+  <rect x="660" y="108" width="130" height="76" fill="#fff" stroke="#5b9b5b" stroke-width="1.5" rx="4"/>
+  <text x="725" y="132" text-anchor="middle" font-weight="600" fill="#243">Slot future</text>
+  <text x="725" y="150" text-anchor="middle" font-size="11" fill="#465">access events</text>
+  <text x="725" y="166" text-anchor="middle" font-size="11" fill="#465">(test)</text>
+
+  <!-- Box: Evaluation -->
+  <rect x="820" y="108" width="100" height="76" fill="#fff" stroke="#5b9b5b" stroke-width="1.5" rx="4"/>
+  <text x="870" y="130" text-anchor="middle" font-weight="600" fill="#243">Evaluation</text>
+  <text x="870" y="148" text-anchor="middle" font-size="11" fill="#465">hot-hit / miss</text>
+  <text x="870" y="164" text-anchor="middle" font-size="11" fill="#465">regret</text>
+
+  <!-- Connectors -->
+  <line x1="160" y1="146" x2="200" y2="146" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="330" y1="146" x2="360" y2="146" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="490" y1="146" x2="525" y2="146" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="625" y1="146" x2="660" y2="146" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="790" y1="146" x2="820" y2="146" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Guardrails section divider -->
+  <line x1="40" y1="222" x2="920" y2="222" stroke="#d0c098" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <text x="40" y="216" font-size="11" font-weight="500" fill="#9a7818">guardrails</text>
+
+  <!-- Guardrail 1: capability stamp (under Extractor) -->
+  <line x1="100" y1="220" x2="100" y2="190" stroke="#b08838" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="40" y="232" width="120" height="44" fill="#fff7e6" stroke="#c9a13a" stroke-width="1" rx="3"/>
+  <text x="100" y="249" text-anchor="middle" font-size="11" font-weight="600" fill="#7c5b14">capability stamp</text>
+  <text x="100" y="266" text-anchor="middle" font-size="10" fill="#7c5b14">what was visible</text>
+
+  <!-- Guardrail 2: extract_limits (under Slot history) -->
+  <line x1="265" y1="220" x2="265" y2="190" stroke="#b08838" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="200" y="232" width="130" height="44" fill="#fff7e6" stroke="#c9a13a" stroke-width="1" rx="3"/>
+  <text x="265" y="249" text-anchor="middle" font-size="11" font-weight="600" fill="#7c5b14">extract_limits</text>
+  <text x="265" y="266" text-anchor="middle" font-size="10" fill="#7c5b14">what was filtered</text>
+
+  <!-- Guardrail 3: same-RAM match (under Decision) -->
+  <line x1="575" y1="220" x2="575" y2="190" stroke="#b08838" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="510" y="232" width="130" height="44" fill="#fff7e6" stroke="#c9a13a" stroke-width="1" rx="3"/>
+  <text x="575" y="249" text-anchor="middle" font-size="11" font-weight="600" fill="#7c5b14">same-RAM match</text>
+  <text x="575" y="266" text-anchor="middle" font-size="10" fill="#7c5b14">clean comparison</text>
+
+  <!-- Guardrail 4: drift / OOD (under Evaluation) -->
+  <line x1="870" y1="220" x2="870" y2="190" stroke="#b08838" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="805" y="232" width="120" height="44" fill="#fff7e6" stroke="#c9a13a" stroke-width="1" rx="3"/>
+  <text x="865" y="249" text-anchor="middle" font-size="11" font-weight="600" fill="#7c5b14">drift / OOD flag</text>
+  <text x="865" y="266" text-anchor="middle" font-size="10" fill="#7c5b14">future under shift</text>
+
+  <!-- Caption -->
+  <text x="470" y="312" text-anchor="middle" font-size="12" fill="#666">
+    Past predicts future. Each guardrail makes one assumption about that prediction explicit.
+  </text>
+</svg>

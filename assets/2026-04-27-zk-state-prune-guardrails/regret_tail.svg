@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">
+  <defs>
+    <marker id="arrTip" markerWidth="8" markerHeight="8" refX="0" refY="3" orient="auto">
+      <path d="M9,0 L9,6 L0,3 z" fill="#7a8696"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="360" y="26" text-anchor="middle" font-size="14" font-weight="600" fill="#222">
+    Max regret across 15 rolling folds (MISS_PENALTY=512)
+  </text>
+  <text x="360" y="46" text-anchor="middle" font-size="11" fill="#666">
+    Negative regret = predictive policy wins. Positive = it loses.
+  </text>
+
+  <!-- X-axis tick grid (every 100k); chart x = 200..680, range -50k..+550k -->
+  <g stroke="#e2e6eb" stroke-width="0.6">
+    <line x1="200" y1="80" x2="200" y2="210"/>
+    <line x1="320" y1="80" x2="320" y2="210"/>
+    <line x1="400" y1="80" x2="400" y2="210"/>
+    <line x1="480" y1="80" x2="480" y2="210"/>
+    <line x1="560" y1="80" x2="560" y2="210"/>
+    <line x1="640" y1="80" x2="640" y2="210"/>
+  </g>
+
+  <!-- Zero line -->
+  <line x1="240" y1="76" x2="240" y2="216" stroke="#444" stroke-width="1.4"/>
+  <text x="240" y="232" text-anchor="middle" font-size="10" font-weight="600" fill="#444">0</text>
+
+  <!-- X-axis tick labels -->
+  <g font-size="10" fill="#888" text-anchor="middle">
+    <text x="320" y="232">+100k</text>
+    <text x="400" y="232">+200k</text>
+    <text x="480" y="232">+300k</text>
+    <text x="560" y="232">+400k</text>
+    <text x="640" y="232">+500k</text>
+  </g>
+
+  <!-- Group label: all_folds -->
+  <text x="190" y="118" text-anchor="end" font-size="12" font-weight="600" fill="#333">all folds</text>
+  <text x="190" y="132" text-anchor="end" font-size="10" fill="#888">(n = 15)</text>
+
+  <!-- all_folds bar: zero (x=240) → +487k (x=629.6) -->
+  <rect x="240" y="100" width="389.6" height="36" fill="#e57373" stroke="#b54545" stroke-width="0.6" rx="2"/>
+  <text x="623" y="124" text-anchor="end" font-size="13" font-weight="700" fill="#fff">+487,075</text>
+
+  <!-- Group label: in_distribution -->
+  <text x="190" y="170" text-anchor="end" font-size="12" font-weight="600" fill="#333">in-distribution</text>
+  <text x="190" y="184" text-anchor="end" font-size="10" fill="#888">(n = 2)</text>
+
+  <!-- in_distribution bar: zero (x=240) → -6.7k (x=234.6) — tiny -->
+  <rect x="234.6" y="152" width="5.4" height="36" fill="#66bb6a" stroke="#3f8c4a" stroke-width="0.6" rx="1"/>
+
+  <!-- Value label on the right of zero, arrow points back left to the bar -->
+  <text x="280" y="173" text-anchor="start" font-size="12" font-weight="700" fill="#3f8c4a">−6,730</text>
+  <line x1="276" y1="170" x2="244" y2="170" stroke="#7a8696" stroke-width="0.9" marker-end="url(#arrTip)"/>
+
+  <!-- Footnote -->
+  <text x="360" y="266" text-anchor="middle" font-size="11" fill="#a35d28" font-style="italic">
+    13 of 15 folds tripped the drift flag (--drift-ratio &gt; 1.5×) — they make up the +487k tail.
+  </text>
+</svg>

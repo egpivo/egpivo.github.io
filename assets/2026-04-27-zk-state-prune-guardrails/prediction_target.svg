@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">
+  <!-- Formula background -->
+  <rect x="100" y="40" width="520" height="60" fill="#f5f5f7" stroke="#e3e3e6" stroke-width="0.6" rx="5"/>
+
+  <!-- Formula -->
+  <g font-size="22" font-family="Cambria, 'Times New Roman', Georgia, serif" fill="#222">
+    <text x="155" y="82" font-style="italic">p</text>
+    <text x="166" y="88" font-size="13" font-style="italic">i</text>
+    <text x="173" y="82">(τ)</text>
+
+    <text x="218" y="82">=</text>
+
+    <text x="248" y="82">P(</text>
+
+    <text x="278" y="82" font-style="italic">T</text>
+    <text x="290" y="88" font-size="13" font-style="italic">i</text>
+    <text x="302" y="82">≤ τ</text>
+
+    <text x="348" y="82">|</text>
+
+    <text x="364" y="82" font-style="italic">T</text>
+    <text x="376" y="88" font-size="13" font-style="italic">i</text>
+    <text x="390" y="82">&gt;</text>
+    <text x="408" y="82" font-style="italic">t</text>
+    <text x="416" y="88" font-size="13">0</text>
+
+    <text x="428" y="82">,</text>
+
+    <text x="442" y="82" font-style="italic">x</text>
+    <text x="453" y="88" font-size="13" font-style="italic">i</text>
+
+    <text x="465" y="82">)</text>
+  </g>
+
+  <!-- Connectors (thin lines with dots) -->
+  <g stroke="#999" stroke-width="0.7" fill="#999">
+    <circle cx="315" cy="105" r="1.5"/>
+    <line x1="315" y1="106" x2="305" y2="125"/>
+    <circle cx="305" cy="127" r="1.5"/>
+
+    <circle cx="395" cy="105" r="1.5"/>
+    <line x1="395" y1="106" x2="400" y2="125"/>
+    <circle cx="400" cy="127" r="1.5"/>
+
+    <circle cx="452" cy="105" r="1.5"/>
+    <line x1="452" y1="106" x2="520" y2="125"/>
+    <circle cx="520" cy="127" r="1.5"/>
+  </g>
+
+  <!-- Annotations -->
+  <g font-size="12" fill="#555" text-anchor="middle">
+    <text x="305" y="142">not accessed</text>
+    <text x="305" y="158">within τ</text>
+
+    <text x="400" y="142">observed alive</text>
+    <text x="400" y="158">at t₀</text>
+
+    <text x="520" y="142">features of</text>
+    <text x="520" y="158">the slot</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="360" y="186" text-anchor="middle" font-size="11" fill="#888" font-style="italic">
+    Survival analysis with right-censoring, time truncation, and partial observability.
+  </text>
+</svg>
