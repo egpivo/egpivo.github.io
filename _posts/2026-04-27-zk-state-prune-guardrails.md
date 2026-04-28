@@ -133,7 +133,7 @@ I kept comparing policies and getting "wins" that made no sense. The `statistica
 
 The fix: only compare policies at the same RAM band (auto-pair only policies whose `RAMRatio` differs by less than `ε`), and flag degenerate cells (kept-few + pruned-most + miss-heavy) so they can't drag a chart's eye. With the apples-to-oranges hazard removed, what's left is a real difference — not an artifact of the RAM budget.
 
-### 4. Drift / OOD — whether the past still describes the future
+### 4. Drift / out-of-distribution (OOD) — whether the past still describes the future
 
 A tiering policy is a forecast. The honest validation is time-ordered: fit on a train window, evaluate on a future test window, repeat across rolling folds, measure the tail. For each fold the simulation also searches for a `fixed-N` baseline whose RAMRatio matches the predictive policy's — otherwise we are back to the same-RAM problem above.
 
@@ -146,7 +146,7 @@ On the 100k-block Scroll rolling backtest, the all-fold mean was only mildly bad
          style="max-width:90%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
-    Same backtest, two scopes. The 13 out-of-distribution (OOD) folds make the tail catastrophic; the 2 in-distribution folds quietly win.
+    Same backtest, two scopes. The 13 OOD folds make the tail catastrophic; the 2 in-distribution folds quietly win.
   </div>
 </div>
 
