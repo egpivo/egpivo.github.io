@@ -256,7 +256,7 @@ blockchain:
       demo: https://egpivo.github.io/rust-zkp/
       articles:
         - href: /2026/05/03/rust-zkp-a-hand-rolled-mini-rollup.html
-          label: Blog — mini rollup verifier (Rust)
+          label: Blog
       badges:
         - href: https://github.com/egpivo/rust-zkp/actions
           src: https://github.com/egpivo/rust-zkp/workflows/CI/badge.svg
