@@ -248,3 +248,17 @@ blockchain:
           src: https://img.shields.io/github/go-mod/go-version/egpivo/zk-state-prune?label=Go
           alt: Go version
       tech: Go · SQLite · Cobra · Viper
+
+    - name: rust-zkp
+      url: https://github.com/egpivo/rust-zkp
+      desc: Minimal ZK-rollup from scratch in Rust — Pedersen, Sigma/Fiat–Shamir, Merkle state, Axum backend with mempool batching, WASM playground calling a live API.
+      github: https://github.com/egpivo/rust-zkp
+      demo: https://egpivo.github.io/rust-zkp/
+      articles:
+        - href: /2026/05/03/rust-zkp-a-hand-rolled-mini-rollup.html
+          label: Blog — mini rollup verifier (Rust)
+      badges:
+        - href: https://github.com/egpivo/rust-zkp/actions
+          src: https://github.com/egpivo/rust-zkp/workflows/CI/badge.svg
+          alt: CI
+      tech: Rust · Axum · Tokio · WASM · Astro

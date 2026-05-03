@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="900" height="200" role="img" aria-labelledby="t1 d1">
+  <title id="t1">Browser WASM to Axum server pipeline</title>
+  <desc id="d1">Sign and prove in the browser, POST transaction over HTTP plus JSON, native Axum server with mempool batch and sled persistence.</desc>
+  <rect width="900" height="200" fill="#fafafa"/>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#0066cc"/>
+    </marker>
+    <style type="text/css"><![CDATA[
+      .h { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+      .m { font-family: ui-monospace, Menlo, monospace; font-size: 12px; fill: #333; }
+      .s { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 11px; fill: #666; }
+      .ln { stroke: #0066cc; stroke-width: 2; fill: none; marker-end: url(#arr); }
+      .box { fill: #ffffff; stroke: #c8c8c8; stroke-width: 1.5; }
+      .mid { fill: #e8f2fc; stroke: #0066cc; stroke-width: 1.5; }
+    ]]></style>
+  </defs>
+
+  <!-- Column 1: Browser (WASM) -->
+  <rect class="box" x="20" y="36" width="248" height="128" rx="8"/>
+  <text x="144" y="64" text-anchor="middle" class="h">Browser (WASM)</text>
+  <text x="144" y="92" text-anchor="middle" class="m">sign / prove</text>
+  <text x="144" y="118" text-anchor="middle" class="s">demos only</text>
+
+  <path class="ln" d="M 268 100 L 288 100"/>
+
+  <!-- Column 2: HTTP + JSON -->
+  <rect class="mid" x="290" y="36" width="220" height="128" rx="8"/>
+  <text x="400" y="64" text-anchor="middle" class="h">HTTP + JSON</text>
+  <text x="400" y="92" text-anchor="middle" class="m">POST /tx</text>
+  <text x="400" y="118" text-anchor="middle" class="s">same tx shape</text>
+
+  <path class="ln" d="M 510 100 L 530 100"/>
+
+  <!-- Column 3: Native server (Axum) -->
+  <rect class="box" x="532" y="36" width="348" height="128" rx="8"/>
+  <text x="706" y="64" text-anchor="middle" class="h">Native server (Axum)</text>
+  <text x="706" y="92" text-anchor="middle" class="m">mempool &#8594; batch &#8594; sled</text>
+  <text x="706" y="118" text-anchor="middle" class="s">state root + accounts</text>
+</svg>
