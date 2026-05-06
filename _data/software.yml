@@ -162,7 +162,7 @@ blockchain:
   title: Blockchain & Web3
   desc: Smart contracts, deterministic ledgers, and protocol implementations.
   items:
-    - name: unmasking-did
+    - name: Unmasking DID
       url: https://github.com/egpivo/unmasking-did
       desc: Conservative onchain entity linking and coordination monitoring for blockchain governance analysis.
       github: https://github.com/egpivo/unmasking-did
@@ -245,7 +245,7 @@ blockchain:
           alt: codecov
       tech: Solidity · Foundry · OpenZeppelin
 
-    - name: zk-state-prune
+    - name: ZK State Prune
       url: https://github.com/egpivo/zk-state-prune/tree/main
       desc: Statistical tiering framework for ZK rollup state. Uses survival modeling and calibration to estimate slot reuse and derive cost-aware hot/cold placement policies.
       github: https://github.com/egpivo/zk-state-prune
@@ -266,7 +266,7 @@ blockchain:
           alt: Go version
       tech: Go · SQLite · Cobra · Viper
 
-    - name: rust-zkp
+    - name: Rust ZKP
       url: https://github.com/egpivo/rust-zkp
       desc: Minimal ZK-rollup from scratch in Rust — Pedersen, Sigma/Fiat–Shamir, Merkle state, Axum backend with mempool batching, WASM playground calling a live API.
       github: https://github.com/egpivo/rust-zkp
