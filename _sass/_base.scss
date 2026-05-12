@@ -56,12 +56,12 @@ a {
   color: var(--accent-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
-  
+
   &:hover {
-    color: var(--accent-secondary);
+    color: var(--accent-primary);
     text-decoration: underline;
   }
-  
+
   &:focus {
     outline: 2px solid var(--accent-primary);
     outline-offset: 2px;

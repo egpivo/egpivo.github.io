@@ -73,3 +73,6 @@ Zero-Knowledge:
 Cryptography:
     slug: cryptography
     name: Cryptography
+Tokenization:
+    slug: tokenization
+    name: Tokenization
