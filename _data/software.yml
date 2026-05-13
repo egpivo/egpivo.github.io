@@ -99,8 +99,26 @@ r_packages:
 
 python:
   title: Python
-  desc: Python applications for MCP, conversational AI, computer vision, and deep learning.
+  desc: Python applications for spatial modeling, MCP, conversational AI, computer vision, and deep learning.
   items:
+    - name: Spatial Adapter
+      url: https://pypi.org/project/spatial-adapter/
+      desc: Post-hoc cascade adapter for frozen predictors. Learns low-rank spatial residual representations with ADMM, closed-form covariance estimation, kriging-style prediction, and uncertainty quantification.
+      github: https://github.com/STLABTW/spatial-adapter
+      paper: https://arxiv.org/abs/2605.11394
+      paper_label: Preprint (arXiv)
+      badges:
+        - href: https://github.com/STLABTW/spatial-adapter/actions
+          src: https://github.com/STLABTW/spatial-adapter/workflows/Test/badge.svg
+          alt: Test
+        - href: https://pypi.org/project/spatial-adapter/
+          src: https://img.shields.io/pypi/v/spatial-adapter.svg?logo=pypi&label=PyPI
+          alt: PyPI
+        - href: https://codecov.io/gh/STLABTW/spatial-adapter
+          src: https://img.shields.io/codecov/c/github/STLABTW/spatial-adapter?label=coverage
+          alt: Codecov
+      tech: Python · PyTorch · C++ · Optuna
+
     - name: Spherical DeepKriging
       url: https://pypi.org/project/spherical-deepkriging/
       desc: Spherical spatial prediction with DeepKriging and MRTS-sphere basis functions. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
