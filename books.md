@@ -46,6 +46,7 @@ redirect_from:
     color: #888;
     font-size: 0.85rem; /* smaller author text */
   }
+
 </style>
 
 <script>
@@ -71,6 +72,15 @@ These readings symbolize my dual commitment to tech excellence and personal grow
 <div class="category">
     <h4>Tech</h4>
     <div class="book-container">
+        <div class="book" data-pub="2023-03-01">
+            <a href="https://www.amazon.com/Mastering-Blockchain-technical-blockchain-cryptography/dp/1803241063">
+                <img class="book-image" src="{{ site.url }}/assets/books/mastering-blockchain.png" alt="Mastering Blockchain: Inner workings of blockchain, from cryptography and decentralized identities, to DeFi, NFTs and Web3, 4th Edition">
+            </a>
+            <div class="book-title">
+                <a href="https://www.amazon.com/Mastering-Blockchain-technical-blockchain-cryptography/dp/1803241063">Mastering Blockchain: Inner workings of blockchain, from cryptography and decentralized identities, to DeFi, NFTs and Web3, 4th Edition</a>
+            </div>
+            <div class="book-author">Imran Bashir</div>
+        </div>
         <div class="book" data-pub="2018-03-30">
             <img class="book-image" src="{{ site.url }}/assets/books/beginning-blockchain-a-beginners-buide-to-building-blockchain-solutions.png" alt="Beginning Blockchain: A Beginner's Guide to Building Blockchain Solutions">
             <div class="book-title">Beginning Blockchain: A Beginner's Guide to Building Blockchain Solutions</div>
