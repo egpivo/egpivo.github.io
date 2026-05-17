@@ -180,6 +180,22 @@ blockchain:
   title: Blockchain & Web3
   desc: Smart contracts, deterministic ledgers, and protocol implementations.
   items:
+    - name: Stablecoin Audit
+      url: https://github.com/egpivo/stablecoin-audit
+      desc: Rust CLI for reproducible ERC-20 stablecoin audits across EVM chains. Verifies that mint/burn transactions align with totalSupply changes at block boundaries, then aggregates results across Ethereum, Base, and Arbitrum.
+      github: https://github.com/egpivo/stablecoin-audit
+      articles:
+        - href: /2026/05/17/usdc-looks-like-one-token.html
+          label: Blog
+      badges:
+        - href: https://github.com/egpivo/stablecoin-audit/actions
+          src: https://github.com/egpivo/stablecoin-audit/workflows/CI/badge.svg
+          alt: CI
+        - href: https://codecov.io/gh/egpivo/stablecoin-audit
+          src: https://codecov.io/gh/egpivo/stablecoin-audit/graph/badge.svg
+          alt: Codecov
+      tech: Rust · Alchemy · EVM RPC
+
     - name: Unmasking DID
       url: https://github.com/egpivo/unmasking-did
       desc: Conservative onchain entity linking and coordination monitoring for blockchain governance analysis.
