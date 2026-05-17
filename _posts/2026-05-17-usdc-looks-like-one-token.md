@@ -27,7 +27,7 @@ I would **not** read the pairing as moral ranking ("where the money lives"). It 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2026-05-17-usdc-looks-like-one-token/fig1_activity_supply_divergence.png" target="_blank" rel="noopener noreferrer">
     <img src="{{ site.baseurl }}/assets/2026-05-17-usdc-looks-like-one-token/fig1_activity_supply_divergence.png"
-         alt="Two bar panels: share of transfers vs net supply change by chain"
+         alt="Two bar panels: share of transfers vs. net supply change by chain"
          style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   </a>
   <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
@@ -47,7 +47,7 @@ A deployment can run hot on `Transfer` noise while ledger-level mint/burn net is
 
 ## Why USDC (for this benchmark)
 
-Zero-address `Transfer` mint/burn plus boundary `totalSupply` gives a legible accounting layer. Multi-chain native deployments without pretending equivalent block semantics add cross-chain contrast. Enough traffic that "event share vs mint/burn delta" is not a synthetic toy.
+Zero-address `Transfer` mint/burn plus boundary `totalSupply` gives a legible accounting layer. Multi-chain native deployments without pretending equivalent block semantics add cross-chain contrast. Enough traffic that "event share vs. mint/burn delta" is not a synthetic toy.
 
 The analytical bet is **auditability of the accounting layer first**; cross-chain message matching, pool depth, and admin events are explicitly **out of scope** until that layer is stated.
 
@@ -89,13 +89,13 @@ Metadata and historical `totalSupply` calls also passed on all three chains (`qa
 
 ## Evidence 2: activity and supply movement diverged
 
-**Definition (narrow):** "Transfer activity" here is the **decoded `Transfer` count**—including wallet-to-wallet, router paths, programmatic rebalance loops, LP mint/burn that touches the asset, batching proxies, anything that emits the event under the audited decode window. **It is not a retail-user census and not labeled as such.**
+**Definition (narrow):** "Transfer activity" here is the **decoded `Transfer` count**: including wallet-to-wallet, router paths, programmatic rebalance loops, LP mint/burn that touches the asset, batching proxies, anything that emits the event under the audited decode window. **It is not a retail-user census and not labeled as such.**
 
-Raw event counts are especially tricky across chains with different fee environments. On lower-fee chains, the same nominal activity can be split into more on-chain events—router paths, batching, programmatic loops. Without address classes or clustering, a transfer count mixes economic demand with execution mechanics. This run does not ship those tags; treat count-as-activity as guilty until partitioned.
+Raw event counts are especially tricky across chains with different fee environments. On lower-fee chains, the same nominal activity can be split into more on-chain events, e.g., router paths, batching, programmatic loops. Without address classes or clustering, a transfer count mixes economic demand with execution mechanics. This run does not ship those tags; treat count-as-activity as guilty until partitioned.
 
 What this may reflect (not verified in this slice): canonical **CCTP** burn-to-message plumbing would reconcile local burns with issuance elsewhere—Base's negative net delta could be compatible with mechanisms such as CCTP-style outflow, but **this run does not verify that route**, because Evidence 3 marks cross-chain pairing as absent. Net supply change is mint/burn-implied at the ERC-20 boundary; it need not correlate with raw `Transfer` mass.
 
-### Activity vs supply (7d window, native deployments)
+### Activity vs. supply (7d window, native deployments)
 
 | Chain | Share of transfers | Net supply change | Net supply change per 1,000 transfers |
 |-------|-------------------:|------------------:|----------------------------------------:|
@@ -129,7 +129,7 @@ Ethereum is **lowest** on chain-local transfer share but **largest** on net supp
   </div>
 </div>
 
-#### Gross churn vs net (same CSV)
+#### Gross churn vs. net (same CSV)
 
 Mint and burn totals can sit large while deployment-local net stays small—that is churn, **not hidden stability by itself.** I use the ratio below as a **diagnostic, not a ranking**:
 
@@ -143,7 +143,7 @@ Mint and burn totals can sit large while deployment-local net stays small—that
 
 Base's net move is comparatively small beside its **two-sided** ledger flow; Ethereum's net dominates numerically yet still sits modest relative to combined gross issuance and destruction paths. **Arbitrum is not midpoint on this churn metric** despite sitting between Ethereum and Base on transfer share—in this window it exhibits the lowest ratio of the trio, meaning net absorbs a conspicuous share of summed gross magnitude under this definition.
 
-**Interpretation:** High ratio flags that net is a washed-out summary of offsetting corridors; analysts should insist on decomposition (issuer mints vs canonical burn routes vs local recycling) rather than extrapolating "healthy flow" from a single net diagonal.
+**Interpretation:** High ratio flags that net is a washed-out summary of offsetting corridors; analysts should insist on decomposition (issuer mints vs. canonical burn routes vs. local recycling) rather than extrapolating "healthy flow" from a single net diagonal.
 
 ---
 
@@ -161,11 +161,11 @@ Any serious risk map owes the reader falsifiable instrumentation per row, not ju
 
 | Risk surface | Observable evidence | Covered in this benchmark? |
 |--------------|----------------------|----------------------------|
-| **Accounting consistency** | Boundary `totalSupply` vs zero-address mint/burn logs | **Yes** — Evidence 1 |
-| **Activity / flow confusion** | `Transfer` count vs supply delta; per-1k normalization; churn vs net ratios | **Yes** — Evidence 2 |
+| **Accounting consistency** | Boundary `totalSupply` vs. zero-address mint/burn logs | **Yes** — Evidence 1 |
+| **Activity / flow confusion** | `Transfer` count vs. supply delta; per-1k normalization; churn vs. net ratios | **Yes** — Evidence 2 |
 | **Issuer control risk** | Blacklist, pause, minter/admin changes, upgrades | **No** — requires control-log audit |
 | **Cross-chain movement risk** | Source burn / message / destination mint trail | **No** — requires CCTP-style matching |
-| **Bridged backing risk** | Wrapped supply vs locked canonical collateral | **No** — on-chain collateral comparison |
+| **Bridged backing risk** | Wrapped supply vs. locked canonical collateral | **No** — on-chain collateral comparison |
 | **Liquidity stress** | Pool depth, slippage, imbalance in stress windows | **No** — requires DEX pool state / swap logs |
 | **Oracle / price-feed stress** | Oracle deviation, update timing, price-feed behavior in stress windows | **No** — requires oracle feeds and episode framing |
 
@@ -194,6 +194,9 @@ Accounting is scaffolding, not climax. Closing the loop institutionally implies 
 Peg charts compress price. Blunt transfer tallies compress **mechanism**. Once `totalSupply` arithmetic locks, separating **ERC-20 event intensity**, **deployment-local issuance/destruction net**, **churn-vs-net curvature**, and **cross-chain attestations you do not yet have** is the difference between narration and auditability under defined scope.
 
 **Forecast I am comfortable making:** dashboards that silently merge these layers will become less useful as routed mint/burn flows and low-fee L2 traffic dominate the surface area—especially when participant mix is not pinned down by deeper telemetry.
+
+Where I would spend the next sprint: ingest that pairs canonical burns/mints across routes (CCTP or otherwise) before arguing **why** a deployment went negative; entity clustering before arguing which actors drove Base's transfer count; gross-to-net and per-1k columns as obligatory warnings whenever someone tries to monetize headline "USD moved last Tuesday."
+
 ---
 
 ## Appendix: reproduction
