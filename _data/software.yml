@@ -101,6 +101,19 @@ python:
   title: Python
   desc: Python applications for spatial modeling, MCP, conversational AI, computer vision, and deep learning.
   items:
+    - name: DA-STDK
+      url: https://pypi.org/project/da-stdk/
+      desc: Cluster-aware conformal calibration for spatio-temporal distributional prediction. Cluster-adaptive spatial bases initialized from sampling density with interval width calibration within spatial clusters and global fallback.
+      github: https://github.com/STLABTW/da-stdk
+      badges:
+        - href: https://github.com/STLABTW/da-stdk/actions
+          src: https://github.com/STLABTW/da-stdk/workflows/Test/badge.svg
+          alt: Test
+        - href: https://pypi.org/project/da-stdk/
+          src: https://img.shields.io/pypi/v/da-stdk.svg?logo=pypi&label=PyPI
+          alt: PyPI
+      tech: Python · PyTorch · Poetry
+
     - name: Spatial Adapter
       url: https://pypi.org/project/spatial-adapter/
       desc: Post-hoc cascade adapter for frozen predictors. Learns low-rank spatial residual representations with ADMM, closed-form covariance estimation, kriging-style prediction, and uncertainty quantification.
