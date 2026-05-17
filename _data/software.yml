@@ -103,7 +103,7 @@ python:
   items:
     - name: DA-STDK
       url: https://pypi.org/project/da-stdk/
-      desc: Cluster-aware conformal calibration for spatio-temporal distributional prediction. Cluster-adaptive spatial bases initialized from sampling density with interval width calibration within spatial clusters and global fallback.
+      desc: Deep learning framework for spatio-temporal distributional prediction with cluster-aware conformal calibration. Cluster-adaptive spatial bases from sampling density with per-cluster interval calibration and global fallback.
       github: https://github.com/STLABTW/da-stdk
       badges:
         - href: https://github.com/STLABTW/da-stdk/actions
