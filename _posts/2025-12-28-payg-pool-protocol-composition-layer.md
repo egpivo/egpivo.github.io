@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "From Services to Products: Composing Multi-Provider Checkout On-Chain"
-tags: [Solidity, Blockchain, Web3]
+tags: [Solidity, Blockchain, Ethereum, Web3]
 ---
 
 Imagine a mobile library. Readers don’t pay per book. They pay to enter the library for a period of time. Inside the library:

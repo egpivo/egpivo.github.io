@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Pay‑As‑You‑Go Demo: The Private Gallery in Web3"
-tags: [Solidity, Blockchain, Web3, Demo]
+tags: [Solidity, Blockchain, Ethereum, Web3, Demo]
 ---
 
 After weeks of diving into article registries and rental modules, I finally reached the stage every developer craves: making it all visible. It's one thing to see `0x...` addresses in a terminal; it's another to see a "Private Gallery" package actually work on a UI.

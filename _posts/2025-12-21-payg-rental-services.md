@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Designing Rental Services on a Pay-As-You-Go Protocol"
-tags: [Solidity, Blockchain]
+tags: [Solidity, Blockchain, Ethereum]
 ---
 
 This is not a rental dApp tutorial. It's a protocol design exercise under real-world constraints.

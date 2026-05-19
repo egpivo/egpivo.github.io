@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building Article Subscription Contracts in Solidity"
-tags: [Solidity, Blockchain]
+tags: [Solidity, Blockchain, Ethereum]
 ---
 
 

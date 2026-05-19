@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Simple Pay-as-You-Go Service in Solidity"
-tags: [Solidity, Blockchain]
+tags: [Solidity, Blockchain, Ethereum]
 ---
 
 I'm learning Solidity and wanted to apply some concepts to build a pay-as-you-go (PAYG) service contract as practice. I finished *The Complete Solidity Course – Zero to Advanced for Blockchain and Smart Contracts* on O'Reilly, and this is my first hands-on project.
