@@ -76,3 +76,9 @@ Cryptography:
 Tokenization:
     slug: tokenization
     name: Tokenization
+Stablecoins:
+    slug: stablecoins
+    name: Stablecoins
+Ethereum:
+    slug: ethereum
+    name: Ethereum
