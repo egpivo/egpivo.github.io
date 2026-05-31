@@ -52,16 +52,32 @@ sed "s|{{ site.baseurl }}|${SITE_ROOT}|g" "$FILE" > "$TMP1"
 
 python3 -c "
 import re, sys
+site_root = sys.argv[3]
 with open(sys.argv[1]) as f:
     content = f.read()
+
+def abs_assets(path: str) -> str:
+    if path.startswith('/assets/'):
+        return site_root + path
+    return path
+
 def replace_img(m):
     src = re.search(r'src=\"([^\"]+)\"', m.group(0))
     alt = re.search(r'alt=\"([^\"]+)\"', m.group(0))
-    return '![{}]({})'.format(alt.group(1) if alt else '', src.group(1) if src else '')
+    src_path = abs_assets(src.group(1)) if src else ''
+    return '![{}]({})'.format(alt.group(1) if alt else '', src_path)
+
 content = re.sub(r'<img\s[^>]+/?>', replace_img, content)
+content = re.sub(
+    r'!\[([^\]]*)\]\((/assets/[^)]+)\)',
+    lambda m: f'![{m.group(1)}]({abs_assets(m.group(2))})',
+    content,
+)
+content = content.replace('≠', '$\\neq$')
+content = re.sub(r'^(#{1,6}\s+.*)\$\\neq\$', lambda m: m.group(1).replace('$\\neq$', ' is not '), content, flags=re.MULTILINE)
 with open(sys.argv[2], 'w') as f:
     f.write(content)
-" "$TMP1" "$TMP_MD"
+" "$TMP1" "$TMP_MD" "$SITE_ROOT"
 
 rm -f "$TMP1"
 

@@ -66,3 +66,4 @@ kb-assistant-develop/
 tmp_repo/
 
 .claude/
+.backup/
