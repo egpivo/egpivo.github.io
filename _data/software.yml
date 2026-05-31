@@ -215,7 +215,11 @@ blockchain:
       github: https://github.com/egpivo/stablecoin-audit
       articles:
         - href: /2026/05/17/usdc-looks-like-one-token.html
-          label: Blog
+          label: USDC audit
+        - href: /2026/05/24/local-pegs-dollar-rails-geo-stablecoin-audit.html
+          label: Local pegs
+        - href: /2026/05/31/stablecoin-map-local-pegs-dollar-rails.html
+          label: Stablecoin map
       badges:
         - href: https://github.com/egpivo/stablecoin-audit/actions
           src: https://github.com/egpivo/stablecoin-audit/workflows/CI/badge.svg
