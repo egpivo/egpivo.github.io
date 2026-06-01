@@ -213,6 +213,7 @@ blockchain:
       url: https://github.com/egpivo/stablecoin-audit
       desc: Rust CLI for reproducible ERC-20 stablecoin audits across EVM chains. Verifies that mint/burn transactions align with totalSupply changes at block boundaries, then aggregates results across Ethereum, Base, and Arbitrum.
       github: https://github.com/egpivo/stablecoin-audit
+      demo: https://egpivo.github.io/stablecoin-audit/ui/
       articles:
         - href: /2026/05/17/usdc-looks-like-one-token.html
           label: USDC audit
@@ -220,6 +221,8 @@ blockchain:
           label: Local pegs
         - href: /2026/05/31/stablecoin-map-local-pegs-dollar-rails.html
           label: Stablecoin map
+        - href: /2026/06/02/stablecoin-audit-software-architecture-problem.html
+          label: Toolkit design
       badges:
         - href: https://github.com/egpivo/stablecoin-audit/actions
           src: https://github.com/egpivo/stablecoin-audit/workflows/CI/badge.svg
