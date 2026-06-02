@@ -10,7 +10,7 @@ tags: [Stablecoins, Software Architecture, Blockchain, Rust]
 
 ## From stablecoin analysis to audit tooling
 
-This is the fourth post in a stablecoin rail series. The first three posts narrowed the problem from [per-chain USDC transfer and supply signals]({{ site.baseurl }}/2026/05/17/usdc-looks-like-one-token.html), to [local-currency stablecoins and USDC-paired liquidity]({{ site.baseurl }}/2026/05/24/local-pegs-dollar-rails-geo-stablecoin-audit.html), to [the broader stablecoin dependency map]({{ site.baseurl }}/2026/05/31/stablecoin-map-local-pegs-dollar-rails.html).
+This is the fourth post in a stablecoin rail series. The first three posts narrowed the problem from [per-chain USDC transfer and supply signals]({{ site.baseurl }}/2026/05/17/usdc-looks-like-one-token.html), to [local-currency stablecoins and USDC-paired liquidity]({{ site.baseurl }}/2026/05/24/local-pegs-dollar-rails-geo-stablecoin-audit.html), to [the broader stablecoin dependency map]({{ site.baseurl }}/web3/stablecoins/defi/2026/05/31/stablecoin-map-local-pegs-dollar-rails.html).
 
 The common thread was the same: stablecoin analysis needed to become reproducible evidence, not just a readable chart.
 
