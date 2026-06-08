@@ -349,3 +349,12 @@ blockchain:
           src: https://github.com/egpivo/rust-zkp/workflows/CI/badge.svg
           alt: CI
       tech: Rust · Axum · Tokio · WASM · Astro
+
+    - name: Rust P2P Protocol Lab
+      url: https://github.com/egpivo/rust-p2p-protocol-lab
+      desc: Local blockchain P2P security gym in Rust — Sybil, Eclipse, and network partition scenarios on 127.0.0.1 with one CLI and printed metrics.
+      github: https://github.com/egpivo/rust-p2p-protocol-lab
+      articles:
+        - href: /2026/06/09/building-blockchain-p2p-security-gym-rust.html
+          label: Blog
+      tech: Rust · Tokio · TCP
