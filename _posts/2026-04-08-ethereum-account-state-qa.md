@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ethereum Account State: QA Pipeline for a Minimal Token"
-tags: [Smart Contracts, Blockchain, Ethereum, Solidity, Web3, QA]
+tags: [Smart Contracts, Blockchain, Ethereum, Solidity, Web3, QA, Cybersecurity]
 ---
 
 <div style="text-align:center; margin: 2rem 0;">

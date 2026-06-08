@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Three Classic Blockchain P2P Attacks, Rebuilt in a Rust Local Lab"
-tags: [Rust, Blockchain, P2P, Security, Web3]
+title: "Three Classic Blockchain Attacks, Rebuilt in a Rust Local Lab"
+tags: [Rust, Blockchain, Cybersecurity, Web3]
 ---
 
 <div style="text-align:center; margin: 2rem 0;">
@@ -281,7 +281,7 @@ cargo run -p p2p-env -- --honest 6 --attack partition
 Sources cited for the real-world case introductions:
 
 - Optimism, [Let the Claims Begin](https://www.optimism.io/blog/let-the-claims-begin) (May 2022): OP Airdrop #1 launch; removal of 17,000+ Sybil addresses.
-- The Block, [Optimism Cracks Down on Airdrop Farmers](https://www.theblock.co/post/148417/optimism-cracks-down-on-airdrop-farmers) (May 2022): press coverage of the same sybil filtering.
+- The Block, [Optimism Cracks Down on Airdrop Farmers](https://www.theblock.co/post/148417/optimism-cracks-down-on-airdrop-farmers) (May 2022): press coverage of the same Sybil filtering.
 - Marcus et al., [Eclipsing Ethereum Peers with False Friends](https://arxiv.org/abs/1908.10141) (arXiv, 2019): Ethereum eclipse attack via peer-table flooding; paper reports Geth v1.9.0 countermeasures.
 - Go-Ethereum, [Minority Split Postmortem](https://github.com/ethereum/go-ethereum/blob/master/docs/postmortems/2021-08-22-split-postmortem.md) (August 2021): August 2021 chain split affecting unpatched Geth nodes.
 - [BIP 50: March 2013 Chain Fork Post-Mortem](https://bips.dev/50/): Bitcoin 0.8 vs pre-0.8 block acceptance mismatch.

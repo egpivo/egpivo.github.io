@@ -82,3 +82,6 @@ Stablecoins:
 Ethereum:
     slug: ethereum
     name: Ethereum
+Cybersecurity:
+    slug: cybersecurity
+    name: Cybersecurity
