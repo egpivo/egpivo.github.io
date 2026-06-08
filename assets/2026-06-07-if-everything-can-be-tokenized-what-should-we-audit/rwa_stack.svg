@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1644" height="860" viewBox="0 0 1644 860" role="img" aria-labelledby="title desc">
+  <title id="title">RWA Verification Stack</title>
+  <desc id="desc">RWA audit crosses three zones: off-chain evidence, on-chain artifacts, and workflow interpretation.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fdfbf6; }
+      .ink { fill: #171b20; }
+      .muted { fill: #5d6670; }
+      .rule { stroke: #d8d1c3; }
+      .green { fill: #5c765f; }
+      .blue { fill: #426f91; }
+      .gold { fill: #bd8a3a; }
+      .green-stroke { stroke: #8ea991; }
+      .blue-stroke { stroke: #8baec8; }
+      .gold-stroke { stroke: #d7b46e; }
+      .green-soft { fill: #f6f9f4; }
+      .blue-soft { fill: #f5f9fc; }
+      .gold-soft { fill: #fdf8ef; }
+      .white { fill: #fffefd; }
+      .t { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
+      .eyebrow { font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+      .item { font-size: 29px; font-weight: 650; }
+      .small { font-size: 17px; font-weight: 560; }
+      .audit-label { font-size: 19px; font-weight: 760; letter-spacing: .09em; }
+      .question { font-size: 34px; font-weight: 760; }
+      .caption { font-size: 18px; font-weight: 400; }
+    </style>
+    <marker id="arrowMuted" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6.5 L2,11 Z" fill="#b9ad99"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1644" height="860"/>
+
+  <!-- Column geometry -->
+  <g id="off-chain">
+    <line class="green-stroke" x1="168" y1="92" x2="168" y2="518" stroke-width="2"/>
+    <text class="t eyebrow green" x="196" y="112">1  Off-chain evidence</text>
+
+    <rect class="white green-stroke" x="196" y="162" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="224" y="213">Legal claim</text>
+
+    <rect class="white green-stroke" x="196" y="292" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="224" y="343">Custody / backing</text>
+
+    <rect class="white green-stroke" x="196" y="422" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="224" y="473">Exit / cashflow</text>
+  </g>
+
+  <g id="on-chain">
+    <line class="blue-stroke" x1="655" y1="92" x2="655" y2="518" stroke-width="2"/>
+    <text class="t eyebrow blue" x="683" y="112">2  On-chain artifacts</text>
+
+    <rect class="white blue-stroke" x="683" y="162" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="711" y="213">Contract state</text>
+
+    <rect class="white blue-stroke" x="683" y="292" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="711" y="343">Mint / burn</text>
+
+    <rect class="white blue-stroke" x="683" y="422" width="340" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="711" y="473">Transfer logs</text>
+  </g>
+
+  <g id="workflow">
+    <line class="gold-stroke" x1="1142" y1="92" x2="1142" y2="518" stroke-width="2"/>
+    <text class="t eyebrow gold" x="1170" y="112">3  Workflow interpretation</text>
+
+    <rect class="white gold-stroke" x="1170" y="162" width="360" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="1198" y="213">Transfer semantics</text>
+
+    <rect class="white gold-stroke" x="1170" y="292" width="360" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="1198" y="343">Routing / collateral</text>
+
+    <rect class="white gold-stroke" x="1170" y="422" width="360" height="80" rx="10" stroke-width="1"/>
+    <text class="t item ink" x="1198" y="473">Canonical record</text>
+  </g>
+
+  <!-- Boundaries -->
+  <line class="rule" x1="570" y1="332" x2="634" y2="332" stroke-width="2" marker-end="url(#arrowMuted)"/>
+  <line class="rule" x1="1058" y1="332" x2="1121" y2="332" stroke-width="2" marker-end="url(#arrowMuted)"/>
+
+  <!-- Boundary notes -->
+  <rect class="green-soft" x="132" y="558" width="470" height="76" rx="12"/>
+  <text class="t caption muted" x="158" y="588">Documents define the claim.</text>
+  <text class="t caption muted" x="158" y="616">The chain does not verify custody or NAV.</text>
+
+  <rect class="blue-soft" x="620" y="558" width="470" height="76" rx="12"/>
+  <text class="t caption muted" x="646" y="588">Events define the observable surface.</text>
+  <text class="t caption muted" x="646" y="616">A Transfer is syntax, not meaning.</text>
+
+  <rect class="gold-soft" x="1108" y="558" width="470" height="76" rx="12"/>
+  <text class="t caption muted" x="1134" y="588">Workflow maps syntax back to claim.</text>
+  <text class="t caption muted" x="1134" y="616">This is where most overclaims start.</text>
+
+  <!-- Audit question -->
+  <line class="rule" x1="98" y1="714" x2="1546" y2="714" stroke-width="1"/>
+  <text class="t audit-label gold" x="98" y="767">AUDIT QUESTION</text>
+  <text class="t question ink" x="294" y="770">Did tokenization make the claim more verifiable, or only easier to distribute?</text>
+</svg>
