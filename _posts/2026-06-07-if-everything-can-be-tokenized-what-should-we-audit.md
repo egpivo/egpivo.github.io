@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "When Real-World Assets Move On-Chain, What Becomes Visible?"
-tags: [Tokenization, RWA, Audit, Blockchain]
+tags: [RWA, Tokenization, Blockchain, Web3]
 ---
 
 *The token can move faster than the evidence.*

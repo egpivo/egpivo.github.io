@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Local Pegs, Dollar Rails: Auditing XSGD and EURC Liquidity"
-tags: [Stablecoins, Blockchain, Ethereum]
+tags: [Stablecoins, Blockchain, Web3, Ethereum]
 ---
 
 *XSGD is SGD-denominated. EURC is EUR-denominated. Their observed DEX liquidity surfaces remain materially USDC-paired.*

@@ -76,6 +76,9 @@ Cryptography:
 Tokenization:
     slug: tokenization
     name: Tokenization
+RWA:
+    slug: rwa
+    name: RWA
 Stablecoins:
     slug: stablecoins
     name: Stablecoins
