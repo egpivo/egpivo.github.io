@@ -137,6 +137,6 @@ For simplicity, I used linear correlation as a screen, not as a conclusion. The 
 
 - **Repo:**: [github.com/egpivo/rwa-audit](https://github.com/egpivo/rwa-audit)
 - **Panel:**: 2026-03-10 → 2026-06-08; Ethereum public-pool data, COMEX gold reference, ParaSwap quote checks, selected transaction-log reconstructions
-- **Artifacts:**: `data/flow/`; figure scripts in `scripts/plot/`
+- **Artifacts:**: [`data/flow/`](https://github.com/egpivo/rwa-audit/tree/main/data/flow); figure scripts in [`scripts/plot/`](https://github.com/egpivo/rwa-audit/tree/main/scripts/plota)
 - **Transaction replay:**: `cargo run --bin rwa-flow-tx -- 0x<tx_hash>`
 - **Correlations:**: computed from the saved 90-day panel files; live API re-runs may differ slightly.
