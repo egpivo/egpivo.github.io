@@ -92,7 +92,7 @@ The CLI said `Success: false`. The slot bar explains the result: three honest sl
 Eclipse adds state to the Sybil story. The GIF uses the Article preset with Defense off and twenty attackers. The attacker sends `attacker_tip_FAKE`; the metric only flips if the victim also loses every honest path.
 
 ```rust
-let state_diverged = fake_tip_received && honest_peers == 0
+let state_diverged = fake_tip_received && honest_peers == 0;
 ```
 
 <div style="text-align:center; margin: 2rem 0;">
@@ -126,6 +126,8 @@ This is the point the UI should make: receiving bad state is not the same as bei
 Nodes do not start with a full peer table. They first need a peer list from seeds, discovery tables, or another bootstrap path.
 
 That first list is already a security boundary. If it is Sybil-heavy, the node starts from a biased network view before normal peer table competition begins.
+
+Real networks have more structure than this toy seed. Bitcoin may use DNS seeds or known peers; Ethereum clients use discovery protocols and signed node records. The lab strips that down to one question: before peer table competition starts, who gets into the first peer set?
 
 Bootstrap Poisoning moves the same cheap identity problem earlier. The Bootstrap panel uses eight Sybil identities. The GIF walks through the seed handshake: the victim asks a seed for peers and receives only Sybil addresses.
 
