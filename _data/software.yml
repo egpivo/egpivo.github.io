@@ -354,9 +354,11 @@ blockchain:
 
     - name: Rust P2P Protocol Lab
       url: https://github.com/egpivo/rust-p2p-protocol-lab
-      desc: Local blockchain P2P security gym in Rust — Sybil, Eclipse, and network partition scenarios on 127.0.0.1 with one CLI and printed metrics.
+      desc: Local blockchain P2P security gym in Rust — Sybil, Eclipse, partition, and bootstrap scenarios on 127.0.0.1; CLI metrics plus `p2p-viz` browser replay.
       github: https://github.com/egpivo/rust-p2p-protocol-lab
       articles:
         - href: /2026/06/09/building-blockchain-p2p-security-gym-rust.html
-          label: Blog
-      tech: Rust · Tokio · TCP
+          label: Gym article
+        - href: /2026/06/16/making-p2p-attack-metrics-visible.html
+          label: Viz article
+      tech: Rust · Tokio · TCP · Axum · D3
