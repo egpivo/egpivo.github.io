@@ -91,8 +91,8 @@ The CLI said `Success: false`. The slot bar explains the result: three honest sl
 
 Eclipse adds state to the Sybil story. The GIF uses the Article preset with Defense off and twenty attackers. The attacker sends `attacker_tip_FAKE`; the metric only flips if the victim also loses every honest path.
 
-```text
-state_diverged = fake_tip_received && honest_peers == 0
+```rust
+let state_diverged = fake_tip_received && honest_peers == 0
 ```
 
 <div style="text-align:center; margin: 2rem 0;">
@@ -131,8 +131,8 @@ Bootstrap Poisoning moves the same cheap identity problem earlier. The Bootstrap
 
 The metric is not slot occupancy. It is the first peer list:
 
-```text
-bootstrap_sybil_ratio = sybil_peers / total_bootstrap_peers
+```rust
+let bootstrap_sybil_ratio = sybil_peers / total_bootstrap_peers;
 ```
 
 <div style="text-align:center; margin: 2rem 0;">
@@ -188,17 +188,6 @@ The left panel also exposes scenarios I am not treating as the three main replay
   </div>
 </div>
 
-<div style="text-align:center; margin: 2rem 0;">
-  <a href="{{ site.baseurl }}/assets/2026-06-16-making-p2p-attack-metrics-visible/fig12_noise_viz.png" target="_blank" rel="noopener noreferrer">
-    <img src="{{ site.baseurl }}/assets/2026-06-16-making-p2p-attack-metrics-visible/fig12_noise_viz.png"
-         alt="Noise handshake defense: MITM detected via remote key mismatch"
-         style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
-  </a>
-  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;">
-    <strong>Fig. 9.</strong> Noise is a defense panel, not an attack panel.
-  </div>
-</div>
-
 **Note:** Noise solves a different problem from Sybil or Bootstrap Poisoning. It can authenticate the remote transport key. It does not make identities expensive, diversify seed responses, or prevent peer table flooding.
 
 ---
@@ -216,6 +205,7 @@ That is the useful boundary for this UI. It does not prove real world exploitabi
 ---
 
 ## Appendix
+- Runs bind to `127.0.0.1`. Clone [**rust-p2p-protocol-lab**](https://github.com/egpivo/rust-p2p-protocol-lab) and start the UI:
 
 ```bash
 git clone https://github.com/egpivo/rust-p2p-protocol-lab.git
@@ -224,4 +214,4 @@ cargo run -p p2p-viz
 # browser: http://127.0.0.1:3000/
 ```
 
-The runs bind to `127.0.0.1`. Real world references and the original CLI gym are in the [previous post]({{ site.baseurl }}/2026/06/09/building-blockchain-p2p-security-gym-rust.html).
+- Real world references and the original CLI gym are in the [previous post]({{ site.baseurl }}/2026/06/09/building-blockchain-p2p-security-gym-rust.html).
