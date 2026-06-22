@@ -195,6 +195,19 @@ blockchain:
   title: Blockchain & Web3
   desc: Smart contracts, deterministic ledgers, and protocol implementations.
   items:
+    - name: RWA Audit
+      url: https://github.com/egpivo/rwa-audit
+      desc: Rust tooling for auditing tokenized real-world assets. Extracts on-chain evidence, compares verifiable and claimed surfaces, and records gaps across asset, flow, and exchange layers.
+      github: https://github.com/egpivo/rwa-audit
+      articles:
+        - href: /2026/06/07/if-everything-can-be-tokenized-what-should-we-audit.html
+          label: Asset layer
+        - href: /2026/06/14/where-rwa-trades-and-exits-actually-clear.html
+          label: Flow layer
+        - href: /2026/06/21/where-rwa-exchange-risk-actually-sits.html
+          label: Exchange layer
+      tech: Rust · EVM RPC · Solana · Market APIs
+
     - name: Ethereum Fee Risk Diagnostics
       url: https://github.com/egpivo/ethereum-fee-risk-diagnostics
       desc: Go toolkit for studying Ethereum base-fee dynamics. Fetches block-level data via JSON-RPC, reconstructs the EIP-1559 fee-update rule, detects change points (CUSUM), and screens candidates by effect size and persistence.

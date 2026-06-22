@@ -1,0 +1,106 @@
+digraph rwa_audit {
+  graph [
+    rankdir=LR,
+    bgcolor=white,
+    fontname="Helvetica,Arial,sans-serif",
+    fontsize=13,
+    nodesep=0.55,
+    ranksep=1.20,
+    margin="0.4,0.3",
+    pad=0.4,
+    newrank=true
+  ];
+
+  node [
+    fontname="Helvetica,Arial,sans-serif",
+    fontsize=13,
+    margin="0.22,0.14",
+    penwidth=1.5,
+    shape=box,
+    style="rounded,filled"
+  ];
+
+  edge [
+    fontname="Helvetica,Arial,sans-serif",
+    fontsize=11,
+    penwidth=1.3,
+    arrowsize=0.80,
+    color="#555555",
+    fontcolor="#555555"
+  ];
+
+  // ── Nodes ─────────────────────────────────────
+
+  CLI [
+    label="rwa-audit CLI",
+    fillcolor="#dae8fc", color="#6c8ebf",
+    fontsize=15, fontname="Helvetica Bold,Arial Bold,sans-serif"
+  ];
+
+  MR [
+    label="Module Runner\n(resolve_module · lock)",
+    fillcolor="#d5e8d4", color="#82b366",
+    fontsize=13
+  ];
+
+  AM [label="Audit Modules",  fillcolor="#fff2cc", color="#d6b656", fontsize=13];
+  SL [label="Source Layer",   fillcolor="#fff2cc", color="#d6b656", fontsize=13];
+  PB [label="Publish Bundle", fillcolor="#fff2cc", color="#d6b656", fontsize=13];
+
+  CA [label="config/assets",    shape=cylinder, fillcolor="#f8cecc", color="#b85450", fontsize=12];
+  DS [label="data/scratch",     shape=cylinder, fillcolor="#f8cecc", color="#b85450", fontsize=12];
+  CS [label="cache/sources",    shape=cylinder, fillcolor="#f8cecc", color="#b85450", fontsize=12];
+  AA [label="artifacts/audits", shape=cylinder, fillcolor="#f8cecc", color="#b85450", fontsize=12];
+
+  RPC [
+    label="PublicNode RPC\n(eth_call / getLogs)",
+    fillcolor="#e1d5e7", color="#9673a6", fontsize=12
+  ];
+  PRICE [
+    label="Price & Pool APIs\n(CoinGecko · GeckoTerminal\nJupiter · ParaSwap · Yahoo)",
+    fillcolor="#e1d5e7", color="#9673a6", fontsize=12
+  ];
+
+  // ── Rank groups (LR columns) ─────────────────
+  { rank=same; CLI; }
+  { rank=same; MR; }
+  { rank=same; AM; SL; PB; }
+  { rank=same; CA; DS; CS; AA; }
+  { rank=same; RPC; PRICE; }
+
+  // Invisible spine edges to enforce column order top→bottom
+  AM -> SL -> PB [style=invis];
+  CA -> DS -> CS -> AA [style=invis];
+  RPC -> PRICE [style=invis];
+
+  // ── Visible edges ─────────────────────────────
+
+  CLI -> MR [label="run / freeze"];
+  MR  -> AM [label="resolve_module"];
+
+  AM -> SL [label="fetch data"];
+  AM -> PB [label="promote", style=dashed, color="#888888", fontcolor="#888888", constraint=false];
+
+  AM -> CA [label="reads config",   arrowhead=open, color="#b85450", fontcolor="#b85450"];
+  AM -> DS [label="write evidence", arrowhead=open, color="#b85450", fontcolor="#b85450"];
+  PB -> AA [label="write bundle",   arrowhead=open, color="#b85450", fontcolor="#b85450"];
+  SL -> CS [label="read/write",     arrowhead=open, color="#b85450", fontcolor="#b85450"];
+
+  SL -> RPC   [label="eth_call / getLogs",      style=dashed, color="#9673a6", fontcolor="#9673a6"];
+  SL -> PRICE [label="prices / pools / quotes", style=dashed, color="#9673a6", fontcolor="#9673a6"];
+
+  // ── Layer annotations (invisible anchor nodes) ─
+  _op  [label="Operator",  shape=plaintext, style=plain, fontcolor="#888888", fontsize=12, fontname="Helvetica Oblique,Arial Italic,sans-serif"];
+  _dp  [label="Dispatcher",shape=plaintext, style=plain, fontcolor="#888888", fontsize=12, fontname="Helvetica Oblique,Arial Italic,sans-serif"];
+  _sv  [label="Service",   shape=plaintext, style=plain, fontcolor="#888888", fontsize=12, fontname="Helvetica Oblique,Arial Italic,sans-serif"];
+  _st  [label="Storage",   shape=plaintext, style=plain, fontcolor="#888888", fontsize=12, fontname="Helvetica Oblique,Arial Italic,sans-serif"];
+  _ex  [label="External",  shape=plaintext, style=plain, fontcolor="#888888", fontsize=12, fontname="Helvetica Oblique,Arial Italic,sans-serif"];
+
+  { rank=same; CLI;  _op;  }
+  { rank=same; MR;   _dp;  }
+  { rank=same; AM;   _sv;  }
+  { rank=same; CA;   _st;  }
+  { rank=same; RPC;  _ex;  }
+
+  _op -> _dp -> _sv -> _st -> _ex [style=invis];
+}
