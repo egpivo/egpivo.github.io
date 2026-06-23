@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The SpaceX Trade Exists. Now Watch the Tape."
-tags: [Tokenization, Blockchain, Web3]
+tags: [RWA, Tokenization, Blockchain, Web3]
 ---
 
 *SpaceX stock is not public yet, but SPCXUSDT perps already show **volume, open interest, funding, and venue concentration**. The question is what this tape can—and cannot—tell us.*

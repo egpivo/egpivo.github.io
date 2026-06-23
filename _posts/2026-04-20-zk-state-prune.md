@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why ZK Rollups Need a Smarter Way to Manage State"
-tags: [ZK Rollup, Blockchain, Survival Analysis, Statistics, Distributed Systems, Go]
+tags: [Zero-Knowledge, Blockchain, Survival Analysis, Statistics, Distributed Systems, Go]
 math: true
 math_numbered: false
 ---

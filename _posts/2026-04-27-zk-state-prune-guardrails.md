@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ZK State Prune: The Boundaries Behind Rollup Cost Models"
-tags: [ZK Rollup, Blockchain, Survival Analysis, Statistics, QA, Distributed Systems, Go]
+tags: [Zero-Knowledge, Blockchain, Survival Analysis, Statistics, QA, Distributed Systems, Go]
 math: true
 math_numbered: false
 ---

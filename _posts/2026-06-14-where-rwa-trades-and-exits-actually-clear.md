@@ -2,7 +2,7 @@
 layout: post
 title: "Where RWA Flow Leaves Traces"
 date: 2026-06-14
-tags: [RWA, Tokenization, Blockchain, Web3, DeFi]
+tags: [RWA, Tokenization, Blockchain, Web3]
 ---
 
 *When RWA trading becomes a clean service, which parts of the path stop being visible?*
