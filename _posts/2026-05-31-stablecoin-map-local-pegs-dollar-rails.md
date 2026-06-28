@@ -3,7 +3,7 @@ layout: post
 title: "The Stablecoin Map: What Crypto's Cash Rails Depend On"
 date: 2026-05-31
 categories: [web3, stablecoins, defi]
-tags: [Stablecoins, Blockchain, Web3, Ethereum, Risk Management]
+tags: [DeFi, Stablecoins, Blockchain, Web3, Ethereum]
 excerpt: "Stablecoins are becoming crypto's cash layer. The question is not only what they are pegged to, but what they depend on."
 ---
 

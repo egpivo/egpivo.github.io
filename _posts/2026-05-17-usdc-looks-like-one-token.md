@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "USDC Shows Why Stablecoin Risk Analysis Is Not One Signal"
-tags: [Stablecoins, Blockchain, Web3, Ethereum, Risk Management]
+tags: [Stablecoins, Blockchain, Web3, Ethereum]
 ---
 
 *Base led transfer activity. Ethereum led net supply expansion. Same week, different risk signals.*

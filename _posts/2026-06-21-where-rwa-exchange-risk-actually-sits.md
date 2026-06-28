@@ -2,7 +2,7 @@
 layout: post
 title: "Where RWA Exchange Risk Actually Sits"
 date: 2026-06-21
-tags: [RWA, Tokenization, Blockchain, Web3]
+tags: [RWA, DeFi, Tokenization, Blockchain, Web3]
 ---
 
 *When the venue becomes part of the product, which record is authoritative?*

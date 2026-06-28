@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Metering Chain: QA That Follows Business Logic"
-tags: [Rust, Blockchain, DePIN, "Protocol Design", Web3, QA, Cybersecurity]
+tags: [Rust, Blockchain, DePIN, Protocol Design, QA]
 ---
 
 Phases 1-4 defined the guarantees Metering Chain is supposed to provide.

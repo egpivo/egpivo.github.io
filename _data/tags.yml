@@ -88,3 +88,6 @@ Ethereum:
 Cybersecurity:
     slug: cybersecurity
     name: Cybersecurity
+DeFi:
+    slug: defi
+    name: DeFi
