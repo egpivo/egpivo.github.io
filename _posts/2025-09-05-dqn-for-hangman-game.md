@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hangman with DQN and Transformers"
-tags: [Machine Learning, Deep Learning, RL, NLP]
+tags: [Machine Learning, Deep Learning, RL, NLP, AI]
 math: true
 ---
 

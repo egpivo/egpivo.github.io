@@ -31,6 +31,9 @@ LLM:
 AI:
     slug: AI
     name: AI
+AI Agent:
+    slug: ai-agent
+    name: AI Agent
 Web3:
     slug: web3
     name: Web3
