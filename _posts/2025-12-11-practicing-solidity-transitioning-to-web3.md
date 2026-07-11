@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building a Simple Pay-as-You-Go Service in Solidity"
+title: "Building a Simple Pay-As-You-Go Service in Solidity"
 tags: [Solidity, Blockchain, Ethereum]
 ---
 
@@ -234,4 +234,3 @@ function updateServicePrice(uint _serviceId, uint _newPrice) public onlyProvider
 ```
 
 This prevents someone from modifying a service they don't own. Modifiers make access control explicit and reusable.
-

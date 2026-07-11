@@ -65,3 +65,4 @@ tmp_repo/
 
 .claude/
 .backup/
+.local/

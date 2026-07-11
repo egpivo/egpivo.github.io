@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The token appeared twice. The AMM market formed once"
+title: "The Token Appeared Twice. The AMM Market Formed Once"
 date: 2026-07-12
 tags: [DeFi, DEX, Solana, Ethereum, Blockchain, RWA]
 ---
