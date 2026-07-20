@@ -206,6 +206,13 @@ blockchain:
           label: Flow layer
         - href: /2026/06/21/where-rwa-exchange-risk-actually-sits.html
           label: Exchange layer
+      badges:
+        - href: https://github.com/egpivo/rwa-audit/actions/workflows/ci.yml
+          src: https://github.com/egpivo/rwa-audit/actions/workflows/ci.yml/badge.svg
+          alt: CI
+        - href: https://github.com/egpivo/rwa-audit/blob/main/LICENSE
+          src: https://img.shields.io/github/license/egpivo/rwa-audit
+          alt: License
       tech: Rust · EVM RPC · Solana · Market APIs
 
     - name: Ethereum Fee Risk Diagnostics
