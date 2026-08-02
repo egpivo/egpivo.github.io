@@ -8,7 +8,7 @@ math: true
 math_numbered: false
 ---
 
-*[The pool series]({{ site.baseurl }}/2026/07/14/before-mev-build-the-pool.html) measured one layer at a time; [dynamic-fee simulations]({{ site.baseurl }}/2026/07/21/dynamic-fees-amm-signal-matters.html) asked whether state can price toxic flow. **Part V** tests a different margin: what happens to liquidity when the protocol—not the trader—gets a larger share of the fee. [Part VI]({{ site.baseurl }}/2026/08/04/frozen-logs-matched-did-r-stack.html) is the methods companion.*
+*[The pool series]({{ site.baseurl }}/2026/07/14/before-mev-build-the-pool.html) measured one layer at a time; [dynamic-fee simulations]({{ site.baseurl }}/2026/07/21/dynamic-fees-amm-signal-matters.html) asked whether state can price toxic flow. **Part V** tests a different margin: what happens to liquidity when the protocol—not the trader—gets a larger share of the fee.*
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2026-08-02-protocol-fee-liquidity/hero.png" target="_blank" rel="noopener noreferrer">
@@ -125,7 +125,7 @@ Not every outcome gets the same label. Token-1 volume (joint pre-trend **p = 0.0
 
 ## What on-chain data can—and cannot—settle
 
-The credible part of the claim is **replayability**. Treatment indicators, intensities, event times, unit roles, and outcomes are deterministic functions of raw logs and fixed reconstruction rules, checked into a frozen panel with hash manifests before estimation. That matters in DeFi: the design is only as strong as the objects entering it. [Part VI]({{ site.baseurl }}/2026/08/04/frozen-logs-matched-did-r-stack.html) walks through the Rust→R stack that builds that object.
+The credible part of the claim is **replayability**. Treatment indicators, intensities, event times, unit roles, and outcomes are deterministic functions of raw logs and fixed reconstruction rules, checked into a frozen panel with hash manifests before estimation. That matters in DeFi: the design is only as strong as the objects entering it.
 
 The boundary is equally important. Public swap receipts show **landed** routes, not the router's full choice set. Swap counterparties are addresses, not labeled arbitrageurs versus noise traders. Fee-revenue attribution into arbitrage versus fundamental flow is not identified from logs alone—and neither is any counterfactual **dynamic fee** rule that would move $c_i$ within a pool. The switch estimates one real channel ($K_L$) and marks the rest as model-conditioned or non-estimand.
 
@@ -141,8 +141,6 @@ Under this ±8-week window and these depth bands, the result is an identified no
 
 The next observables are longer horizons, cross-venue reallocation, and staged rollout waves on L2s and v4—not reasons to over-read a short-window null. If capital does eventually migrate, the first place to look is whether depth moved on competing venues for the same token pairs, not whether one aggregate ATT happened to cross zero by week eight.
 
-*[Part VI]({{ site.baseurl }}/2026/08/04/frozen-logs-matched-did-r-stack.html) is the methods companion: how the frozen panel, match contract, and R gate earned that reading.*
-
 ***
 
 ## Appendix: sources and reproducibility
@@ -153,4 +151,4 @@ The next observables are longer horizons, cross-venue reallocation, and staged r
 
 **Background reading:** LVR (Milionis, Moallemi, and Roughgarden, 2022, [arXiv:2208.06046](https://arxiv.org/abs/2208.06046)); dynamic-fee theory not identified here (Campbell, Bergault, Milionis, and Nutz, 2026, [arXiv:2606.21769](https://arxiv.org/abs/2606.21769); Baggiani, Herdegen, and Sánchez-Betancourt, 2026, [arXiv:2603.09669](https://arxiv.org/abs/2603.09669)); event-study DiD method (Sun and Abraham, 2021, [doi:10.1093/restud/rdab034](https://doi.org/10.1093/restud/rdab034); Roth, 2023, [doi:10.1093/restud/rdad016](https://doi.org/10.1093/restud/rdad016)).
 
-**Series:** [Part I]({{ site.baseurl }}/2026/07/12/the-same-token-is-not-the-same-market.html) · [Part II]({{ site.baseurl }}/2026/07/14/before-mev-build-the-pool.html) · [Part III]({{ site.baseurl }}/2026/07/19/when-the-market-forms-without-an-amm-pool.html) · [Part IV]({{ site.baseurl }}/2026/07/21/dynamic-fees-amm-signal-matters.html) · Part V (this post) · [Part VI]({{ site.baseurl }}/2026/08/04/frozen-logs-matched-did-r-stack.html) (methods companion) · [related: The Cheapest Trade Is Not Always the Safe Equilibrium]({{ site.baseurl }}/2026/08/02/the-cheapest-trade-is-not-always-the-safe-equilibrium.html)
+**Series:** [Part I]({{ site.baseurl }}/2026/07/12/the-same-token-is-not-the-same-market.html) · [Part II]({{ site.baseurl }}/2026/07/14/before-mev-build-the-pool.html) · [Part III]({{ site.baseurl }}/2026/07/19/when-the-market-forms-without-an-amm-pool.html) · [Part IV]({{ site.baseurl }}/2026/07/21/dynamic-fees-amm-signal-matters.html) · Part V (this post) · [related: The Cheapest Trade Is Not Always the Safe Equilibrium]({{ site.baseurl }}/2026/08/02/the-cheapest-trade-is-not-always-the-safe-equilibrium.html)
