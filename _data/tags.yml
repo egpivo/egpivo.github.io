@@ -88,6 +88,9 @@ Stablecoins:
 Ethereum:
     slug: ethereum
     name: Ethereum
+Solana:
+    slug: solana
+    name: Solana
 Cybersecurity:
     slug: cybersecurity
     name: Cybersecurity
