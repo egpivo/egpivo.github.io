@@ -101,6 +101,28 @@ python:
   title: Python
   desc: Python applications for spatial modeling, MCP, conversational AI, computer vision, and deep learning.
   items:
+    - name: Spherical DeepKriging
+      url: https://pypi.org/project/spherical-deepkriging/
+      desc: Spherical spatial prediction with DeepKriging and MRTS-sphere basis functions. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
+      github: https://github.com/STLABTW/spherical-deepkriging
+      demo: https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb
+      paper: https://doi.org/10.1007/s42081-026-00371-z
+      paper_label: Paper (Jpn J Stat Data Sci)
+      badges:
+        - href: https://github.com/STLABTW/spherical-deepkriging/actions
+          src: https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg
+          alt: Test
+        - href: https://pypi.org/project/spherical-deepkriging/
+          src: https://img.shields.io/pypi/v/spherical-deepkriging.svg?logo=pypi&label=PyPI
+          alt: PyPI
+        - href: https://pepy.tech/project/spherical-deepkriging
+          src: https://img.shields.io/pepy/dt/spherical-deepkriging
+          alt: Downloads
+        - href: https://codecov.io/gh/STLABTW/spherical-deepkriging
+          src: https://img.shields.io/codecov/c/github/STLABTW/spherical-deepkriging?label=coverage
+          alt: Codecov
+      tech: Python · PyTorch · C++ · Spectra
+
     - name: DA-STDK
       url: https://pypi.org/project/da-stdk/
       desc: Deep learning framework for spatio-temporal distributional prediction with cluster-aware conformal calibration. Cluster-adaptive spatial bases from sampling density with per-cluster interval calibration and global fallback.
@@ -133,25 +155,6 @@ python:
           src: https://img.shields.io/codecov/c/github/STLABTW/spatial-adapter?label=coverage
           alt: Codecov
       tech: Python · PyTorch · C++ · Optuna
-
-    - name: Spherical DeepKriging
-      url: https://pypi.org/project/spherical-deepkriging/
-      desc: Spherical spatial prediction with DeepKriging and MRTS-sphere basis functions. PyPI package with CI, coverage, and Colab toy examples; code for DeepKriging on the Global Data.
-      github: https://github.com/STLABTW/spherical-deepkriging
-      demo: https://colab.research.google.com/github/STLABTW/spherical-deepkriging/blob/main/examples/toy/toy_sphere_deepkriging_colab.ipynb
-      paper: https://arxiv.org/abs/2604.01689
-      paper_label: Preprint (arXiv)
-      badges:
-        - href: https://github.com/STLABTW/spherical-deepkriging/actions
-          src: https://github.com/STLABTW/spherical-deepkriging/workflows/Test/badge.svg
-          alt: Test
-        - href: https://pypi.org/project/spherical-deepkriging/
-          src: https://img.shields.io/pypi/v/spherical-deepkriging.svg?logo=pypi&label=PyPI
-          alt: PyPI
-        - href: https://codecov.io/gh/STLABTW/spherical-deepkriging
-          src: https://img.shields.io/codecov/c/github/STLABTW/spherical-deepkriging?label=coverage
-          alt: Codecov
-      tech: Python · PyTorch · C++ · Spectra
 
     - name: KB Bridge
       url: https://pypi.org/project/kbbridge/
