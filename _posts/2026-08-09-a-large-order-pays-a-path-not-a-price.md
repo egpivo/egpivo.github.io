@@ -139,7 +139,7 @@ The range matters because the measured edge changes with intra-step sequencing.
 
 Under this closed loop, model-free execution control beats tuned one-step routing, while the shallow planners tested here do not. This is model-conditioned counterfactual evidence. It does not establish live profitability, historical trader behavior, equilibrium of the fee rule, or optimal dynamic fees for LPs.
 
-The tested baseline and weak LP depth-adaptation stresses did not flip the ranking, but richer mempool ordering, block latency, and adaptive LP repositioning remain open. [The methods companion]({{ site.baseurl }}/2026/08/11/before-the-result-could-count-the-benchmark-had-to-freeze.html) documents the benchmark freeze, seed roles, completion rule, and artifact checks.
+The tested baseline and weak LP depth-adaptation stresses did not flip the ranking, but richer mempool ordering, block latency, and adaptive LP repositioning remain open.
 
 The simulator ([`src/sim/`](https://github.com/egpivo/amm-lab/tree/main/src/sim)), policies, and evaluation pipeline ([`scripts/rl_equilibrium/`](https://github.com/egpivo/amm-lab/tree/main/scripts/rl_equilibrium)) live in [egpivo/amm-lab](https://github.com/egpivo/amm-lab). Frozen paper artifacts are in [`data/rl_equilibrium/`](https://github.com/egpivo/amm-lab/tree/main/data/rl_equilibrium).
 
@@ -148,6 +148,5 @@ The simulator ([`src/sim/`](https://github.com/egpivo/amm-lab/tree/main/src/sim)
 ## Appendix: sources and reproducibility
 
 - **Paper:** Wang (2026), [Reinforcement Learning for Execution under Dynamic Fees in a Closed-Loop DEX Simulator](https://arxiv.org/abs/2607.10960).
-- **Methods companion:** [Before the Result Could Count, the Benchmark Had to Freeze.]({{ site.baseurl }}/2026/08/11/before-the-result-could-count-the-benchmark-had-to-freeze.html)
 - **Code and artifacts:** [egpivo/amm-lab](https://github.com/egpivo/amm-lab). Simulator: [`src/sim/`](https://github.com/egpivo/amm-lab/tree/main/src/sim). Pipeline: [`scripts/rl_equilibrium/`](https://github.com/egpivo/amm-lab/tree/main/scripts/rl_equilibrium). Frozen outputs: [`data/rl_equilibrium/`](https://github.com/egpivo/amm-lab/tree/main/data/rl_equilibrium) ([`m3r_run_manifest.json`](https://github.com/egpivo/amm-lab/blob/main/data/rl_equilibrium/m3r_run_manifest.json), [`final_ladder.csv`](https://github.com/egpivo/amm-lab/blob/main/data/rl_equilibrium/final_ladder.csv), [`m3r_final_paper_seeds.csv`](https://github.com/egpivo/amm-lab/blob/main/data/rl_equilibrium/m3r_final_paper_seeds.csv)).
 - **External references:** [CoW TWAP documentation](https://docs.cow.fi/cow-protocol/concepts/order-types/twap-orders); [dynamic-fee DEX competition](https://arxiv.org/abs/2603.09669); [optimal LP fees](https://arxiv.org/abs/2508.08152); [protocol-fee causal study](https://arxiv.org/abs/2607.08525)
