@@ -97,3 +97,9 @@ Cybersecurity:
 DeFi:
     slug: defi
     name: DeFi
+Market Structure:
+    slug: market-structure
+    name: Market Structure
+Finance:
+    slug: finance
+    name: Finance

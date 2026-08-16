@@ -2,7 +2,7 @@
 layout: post
 title: "The AI Agent Can Act On-Chain. Who Defines Its Authority?"
 date: 2026-07-07
-tags: [DeFi, RWA, Governance, AI Agent, Ethereum, Blockchain, Web3]
+tags: [DeFi, RWA, Governance, AI Agent, Finance]
 ---
 
 The hard question is not whether an AI agent can write to a chain. It is who defines the scope of that write authority, how contracts enforce it, and who can withdraw it when the agent or policy fails.

@@ -2,7 +2,7 @@
 layout: post
 title: "The Token Appeared Twice. The AMM Market Formed Once"
 date: 2026-07-12
-tags: [DeFi, DEX, Solana, Ethereum, Blockchain, RWA]
+tags: [DeFi, DEX, Solana, RWA, Finance]
 ---
 
 *Canonical deployment tells you which contract is real. It does not tell you whether a callable public-pool trading surface formed around it.*

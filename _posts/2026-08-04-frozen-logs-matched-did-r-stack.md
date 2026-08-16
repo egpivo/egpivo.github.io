@@ -2,7 +2,7 @@
 layout: post
 title: "How I Turned AMM Logs Into a Causal Pipeline"
 date: 2026-08-04
-tags: [DeFi, Statistics, Rust, R]
+tags: [DeFi, Statistics, Rust, R, Finance]
 image: /assets/2026-08-04-fee-switch-panel-design/hero.png
 ---
 

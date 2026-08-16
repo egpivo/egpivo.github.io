@@ -2,7 +2,7 @@
 layout: post
 title: "After Uniswap v4 Went Live. The Pool Is No Longer the Whole Market."
 date: 2026-07-28
-tags: [DeFi, DEX, Blockchain, Web3]
+tags: [DeFi, DEX, Blockchain, Web3, Finance]
 image: /assets/2026-07-28-pool-gets-options/hero.png
 ---
 

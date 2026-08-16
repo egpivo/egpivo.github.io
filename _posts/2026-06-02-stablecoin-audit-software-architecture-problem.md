@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Stablecoin Audit Toolkit Around Evidence, Not Dashboards"
-tags: [DeFi, Stablecoins, Rust, Blockchain, Web3]
+tags: [DeFi, Stablecoins, Rust, Blockchain, Finance]
 ---
 
 *A Rust-based pipeline for turning stablecoin transfer checks into artifacts, manifests, and an inspectable evidence console.*

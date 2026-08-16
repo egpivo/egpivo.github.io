@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tokenization Is Not Just Putting Assets on a Blockchain"
-tags: [Blockchain, Web3, Tokenization]
+tags: [Blockchain, Web3, Tokenization, Finance]
 ---
 
 <div style="text-align:center; margin: 2rem 0;">

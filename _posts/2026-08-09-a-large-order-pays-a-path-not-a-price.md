@@ -2,7 +2,7 @@
 layout: post
 title: "A Large DEX Order Is a Sequential Control Problem"
 date: 2026-08-09
-tags: [DeFi, DEX, Ethereum, Blockchain, Finance]
+tags: [DeFi, Market Structure, DEX, Ethereum, Finance]
 image: /assets/2026-08-09-large-order-pays-a-path/hero.png
 ---
 

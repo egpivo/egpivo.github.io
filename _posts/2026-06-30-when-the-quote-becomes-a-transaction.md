@@ -2,7 +2,7 @@
 layout: post
 title: "When the Quote Becomes Calldata. The Fork Tests Whether It Holds."
 date: 2026-06-30
-tags: [DeFi, RWA, Ethereum, Blockchain, Web3]
+tags: [DeFi, RWA, Ethereum, Blockchain, Finance]
 ---
 
 *A note on turning a Uniswap quote into API-native calldata, then replaying that transaction against pinned mainnet state.*

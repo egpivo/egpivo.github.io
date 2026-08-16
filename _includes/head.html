@@ -7,6 +7,15 @@
     <meta name="description"
           content="{% if page.description %}{{ page.description | escape }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}">
 
+    {% if page.image %}
+    {% assign og_image = page.image | prepend: site.baseurl | prepend: "https://egpivo.github.io" %}
+    <meta property="og:image" content="{{ og_image }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image }}">
+    {% endif %}
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+
     <link rel="icon" type="image/png" href="{{ "
     /assets/images/favicons/android-chrome-192x192.png" | prepend: site.baseurl }}" sizes="192x192">
     <link rel="icon" type="image/png" href="{{ "

@@ -2,7 +2,7 @@
 layout: post
 title: "When the Swap Actually Lands. What Can an Outsider Reconstruct?"
 date: 2026-07-05
-tags: [DeFi, RWA, Ethereum, Blockchain, Web3]
+tags: [DeFi, RWA, Ethereum, Blockchain, Finance]
 ---
 
 *A DEX receipt does not explain everything, but it gives outsiders a canonical place to start.*

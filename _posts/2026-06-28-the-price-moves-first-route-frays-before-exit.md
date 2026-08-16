@@ -2,7 +2,7 @@
 layout: post
 title: "The Price Moves First. DEX Routes Fray Before the Exit."
 date: 2026-06-28
-tags: [DeFi, RWA, Ethereum, Blockchain, Web3]
+tags: [DeFi, Market Structure, RWA, Ethereum, Finance]
 ---
 
 *A quote is the first place where exit risk becomes observable—not as a failed trade yet, but as route fragmentation, output deterioration, and summary-field ambiguity.*

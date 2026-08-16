@@ -2,7 +2,7 @@
 layout: post
 title: "When the Fee Switch Turns On, Does Liquidity Walk Away?"
 date: 2026-08-02
-tags: [DeFi, DEX, Ethereum, Blockchain, Web3, Statistics]
+tags: [DeFi, Market Structure, DEX, Statistics, Finance]
 image: /assets/2026-08-02-protocol-fee-liquidity/hero.png
 math: true
 math_numbered: false

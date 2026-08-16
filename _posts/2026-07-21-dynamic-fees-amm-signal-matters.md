@@ -2,7 +2,7 @@
 layout: post
 title: "Dynamic Fees in AMMs: When the Signal Matters"
 date: 2026-07-21
-tags: [DeFi, Rust, DEX, Blockchain, Web3]
+tags: [DeFi, Rust, DEX, Blockchain, Finance]
 image: /assets/2026-07-21-dynamic-fees-amm-signal-matters/hero.png
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "From RWA Evidence Collectors to a Rust Audit Toolkit"
 date: 2026-06-23
-tags: [RWA, DeFi, Rust, Software, Blockchain]
+tags: [RWA, DeFi, Rust, Software, Finance]
 ---
 
 *One CLI, three contracts, versioned evidence bundles.*

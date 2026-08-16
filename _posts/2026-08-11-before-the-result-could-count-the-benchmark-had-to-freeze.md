@@ -2,7 +2,7 @@
 layout: post
 title: "Before the Result Could Count, the Benchmark Had to Freeze"
 date: 2026-08-11
-tags: [DeFi, DEX, Ethereum, Blockchain, Machine Learning]
+tags: [DeFi, DEX, Ethereum, Machine Learning, Finance]
 image: /assets/2026-08-11-closed-loop-execution-benchmark/hero.png
 ---
 

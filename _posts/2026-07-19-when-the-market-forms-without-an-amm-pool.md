@@ -2,7 +2,7 @@
 layout: post
 title: "Hyperliquid Shows What a Market Looks Like Without an AMM Pool"
 date: 2026-07-19
-tags: [DeFi, DEX, Blockchain, RWA, Web3]
+tags: [DeFi, Market Structure, DEX, RWA, Finance]
 image: /assets/2026-07-19-market-without-amm-pool/hero.png
 ---
 
