@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ethereum Gas Changepoints Are Warning Signals, Not Regime Labels"
-tags: [Ethereum, Blockchain, Cryptocurrency, Finance]
+image: /assets/2026-05-19-gas-fee-change-points/hero.png
+tags: [Ethereum, Blockchain, Finance]
 math: true
 math_numbered: false
 ---

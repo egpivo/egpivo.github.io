@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Reading List
+hide_title: true
 menu: main
 permalink: /reading-list/
 redirect_from:
@@ -72,6 +73,15 @@ These readings symbolize my dual commitment to tech excellence and personal grow
 <div class="category">
     <h4>Tech</h4>
     <div class="book-container">
+        <div class="book" data-pub="2023-03-01">
+            <a href="https://www.amazon.com/Mastering-Blockchain-Handbook-Onchain-Applications/dp/B0H38HJKTK">
+                <img class="book-image" src="{{ site.url }}/assets/books/mastering-blockchain-the-handbook.png" alt="Mastering Blockchain: The Handbook for Crypto, AI, and Onchain Applications, 2nd Edition">
+            </a>
+            <div class="book-title">
+                <a href="https://www.amazon.com/Mastering-Blockchain-technical-blockchain-cryptography/dp/1803241063">Mastering Blockchain: The Handbook for Crypto, AI, and Onchain Applications, 2nd Edition</a>
+            </div>
+            <div class="book-author">Daniel Cawrey & Amit Rustagi</div>
+        </div>    
         <div class="book" data-pub="2023-03-01">
             <a href="https://www.amazon.com/Mastering-Blockchain-technical-blockchain-cryptography/dp/1803241063">
                 <img class="book-image" src="{{ site.url }}/assets/books/mastering-blockchain.png" alt="Mastering Blockchain: Inner workings of blockchain, from cryptography and decentralized identities, to DeFi, NFTs and Web3, 4th Edition">

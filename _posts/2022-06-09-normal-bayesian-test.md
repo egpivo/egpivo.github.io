@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Note: Derivation of Normal Bayesian Test"
+image: /assets/2022-06-09-normal-bayesian-test/hero.png
 tags: [Statistics]
 ---
 The Normal Bayesian test is a statistical method used in hypothesis testing, particularly in the context of Bayesian statistics. It is applied to assess the validity of a null hypothesis ($H_0$) versus an alternative hypothesis ($H_1$) by considering the posterior distribution of a parameter of interest.

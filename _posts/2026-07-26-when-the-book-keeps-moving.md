@@ -2,7 +2,7 @@
 layout: post
 title: "When the Book Keeps Moving. What Hyperliquid Lets Outsiders Reconstruct."
 date: 2026-07-26
-tags: [DeFi, Market Structure, DEX, Blockchain, Finance]
+tags: [DeFi, Market Structure, DEX, Blockchain, Finance, Hyperliquid]
 image: /assets/2026-07-26-hooks-and-the-moving-book/hero.png
 ---
 

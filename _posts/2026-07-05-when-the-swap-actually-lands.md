@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "When the Swap Actually Lands. What Can an Outsider Reconstruct?"
+image: /assets/2026-07-05-when-the-swap-actually-lands/dex_execution_boundary.png
 date: 2026-07-05
 tags: [DeFi, RWA, Ethereum, Blockchain, Finance]
 ---

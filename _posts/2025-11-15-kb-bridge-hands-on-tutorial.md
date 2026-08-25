@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Hands-On: `kb-bridge` for Context-Aware Knowledge Base Search"
+image: /assets/2025-11-15-kb-bridge-hands-on-tutorial/kb_bridge_flow.png
 tags: [Software, NLP, LLM, AI, Python]
 ---
 

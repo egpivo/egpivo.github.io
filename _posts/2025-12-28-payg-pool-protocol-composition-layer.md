@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "From Services to Products: Composing Multi-Provider Checkout On-Chain"
+image: /assets/2025-12-28-payg-pool-protocol-composition-layer/hero_image.png
 tags: [Solidity, Blockchain, Ethereum, Web3]
 ---
 

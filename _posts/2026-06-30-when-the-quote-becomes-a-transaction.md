@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "When the Quote Becomes Calldata. The Fork Tests Whether It Holds."
+image: /assets/2026-06-30-when-the-quote-becomes-a-transaction/quote_becomes_transaction_fork_replay.png
 date: 2026-06-30
 tags: [DeFi, RWA, Ethereum, Blockchain, Finance]
 ---

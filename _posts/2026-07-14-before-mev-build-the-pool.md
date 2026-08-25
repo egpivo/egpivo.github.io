@@ -2,7 +2,7 @@
 layout: post
 title: "Before MEV, I Built a Rust AMM Lab to Measure Pool State"
 date: 2026-07-14
-tags: [DeFi, Market Structure, DEX, RWA, Finance]
+tags: [DeFi, Market Structure, DEX, RWA, Finance, MEV]
 image: /assets/2026-07-14-before-mev-build-the-pool/hero.jpg
 ---
 

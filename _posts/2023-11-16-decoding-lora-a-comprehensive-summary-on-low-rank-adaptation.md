@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Decoding LoRA: A Comprehensive Summary on Low-Rank Adaptation"
+image: /assets/2023-11-16-decoding-lora-a-comprehensive-summary-on-low-rank-adaptation/lora.png
 tags:  [Machine Learning, Deep Learning, NLP, LLM, AI]
 ---
 

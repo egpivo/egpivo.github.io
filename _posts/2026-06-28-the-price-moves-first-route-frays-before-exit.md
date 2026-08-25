@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Price Moves First. DEX Routes Fray Before the Exit."
+image: /assets/2026-06-28-the-price-moves-first-route-frays-before-exit/hero.png
 date: 2026-06-28
 tags: [DeFi, Market Structure, RWA, Ethereum, Finance]
 ---

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Where RWA Flow Leaves Traces"
+image: /assets/2026-06-14-where-rwa-trades-and-exits-actually-clear/hero.png
 date: 2026-06-14
 tags: [RWA, DeFi, Tokenization, Blockchain, Finance]
 ---

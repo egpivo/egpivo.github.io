@@ -3,27 +3,7 @@ layout: default
 ---
 
 <div class="home">
-    <!-- Hero Section (only on first page) -->
-    {% if paginator.page == 1 or paginator == nil %}
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to My Space</h1>
-            <p class="hero-subtitle">{{ site.description }}</p>
-            <div class="hero-actions">
-                <a href="{{ site.baseurl }}/about/" class="btn btn-primary">Learn More</a>
-                <a href="{{ site.baseurl }}/" class="btn btn-secondary">Read Posts</a>
-            </div>
-        </div>
-    </section>
-    {% endif %}
-
-    <!-- Posts Section (paginated) -->
     <section class="featured-posts">
-        <div class="section-header">
-            <h2 class="section-title">Posts</h2>
-            <p class="section-subtitle">Thoughts on data science, machine learning, and research</p>
-        </div>
-
         <div class="posts-grid">
             {% if paginator %}
             {% assign posts_to_render = paginator.posts %}
@@ -32,37 +12,41 @@ layout: default
             {% endif %}
             {% for post in posts_to_render %}
             {% if post.tags.size > 0 %}
-            {% capture tags_content %}{% if post.tags.size == 1 %}<i class="fa fa-tag"></i>{% else %}<i class="fa fa-tags"></i>{% endif %}: {% endcapture %}
+            {% capture tags_content %}{% endcapture %}
             {% for post_tag in post.tags %}
             {% assign tag = site.data.tags[post_tag] %}
             {% if tag %}
-            {% capture tags_content_temp %}{{ tags_content }}<a href="/tags/{{ tag.slug }}/">{{ tag.name }}</a>{% if forloop.last == false %}, {% endif %}{% endcapture %}
+            {% capture tags_content_temp %}{{ tags_content }}<a href="/tags/{{ tag.slug }}/">{{ tag.name }}</a>{% unless forloop.last %}<span class="tag-sep">·</span>{% endunless %}{% endcapture %}
             {% assign tags_content = tags_content_temp %}
             {% endif %}
             {% endfor %}
             {% else %}
             {% assign tags_content = '' %}
             {% endif %}
-            
-            <article class="post-card">
-                <div class="post-meta">
-                    <time class="post-date">{{ post.date | date: "%b %-d, %Y" }}</time>
-                    {% if tags_content != '' %}
-                    <div class="post-tags">{{ tags_content }}</div>
-                    {% endif %}
-                </div>
-                
-                <h3 class="post-title">
-                    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                </h3>
-                
-                <div class="post-excerpt">
-                    {{ post.excerpt | strip_html | truncate: 150 }}
-                </div>
-                
-                <a href="{{ post.url | prepend: site.baseurl }}" class="read-more">
-                    Read More <i class="fas fa-arrow-right"></i>
+
+            <article class="post-card{% if post.image %} post-card--with-image{% endif %}">
+                {% if post.image %}
+                <a class="post-card-media" href="{{ post.url | prepend: site.baseurl }}" tabindex="-1" aria-hidden="true">
+                    <img src="{{ post.image | prepend: site.baseurl }}" alt="" loading="lazy" decoding="async" width="320" height="180">
                 </a>
+                {% endif %}
+
+                <div class="post-card-body">
+                    <div class="post-meta">
+                        <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                        {% if tags_content != '' %}
+                        <div class="post-tags">{{ tags_content }}</div>
+                        {% endif %}
+                    </div>
+
+                    <h2 class="post-title">
+                        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    </h2>
+
+                    <p class="post-excerpt">
+                        {{ post.excerpt | strip_html | truncate: 160 }}
+                    </p>
+                </div>
             </article>
             {% endfor %}
         </div>
@@ -86,12 +70,11 @@ layout: default
         </div>
     </section>
 
-    <!-- Quick Links Section -->
     <section class="quick-links">
         <div class="section-header">
             <h2 class="section-title">Explore</h2>
         </div>
-        
+
         <div class="links-grid">
             <a href="{{ site.baseurl }}/about/" class="link-card">
                 <div class="link-icon">
@@ -100,7 +83,7 @@ layout: default
                 <h3>About Me</h3>
                 <p>Learn about my background and interests</p>
             </a>
-            
+
             <a href="{{ site.baseurl }}/software/" class="link-card">
                 <div class="link-icon">
                     <i class="fas fa-code"></i>
@@ -108,7 +91,7 @@ layout: default
                 <h3>Software</h3>
                 <p>Check out my projects and contributions</p>
             </a>
-            
+
             <a href="{{ site.baseurl }}/books/" class="link-card">
                 <div class="link-icon">
                     <i class="fas fa-book"></i>
@@ -123,7 +106,7 @@ layout: default
                     <i class="fab fa-medium"></i>
                 </div>
                 <h3>Medium</h3>
-                <p>Cross-posts and publication versions (Block Magnates, CoinsBench, Coinmonks)</p>
+                <p>Cross-posts and publication versions (Coinmonks, Stackademic, The Capital)</p>
             </a>
             {% endif %}
         </div>

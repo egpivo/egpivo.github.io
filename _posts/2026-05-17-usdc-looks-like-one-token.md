@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "USDC Shows Why Stablecoin Risk Analysis Is Not One Signal"
+image: /assets/2026-05-17-usdc-looks-like-one-token/hero.png
 tags: [Stablecoins, Blockchain, Web3, Ethereum, Finance]
 ---
 

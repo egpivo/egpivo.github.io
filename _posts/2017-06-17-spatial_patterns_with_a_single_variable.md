@@ -1,5 +1,6 @@
 ---
 title: "Exploring Dominant Spatial Patterns with a Single Variable"
+image: /assets/spatial_patterns_with_a_single_variable/spatpcak1_t.png
 date: "2017-06-17"
 layout: post
 output:

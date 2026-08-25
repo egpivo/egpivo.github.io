@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Why ZK Rollups Need a Smarter Way to Manage State"
+image: /assets/2026-04-20-zk-state-prune/hero.png
 tags: [Zero-Knowledge, Blockchain, Statistics, Go, Distributed Systems]
 math: true
 math_numbered: false

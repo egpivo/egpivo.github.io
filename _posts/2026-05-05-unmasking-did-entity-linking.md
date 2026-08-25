@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Funding Is Not Identity: A Conservative Approach to Onchain Entity Linking"
-tags: [Blockchain, Web3, Ethereum, Governance, Data Engineering]
+image: /assets/2026-05-05-unmasking-did-entity-linking/hero.png
+tags: [Blockchain, Web3, Ethereum, Governance]
 ---
 
 <div style="text-align:center; margin: 2rem 0;">

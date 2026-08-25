@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Metering Chain: QA That Follows Business Logic"
+image: /assets/2026-03-27-metering-chain-qa-business-logic/hero_image.png
 tags: [Rust, Blockchain, DePIN, Protocol Design, QA]
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "GMV Forecasting via xDeepFM"
+image: /assets/2024-03-26-gmv-forecasting-via-xdeepfm/img.png
 tags:  [Machine Learning, Deep Learning]
 ---
 In this post, I aim to share how I conducted a proof of concept (PoC) to solve a real-world problem using deep learning techniques, emphasizing a clean code structure.

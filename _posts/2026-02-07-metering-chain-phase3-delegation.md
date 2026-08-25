@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Metering Chain Phase 3: Capability-Driven Delegation"
+image: /assets/2026-02-07-metering-chain-phase3/analogy.png
 tags: [Rust, Blockchain, DePIN, UCAN]
 ---
 

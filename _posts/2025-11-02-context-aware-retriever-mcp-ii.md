@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How I'm Building a Context-Aware Retriever to Boost RAG Quality (Part 2: Implementation)"
+image: /assets/2025-11-02-context-aware-retriever-mcp-ii/dify_result.jpg
 tags: [Software, NLP, LLM, AI]
 math: false
 ---

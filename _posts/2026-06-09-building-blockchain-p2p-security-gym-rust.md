@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Three Classic Blockchain Attacks, Rebuilt in a Rust Local Lab"
+image: /assets/2026-06-09-building-blockchain-p2p-security-gym-rust/hero.png
 tags: [Rust, Blockchain, Cybersecurity, Web3]
 ---
 

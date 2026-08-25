@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Capturing Dominant Spatial Patterns with Two-Dimensional Locations Using SpatPCA"
+image: /assets/2021-01-20-SpatPCA-demo-two-dim-location/unnamed-chunk-3-1.png
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 

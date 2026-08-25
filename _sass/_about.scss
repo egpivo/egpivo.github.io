@@ -298,19 +298,8 @@
   }
 }
 
-// Hide the layout's default page title on the about page
-// (fixes low-contrast "About" in dark mode / duplicated heading)
-h1.page-title:has(+ .about-page),
-h1.post-title:has(+ .about-page) {
+// About page uses hide_title in front matter; keep a CSS fallback
+// for older builds where the layout still emits the duplicate h1.
+.post-header:has(+ .post-content .about-page) {
   display: none;
-}
-
-// Interpolation: same reason as above — keep this opaque to legacy Ruby Sass.
-@supports not (#{"selector(:has(*))"}) {
-  // Fallback for browsers without :has() — scoped broadly, acceptable tradeoff
-  h1.page-title,
-  h1.post-title {
-    color: var(--text-secondary);
-    opacity: .6;
-  }
 }

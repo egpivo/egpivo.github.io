@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Token Appeared Twice. The AMM Market Formed Once"
+image: /assets/2026-07-12-the-same-token-is-not-the-same-market/fig1_same_asset_different_surface.png
 date: 2026-07-12
 tags: [DeFi, DEX, Solana, RWA, Finance]
 ---

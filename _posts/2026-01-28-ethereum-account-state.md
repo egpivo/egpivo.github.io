@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Ethereum Account State: A Minimal Token with Reconstructible State"
+image: /assets/2026-01-28-ethereum-account-state/wallet_hero.png
 tags: [Smart Contracts, Blockchain, Ethereum, Solidity, Web3]
 ---
 

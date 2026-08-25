@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Learning Consensus Algorithms: A Hands-On Comparison with Rust"
+image: /assets/2026-01-17-learning-consensus-algorithms/nakameot_coef.png
 tags: [Rust, Blockchain, Consensus]
 ---
 

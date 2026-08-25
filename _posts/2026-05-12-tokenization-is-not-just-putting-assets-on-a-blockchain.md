@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Tokenization Is Not Just Putting Assets on a Blockchain"
+image: /assets/2026-05-12-tokenization-is-not-just-putting-assets-on-a-blockchain/hero.png
 tags: [Blockchain, Web3, Tokenization, Finance]
 ---
 

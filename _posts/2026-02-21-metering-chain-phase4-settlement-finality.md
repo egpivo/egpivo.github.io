@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Metering Chain Phase 4: Settlement and Economic Finality"
+image: /assets/2026-02-21-metering-chain-phase4-settlement-finality/ezekiel-see-GnBjJyh0cz4-unsplash.jpg
 tags: [Rust, Blockchain, DePIN]
 ---
 

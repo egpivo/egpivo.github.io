@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Building a Simple Pay-As-You-Go Service in Solidity"
+image: /assets/2025-12-11-practicing-solidity-transitioning-to-web3/contract_architecture.dot.png
 tags: [Solidity, Blockchain, Ethereum]
 ---
 

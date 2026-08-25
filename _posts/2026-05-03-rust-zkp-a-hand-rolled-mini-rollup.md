@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Before SNARKs: Building a Mini ZK-Rollup Verifier in Rust"
+image: /assets/2026-05-03-rust-zkp-learning-demo/hero.png
 tags: [Rust, Blockchain, Web3, Zero-Knowledge, Cryptography]
 ---
 

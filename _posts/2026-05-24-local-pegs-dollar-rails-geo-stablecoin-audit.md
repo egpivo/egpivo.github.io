@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Local Pegs, Dollar Rails: Auditing XSGD and EURC Liquidity"
+image: /assets/2026-05-24-local-pegs-dollar-rails-geo-stablecoin-audit/figB_pair_dependence.png
 tags: [DeFi, Stablecoins, Blockchain, Ethereum, Finance]
 ---
 

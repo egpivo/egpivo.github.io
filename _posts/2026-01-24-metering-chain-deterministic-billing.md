@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Metering Chain: Deterministic Billing"
+image: /assets/2026-01-24-metering-chain/metering.png
 tags: [Rust, Blockchain, DePIN]
 ---
 

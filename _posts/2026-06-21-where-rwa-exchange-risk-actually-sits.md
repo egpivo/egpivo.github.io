@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Where RWA Exchange Risk Actually Sits"
+image: /assets/2026-06-21-where-rwa-exchange-risk-actually-sits/spacex_access_branch_map.png
 date: 2026-06-21
 tags: [RWA, DeFi, Tokenization, Solana, Finance]
 ---

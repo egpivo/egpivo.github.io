@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "From RWA Evidence Collectors to a Rust Audit Toolkit"
+image: /assets/2026-06-23-how-i-built-rwa-audit-in-rust/architecture.png
 date: 2026-06-23
 tags: [RWA, DeFi, Rust, Software, Finance]
 ---

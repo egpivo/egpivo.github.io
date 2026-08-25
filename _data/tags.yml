@@ -103,3 +103,18 @@ Market Structure:
 Finance:
     slug: finance
     name: Finance
+MEV:
+    slug: mev
+    name: MEV
+DEX:
+    slug: dex
+    name: DEX
+Hyperliquid:
+    slug: hyperliquid
+    name: Hyperliquid
+Governance:
+    slug: governance
+    name: Governance
+UCAN:
+    slug: ucan
+    name: UCAN

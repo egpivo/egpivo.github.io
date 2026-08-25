@@ -1,5 +1,6 @@
 ---
 title: "Challenges in EOF Patterns with a Single Variable"
+image: /assets/problems_eof_patterns_with_a_single_variable/true.png
 date: "2017-06-26"
 layout: post
 output:

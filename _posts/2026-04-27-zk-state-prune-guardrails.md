@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "ZK State Prune: The Boundaries Behind Rollup Cost Models"
+image: /assets/2026-04-27-zk-state-prune-guardrails/hero.png
 tags: [Zero-Knowledge, Blockchain, Statistics, QA, Go]
 math: true
 math_numbered: false

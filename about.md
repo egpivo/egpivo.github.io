@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+hide_title: true
 menu: main
 permalink: /about/
 ---
@@ -12,11 +13,11 @@ permalink: /about/
       <div class="profile-section">
         <div class="profile-info">
           <h1 class="profile-name">Wen-Ting (Joseph) Wang</h1>
-          <p class="profile-title">Machine Learning Engineer & Researcher</p>
+          <p class="profile-title">Machine Learning Engineer &amp; Researcher</p>
           <p class="profile-subtitle">Ph.D. in Statistics • 10+ Years in Production ML</p>
           <div class="profile-highlights">
             <span class="highlight-tag">AI Product Engineering</span>
-            <span class="highlight-tag">Research & Development</span>
+            <span class="highlight-tag">Research &amp; Development</span>
             <span class="highlight-tag">End-to-End ML Systems</span>
           </div>
         </div>
@@ -35,7 +36,10 @@ permalink: /about/
     <div class="content-card">
       <div class="intro-text">
         <p class="intro-paragraph">
-I’m a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I’ve been working on <span class="kw">agentic workflows</span>, <span class="kw">RAG systems</span>, and <span class="kw">spatiotemporal modeling</span>, blending practical engineering with research. My current focus is on building statistical boosters around pretrained models — things like <span class="kw">conformal prediction</span> and <span class="kw">low-rank adapters</span> — so that complex systems become both more trustworthy and easier to reason about.
+I'm a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I've been working on agentic workflows, RAG systems, and spatiotemporal modeling, blending practical engineering with research. My current focus is on building statistical boosters around pretrained models — things like conformal prediction and low-rank adapters — so that complex systems become both more trustworthy and easier to reason about.
+        </p>
+        <p class="intro-paragraph">
+More recently, I've been focusing on <strong>blockchain infrastructure and on-chain markets</strong>, using statistics, machine learning, and systems thinking to study market structure, execution, and liquidity — and to reconstruct, audit, and reason about the infrastructure behind prices and execution from public on-chain data.
         </p>
       </div>
     </div>
@@ -54,10 +58,11 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
       <p class="intro-paragraph">
         Long-form posts live on this site first. I also publish on
         <a href="{{ site.medium_url }}" rel="noopener noreferrer" target="_blank">Medium</a>
-        for reach and editorial distribution. Recent blockchain and protocol writing has mostly run through
-        <a href="https://blog.blockmagnates.com/" rel="noopener noreferrer" target="_blank">Block Magnates</a>,
-        <a href="https://coinsbench.com/" rel="noopener noreferrer" target="_blank">CoinsBench</a>, and
-        <a href="https://medium.com/coinmonks" rel="noopener noreferrer" target="_blank">Coinmonks</a>.
+        for broader reach and editorial distribution. Recent blockchain and technical writing has appeared in
+        <a href="https://medium.com/coinmonks" rel="noopener noreferrer" target="_blank">Coinmonks</a>,
+        <a href="https://medium.com/stackademic" rel="noopener noreferrer" target="_blank">Stackademic</a>, and
+        <a href="https://medium.com/thecapital" rel="noopener noreferrer" target="_blank">The Capital</a>,
+        with the canonical versions remaining here.
       </p>
     </div>
   </section>
@@ -71,7 +76,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         Professional Experience
       </h2>
     </div>
-    
+
     <div class="experience-grid">
       <div class="experience-card featured">
         <div class="card-header">
@@ -118,7 +123,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
             <i class="fas fa-chart-line"></i>
           </div>
           <div class="card-title">
-            <h3>Data Science & ML</h3>
+            <h3>Data Science &amp; ML</h3>
             <span class="card-period">Earlier</span>
           </div>
         </div>
@@ -162,7 +167,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
         Technical Expertise
       </h2>
     </div>
-    
+
     <div class="skills-container">
       <div class="skill-category">
         <h3>Machine Learning</h3>
@@ -173,7 +178,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
           <span class="skill-tag">Recommendation Systems</span>
         </div>
       </div>
-      
+
       <div class="skill-category">
         <h3>Technologies</h3>
         <div class="skill-tags">
@@ -188,7 +193,7 @@ I’m a machine learning engineer with nearly ten years of hands-on experience a
           <span class="skill-tag">Solidity</span>
         </div>
       </div>
-      
+
       <div class="skill-category">
         <h3>Research Areas</h3>
         <div class="skill-tags">

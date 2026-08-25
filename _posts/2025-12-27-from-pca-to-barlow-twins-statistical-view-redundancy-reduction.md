@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "From PCA to Barlow Twins: A Statistical View of Redundancy Reduction in Self-Supervised Learning"
-tags: [Machine Learning, Self-Supervised Learning, Statistics, Deep Learning]
+image: /assets/2025-12-27-from-pca-to-barlow-twins-statistical-view-redundancy-reduction/pca_eigenspectrum.png
+tags: [Machine Learning, Statistics, Deep Learning]
 math: true
 ---
 

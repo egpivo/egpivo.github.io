@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Comparing Sequence-to-Sequence Decoders: With and Without Attention"
+image: /assets/2023-11-15-comparing-sequence-to-sequence-decoders-with-and-without-attention/bahdanau-attention.jpg
 tags:  [Machine Learning, Deep Learning, NLP, AI]
 ---
 This post goes beyond a conventional code walkthrough inspired by [this tutorial](https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html). My goal is to elevate the narrative by offering a comprehensive comparison between Seq2Seq (sequence-to-sequence) models with and without attention.

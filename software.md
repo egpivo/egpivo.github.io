@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Software
+hide_title: true
 description: "R packages (SpatPCA, SpatMCA, autoFRK), Python apps (Spatial Adapter, Spherical DeepKriging, KB Bridge, LLM Chatbot), and blockchain projects (Ethereum Fee Risk Diagnostics, Metering Chain, Ethereum Account State, Pay-As-You-Go, rust-zkp, rust-p2p-protocol-lab, zk-state-prune)."
 menu: main
 permalink: /software/

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Stablecoin Map: What Crypto's Cash Rails Depend On"
+image: /assets/2026-05-31-stablecoin-map-local-pegs-dollar-rails/global_stablecoin_footprint_map_v1.png
 date: 2026-05-31
 categories: [web3, stablecoins, defi]
 tags: [DeFi, Stablecoins, Blockchain, Ethereum, Finance]

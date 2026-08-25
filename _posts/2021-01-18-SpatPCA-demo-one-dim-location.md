@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Apply SpatPCA to Capture the Dominant Spatial Pattern with One-Dimensional Locations"
+image: /assets/2021-01-18-SpatPCA-demo-one-dim-location/unnamed-chunk-3-1.png
 tags: [Software, R, Statistics, Spatial Statistics]
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "When Real-World Assets Move On-Chain, What Becomes Visible?"
+image: /assets/2026-06-07-if-everything-can-be-tokenized-what-should-we-audit/hero.png
 tags: [RWA, DeFi, Tokenization, Blockchain, Finance]
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Building an Interactive P2P Attack Gym in Rust"
+image: /assets/2026-06-16-making-p2p-attack-metrics-visible/fig1_crate_architecture.png
 date: 2026-06-16
 tags: [Rust, Blockchain, Cybersecurity, Web3]
 ---

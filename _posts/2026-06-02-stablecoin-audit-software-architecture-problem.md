@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Building a Stablecoin Audit Toolkit Around Evidence, Not Dashboards"
+image: /assets/2026-06-02-stablecoin-audit-software-architecture-problem/optional_cli_transfer_audit.png
 tags: [DeFi, Stablecoins, Rust, Blockchain, Finance]
 ---
 

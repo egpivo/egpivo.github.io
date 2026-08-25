@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Designing Rental Services on a Pay-As-You-Go Protocol"
+image: /assets/2025-12-21-payg-rental-services/article_vs_rental.png
 tags: [Solidity, Blockchain, Ethereum]
 ---
 

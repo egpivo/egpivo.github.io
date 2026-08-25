@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Blockchain in 2026: Trust, State, and Why Rust Fits"
+image: /assets/2026-03-21-beyond-the-boss-rust-blockchain-trust/hero-image.jpg
 tags: [Rust, Blockchain, Web3, Cryptography, Consensus]
 ---
 

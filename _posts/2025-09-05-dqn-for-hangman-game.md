@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Hangman with DQN and Transformers"
-tags: [Machine Learning, Deep Learning, RL, NLP, AI]
+image: /assets/2025-09-05-dqn-for-hangman-game/attn_heads_letters.png
+tags: [Machine Learning, Deep Learning, NLP, AI]
 math: true
 ---
 

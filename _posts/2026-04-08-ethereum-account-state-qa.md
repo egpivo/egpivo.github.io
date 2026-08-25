@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Ethereum Account State: QA Pipeline for a Minimal Token"
+image: /assets/2026-04-08-ethereum-account-state-qa/hero_image.jpg
 tags: [Smart Contracts, Solidity, Ethereum, Blockchain, QA]
 ---
 

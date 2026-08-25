@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The SpaceX Trade Exists. Now Watch the Tape."
+image: /assets/2026-05-26-spacex-trade-watch-the-tape/hero.png
 tags: [RWA, Tokenization, Blockchain, Web3, Finance]
 ---
 

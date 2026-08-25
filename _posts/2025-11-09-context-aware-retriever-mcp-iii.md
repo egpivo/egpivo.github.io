@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How I'm Building a Context-Aware Retriever to Boost RAG Quality (Part 3: Evaluation)"
+image: /assets/2025-11-09-context-aware-retriever-mcp-iii/base_workflow.png
 tags: [Software, NLP, LLM, AI]
 math: true
 ---

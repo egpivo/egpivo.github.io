@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Metering Chain Phase 2: Deterministic Authorization for Multi-Operator DePIN"
+image: /assets/2026-02-02-metering-chain-phase2/signer.png
 tags: [Rust, Blockchain, DePIN]
 ---
 

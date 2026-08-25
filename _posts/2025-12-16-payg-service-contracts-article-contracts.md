@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Building Article Subscription Contracts in Solidity"
+image: /assets/2025-12-16-payg-article-modes/payg_article_gas.png
 tags: [Solidity, Blockchain, Ethereum]
 ---
 

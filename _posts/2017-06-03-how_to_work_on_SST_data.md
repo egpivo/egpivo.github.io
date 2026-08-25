@@ -1,5 +1,6 @@
 ---
 title: "How to Work on Sea Surface Temperature (SST) Data"
+image: /assets/2017-06-03-how-to-work-on-sst-data/hero.png
 date: "2017-06-03"
 layout: post
 output:

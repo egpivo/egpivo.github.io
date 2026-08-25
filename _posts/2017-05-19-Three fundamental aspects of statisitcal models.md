@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Three Fundamental Aspects of Statistical Models"
+image: /assets/2017-05-19-three-fundamental-aspects/hero.png
 date: "May 19th, 2017"
 output:
     html_document

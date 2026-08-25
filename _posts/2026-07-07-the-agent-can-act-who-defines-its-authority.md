@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The AI Agent Can Act On-Chain. Who Defines Its Authority?"
+image: /assets/2026-07-07-the-agent-can-act-who-defines-its-authority/hero.png
 date: 2026-07-07
 tags: [DeFi, RWA, Governance, AI Agent, Finance]
 ---
