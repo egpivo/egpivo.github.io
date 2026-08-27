@@ -1,28 +1,30 @@
 ---
 layout: post
 title: "When Multiple Pools Behave Like One: Impact-Constrained Capacity Concentration in Uniswap v3"
-subtitle: "An empirical note on effective concentration under a capacity objective"
 date: 2026-08-27
 tags: [DeFi, DEX, Ethereum, Uniswap, Market Structure, MEV]
 math: true
 image: /assets/2026-08-27-competition-points-same-way/fig_available_vs_effective.png
 ---
 
-*293,273 reconstructed cells across 78 Ethereum Uniswap v3 token–quote families. The estimand is impact-constrained execution capacity at the liquidity layer—gas, routers, latency, and ordering are out of scope.*
+*An empirical note on effective concentration under a capacity objective.*
+
+### TL;DR
+
+- **293,273** reconstructed `family × day × direction × impact_bps` cells across **78** Ethereum Uniswap v3 token–quote families.
+- **Nominal multiplicity $\neq$ diffuse effective capacity**: The **cell-weighted** median capacity-effective pool count is **1.076** ($N_{\mathrm{eff}}=1/\mathrm{HHI}$), with a median top-1 capacity share of **96.3%** and median multi-pool gain $g \approx 3.2\%$.
+- Among **36,783** matched family-days, observed pool-volume concentration exceeds reconstructed capacity concentration on **67.6%** of days (Spearman $\rho = 0.841$).
+- **Estimand & scope**: Measures **impact-constrained capacity at the liquidity layer**; gas, routing frictions, MEV, and cross-layer causality are out of scope.
 
 ---
 
 Uniswap v3 exposes several fee-tier pools for the same economic pair. This note asks whether nominal pool multiplicity translates into diffuse impact-constrained execution capacity across sibling pools.
 
-Across **293,273** reconstructed `family × day × direction × impact_bps` cells in a selected **78-family** Ethereum pilot, capacity shares are typically highly concentrated. The **cell-weighted** median capacity-effective pool count is **1.076**, and the median capacity-share HHI is **0.930**. A family-cluster bootstrap gives a 95% interval of **[1.041, 1.128]** for median $N_{\mathrm{eff}}$. These intervals quantify sensitivity to the sampled family composition; they do not establish population-level representativeness beyond the selected pilot.
+Across **293,273** reconstructed `family × day × direction × impact_bps` cells in a selected **78-family** Ethereum pilot, capacity shares are typically highly concentrated. A family-cluster bootstrap gives a 95% interval of **[1.041, 1.128]** for median $N_{\mathrm{eff}}$. These intervals quantify sensitivity to the sampled family composition; they do not establish population-level representativeness beyond the selected pilot.
 
-Observed family-day pool volume is also highly concentrated: among **36,783** matched family-days, observed HHI exceeds reconstructed capacity HHI on **67.6%** of days, although the two objects reflect different allocation processes.
+This is a selected multi-pool pilot, not a representative sample of all Uniswap v3 pairs. The broader equilibrium-composition question is motivation only; settlement safety is not estimated here.
 
-This is a selected multi-pool pilot, not a representative sample of all Uniswap v3 pairs. The selected families contain multiple nominal pools, but reconstructed capacity shares are usually concentrated in one pool. The broader equilibrium-composition question is motivation only; settlement safety is not estimated here.
-
----
-
-## 1. Measuring capacity concentration
+## What is being measured?
 
 A **family** is a target token paired with a quote asset (WETH, USDC, or USDT), together with the Uniswap v3 pools in that pair that enter the reconstruction.
 
@@ -31,7 +33,6 @@ For each cell
 $$
 \text{family} \times \text{day} \times \text{direction} \times \text{impact}_{\text{bps}}
 $$
-
 
 daily pool state is restored from Mint/Burn/Swap history. A capacity optimizer computes (i) maximum notional executable at a fixed impact tolerance on the best single pool, (ii) maximum notional under a split across available pools, and (iii) the **capacity shares** of that split. Impact tolerances are **10, 25, 50, and 100 bps**.
 
@@ -67,26 +68,7 @@ $$
 
 holds almost exactly (median absolute gap **$8.5\times 10^{-4}$**; correlation **0.996**). $g$ is useful for describing the incremental capacity contributed by secondary pools, but because the capacity-share construction mechanically links $g$ to top-1 share, it is not treated as an independent concentration result.
 
----
-
-## 2. Data and sample construction
-
-The analysis uses a curated **multi-pool pilot** of Ethereum Uniswap v3 token–quote families. The final manifest (`pilot_families.json`) lists **79** families and **187** pools. It was drawn from the project’s Ethereum Uniswap v3 event-lake study as a research-curated multi-pool set—not sampled uniformly from all Uniswap v3 pairs. Selection into the manifest required sibling pools that satisfy the inclusion properties below; it may therefore overrepresent families with sufficient event coverage and reconstructible state relative to a random pair draw.
-
-Documented inclusion properties verified from the manifest and pool metadata:
-
-- at least **two pools** per family;
-- at least **two distinct fee tiers** per family;
-- quote assets restricted to **WETH (69 configured / 68 in analysis), USDC (6), USDT (4)**;
-- quote-side consistency (Rule A): within each family, the quote asset maps to the same pool side in `quote_map`.
-
-**78** families produce reconstructible capacity rows. One configured family (`0x72e4f9f8_WETH`) is excluded because the verified route-capacity run emitted no cells for it. Selection into the manifest did **not** require successful reconstruction ex ante; that exclusion is an output filter.
-
-Calendar coverage: **2024-01-01 to 2026-06-29 UTC**. This is a selected multi-pool pilot and is **not** claimed to represent all Uniswap v3 pairs. Stage counts and stratum flags are in [Appendix A](#appendix-sample-construction) and the [reproducibility package](#reproducibility).
-
----
-
-## 3. Multiple pools, concentrated capacity
+## Main result: multiple pools, concentrated capacity
 
 The headline statistics below are **cell-weighted** over `family × day × direction × impact_bps` cells. A typical cell is not necessarily a typical family.
 
@@ -120,14 +102,27 @@ Cell counts are large because families repeat across days, directions, and impac
          alt="Available pools versus capacity-effective pool count"
          style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   </a>
-  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. 1.</strong> More available pools do not lift median $N_{\mathrm{eff}}$ off ~1. Medians labeled on each violin; 5-pool stratum omitted (one family). Capacity shares under the stated objective—not observed router usage.</div>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. 1.</strong> More available pools do not lift median $N_{\mathrm{eff}}$ off ~1. Medians labeled; 5-pool stratum omitted (one family). Capacity shares under the stated objective—not observed router usage.</div>
 </div>
 
 This is descriptive stratification, not a treatment effect of adding a third pool.
 
----
+## How the sample is constructed
 
-## 4. Robustness and uncertainty
+The analysis uses a curated **multi-pool pilot** of Ethereum Uniswap v3 token–quote families. The final manifest (`pilot_families.json`) lists **79** families and **187** pools. It was drawn from the project’s Ethereum Uniswap v3 event-lake study as a research-curated multi-pool set—not sampled uniformly from all Uniswap v3 pairs. Selection into the manifest required sibling pools that satisfy the inclusion properties below; it may therefore overrepresent families with sufficient event coverage and reconstructible state relative to a random pair draw.
+
+Documented inclusion properties verified from the manifest and pool metadata:
+
+- at least **two pools** per family;
+- at least **two distinct fee tiers** per family;
+- quote assets restricted to **WETH (69 configured / 68 in analysis), USDC (6), USDT (4)**;
+- quote-side consistency (Rule A): within each family, the quote asset maps to the same pool side in `quote_map`.
+
+**78** families produce reconstructible capacity rows. One configured family (`0x72e4f9f8_WETH`) is excluded because the verified route-capacity run emitted no cells for it. Selection into the manifest did **not** require successful reconstruction ex ante; that exclusion is an output filter.
+
+Calendar coverage: **2024-01-01 to 2026-06-29 UTC**. This is a selected multi-pool pilot and is **not** claimed to represent all Uniswap v3 pairs. Stage counts and stratum flags are summarized below.
+
+## Does the result survive different summaries?
 
 ### Cell-weighted versus family-weighted
 
@@ -152,7 +147,7 @@ The result is stable across the impact thresholds tested within the same capacit
 
 ### Family-cluster bootstrap
 
-The **293,273** cells are not independent. Uncertainty uses a **family-cluster bootstrap**: resample the **78** families with replacement; when a family is selected, include all of its cells. **5,000** draws with fixed seeds documented in the [reproducibility package](#reproducibility); percentile 95% intervals.
+The **293,273** cells are not independent. Uncertainty uses a **family-cluster bootstrap**: resample the **78** families with replacement; when a family is selected, include all of its cells. **5,000** draws with fixed seeds; percentile 95% intervals.
 
 | Statistic | Point | 95% CI |
 |-----------|------:|-------:|
@@ -175,9 +170,7 @@ These intervals quantify sensitivity to the sampled family composition. They do 
 
 WETH-quoted families dominate the cell count, but top-volume and long-tail slices show the same qualitative pattern.
 
----
-
-## 5. Realized activity
+## What happens in realized activity?
 
 Reconstruction answers what capacity **can** look like under the fixed objective. Realized swaps answer a different question: how concentrated is observed family-day volume?
 
@@ -203,31 +196,23 @@ Pearson correlation **0.741**; Spearman **0.841** (bootstrap 95% CI **[0.803, 0.
 
 Observed HHI and reconstructed capacity HHI are different objects. The comparison does not imply that traders fail to use capacity, that observed routing is inefficient, or that the optimizer is efficient.
 
----
-
-## 6. Scope and next measurement
+## What this does — and does not — show
 
 **What this note measures.** In a selected pilot, multiple nominal Uniswap v3 pools often map to highly concentrated capacity shares under an impact-constrained capacity objective. Observed family-day volume is also highly concentrated and ranks similarly, although it reflects a different allocation process.
 
-**What it does not measure.** Gas, fee-aware routing, latency, MEV, failure risk, or Nash play. The optimizer is not a welfare benchmark. Builder concentration in [Appendix B](#appendix-b-ordering-layer-diagnostic) is independent context—not a linked panel and not evidence of propagation from liquidity to ordering.
+**What it does not measure.** Gas, fee-aware routing, latency, MEV, failure risk, or Nash play. The optimizer is not a welfare benchmark, and no cross-layer causal claim is made.
 
-**Why pool count may mislead.** If similar gaps appear elsewhere in the stack, venue or participant counts become weak resilience metrics when effective substitutability under a stated objective stays low. That composition question is developed in [Appendix C](#appendix-c-composition-motivation); no settlement-safety threshold is estimated here.
+**Why pool count may mislead.** Venue count can be a weak proxy for effective substitutability when capacity remains concentrated under a stated execution objective.
 
 **Next observable.** When does low $N_{\mathrm{eff}}$ materially reduce execution substitutability for real trade sizes and routes—and at what threshold does ordering-layer concentration begin to affect inclusion resilience?
 
----
-
-## Reproducibility {#reproducibility}
+## Reproducibility
 
 [Reproducibility package](https://gist.github.com/egpivo/bb1ed22fbac028bd31431d80c3b7aae0) — analysis scripts, processed inputs, manifest, and headline numbers.
 
 ---
 
-## Appendix A — Sample construction {#appendix-sample-construction}
-
-See the [reproducibility package](https://gist.github.com/egpivo/bb1ed22fbac028bd31431d80c3b7aae0) file `sample_definition.md` for stage counts, exclusion rules, pool-count stratum flags, and quote-asset composition.
-
-Summary:
+## Sample construction details
 
 | Stage | Count |
 |------|------:|
@@ -240,38 +225,17 @@ Excluded: `0x72e4f9f8_WETH` (no reconstructible capacity rows in the verified ru
 
 ---
 
-## Appendix B — Independent ordering-layer context {#appendix-b-ordering-layer-diagnostic}
+## Why this might matter beyond the liquidity layer
 
-These figures are included only to motivate a possible cross-layer measurement agenda. They are not part of the estimand or evidence for the liquidity-layer result.
-
-In monthly one-day MEV-Boost samples (Jan 2024–Jun 2026, [dataalways/mevboost-data](https://github.com/dataalways/mevboost-data)), top-1 builder share was **34%** in Jan 2024 and **43%** in Jun 2026; top-3 share was **73%** and **90%** at those endpoints, with a non-monotonic path in between. The series measures concentration on sampled relay-visible blocks; concentration is not a censorship proof ([Heimbach & Wattenhofer, 2023](https://arxiv.org/abs/2305.19037)). This series is not joined to the Uniswap data and does not identify propagation from liquidity concentration to ordering concentration.
-
-<div style="text-align:center; margin: 2rem 0;">
-  <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_builder_concentration.png" target="_blank" rel="noopener noreferrer">
-    <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_builder_concentration.png"
-         alt="Top-1 and top-3 MEV-Boost builder share over sampled months"
-         style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
-  </a>
-  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. B1.</strong> Endpoint labels: top-1 **34% → 43%**, top-3 **73% → 90%**, with a non-monotonic path in between. Monthly one-day MEV-Boost samples—independent context, not joined to Uniswap cells.</div>
-</div>
-
----
-
-## Appendix C — Composition motivation {#appendix-c-composition-motivation}
-
-This appendix states the broader design question motivating the measurement. Nothing in this section is estimated by the pilot.
-
-Consider three stylized layers:
+The broader question is whether locally sensible outcomes across three layers
 
 $$
-G_L=\text{liquidity / execution},\qquad
-G_O=\text{ordering / blockspace},\qquad
-G_S=\text{settlement}.
+G_L=\text{liquidity / execution},\qquad G_O=\text{ordering / blockspace},\qquad G_S=\text{settlement}
 $$
 
-Participants optimize layer-local objectives—fees and impact at $G_L$, block value at $G_O$, protocol constraints at proposers. Settlement asks for properties those objectives do not fully price: credible inclusion, auditability, censorship resistance, and finality.
+compose into a robust system. Participants optimize layer-local objectives—fees and impact at $G_L$, block value at $G_O$, and protocol constraints at $G_S$—while settlement also depends on properties such as credible inclusion, auditability, censorship resistance, and finality.
 
-The **settlement-safe-region** framing asks whether locally sensible layer outcomes compose into something like $\mathcal{S}_{\mathrm{safe}}$. No settlement-safety threshold is estimated. The empirical contribution remains impact-constrained capacity concentration inside $G_L$.
+The **settlement-safe-region** framing asks when these local outcomes compose into something like $\mathcal{S}_{\mathrm{safe}}$. That question is motivation only: this pilot estimates impact-constrained capacity concentration inside $G_L$, not cross-layer propagation or settlement safety.
 
 <div style="text-align:center; margin: 2rem 0;">
   <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_dex_multi_market.png" target="_blank" rel="noopener noreferrer">
@@ -279,15 +243,11 @@ The **settlement-safe-region** framing asks whether locally sensible layer outco
          alt="One trade through liquidity, ordering, and settlement layers"
          style="max-width:55%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
   </a>
-  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. C1.</strong> One swap prices through liquidity → ordering → settlement. Schematic of the composition question—not measured shares or causal links.</div>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. 3.</strong> One swap prices through liquidity → ordering → settlement. Schematic of the composition question—not measured shares or causal links.</div>
 </div>
-
-A related conceptual companion note develops the broader equilibrium-composition problem, including sandwich labels, DEX migration, and settlement objectives. That companion is not estimated by this pilot and is not required to read the capacity results above.
-
----
 
 ## References
 
 - Baggiani, Herdegen, Sanchez-Betancourt. DEX dynamic fee competition. [arXiv:2603.09669](https://arxiv.org/abs/2603.09669).
 - Heimbach & Wattenhofer. PBS empirics. [arXiv:2305.19037](https://arxiv.org/abs/2305.19037).
-- Related measurement notes: [pool state lab](https://egpivo.github.io/2026/07/14/before-mev-build-the-pool.html); [dynamic fees](https://egpivo.github.io/2026/07/21/dynamic-fees-amm-signal-matters.html); [same token, multiple markets](https://egpivo.github.io/2026/07/12/the-same-token-is-not-the-same-market.html).
+- Related measurement notes: [pool state lab]({{ site.baseurl }}/2026/07/14/before-mev-build-the-pool.html); [dynamic fees]({{ site.baseurl }}/2026/07/21/dynamic-fees-amm-signal-matters.html); [same token, multiple markets]({{ site.baseurl }}/2026/07/12/the-same-token-is-not-the-same-market.html).
