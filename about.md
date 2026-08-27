@@ -39,34 +39,11 @@ permalink: /about/
 I'm a machine learning engineer with nearly ten years of hands-on experience and a Ph.D. in Statistics. I build end-to-end systems that combine solid modeling with reliable data and infrastructure — and make sure they work at scale. Lately, I've been working on agentic workflows, RAG systems, and spatiotemporal modeling, blending practical engineering with research. My current focus is on building statistical boosters around pretrained models — things like conformal prediction and low-rank adapters — so that complex systems become both more trustworthy and easier to reason about.
         </p>
         <p class="intro-paragraph">
-More recently, I've been focusing on <strong>blockchain infrastructure and on-chain markets</strong>, using statistics, machine learning, and systems thinking to study market structure, execution, and liquidity — and to reconstruct, audit, and reason about the infrastructure behind prices and execution from public on-chain data.
+More recently, I've been focusing on <strong>blockchain infrastructure and on-chain markets</strong>—using statistics, ML, and systems thinking to study market structure, execution, and liquidity, and to reconstruct and audit the infrastructure behind prices from public on-chain data.
         </p>
       </div>
     </div>
   </section>
-
-  <!-- Writing (Medium) -->
-  {% if site.medium_url %}
-  <section class="about-section">
-    <div class="section-header">
-      <h2 class="section-title">
-        <i class="fab fa-medium"></i>
-        Writing
-      </h2>
-    </div>
-    <div class="content-card">
-      <p class="intro-paragraph">
-        Long-form posts live on this site first. I also publish on
-        <a href="{{ site.medium_url }}" rel="noopener noreferrer" target="_blank">Medium</a>
-        for broader reach and editorial distribution. Recent blockchain and technical writing has appeared in
-        <a href="https://medium.com/coinmonks" rel="noopener noreferrer" target="_blank">Coinmonks</a>,
-        <a href="https://medium.com/stackademic" rel="noopener noreferrer" target="_blank">Stackademic</a>, and
-        <a href="https://medium.com/thecapital" rel="noopener noreferrer" target="_blank">The Capital</a>,
-        with the canonical versions remaining here.
-      </p>
-    </div>
-  </section>
-  {% endif %}
 
   <!-- Experience Section -->
   <section class="about-section">
@@ -89,7 +66,7 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           </div>
         </div>
         <div class="card-content">
-          <p>Built an entity linking system for news analytics and assistants, and delivered a RAG + MCP Q&amp;A system for an energy client to support domain-specific search.</p>
+          <p>Entity linking for news analytics; RAG + MCP Q&amp;A for an energy client.</p>
           <div class="tech-tags">
             <span class="tech-tag">RAG</span>
             <span class="tech-tag">NLP</span>
@@ -108,11 +85,10 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           </div>
         </div>
         <div class="card-content">
-          <p>Built large-scale recommendation systems from scratch, handling millions of users and products.</p>
+          <p>Large-scale recommendation systems from scratch.</p>
           <div class="tech-tags">
             <span class="tech-tag">Recommendation Systems</span>
             <span class="tech-tag">Large Scale</span>
-            <span class="tech-tag">ML Engineering</span>
           </div>
         </div>
       </div>
@@ -128,11 +104,10 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           </div>
         </div>
         <div class="card-content">
-          <p>Data science/ML roles focused on NLP and time-series modeling across various industries.</p>
+          <p>NLP and time-series modeling across industries.</p>
           <div class="tech-tags">
             <span class="tech-tag">NLP</span>
             <span class="tech-tag">Time Series</span>
-            <span class="tech-tag">Data Science</span>
           </div>
         </div>
       </div>
@@ -148,7 +123,7 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           </div>
         </div>
         <div class="card-content">
-          <p>Work on Bayesian diffusion models and interpretable geospatial modeling, integrating statistical methods with modern deep learning.</p>
+          <p>Bayesian diffusion models; interpretable geospatial ML.</p>
           <div class="tech-tags">
             <span class="tech-tag">Bayesian</span>
             <span class="tech-tag">Geospatial</span>
@@ -202,6 +177,33 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           <span class="skill-tag">Bayesian Methods</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section class="about-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-book"></i>
+        Publications
+      </h2>
+    </div>
+    <div class="content-card">
+      <ul class="publication-list">
+        {% for pub in site.data.publications %}
+        <li class="publication-item">
+          {% if pub.url %}
+          <a class="publication-title" href="{% if pub.url contains '://' %}{{ pub.url }}{% else %}{{ site.baseurl }}{{ pub.url }}{% endif %}" rel="noopener noreferrer" target="_blank">{{ pub.title }}</a>
+          {% else %}
+          <span class="publication-title">{{ pub.title }}</span>
+          {% endif %}
+          <span class="publication-meta">{{ pub.authors }} · {{ pub.venue }}, {{ pub.year }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="publication-more">
+        <a href="https://scholar.google.com/citations?user=GAKosCMAAAAJ" rel="noopener noreferrer" target="_blank">Google Scholar →</a>
+      </p>
     </div>
   </section>
 </div>
