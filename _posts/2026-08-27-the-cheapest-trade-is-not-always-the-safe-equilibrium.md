@@ -29,8 +29,9 @@ A **family** is a target token paired with a quote asset (WETH, USDC, or USDT), 
 For each cell
 
 $$
-\text{family} \times \text{day} \times \text{direction} \times \text{impact\_bps},
+\text{family} \times \text{day} \times \text{direction} \times \text{impact}_{\text{bps}}
 $$
+
 
 daily pool state is restored from Mint/Burn/Swap history. A capacity optimizer computes (i) maximum notional executable at a fixed impact tolerance on the best single pool, (ii) maximum notional under a split across available pools, and (iii) the **capacity shares** of that split. Impact tolerances are **10, 25, 50, and 100 bps**.
 
@@ -100,7 +101,7 @@ Across **293,273** reconstructed cells:
 | Share with HHI $\ge 0.75$ | **69.2%** |
 | Share with $N_{\mathrm{eff}}\ge 2$ | **0.67%** |
 
-The median cell behaves close to a single capacity-effective venue under the specified impact-constrained objective.
+The median cell behaves close to a single capacity-effective venue under the specified impact-constrained objective. Concentration in a dominant fee tier may be economically intuitive; the contribution here is to quantify how much effective capacity sibling pools add at explicit 10–100 bps impact boundaries, rather than infer substitutability from nominal pool count.
 
 Stratifying by available pools:
 
@@ -114,12 +115,13 @@ Stratifying by available pools:
 Cell counts are large because families repeat across days, directions, and impact thresholds; the 3- and 4-pool strata contain only **7** and **2** unique families. The **5-pool** row is one family only (`0x95ad61b0_WETH`) and is not generalized. Within this pilot, the 2–4 pool strata do not show greater median capacity diffusion as nominal pool count rises, but cross-family coverage is thin in the 3- and 4-pool groups.
 
 <div style="text-align:center; margin: 2rem 0;">
-  <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_available_vs_effective.png"
-       alt="Available pools versus capacity-effective pool count"
-       style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_available_vs_effective.png" target="_blank" rel="noopener noreferrer">
+    <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_available_vs_effective.png"
+         alt="Available pools versus capacity-effective pool count"
+         style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. 1.</strong> More available pools do not lift median $N_{\mathrm{eff}}$ off ~1. Medians labeled on each violin; 5-pool stratum omitted (one family). Capacity shares under the stated objective—not observed router usage.</div>
 </div>
-
-**Fig. 1.** Available pools versus capacity-effective pool count ($N_{\mathrm{eff}}=1/\mathrm{HHI}$ from capacity shares). Main figure: **2–4 pools** only. All **1,744** five-pool cells come from one family and are omitted. Reconstructed capacity shares, not observed router usage.
 
 This is descriptive stratification, not a treatment effect of adding a third pool.
 
@@ -191,12 +193,13 @@ Matching on family and day gives **36,783** family-days. Reconstructed capacity 
 Pearson correlation **0.741**; Spearman **0.841** (bootstrap 95% CI **[0.803, 0.869]**). Observed activity is more concentrated than reconstructed impact-constrained capacity on **67.6%** of matched family-days (bootstrap 95% CI **[61.3%, 73.8%]**), although the two measures reflect different allocation processes. The median difference is modest, while the strong rank correlation indicates that family-days with high reconstructed capacity concentration also tend to exhibit high realized pool-volume concentration.
 
 <div style="text-align:center; margin: 2rem 0;">
-  <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_obs_vs_opt_hhi.png"
-       alt="Observed family-day HHI versus reconstructed capacity HHI"
-       style="max-width:72%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_obs_vs_opt_hhi.png" target="_blank" rel="noopener noreferrer">
+    <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_obs_vs_opt_hhi.png"
+         alt="Observed family-day HHI versus reconstructed capacity HHI"
+         style="max-width:72%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. 2.</strong> Most of the **36,783** matched family-days sit in the high-HHI corner. Dashed = identity; dotted = sample medians (observed above reconstructed). Two objects, one rank pattern—not a welfare gap.</div>
 </div>
-
-**Fig. 2.** Observed versus reconstructed capacity concentration on **36,783** matched family-days. Dashed: identity. Dotted guides: sample medians. Descriptive only—the optimizer is not a welfare benchmark.
 
 Observed HHI and reconstructed capacity HHI are different objects. The comparison does not imply that traders fail to use capacity, that observed routing is inefficient, or that the optimizer is efficient.
 
@@ -244,12 +247,13 @@ These figures are included only to motivate a possible cross-layer measurement a
 In monthly one-day MEV-Boost samples (Jan 2024–Jun 2026, [dataalways/mevboost-data](https://github.com/dataalways/mevboost-data)), top-1 builder share was **34%** in Jan 2024 and **43%** in Jun 2026; top-3 share was **73%** and **90%** at those endpoints, with a non-monotonic path in between. The series measures concentration on sampled relay-visible blocks; concentration is not a censorship proof ([Heimbach & Wattenhofer, 2023](https://arxiv.org/abs/2305.19037)). This series is not joined to the Uniswap data and does not identify propagation from liquidity concentration to ordering concentration.
 
 <div style="text-align:center; margin: 2rem 0;">
-  <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_builder_concentration.png"
-       alt="Top-1 and top-3 MEV-Boost builder share over sampled months"
-       style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_builder_concentration.png" target="_blank" rel="noopener noreferrer">
+    <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_builder_concentration.png"
+         alt="Top-1 and top-3 MEV-Boost builder share over sampled months"
+         style="max-width:92%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. B1.</strong> Endpoint labels: top-1 **34% → 43%**, top-3 **73% → 90%**, with a non-monotonic path in between. Monthly one-day MEV-Boost samples—independent context, not joined to Uniswap cells.</div>
 </div>
-
-**Fig. B1.** Top-1 and top-3 builder share in monthly one-day MEV-Boost samples (Jan 2024–Jun 2026). Independent ordering-layer context; not linked to Uniswap cells.
 
 ---
 
@@ -270,12 +274,13 @@ Participants optimize layer-local objectives—fees and impact at $G_L$, block v
 The **settlement-safe-region** framing asks whether locally sensible layer outcomes compose into something like $\mathcal{S}_{\mathrm{safe}}$. No settlement-safety threshold is estimated. The empirical contribution remains impact-constrained capacity concentration inside $G_L$.
 
 <div style="text-align:center; margin: 2rem 0;">
-  <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_dex_multi_market.png"
-       alt="One trade through liquidity, ordering, and settlement layers"
-       style="max-width:55%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  <a href="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_dex_multi_market.png" target="_blank" rel="noopener noreferrer">
+    <img src="{{ site.baseurl }}/assets/2026-08-27-competition-points-same-way/fig_dex_multi_market.png"
+         alt="One trade through liquidity, ordering, and settlement layers"
+         style="max-width:55%; height:auto; border: 1px solid #ddd; border-radius: 8px;" />
+  </a>
+  <div style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-top: .25rem;"><strong>Fig. C1.</strong> One swap prices through liquidity → ordering → settlement. Schematic of the composition question—not measured shares or causal links.</div>
 </div>
-
-**Fig. C1.** Composition schematic: one swap passes through $G_L$, $G_O$, and $G_S$. Illustration only—not measured shares or causal links.
 
 A related conceptual companion note develops the broader equilibrium-composition problem, including sandwich labels, DEX migration, and settlement objectives. That companion is not estimated by this pilot and is not required to read the capacity results above.
 
