@@ -198,11 +198,23 @@ More recently, I've been focusing on <strong>blockchain infrastructure and on-ch
           <span class="publication-title">{{ pub.title }}</span>
           {% endif %}
           <span class="publication-meta">{{ pub.authors }} · {{ pub.venue }}, {{ pub.year }}</span>
+          {% if pub.software %}
+          <span class="publication-software">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            {% if pub.software.url %}
+            <a href="{{ pub.software.url }}" rel="noopener noreferrer" target="_blank">{{ pub.software.name }}</a>
+            {% else %}
+            <a href="{{ pub.software.github }}" rel="noopener noreferrer" target="_blank">{{ pub.software.name }}</a>
+            {% endif %}
+            · <a href="{{ pub.software.github }}" rel="noopener noreferrer" target="_blank">GitHub</a>
+          </span>
+          {% endif %}
         </li>
         {% endfor %}
       </ul>
       <p class="publication-more">
         <a href="https://scholar.google.com/citations?user=GAKosCMAAAAJ" rel="noopener noreferrer" target="_blank">Google Scholar →</a>
+        · <a href="{{ site.baseurl }}/software/">Software →</a>
       </p>
     </div>
   </section>

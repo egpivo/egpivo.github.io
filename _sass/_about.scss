@@ -140,7 +140,7 @@
     }
   }
 
-  // Publications
+  // Publications (list: paper + optional software line)
   .publication-list {
     list-style: none;
     margin: 0;
@@ -181,6 +181,27 @@
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
     line-height: 1.4;
+  }
+
+  .publication-software {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.45;
+
+    i {
+      margin-right: 0.25em;
+    }
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .publication-more {

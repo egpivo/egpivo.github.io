@@ -1,48 +1,78 @@
-# Selected publications (newest first). Keep About compact; full list on Scholar.
+# Selected publications (newest first). Optional software attaches to each entry.
 - title: "Calibrated Predictive Distributions from Sample-Based Generators"
   authors: "W.-T. Wang, S. Tzeng, Y.-T. Fan, H.-C. Huang"
   venue: "Under review"
   year: 2026
   url: /assets/publications/calibrated-predictive-distributions-sample-based-generators.pdf
+  software:
+    name: bc-cpit
+    github: https://github.com/egpivo/bc-cpit
+    url: https://pypi.org/project/bc-cpit/
 
 - title: "Causal Effects of Protocol-Fee Changes on Liquidity Provision in Automated Market Makers"
   authors: "W.-T. Wang"
   venue: "arXiv preprint"
   year: 2026
   url: https://arxiv.org/abs/2607.08525
+  software:
+    name: amm-lab
+    github: https://github.com/egpivo/amm-lab
 
 - title: "Reinforcement Learning for Execution under Dynamic Fees in a Closed-Loop DEX Simulator"
   authors: "W.-T. Wang"
   venue: "arXiv preprint"
   year: 2026
   url: https://arxiv.org/abs/2607.10960
+  software:
+    name: amm-lab
+    github: https://github.com/egpivo/amm-lab
 
 - title: "Cluster-Aware Conformal Calibration for Spatio-Temporal Distributional Prediction"
   authors: "G. Kim, C. Y. Lim, W.-T. Wang, H.-Y. Huang, W.-Y. Wu"
   venue: "arXiv preprint"
   year: 2026
   url: https://arxiv.org/abs/2606.06753
+  software:
+    name: DA-STDK
+    github: https://github.com/STLABTW/da-stdk
+    url: https://pypi.org/project/da-stdk/
 
 - title: "Spatial Adapter: Structured Spatial Decomposition and Closed-Form Covariance for Frozen Predictors"
   authors: "W.-T. Wang, W.-Y. Wu, H.-Y. Huang, X. C. Wang"
   venue: "arXiv preprint"
   year: 2026
   url: https://arxiv.org/abs/2605.11394
+  software:
+    name: Spatial Adapter
+    github: https://github.com/STLABTW/spatial-adapter
+    url: https://pypi.org/project/spatial-adapter/
 
 - title: "DeepKriging on the Global Data"
   authors: "H.-Y. Huang, W.-T. Wang, P.-H. Chiang, W.-Y. Wu"
   venue: "Japanese Journal of Statistics and Data Science"
   year: 2026
   url: https://doi.org/10.1007/s42081-026-00371-z
+  software:
+    name: Spherical DeepKriging
+    github: https://github.com/STLABTW/spherical-deepkriging
+    url: https://pypi.org/project/spherical-deepkriging/
 
 - title: "Regularized Spatial Maximum Covariance Analysis"
   authors: "W.-T. Wang, H.-C. Huang"
   venue: "Environmetrics"
   year: 2018
   url: https://doi.org/10.1002/env.2481
+  software:
+    name: SpatMCA
+    github: https://github.com/egpivo/SpatMCA
+    url: https://egpivo.github.io/SpatMCA/
 
 - title: "Regularized Principal Component Analysis for Spatial Data"
   authors: "W.-T. Wang, H.-C. Huang"
   venue: "Journal of Computational and Graphical Statistics"
   year: 2017
   url: https://doi.org/10.1080/10618600.2016.1157483
+  software:
+    name: SpatPCA
+    github: https://github.com/egpivo/SpatPCA
+    url: https://egpivo.github.io/SpatPCA/

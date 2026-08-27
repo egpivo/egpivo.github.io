@@ -2,7 +2,7 @@
 layout: page
 title: Software
 hide_title: true
-description: "R packages (SpatPCA, SpatMCA, autoFRK), Python apps (Spatial Adapter, Spherical DeepKriging, KB Bridge, LLM Chatbot), and blockchain projects (Ethereum Fee Risk Diagnostics, Metering Chain, Ethereum Account State, Pay-As-You-Go, rust-zkp, rust-p2p-protocol-lab, zk-state-prune)."
+description: "R packages (autoFRK, QuantRegGLasso, influenceAUC), Python apps (KB Bridge, LLM Chatbot), and blockchain projects. Paper-linked packages (SpatPCA, SpatMCA, Spatial Adapter, DA-STDK, Spherical DeepKriging, bc-cpit, amm-lab) are listed under About → Publications."
 menu: main
 permalink: /software/
 ---
