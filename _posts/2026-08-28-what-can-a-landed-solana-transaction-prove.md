@@ -2,7 +2,7 @@
 layout: post
 title: "What Can a Landed Solana Transaction Actually Prove About DeFi Execution?"
 date: 2026-08-28
-tags: [Solana, DeFi, Blockchain, Web3, Research, Feature]
+tags: [Solana, DeFi, Market Structure, Blockchain, Finance]
 image: /assets/2026-08-28-what-can-a-landed-solana-transaction-prove/hero.png
 ---
 
